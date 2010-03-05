@@ -11,4 +11,4 @@ Comment[en_GB]=Enable 3D Magnification and Colour Changing
 Name=Enable 3D Desktop
 Comment=Enable 3D Magnification and Colour Changing
 Icon=/usr/share/icons/Humanity/apps/48/gnome-searchtool.svg
-Categories=Accessibility
+Categories=GNOME;GTK;Accessibility

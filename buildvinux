@@ -57,14 +57,27 @@ fi
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
-sudo apt-get install -y speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin >> $LOGFILE
+sudo apt-get install -y orca speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin >> $LOGFILE
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Enable speech
 /usr/bin/restorespeech -l $LOGFILE
 
+# Update Orca
+rm -rf ~/.orca
+cp -a vinux_data/orca ~/.orca
+if [ "$ZIPCODE" != "" ]; then
+    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' ~/.orca/orca-customizations.py
+fi
+sudo cp -r ~/.orca /etc/skel
+
+# Edit speechd.conf to enable ibmtts.
+if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
+    sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
+fi
+
 # Set Vinux keybindings, menus, etc
-/usr/bin/restore_vinux_environment -l $LOGFILE -z $ZIPCODE
+sudo /usr/bin/set_vinux_globals -l $LOGFILE
 
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"

@@ -11,4 +11,4 @@ Comment[en_GB]=Browse Files and Directories as Superuser
 Name=File Browser (Root)
 Comment=Browse Files and Directories as Superuser
 Icon=/usr/share/icons/Humanity/apps/48/file-manager.svg
-Categories=Utility
+Categories=GNOME;GTK;Utility
