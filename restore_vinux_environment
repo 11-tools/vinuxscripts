@@ -1,0 +1,142 @@
+#!/bin/bash
+# This script sets Vinux keybindings, menus and such.  It does not modify the desktop, or remove
+# applications, however.
+
+LOGFILE=/dev/null
+while [ $# -gt 0 ]; do
+    if [ $1 = "-l" ]; then
+        shift
+        if [ $# -lt 1 ]; then
+    	echo "Expecting log file name"
+    	    exit 1
+        fi
+        LOGFILE=$1
+        shift
+    elif [ $1 = "-z" ]; then
+        shift
+        if [ $# -lt 1 ]; then
+    	echo "Expecting zipcode"
+    	    exit 1
+        fi
+        ZIPCODE=$1
+        shift
+    fi
+done
+
+if [ $# != 0 ]; then
+    echo "Usage: restore_vinux_environment [-l logFile] [-z zipcode]"
+    exit 1
+fi
+
+if [ "$ZIPCODE" = "" ]; then
+   echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
+   read ZIPCODE
+fi
+
+
+# Change menus to use runsu instead of gksu
+echo "Updating main menu"
+mkdir -p ~/.local/share/applications
+cp vinux_data/menus/* ~/.local/share/applications
+
+# Update Orca
+rm -rf ~/.orca
+cp -a vinux_data/orca ~/.orca
+if [ "$ZIPCODE" != "" ]; then
+    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' ~/.orca/orca-customizations.py
+fi
+
+# Edit speechd.conf to enable ibmtts.
+sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
+
+# Set Vinux keybindings
+echo "Setting Vinux keybindings"
+function add-keybinding {
+    gconftool-2 -s -t string "$1" "$2"
+}
+
+add-keybinding /apps/gnome_settings_daemon/keybindings/volume_mute '<Shift><Control>m'
+add-keybinding /apps/gnome_settings_daemon/keybindings/search '<Shift><Control>s'
+add-keybinding /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
+add-keybinding /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
+add-keybinding /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
+add-keybinding /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>c'
+add-keybinding /apps/gnome_settings_daemon/keybindings/volume_up '<Shift><Control>Up'
+add-keybinding /apps/gnome_settings_daemon/keybindings/volume_down '<Shift><Control>Down'
+add-keybinding /apps/metacity/global_keybindings/run_command_terminal '<Shift><Control>t'
+add-keybinding /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Control>z'
+add-keybinding /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>v'
+add-keybinding /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
+add-keybinding /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
+
+# takes custom key number, name, binding, and action in that order
+function add-customkey {
+    gconftool-2 -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
+    gconftool-2 -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
+    gconftool-2 -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
+}
+
+add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
+add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
+add-customkey 2 'Rhythmbox' '<Shift><Control>r' 'rhythmbox'
+add-customkey 3 'Dictionary' '<Shift><Control>d' 'gnome-dictionary'
+add-customkey 4 'Brasero' '<Shift><Control>b' 'brasero'
+add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
+add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
+add-customkey 7	'Root Nautilus' '<Shift><Control>n' 'runsu nautilus'
+add-customkey 8	'YASR' '<Shift><Control>y' 'gnome-terminal -e yasr'
+
+# Compiz
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super><Button1>'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/zoom_out_button '<Super><Button3>'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_1_key '<Super>1'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_2_key '<Super>2'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_3_key '<Super>3'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/lock_zoom_key '<Super>l'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/pan_left_key '<Super>Left'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/pan_right_key '<Super>Right'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/pan_up_key '<Super>Up'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/pan_down_key '<Super>Down'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/fit_to_zoom_key '<Super>r'
+add-keybinding /apps/compiz/plugins/ezoom/allscreens/options/fit_to_window_key '<Super>z'
+gconftool-2 -s -t bool /apps/compiz/plugins/ezoom/screen0/options/hide_original_mouse true
+gconftool-2 -s -t bool /apps/compiz/plugins/ezoom/screen0/options/scale_mouse true
+add-keybinding /apps/compiz/plugins/neg/allscreens/options/screen_toggle_key '<Super>s'
+add-keybinding /apps/compiz/plugins/mag/allscreens/options/zoom_in_button '<Shift><Super>Button1'
+add-keybinding /apps/compiz/plugins/mag/allscreens/options/zoom_out_button '<Shift><Super>Button3'
+gconftool-2 -s -t int /apps/compiz/plugins/ezoom/screen0/options/box_width 640
+gconftool-2 -s -t int /apps/compiz/plugins/ezoom/screen0/options/box_height 480
+add-keybinding /apps/compiz/plugins/obs/allscreens/options/brightness_increase_key '<Super>b'
+add-keybinding /apps/compiz/plugins/obs/allscreens/options/brightness_decrease_key '<Super>v'
+add-keybinding /apps/compiz/plugins/obs/allscreens/options/saturation_increase_key '<Super>t'
+add-keybinding /apps/compiz/plugins/obs/allscreens/options/saturation_decrease_key '<Super>y'
+add-keybinding /apps/compiz/plugins/switcher/allscreens/options/next_all_key 'Disabled'
+add-keybinding /apps/compiz/plugins/switcher/allscreens/options/next_panel_key '<Control><Alt><Tab>'
+add-keybinding /apps/compiz/plugins/switcher/allscreens/options/prev_all_key 'Disabled'
+add-keybinding /apps/compiz/plugins/switcher/allscreens/options/prev_panel_key '<Shift><Control><Alt><Tab>'
+
+# Now disable/enable compiz plugins
+function set_list {
+    list=`gconftool-2 -g $1`
+    value=`echo $list | egrep "(,|\[)$2(,|\])"`
+    if [ "$value" = "" ]; then
+        list=`echo $list | sed "s/\]/,$2\]/"`
+        gconftool-2 -s -t list --list-type string $1 $list
+    fi
+}
+
+function unset_list {
+    list=`gconftool-2 -g $1`
+    value=`echo $list | egrep "(,|\[)$2(,|\])"`
+    if [ "$value" != "" ]; then
+        list=`echo $list | sed "s/,$2,/,/
+            s/,$2\]/\]/
+            s/\[$2,/\[/
+            s/\[$2\]/\[\]/"`
+        gconftool-2 -s -t list --list-type string $1 $list
+    fi
+}
+
+unset_list /apps/compiz/general/allscreens/options/active_plugins staticswitcher
+set_list /apps/compiz/general/allscreens/options/active_plugins switcher
+set_list /apps/compiz/general/allscreens/options/active_plugins mag
