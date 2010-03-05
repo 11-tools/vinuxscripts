@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Computer Janitor
+Comment=Clean up a system so it's more like a freshly installed one
+Exec=runsu computer-janitor-gtk
+Terminal=false
+Type=Application
+Icon=computerjanitor
+Categories=System;Settings;PackageManager;GTK;
+StartupNotify=true
+X-Ubuntu-Gettext-Domain=computerjanitor
