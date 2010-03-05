@@ -1,0 +1,208 @@
+#!/bin/bash
+# This program should run after buildvinux.  It will remove a bunch of
+# applications to make more room on the CD ISO, and it will do other
+# unhappy things to your system.  Unless you are trying to make a new
+# release of Vinux, do not run this script.
+
+# Make space on system
+echo "Removing applications to make room on the CD"
+sudo apt-get purge ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
+
+# Change the default background
+18. Change desktop background to 'throwing stones', change all fonts to size 12
+bold, select the 'New Wave' theme, then change to the 'DMZ White' pointer and
+increase the size to max.
+
+19. Delete the bottom panel, delete the custom menu from the top panel, then add
+a 'Main Menu' and a 'Window List' to the panel on the left hand side, on the
+right hand side leave the calender and notification area, delete all the others
+then replace the desktop switcher with a three panel system monitor.
+
+20. Open the panel properties, set its size to 50 and then move it to the
+bottom of the screen.
+
+21. Replace gksu with runsu in the menus using the 'main menu' launcher. Convert
+all commands that run with 'gksu' to use 'runsu' and remove any arguments/flags.
+The list for Lucid Alpha 3 is:
+
+ System/Computer Janitor
+ System/GParted
+ System/Software Sources
+ System/Synaptic Package Manager
+ Sytem/Remastersys Backup
+
+22. Configure Orca:
+
+       Change Speech Rate to 60
+       Enable Braille support
+       Magnifier - Hide system pointer
+       Magnifier - Enable Cross-Hairs (Red)
+       Magnifier - Invert Colours
+
+23. Add Orca keybindings:
+
+       Increase Speech Rate - Orca + Up
+       Decrease Speech Rate - Orca + Down
+       Increase Speech Pitch - Orca + comma (<)
+       Decrease Speech Pitch - Orca + period (>)
+
+       Toggle Magnifier - Orca + g
+       Increase Magnification - Orca + equal (+)
+       Decrease Magnification - Orca + minus
+       Toggle Colour Enhancements - Orca + i
+       Toggle Mouse Enhancements - Orca + x
+
+24. Install Storm Dragon's Customisations Script from www.stormdragon.us/
+orca-customisations/ then place it into your .orca folder and restart Orca.
+
+       Battery - orca + a
+       Clipboard - orca + r
+       Updates - orca + c
+       Date - orca + d
+       Time - orca + t
+       Weather - orca + w
+
+25. Next open the Keyboard Shortcuts Manager and add the following keybindings.
+
+ Volume mute - Ctrl+Shift+m
+ Volume down - Ctrl+Shift+Down
+ Volume up - Ctrl+Shift+Up
+
+ Launch calculator - Ctrl+Shift+c
+ Launch email client - Ctrl+Shift+e
+ Launch web browser - Ctrl+Shift+w
+ Home folder - Ctrl+Shift+h
+ Search - Ctrl+Shift+s
+ Run a terminal - Ctrl+Shift+t
+ Launch Text Editor - Ctrl+Shift+g
+
+ Toggle fullscreen mode - Ctrl+Shift+f
+ Toggle maximization state - Ctrl+Shift+x
+ Maximise Window Vertically - Ctrl+Shift+v
+ Maximise Window Horizontally - Ctrl+Shift+z
+
+Next, use the 'Add' button, call it 'Orca Restart' add the following commands:
+
+sh -c "killall speech-dispatcher; orca --replace" - Ctrl+Shift+o. (Restart Orca)
+rhythmbox - Ctrl+Shift+r (Music player)
+gnome-dictionary - Ctrl+Shift+d
+brasero - Ctrl+Shift+b (CD burner)
+[ADD TO MENU AS WELL]
+compiz --replace - Ctrl+Shift+F3 (3D Effects)
+metacity --replace - Ctrl+Shift+F2 (2D Effects)
+runsu nautilus - Ctrl+Shift+n (Root File Browser)
+gnome-terminal -e yasr - Ctrl+Shift+y (Terminal Screen-Reader)
+
+26. Set up Compiz keybindings:
+
+Enable the following plugins: Enhanced Zoom Desktop, Magnifier, Colour Filter,
+Negative,Opacity, brightness and saturation. Them add the following keybindings:
+
+ Zoom in - super(Win)+button 1 & super+equal
+ Zoom out - Super+button 3 & super+minus
+ Zoom normal - Win+1
+ Zoom level 2 - Win+2
+ Zoom level 3 - Win+3
+ Enable scale mouse pointer
+ Enable hide original mouse pointer
+ Lock zoom area - super+l
+ Pan zoom left - super+left
+ Pan zoom right - super+right
+ Pan zoom up - super+up
+ Pan zoom down - super+down
+ Fit Window - super+r (resize)
+ Fit Zoomed - super+z (zoom to window)
+ Toggle window negative - super+n
+ Toggle screen negative - super+s
+ Toggle lens magnifier - super+m
+ Zoom in lens magnifier - super+shift+button1
+ Zoom out lens magnifier - super+shift+button3
+ Lens (simple) widthxheight = 600x200
+ Toggle window filtering - super+f
+ Toggle Screen filtering - super+d
+ Switch filter - control+super+s
+ Increase brightness - super+b
+ Decrease brightness - super+v
+ Increase Saturuation - super+t
+ Decrease Saturation - super+y
+
+27. Finally disable "Static Application Switcher", and enable
+ "Application Swither".  Click on Applcation Switcher, and set these
+keybindings:
+
+ (keyboard) Next Panel - <Control><Alt>Tab (Ignore the warning and disable the
+ other keybinding)
+
+28. Create easy install scripts: e.g.
+
+#! /bin/bash
+
+b=$USER
+
+sudo apt-get update
+sudo apt-get install openoffice.org openoffice.org-gtk evolution
+evolution-exchange
+
+if [ $? -eq 0 ]; then
+
+a="/home/"
+c="/Desktop/EasyInstall-Office.desktop"
+rm $a$b$c
+echo "Installation Succeeded - Press any key to quit!"
+read input
+
+else
+
+echo "Installation Failed - press any key to quit"
+read input
+
+fi
+
+exit=0
+
+Other scripts to include:
+
+ubuntu-restricted extras (EasyInstall-Restricted)
+ubuntu-docs (EasyInstall-Documentation)
+gimp inkscape scribus (EasyInstall-Graphics)
+
+I may add more later...
+
+29. Place all EasyInstall scripts into a folder called EasyInstall in the home
+directory and create desktop launchers for each. Make them an application in
+terminal and make sure the name matches the name given in the script. e.g.
+EasyInstall-Office in this case (the .desktop is added automatically).
+
+30. Add Menu items:
+
+EasyInstall Scripts (EasyInstall Menu)
+
+Accessibility Menu
+compiz --replace (Enable 3D Desktop)
+metacity --replace (Disable 3D Desktop)
+orca (Screen-Reader/Magnifier)
+
+Accessories Menu
+nautilus (File Browser)
+runsu nautilus (File Browser (as Root))
+
+31. Next run remastersys and change the username to 'vinux' and the name of the
+CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
+
+32. Copy all the files in your home directory starting with to /etc/skel.
+
+33. Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
+iso should be in /home/remastersys in about 15-20 minutes.
+
+34. Due to changes made to the installer which remastersys does not yet support,
+you have to add a file to the iso, using isomaster. Create a file called
+'filesystem.size' in the /casper directory, which should contain the number
+3000000000.  Save the new iso and regenerate the md5 sum file.
+
+OR
+
+35. Run "remastersys dist cdfs" first (instead of 'dist'), then do the
+following:
+
+Open the /home/remastersys/remastersys/ISOTMP/casper directory as root and
+create the filesystem.size file containing 3000000000 (3 and 9x0's).

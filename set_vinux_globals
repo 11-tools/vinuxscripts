@@ -113,6 +113,17 @@ gct -s -t string /apps/empathy/conversation/theme classic
 #gct_gdm -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
+# Set default background picture
+gct -s -t string /desktop/gnome/background/picture_filename /usr/share/backgrounds/ThrowingStones.jpg
+
+# Set fonts
+gct -s -t string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 14'
+gct -s -t string /desktop/gnome/interface/document_font_name 'Sans Bold 14'
+gct -s -t string /desktop/gnome/interface/font_name 'Sans Bold 14'
+gct -s -t string /desktop/gnome/interface/icon_theme 'Humanity-Dark'
+gct -s -t string /desktop/gnome/interface/ 'gtk_theme'
+gct -s -t string /desktop/gnome/interface/ 'New Wave'
+
 remove_applet()
 {
         local line_no prior_line next_line
