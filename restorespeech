@@ -26,12 +26,13 @@ sudo rm -f /etc/xdg/autostart/pulseaudio.desktop
 sudo sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 sudo sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
 
-# Enable talking login window
-echo "Enabling talking login screen"
-sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/interface/accessibility true
-sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/visual/startup true
-sudo -u gdm gconftool-2 -s -t string /desktop/gnome/applications/at/visual/exec orca
-sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
+# Enable talking login window - should not be needed, since we set it globally in
+# set_vinux_globals
+#echo "Enabling talking login screen"
+#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/interface/accessibility true
+#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/visual/startup true
+#sudo -u gdm gconftool-2 -s -t string /desktop/gnome/applications/at/visual/exec orca
+#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
