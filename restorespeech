@@ -44,7 +44,7 @@ sudo modprobe speakup_soft
 if [ -f /etc/init.d/speechd-up ]; then
     sudo /etc/init.d/speechd-up stop >> $LOGFILE
 fi
-sudo apt-get install -y speechd-up module-assistant >> $LOGFILE
+sudo apt-get install -y speechd-up >> $LOGFILE
 
 # Enable speech-dispatcher to run system-wide
 sudo sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher

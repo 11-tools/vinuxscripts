@@ -3,26 +3,40 @@
 # applications, however.  It should be run as root.
 
 LOGFILE=/dev/null
+ZIPCODE=""
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
         shift
         if [ $# -lt 1 ]; then
-    	echo "Expecting log file name"
+    	    echo "Expecting log file name"
     	    exit 1
         fi
         LOGFILE=$1
         shift
+    elif [ $1 = "-z" ]; then
+        shift
+        if [ $# -lt 1 ]; then
+    	    echo "Expecting zipcode"
+    	    exit 1
+        fi
+        ZIPCODE=$1
+        shift
+    else
+        echo "Unknown option $1"
+        echo "Usage: restore_vinux_environment [-l logFile]"
+        exit 1
     fi
 done
 
-if [ $# != 0 ]; then
-    echo "Usage: restore_vinux_environment [-l logFile]"
-    exit 1
+if [ "$ZIPCODE" = "" ]; then
+    echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
+    read ZIPCODE
 fi
 
 # Change menus to use runsu instead of gksu
 echo "Updating main menu"
-cp vinux_data/menus/* /usr/share/applications
+cp -r vinux_data/menus/* /usr/share/applications
+chmod -R a+r /usr/share/applications
 # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
 rm -f /usr/share/applications/desktop.*.cache
 
@@ -106,15 +120,13 @@ gct -s -t bool /apps/gksu/disable-grab true
 set-string /desktop/gnome/applications/window_manager/default /usr/bin/metacity
 gct -s -t bool /desktop/gnome/applications/at/visual/startup true
 set-string /desktop/gnome/applications/at/visual/exec orca
-set-string /apps/empathy/conversation/theme classic                        
+set-string /apps/empathy/conversation/theme classic
+
 #gct_gdm -s -t bool /desktop/gnome/interface/accessibility true
 #gct_gdm -s -t bool /desktop/gnome/applications/at/visual/startup true
 #gct_gdm -s -t string /desktop/gnome/applications/at/visual/exec orca 
 #gct_gdm -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
-
-# Set default background picture
-set-string /desktop/gnome/background/picture_filename /usr/share/backgrounds/ThrowingStones.jpg
 
 # Set fonts
 set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 14'
@@ -128,6 +140,15 @@ gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
 set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
 gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
+# Update /etc/skel
+rm -rf /etc/skel/.orca /etc/skel/.gconf
+cp -r vinux_data/orca /etc/skel/.orca
+if [ "$ZIPCODE" != "" ]; then
+    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
+fi
+cp -r vinux_data/gconf /etc/skel/.gconf
+chmod -R a+r /etc/skel
 
 remove_applet()
 {

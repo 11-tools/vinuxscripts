@@ -63,21 +63,19 @@ sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 # Enable speech
 /usr/bin/restorespeech -l $LOGFILE
 
-# Update Orca
-rm -rf ~/.orca
-cp -a vinux_data/orca ~/.orca
-if [ "$ZIPCODE" != "" ]; then
-    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' ~/.orca/orca-customizations.py
-fi
-sudo cp -r ~/.orca /etc/skel
-
 # Edit speechd.conf to enable ibmtts.
 if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
     sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
 fi
 
-# Set Vinux keybindings, menus, etc
-sudo /usr/bin/set_vinux_globals -l $LOGFILE
+# Set Vinux keybindings, menus, desktop, etc
+sudo /usr/bin/set_vinux_globals -l $LOGFILE -z $ZIPCODE
+
+# Update our desktop to look like Vinux
+cp -r /etc/skel/.gconf ~
+
+# Update Orca
+cp -r /etc/skel/.orca ~
 
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
