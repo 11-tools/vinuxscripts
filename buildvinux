@@ -34,7 +34,8 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > buildvi
 # Update to the latest packages.
 echo "Updating package list..."
 sudo apt-get update > buildvinux.log
-echo "Upgrading all packages... This can take a long time.  See buildvinux.log for progress"
+echo "Upgrading all packages... This can take a long time."
+echo "See buildvinux.log for progress."
 sudo apt-get dist-upgrade -y >> buildvinux.log
 
 # Set pulseaudio to run as system-wide daemon.
@@ -53,7 +54,8 @@ sudo -u gdm gconftool-2 -s -t string /desktop/gnome/applications/at/visual/exec 
 sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
 # Install some packages
-sudo apt-get install -y speakup-source speakup-tools module-assistant remastersys runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin >> buildvinux.log
+sudo apt-get install -y speakup-source speakup-tools module-assistant runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin >> buildvinux.log
+sudo apt-get install -y --force-yes remastersys >> buildvinux.log
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
@@ -64,7 +66,9 @@ sudo modprobe speakup_soft
 sudo sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 
 # Install speechd-up
-sudo /etc/init.d/speechd-up stop >> buildvinux.log
+if [ -f /etc/init.d/speechd-up ]; then
+    sudo /etc/init.d/speechd-up stop >> buildvinux.log
+fi
 sudo apt-get install -y speechd-up >> buildvinux.log
 
 # Edit speechd.conf to enable ibmtts.
@@ -73,6 +77,7 @@ sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/sp
 
 # Change menus to use runsu instead of gksu
 echo "Updating main menu"
+mkdir -p ~/.local/share/applications
 cp vinux_data/menus/* ~/.local/share/applications
 
 # Update Orca
@@ -174,5 +179,5 @@ unset_list /apps/compiz/general/allscreens/options/active_plugins staticswitcher
 set_list /apps/compiz/general/allscreens/options/active_plugins switcher
 set_list /apps/compiz/general/allscreens/options/active_plugins mag
 
-echo "Done!  Enjoy your new Vinux-like environment."
+echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
