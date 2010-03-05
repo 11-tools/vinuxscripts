@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/Humanity/apps/48/logviewer.svg
+Exec=metacity --replace
+Name[en_GB]=Disable 3D Desktop
+Comment[en_GB]=Disable 3D Magnification and Colour Changing
+Name=Disable 3D Desktop
+Comment=Disable 3D Magnification and Colour Changing
+Icon=/usr/share/icons/Humanity/apps/48/logviewer.svg

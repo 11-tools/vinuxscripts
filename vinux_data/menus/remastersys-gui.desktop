@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=Remastersys Backup
+GenericName=System Backup
+Comment=Backup the system to LiveCD/DVD
+Exec=runsu /usr/bin/remastersys-gui
+Icon=/usr/share/icons/remastersys.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Encoding=UTF-8
+Categories=SystemBackup;Applications;GTK;System;Settings
+NotShowIn=KDE
+X-KDE-SubstituteUID=true
+
+
