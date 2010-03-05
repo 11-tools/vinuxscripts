@@ -61,10 +61,10 @@ sudo apt-get install -y speakup-source speakup-tools runsu gparted yasr compizco
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Enable speech
-restorespeech -l $LOGFILE -z $ZIPCODE
+/usr/bin/restorespeech -l $LOGFILE
 
 # Set Vinux keybindings, menus, etc
-restore_vinux_environment -l $LOGFILE -z $ZIPCODE
+/usr/bin/restore_vinux_environment -l $LOGFILE -z $ZIPCODE
 
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"

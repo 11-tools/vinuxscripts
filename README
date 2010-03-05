@@ -1,0 +1,11 @@
+These scripts build a Vinux-like environment on top of Ubuntu.  So far, it only
+works with Ubuntu Lucid.  You need to install before runnng the scripts, with:
+
+sudo make install
+
+There are three scripts installed:
+
+buildvinux    - Updates sources.list, updates to latest, and runs the other two scripts
+restorespeech - Modifies system to allow speakup to run, and restores login window speech
+restore_vinux_environment - Set's Vinux keybindings, menus, and other user settings.  This
+                must be run as the user who's environment is to be changed.
