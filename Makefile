@@ -4,5 +4,5 @@ all:
 install:
 	install buildvinux /usr/bin
 	install restorespeech /usr/bin
-	install restore_vinux_environment /usr/bin
+	install set_vinux_globals /usr/bin
 
