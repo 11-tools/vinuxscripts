@@ -123,6 +123,12 @@ set-string /desktop/gnome/interface/font_name 'Sans Bold 14'
 set-string /desktop/gnome/interface/icon_theme 'Humanity-Dark'
 set-string /desktop/gnome/interface/gtk_theme 'New Wave'
 
+# Set mouse pointer
+gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
+set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
+gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
+set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
 remove_applet()
 {
     local line_no prior_line next_line
