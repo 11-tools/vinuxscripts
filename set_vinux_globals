@@ -141,14 +141,14 @@ set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
 gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
-# Update /etc/skel
-rm -rf /etc/skel/.orca /etc/skel/.gconf
-cp -r vinux_data/orca /etc/skel/.orca
+# Update /etc/skel and /var/lib/gdm
+cp -r vinux_data/skel /etc/skel
 if [ "$ZIPCODE" != "" ]; then
     sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 fi
-cp -r vinux_data/gconf /etc/skel/.gconf
+cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
+chown -R gdm.gdm /var/lib/gdm/.orca
 
 remove_applet()
 {

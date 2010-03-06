@@ -1,0 +1,20 @@
+#! /bin/bash
+
+sudo apt-get update
+sudo apt-get install gimp inkscape scribus
+
+if [ $? -eq 0 ]; then
+
+app="/Desktop/EasyInstall-Graphics.desktop"
+rm -f /home/$USER/Desktop/$app
+rm -f /home/$USER/.local/share/applications/$app
+
+echo "Installation Successful - Press any key to quit!"
+read input
+
+else
+
+echo "Installation Failed - Press any key to quit!"
+read input
+
+fi

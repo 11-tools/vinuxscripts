@@ -72,10 +72,7 @@ fi
 sudo /usr/bin/set_vinux_globals -l $LOGFILE -z $ZIPCODE
 
 # Update our desktop to look like Vinux
-cp -r /etc/skel/.gconf ~
-
-# Update Orca
-cp -r /etc/skel/.orca ~
+cp -r /etc/skel/.* ~
 
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
