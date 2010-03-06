@@ -5,7 +5,8 @@ sudo make install
 
 There are three scripts installed:
 
-buildvinux    - Updates sources.list, updates to latest, and runs the other two scripts
+buildvinux    - Updates sources.list, updates to latest, and runs restorespeech and
+                set_vinux_gloals
 restorespeech - Modifies system to allow speakup to run, and restores login window speech
 set_vinux_globals - Set's default Vinux keybindings, menus, and other user
                 settings for all users.  Run with sudo.
