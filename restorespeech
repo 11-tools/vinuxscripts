@@ -1,6 +1,7 @@
 #!/bin/bash
 # This script can be run anytime to restore speech to a working state on a system.  Speech
 # currently is often broken by system updates from Ubuntu.
+# Run this script using sudo.
 
 LOGFILE=/dev/null
 if [ $1 = "-l" ]; then
@@ -20,40 +21,40 @@ fi
 
 # Set pulseaudio to run as system-wide daemon.
 echo "Setting pulseaudio to run system-wide"
-sudo sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
-sudo sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
-sudo rm -f /etc/xdg/autostart/pulseaudio.desktop
-sudo sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
-sudo sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
+sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
+sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
+rm -f /etc/xdg/autostart/pulseaudio.desktop
+sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
+sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
 
 # Enable talking login window - should not be needed, since we set it globally in
 # set_vinux_globals
 #echo "Enabling talking login screen"
-#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/interface/accessibility true
-#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/visual/startup true
-#sudo -u gdm gconftool-2 -s -t string /desktop/gnome/applications/at/visual/exec orca
-#sudo -u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
+#-u gdm gconftool-2 -s -t bool /desktop/gnome/interface/accessibility true
+#-u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/visual/startup true
+#-u gdm gconftool-2 -s -t string /desktop/gnome/applications/at/visual/exec orca
+#-u gdm gconftool-2 -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
-sudo apt-get install -y module-assistant >> $LOGFILE
-sudo m-a a-i -f speakup-source -q > $LOGFILE 2>&1
-sudo modprobe speakup_soft
+apt-get install -y module-assistant >> $LOGFILE
+echo y | m-a a-i -f speakup-source -q >> $LOGFILE 2>&1
+modprobe speakup_soft
 
 # Install speechd-up
 if [ -f /etc/init.d/speechd-up ]; then
-    sudo /etc/init.d/speechd-up stop >> $LOGFILE
+    /etc/init.d/speechd-up stop >> $LOGFILE
 fi
-sudo apt-get install -y speechd-up >> $LOGFILE
+apt-get install -y speechd-up >> $LOGFILE
 
 # Enable speech-dispatcher to run system-wide
-sudo sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
+sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 
 # Edit speechd.conf to enable ibmtts.
-sudo sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
+sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
 
 # Setup YASR
-sudo sed -i '/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
+sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
     s/^#synthesizer=speech dispatcher/synthesizer=speech dispatcher/
     s/^#synthesizer port=127.0.0.1:6560/synthesizer port=127.0.0.1:6560/
     s/^key echo=off/key echo=keys/' /etc/yasr/yasr.conf

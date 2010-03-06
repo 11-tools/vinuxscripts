@@ -49,7 +49,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFIL
 
 # Update to the latest packages.
 echo "Updating package list..."
-sudo apt-get update > $LOGFILE
+sudo apt-get update >> $LOGFILE
 echo "Upgrading all packages... This can take a long time."
 if [ "$LOGFILE" != /dev/null ]; then
    echo "See $LOGFILE for progress."
@@ -61,7 +61,7 @@ sudo apt-get install -y gnome-orca speakup-source speakup-tools runsu gparted ya
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Enable speech
-/usr/bin/restorespeech -l $LOGFILE
+sudo /usr/bin/restorespeech -l $LOGFILE
 
 # Edit speechd.conf to enable ibmtts.
 if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
