@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Icon[en_GB]=/usr/share/icons/Humanity/apps/48/ooo-writer.svg
+Name[en_GB]=EasyInstall-Office
+Exec=/home/vinux/EasyInstall/EasyInstall-Office
+Comment[en_GB]=Install Open Office and Evolution
+Name=EasyInstall-Office
+Comment=Install Open Office and Evolution
+Icon=/usr/share/icons/Humanity/apps/48/ooo-writer.svg
