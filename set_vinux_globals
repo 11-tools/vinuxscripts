@@ -149,6 +149,7 @@ fi
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
+cp vinux_data/EasyInstall /usr/share
 
 remove_applet()
 {

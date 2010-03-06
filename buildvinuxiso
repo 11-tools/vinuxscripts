@@ -3,82 +3,28 @@
 # applications to make more room on the CD ISO, and it will do other
 # unhappy things to your system.  Unless you are trying to make a new
 # release of Vinux, do not run this script.
+#
+# Run this script with sudo.
+
+echo "Enter the release number, for example 3.0_alpha3"
+read RELEASE
 
 # Make space on system
 echo "Removing applications to make room on the CD"
-sudo apt-get purge ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
+apt-get purge ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server remastersys
 
-# Create easy install scripts: e.g.
-echo "Creating easy install scripts"
+# Next run remastersys and change the username to 'vinux' and the name of the
+# CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
+sed -i 's/LIVEUSER=.*/LIVEUSER="vinux"/
+        s/LIVECDLABEL=.*/LIVECDLABEL="Vinux $RELEASE"/
+        s/CUSTOMISO=.*/CUSTOMISO=vinux_${RELEASE}.iso' /etc/remastersys.conf
 
-#! /bin/bash
-
-b=$USER
-
-sudo apt-get update
-sudo apt-get install openoffice.org openoffice.org-gtk evolution
-evolution-exchange
-
-if [ $? -eq 0 ]; then
-
-a="/home/"
-c="/Desktop/EasyInstall-Office.desktop"
-rm $a$b$c
-echo "Installation Succeeded - Press any key to quit!"
-read input
-
-else
-
-echo "Installation Failed - press any key to quit"
-read input
-
-fi
-
-exit=0
-
-Other scripts to include:
-
-ubuntu-restricted extras (EasyInstall-Restricted)
-ubuntu-docs (EasyInstall-Documentation)
-gimp inkscape scribus (EasyInstall-Graphics)
-
-I may add more later...
-
-29. Place all EasyInstall scripts into a folder called EasyInstall in the home
-directory and create desktop launchers for each. Make them an application in
-terminal and make sure the name matches the name given in the script. e.g.
-EasyInstall-Office in this case (the .desktop is added automatically).
-
-30. Add Menu items:
-
-EasyInstall Scripts (EasyInstall Menu)
-
-Accessibility Menu
-compiz --replace (Enable 3D Desktop)
-metacity --replace (Disable 3D Desktop)
-orca (Screen-Reader/Magnifier)
-
-Accessories Menu
-nautilus (File Browser)
-runsu nautilus (File Browser (as Root))
-
-31. Next run remastersys and change the username to 'vinux' and the name of the
-CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
-
-32. Copy all the files in your home directory starting with to /etc/skel.
-
-33. Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
-iso should be in /home/remastersys in about 15-20 minutes.
-
-34. Due to changes made to the installer which remastersys does not yet support,
-you have to add a file to the iso, using isomaster. Create a file called
-'filesystem.size' in the /casper directory, which should contain the number
-3000000000.  Save the new iso and regenerate the md5 sum file.
-
-OR
-
-35. Run "remastersys dist cdfs" first (instead of 'dist'), then do the
-following:
-
-Open the /home/remastersys/remastersys/ISOTMP/casper directory as root and
-create the filesystem.size file containing 3000000000 (3 and 9x0's).
+# Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
+# iso should be in /home/remastersys in about 15-20 minutes.
+echo "Building ISO..."
+remastersys dist cdfs
+unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs | grep -v " inodes " | grep -v "unsquashfs:" | awk '{print $3}' | grep -v "," > /tmp/size.tmp
+a=0
+for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
+echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
+remastersys dist iso
