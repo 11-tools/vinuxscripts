@@ -11,7 +11,7 @@ read RELEASE
 
 # Make space on system
 echo "Removing applications to make room on the CD"
-apt-get purge ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server remastersys
+apt-get purge ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
 
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'

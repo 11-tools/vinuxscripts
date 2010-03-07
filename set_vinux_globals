@@ -1,6 +1,6 @@
 #!/bin/bash
-# This script sets Vinux keybindings, menus and such.  It does not modify the desktop, or remove
-# applications, however.  It should be run as root.
+# This script sets Vinux keybindings, menus and such.  It also modifies the desktop, but it
+# doesn't remove any applications.  It should be run as root.
 
 LOGFILE=/dev/null
 ZIPCODE=""
@@ -56,12 +56,12 @@ set-string /apps/gnome_settings_daemon/keybindings/search '<Shift><Control>s'
 set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
 set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
-set-string /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>c'
+set-string /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>l'
 set-string /apps/gnome_settings_daemon/keybindings/volume_up '<Shift><Control>Up'
 set-string /apps/gnome_settings_daemon/keybindings/volume_down '<Shift><Control>Down'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Shift><Control>t'
 set-string /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Control>z'
-set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>v'
+set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>a'
 set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
 set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
 
@@ -81,6 +81,7 @@ add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
 add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
 add-customkey 7	'Root Nautilus' '<Shift><Control>n' 'runsu nautilus'
 add-customkey 8	'YASR' '<Shift><Control>y' 'gnome-terminal -e yasr'
+add-customkey 9 'Keybindings' '<Shift><Control>k' 'gedit /usr/share/doc/vinux/keybindings.txt'
 
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super><Button1>'
