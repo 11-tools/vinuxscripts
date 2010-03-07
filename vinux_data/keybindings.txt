@@ -1,0 +1,91 @@
+Vinux 3.0 Alpha 3 Keybindings list
+
+This document contains a list of the customised keybindings
+which have been configured in Vinux for Orca, Gnome and Compiz
+in addition to the default keybindings.
+
+Additional Orca Keybindings:
+
+Increase Speech Rate - Orca + Up
+Decrease Speech Rate - Orca + Down
+Increase Speech Pitch - Orca + comma
+Decrease Speech Pitch - Orca + period
+
+Toggle Magnifier - Orca + g
+Increase Magnification - Orca + equal
+Decrease Magnification - Orca + minus
+Toggle Colour Enhancements - Orca + i
+Toggle Mouse Enhancements - Orca + x
+
+Battery Power - Orca + a
+Read Clipboard - Orca + r
+Search for Updates - Orca + c
+Read Date - Orca + d
+Read Time - Orca + t
+Read Weather - Orca + w
+
+(Orca key = Insert/Desktop, CapsLock/Laptop)
+
+Additional Gnome Keybindings:
+
+Volume Mute - Ctrl+Shift+m
+Volume Down - Ctrl+Shift+Down
+Volume Up - Ctrl+Shift+Up
+
+Toggle Fullscreen Mode - Ctrl+Shift+f
+Toggle Maximization State - Ctrl+Shift+x
+Maximise window Vertically - Ctrl+Shift+a
+Maximise window Horizontally - Ctrl+Shift+z
+
+List Keybindings - Ctrl+Shift+k
+Launch Calculator - Ctrl+Shift+l
+Launch E-mail client - Ctrl+Shift+e
+Launch Web Browser - Ctrl+Shift+w
+Home Folder - Ctrl+Shift+h
+Root File Browser - Ctrl+Shift+n
+Search - Ctrl+Shift+s
+Run a terminal - Ctrl+Shift+t
+Launch Text Editor - Ctrl+Shift+g
+Open Rhythmbox - Ctrl+Shift+r
+Open Dictionary - Ctrl+Shift+d
+Open Brasero - Ctrl+Shift+b
+
+Restart Orca - Ctrl+Shift+o.
+Enable 3D Desktop - Ctrl+Shift+F3
+Disable 3D Desktop - Ctrl+Shift+F2
+Run Yasr - Ctrl+Shift+y
+
+Additional Compiz keybindings:
+
+Zoom In - Super(Win)+Button 1 or Super+Equal
+Zoom Out - Super+Button 3 or Super+Minus
+Zoom Normal - Win+1
+Zoom Level 2 - Win+2
+Zoom Level 3 - Win+3
+
+Lock Zoom area - Super+l
+Pan Zoom Left - Super+Left
+Pan Zoom Right - Super+Right
+Pan Zoom Up - Super+Up
+Pan Zoom Down - Super+Down
+
+Fit Window - Super+r (resize)
+Fit Zoomed - Super+z (Zoom to window)
+
+Toggle Window Negative - Super+n
+Toggle Screen Negative - Super+s
+
+Toggle Lens Magnifier - Super+m
+Zoom In Lens Magnifier - Super+Shift+Button 1
+Zoom Out Lens Magnifier - Super+Shift+Button 3
+
+Toggle Window Filtering - Super+f
+Toggle Screen Filtering - Super+d
+Switch Filter - Control+Super+s
+Increase Brightness - Super+b
+Decrease Brightness - Super+v
+Increase Saturation - Super+t
+Decrease Saturation - Super+y
+
+Next Panel - Control+Alt+Tab
+Previous Panel - Control+Shift+Alt+Tab
