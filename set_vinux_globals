@@ -177,4 +177,4 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 fi
 
 sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
-update-grub 2>&1 >> $LOGFILE
+update-grub >> $LOGFILE 2>&1
