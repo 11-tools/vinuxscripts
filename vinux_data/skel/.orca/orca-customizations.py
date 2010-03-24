@@ -18,7 +18,7 @@ import urllib2
 
 #variable section
 #Postal code for weather information:
-zipCode = "12345"
+zipCode = "27517"
 myKeyBindings = orca.keybindings.KeyBindings()
 
 #places text in the clipboard

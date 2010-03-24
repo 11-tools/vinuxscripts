@@ -52,7 +52,7 @@ fi
 if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
     echo "Do you want to install Vinux destop panels and background image? [Y/n]"
     read ANSWER
-    startsWithY=`echo $ANSWER | egrep '^[ \t]*y'`
+    startsWithY=`echo $ANSWER | egrep -i '^[ \t]*y'`
     if [ "$startsWithY" != "" ]; then
 	INSTALL_VINUX_DESKTOP="yes"
     else
@@ -83,7 +83,7 @@ echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
-sudo apt-get install -y gnome-orca speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin apci >> $LOGFILE
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Enable speech

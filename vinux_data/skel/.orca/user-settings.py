@@ -46,7 +46,7 @@ orca.settings.enableSpeech = True
 orca.settings.speechServerFactory = 'orca.speechdispatcherfactory'
 orca.settings.speechServerInfo = ['Default Synthesizer', 'default']
 orca.settings.voices = {
-'default' : orca.acss.ACSS({'average-pitch': 5.0, 'gain': 10.0, 'rate': 80.0}),
+'default' : orca.acss.ACSS({'average-pitch': 5.0, 'gain': 10.0, 'rate': 60.0}),
 'uppercase' : orca.acss.ACSS({'average-pitch': 5.5999999999999996}),
 'hyperlink' : orca.acss.ACSS({}),
 }
@@ -68,7 +68,7 @@ orca.settings.enablePauseBreaks = True
 orca.settings.enableTutorialMessages = False
 orca.settings.enableMnemonicSpeaking = False
 orca.settings.enablePositionSpeaking = False
-orca.settings.enableBraille = False
+orca.settings.enableBraille = True
 orca.settings.enableBrailleContext = True
 orca.settings.enableBrailleGrouping = False
 orca.settings.disableBrailleEOL = False
@@ -83,7 +83,7 @@ orca.settings.enableMagnifier = False
 orca.settings.enableMagLiveUpdating = True
 orca.settings.enableMagCursor = True
 orca.settings.enableMagCursorExplicitSize = False
-orca.settings.magHideCursor = False
+orca.settings.magHideCursor = True
 orca.settings.magCursorSize = 32
 orca.settings.magCursorColor = '#000000'
 orca.settings.enableMagCrossHair = True
@@ -99,7 +99,7 @@ orca.settings.magZoomFactor = 4.0
 orca.settings.enableMagZoomerBorder = False
 orca.settings.magZoomerBorderSize = 1
 orca.settings.magZoomerBorderColor = '#000000'
-orca.settings.enableMagZoomerColorInversion = False
+orca.settings.enableMagZoomerColorInversion = True
 orca.settings.magBrightnessLevel = 0
 orca.settings.magBrightnessLevelRed = 0
 orca.settings.magBrightnessLevelBlue = 0
@@ -149,6 +149,48 @@ orca.settings.speechRequiredStateString = 'required'
 # Set up a user key-bindings profile
 #
 def overrideKeyBindings(script, keyB):
+   keyB.removeByHandler(script.inputEventHandlers['decreaseSpeechRateHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'Down',
+      365,
+      256,
+      script.inputEventHandlers["decreaseSpeechRateHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['increaseMagnificationHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'equal',
+      365,
+      256,
+      script.inputEventHandlers["increaseMagnificationHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['toggleMagnifierHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'g',
+      365,
+      256,
+      script.inputEventHandlers["toggleMagnifierHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['decreaseMagnificationHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'minus',
+      365,
+      256,
+      script.inputEventHandlers["decreaseMagnificationHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['increaseSpeechRateHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'Up',
+      365,
+      256,
+      script.inputEventHandlers["increaseSpeechRateHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['toggleMouseEnhancementsHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'x',
+      365,
+      256,
+      script.inputEventHandlers["toggleMouseEnhancementsHandler"]))
+
    return keyB
 
 orca.settings.overrideKeyBindings = overrideKeyBindings

@@ -8,13 +8,13 @@ Additional Orca Keybindings:
 
 Increase Speech Rate - Orca + Up
 Decrease Speech Rate - Orca + Down
-Increase Speech Pitch - Orca + comma
-Decrease Speech Pitch - Orca + period
+Increase Speech Pitch - Orca + comma - conflict w/flat review
+Decrease Speech Pitch - Orca + period - conflict w/flat review
 
 Toggle Magnifier - Orca + g
 Increase Magnification - Orca + equal
 Decrease Magnification - Orca + minus
-Toggle Colour Enhancements - Orca + i
+Toggle Colour Enhancements - Orca + i - conflict w/flat review
 Toggle Mouse Enhancements - Orca + x
 
 Battery Power - Orca + a
