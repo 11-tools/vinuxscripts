@@ -78,7 +78,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFIL
 # Update to the latest packages.
 echo "Updating package list..."
 sudo apt-get update >> $LOGFILE
-echo "Upgrading all packages... This can take a long time."
+echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 

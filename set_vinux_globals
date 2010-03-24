@@ -38,7 +38,7 @@ fi
 
 # Change menus to use runsu instead of gksu
 echo "Updating main menu"
-cp -r vinux_data/menus/* /usr/share/applications
+cp -r /usr/share/vinux/menus/* /usr/share/applications
 chmod -R a+r /usr/share/applications
 # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
 rm -f /usr/share/applications/desktop.*.cache
@@ -145,16 +145,20 @@ gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
 set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
 gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+fi
 
 # Update /etc/skel and /var/lib/gdm
-rsync -r vinux_data/skel/ /etc/skel
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+    rsync -r /usr/share/vinux/skel/ /etc/skel
+else
+    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
+fi
 if [ "$ZIPCODE" != "" ]; then
     sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 fi
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
-fi
 
 remove_applet()
 {
@@ -173,4 +177,4 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 fi
 
 sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
-update_grub
+update-grub 2>&1 >> $LOGFILE
