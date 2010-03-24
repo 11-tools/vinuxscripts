@@ -52,11 +52,11 @@ fi
 if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
     echo "Do you want to install Vinux destop panels and background image? [Y/n]"
     read ANSWER
-    startsWithY=`echo $ANSWER | egrep -i '^[ \t]*y'`
-    if [ "$startsWithY" != "" ]; then
-	INSTALL_VINUX_DESKTOP="yes"
-    else
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
 	INSTALL_VINUX_DESKTOP="no"
+    else
+	INSTALL_VINUX_DESKTOP="yes"
     fi
 fi
 
