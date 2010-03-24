@@ -61,3 +61,6 @@ sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
 
 # Enable beep at grub startup
 sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub
+
+# Enable brltty for Braille displays
+sed -i 's/^RUN_BRLTTY=.*/RUN_BRLTTY=yes/' /etc/default/brltty

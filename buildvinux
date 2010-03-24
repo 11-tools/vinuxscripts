@@ -13,7 +13,8 @@
 # password, then reboot.
 
 LOGFILE="buildvinux.log"
-INSTALL_VINUX_DESKTOP="yes"
+INSTALL_VINUX_DESKTOP=""
+ZIPCODE=""
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
         shift
@@ -31,18 +32,33 @@ while [ $# -gt 0 ]; do
         ZIPCODE=$1
     elif [ $1 = "-d" ]; then
 	INSTALL_VINUX_DESKTOP="no"
+    elif [ $1 = "-D" ]; then
+	INSTALL_VINUX_DESKTOP="yes"
     else
         echo "Unknown option $1"
-        echo "Usage: restore_vinux_environment [-z zipcode] [-g] [-d] [-l logFile]"
+        echo "Usage: restore_vinux_environment [-z zipcode] [-d|-D] [-l logFile]"
 	echo "    -d  : Don't modify the Ubuntu desktop panels and background"
+	echo "    -D  : Modify the Ubuntu desktop panels and background to like Vinux"
         exit 1
     fi
     shift
 done
 
 # Ask this first, so the user doesn't have to wait around listening carefully.
-echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-read ZIPCODE
+if [ "$ZIPCODE" = "" ]; then
+    echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
+    read ZIPCODE
+fi
+if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
+    echo "Do you want to install Vinux destop panels and background image? [Y/n]"
+    read ANSWER
+    startsWithY=`echo $ANSWER | egrep '^[ \t]*y'`
+    if [ "$startsWithY" != "" ]; then
+	INSTALL_VINUX_DESKTOP="yes"
+    else
+	INSTALL_VINUX_DESKTOP="no"
+    fi
+fi
 
 # Update /etc/apt/sources.list
 egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
@@ -63,9 +79,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFIL
 echo "Updating package list..."
 sudo apt-get update >> $LOGFILE
 echo "Upgrading all packages... This can take a long time."
-if [ "$LOGFILE" != /dev/null ]; then
-   echo "See $LOGFILE for progress."
-fi
+echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages

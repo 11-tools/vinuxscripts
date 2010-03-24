@@ -19,3 +19,5 @@ Desktop - Installs EasyInstall icons on the user's desktop
 .local - Contains EasyInstall menus
 
 .orca  - Contains default Orca configuration
+
+keybindings - This is a text file describing all Vinux specific keybindings
