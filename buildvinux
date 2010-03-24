@@ -12,21 +12,33 @@
 # 3. Run the Ubuntu Installer, install the system to hard drive using 'vinux' as the username and
 # password, then reboot.
 
-LOGFILE=/dev/null
-if [ $# -ge 1 -a "$1" = "-l" ]; then
-    shift
-    if [ $# -lt 1 ]; then
-	echo "Expecting log file name"
-	exit 1
+LOGFILE="buildvinux.log"
+INSTALL_VINUX_DESKTOP="yes"
+while [ $# -gt 0 ]; do
+    if [ $1 = "-l" ]; then
+        shift
+        if [ $# -lt 1 ]; then
+    	    echo "Expecting log file name"
+    	    exit 1
+        fi
+        LOGFILE=$1
+    elif [ $1 = "-z" ]; then
+        shift
+        if [ $# -lt 1 ]; then
+    	    echo "Expecting zipcode"
+    	    exit 1
+        fi
+        ZIPCODE=$1
+    elif [ $1 = "-d" ]; then
+	INSTALL_VINUX_DESKTOP="no"
+    else
+        echo "Unknown option $1"
+        echo "Usage: restore_vinux_environment [-z zipcode] [-g] [-d] [-l logFile]"
+	echo "    -d  : Don't modify the Ubuntu desktop panels and background"
+        exit 1
     fi
-    LOGFILE=$1
     shift
-fi
-
-if [ $# != 0 ]; then
-    echo "Usage: buildvinux [-l logFile]"
-    exit 1
-fi
+done
 
 # Ask this first, so the user doesn't have to wait around listening carefully.
 echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
@@ -69,10 +81,16 @@ if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
 fi
 
 # Set Vinux keybindings, menus, desktop, etc
-sudo /usr/bin/set_vinux_globals -l $LOGFILE -z $ZIPCODE
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+    sudo /usr/bin/set_vinux_globals -l $LOGFILE -z $ZIPCODE
+else
+    sudo /usr/bin/set_vinux_globals -d -l $LOGFILE -z $ZIPCODE
+fi
 
 # Update our desktop to look like Vinux
-cp -r /etc/skel/.gconf ~
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+    cp -r /etc/skel/.gconf ~
+fi
 cp -r /etc/skel/.orca ~
 
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."

@@ -58,3 +58,6 @@ sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
     s/^#synthesizer=speech dispatcher/synthesizer=speech dispatcher/
     s/^#synthesizer port=127.0.0.1:6560/synthesizer port=127.0.0.1:6560/
     s/^key echo=off/key echo=keys/' /etc/yasr/yasr.conf
+
+# Enable beep at grub startup
+sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub

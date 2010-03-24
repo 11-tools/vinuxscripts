@@ -4,6 +4,7 @@
 
 LOGFILE=/dev/null
 ZIPCODE=""
+INSTALL_VINUX_DESKTOP="yes"
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
         shift
@@ -12,7 +13,6 @@ while [ $# -gt 0 ]; do
     	    exit 1
         fi
         LOGFILE=$1
-        shift
     elif [ $1 = "-z" ]; then
         shift
         if [ $# -lt 1 ]; then
@@ -20,12 +20,15 @@ while [ $# -gt 0 ]; do
     	    exit 1
         fi
         ZIPCODE=$1
-        shift
+    elif [ $1 = "-d" ]; then
+	INSTALL_VINUX_DESKTOP="no"
     else
         echo "Unknown option $1"
-        echo "Usage: restore_vinux_environment [-l logFile]"
+        echo "Usage: restore_vinux_environment [-z zipcode] [-g] [-d] [-l logFile]"
+	echo "    -d  : Don't modify the Ubuntu desktop panels and background"
         exit 1
     fi
+    shift
 done
 
 if [ "$ZIPCODE" = "" ]; then
@@ -129,6 +132,7 @@ set-string /apps/empathy/conversation/theme classic
 #gct_gdm -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 # Set fonts
 set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 14'
 set-string /desktop/gnome/interface/document_font_name 'Sans Bold 14'
@@ -152,6 +156,7 @@ chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
 cp -r vinux_data/EasyInstall /usr/share
 chmod -R a+rx /usr/share/EasyInstall
+fi
 
 remove_applet()
 {
@@ -165,6 +170,9 @@ remove_applet()
     update-gconf-defaults
 }
 
-remove_applet fast_user_switch
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+    remove_applet fast_user_switch
+fi
 
 sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
+update_grub

@@ -6,8 +6,9 @@
 #
 # Run this script with sudo.
 
-echo "Enter the release number, for example 3.0_alpha3"
+echo "Enter the release number, for example 3.0-alpha3"
 read RELEASE
+RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
 # Make space on system
 echo "Removing applications to make room on the CD"
@@ -16,8 +17,8 @@ apt-get purge -y ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
 sed -i 's/LIVEUSER=.*/LIVEUSER="vinux"/
-        s/LIVECDLABEL=.*/LIVECDLABEL="Vinux '$RELEASE'"/
-        s/CUSTOMISO=.*/CUSTOMISO="vinux_'$RELEASE'.iso"/' /etc/remastersys.conf
+        s/LIVECDLABEL=.*/LIVECDLABEL="Vinux '$RELEASE_SPACES'"/
+        s/CUSTOMISO=.*/CUSTOMISO="vinux-'$RELEASE'.iso"/' /etc/remastersys.conf
 
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
