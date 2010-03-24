@@ -191,6 +191,27 @@ def overrideKeyBindings(script, keyB):
       256,
       script.inputEventHandlers["toggleMouseEnhancementsHandler"]))
 
+   keyB.removeByHandler(script.inputEventHandlers['toggleColorEnhancementsHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'n',
+      365,
+      256,
+      script.inputEventHandlers["toggleColorEnhancementsHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['increaseSpeechPitchHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'period',
+      365,
+      257,
+      script.inputEventHandlers["increaseSpeechPitchHandler"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['decreaseSpeechPitchHandler'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'comma',
+      365,
+      257,
+      script.inputEventHandlers["decreaseSpeechPitchHandler"]))
+
    return keyB
 
 orca.settings.overrideKeyBindings = overrideKeyBindings
