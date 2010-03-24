@@ -83,7 +83,7 @@ echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
-sudo apt-get install -y gnome-orca speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin apci >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools runsu gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi >> $LOGFILE
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Enable speech
