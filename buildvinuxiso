@@ -28,5 +28,6 @@ unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs 
 a=0
 for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
 echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
-echo '' >> /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.txt
+# Make the initial screen beep
+sed -i 's/Vinux\(.*\)$/Vinux\1/' /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.txt
 remastersys dist iso
