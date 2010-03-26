@@ -61,6 +61,7 @@ if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
 fi
 
 # Update /etc/apt/sources.list
+echo "Updating software repositories..."
 egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
