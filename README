@@ -17,3 +17,6 @@ set_vinux_globals - Set's default Vinux keybindings, menus, and other user
 
 buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
               ISO.  This removes many files from your system!  Run with sudo.
+
+In addition, we replace gksu with simple scripts that wrap around sudo,
+since gksu causes problems with accessibility.

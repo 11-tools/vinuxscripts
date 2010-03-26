@@ -36,7 +36,7 @@ if [ "$ZIPCODE" = "" ]; then
     read ZIPCODE
 fi
 
-# Change menus to use runsu instead of gksu
+# Update menus
 echo "Updating main menu"
 cp -r /usr/share/vinux/menus/* /usr/share/applications
 chmod -R a+r /usr/share/applications

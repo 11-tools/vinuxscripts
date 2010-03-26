@@ -7,5 +7,7 @@ install:
 	install set_vinux_globals /usr/bin
 	install buildvinuxiso /usr/bin
 	install -d /usr/share/vinux
+	install gksu/gksu /usr/bin
+	install gksu/askpass /usr/bin
 	rsync -a vinux_data/ /usr/share/vinux
 	chown -R root.root /usr/share/vinux

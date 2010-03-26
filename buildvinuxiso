@@ -20,9 +20,6 @@ sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
         s/CUSTOMISO=.*/CUSTOMISO=\"vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
-# Modify ubiquity to use runsu rathe than gksu.
-patch /usr/bin/ubiquity /usr/share/vinux/ubiquity.patch
-
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
 echo "Building ISO..."
