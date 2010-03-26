@@ -29,7 +29,7 @@ eval set -- "$TEMP"
 OPTIONS=""
 while true ; do
     case "$1" in
-    --help|-h|-?) help; exit 0 ;;
+    --help|-h|'-?') help; exit 0 ;;
     --login|-l) OPTIONS="$OPTIONS -i" ;;
     --preserv-env|-k) OPTIONS="$OPTIONS -E" ;;
     --preserve-env|-k) OPTIONS="$OPTIONS -E" ;;
