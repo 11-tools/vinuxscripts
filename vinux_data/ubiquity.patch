@@ -1,0 +1,11 @@
+--- gtk_ui.py.orig	2010-03-27 12:17:58.591730022 -0400
++++ gtk_ui.py	2010-03-27 12:18:09.042985551 -0400
+@@ -551,7 +551,7 @@
+             h = m.height - wm_h
+ 
+         widget.set_size_request(w, h)
+-        widget.resize(w, h)
++        #widget.resize(w, h)
+ 
+     def customize_installer(self):
+         """Initial UI setup."""

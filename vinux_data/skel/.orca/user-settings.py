@@ -41,7 +41,7 @@ if False:
     sys.settrace(orca.debug.traceit)
     orca.debug.debugLevel = orca.debug.LEVEL_ALL
 
-orca.settings.orcaModifierKeys = orca.settings.LAPTOP_MODIFIER_KEYS
+orca.settings.orcaModifierKeys = orca.settings.DESKTOP_MODIFIER_KEYS
 orca.settings.enableSpeech = True
 orca.settings.speechServerFactory = 'orca.speechdispatcherfactory'
 orca.settings.speechServerInfo = ['Default Synthesizer', 'default']
@@ -123,7 +123,7 @@ orca.settings.showMainWindow = True
 orca.settings.quitOrcaNoConfirmation = False
 orca.settings.presentToolTips = False
 orca.settings.sayAllStyle = orca.settings.SAYALL_STYLE_SENTENCE
-orca.settings.keyboardLayout = orca.settings.GENERAL_KEYBOARD_LAYOUT_LAPTOP
+orca.settings.keyboardLayout = orca.settings.GENERAL_KEYBOARD_LAYOUT_DESKTOP
 orca.settings.speakBlankLines = True
 orca.settings.speakMultiCaseStringsAsWords = False
 orca.settings.enabledSpokenTextAttributes = "size:; family-name:; weight:400; indent:0; underline:none; strikethrough:false; justification:left; style:normal; paragraph-style:;"

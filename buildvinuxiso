@@ -20,6 +20,9 @@ sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
         s/CUSTOMISO=.*/CUSTOMISO=\"vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
+# Fix infinite loop in Ubiquity when installing with large fonts on small screens:
+patch /usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py /usr/share/vinux/ubiquity.patch
+
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
 echo "Building ISO..."
@@ -28,6 +31,8 @@ unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs 
 a=0
 for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
 echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
+
 # Make the initial screen beep
 sed -i 's/Vinux\(.*\)$/Vinux\1/' /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.txt
+
 remastersys dist iso
