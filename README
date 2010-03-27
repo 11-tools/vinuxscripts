@@ -20,3 +20,7 @@ buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
 
 In addition, we replace gksu with simple scripts that wrap around sudo,
 since gksu causes problems with accessibility.
+
+Finally, the tinytrace directory is a simple trace program for python
+appllications.  It is included here since it was very helpful in
+debugging ubiquity in Live CD mode.
