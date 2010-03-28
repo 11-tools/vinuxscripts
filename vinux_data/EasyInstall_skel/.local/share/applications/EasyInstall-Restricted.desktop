@@ -11,3 +11,4 @@ Comment[en_GB]=Install non-free codecs etc
 Name=EasyInstall-Restricted
 Comment=Install non-free codecs etc
 Icon=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
+Categories=System;Settings;

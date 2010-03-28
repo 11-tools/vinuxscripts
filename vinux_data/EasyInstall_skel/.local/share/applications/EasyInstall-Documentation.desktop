@@ -11,3 +11,4 @@ Comment[en_GB]=Install help files and manuals etc
 Name=EasyInstall-Documentation
 Comment=Install Ubuntu docs and manuals etc
 Icon=/usr/share/icons/Humanity/apps/48/gnome-help.svg
+Categories=System;Settings;

@@ -5,19 +5,25 @@ of files installed in a user's home directory by default.
 
 In general, try to keep the skel directory as small as possible, to minimize the chance that
 we have stale configurations for applications, or that we overwrite some config data without
-meainging to.
+meanging to.
 
 The contents of the skel directory are:
-
-Desktop - Installs EasyInstall icons on the user's desktop
 
 .gconf - Contains Gnome settings for the bottom panel and the background image.
          To rebuild the panel, make your edits to your desktop, and then copy
          ~/.gconf/apps/panel into vinux_data/skel.  To change the desktop background, edit
          vinux_data/skel/.gconf/desktop/gnome/background/%gconf.xml directly
 
-.local - Contains EasyInstall menus
-
 .orca  - Contains default Orca configuration
 
+The EasyInstall_skel directory only gets copied to /etc/skel if the user does a buildvinuxiso
+and selects to remove applications to make the ISO fit on a CD.  Subdirectories are:
+
+Desktop - Installs EasyInstall icons on the user's desktop
+
+.local - Contains EasyInstall menus
+
 keybindings - This is a text file describing all Vinux specific keybindings
+
+ubiquity.patch - This is a patch file needed to fix ubiquity so that it works well with
+Orca without crashing.

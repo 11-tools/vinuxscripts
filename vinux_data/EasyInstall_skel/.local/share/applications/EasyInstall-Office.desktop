@@ -11,3 +11,4 @@ Comment[en_GB]=Install Open Office and Evolution
 Name=EasyInstall-Office
 Comment=Install Open Office and Evolution
 Icon=/usr/share/icons/Humanity/apps/48/ooo-writer.svg
+Categories=System;Settings;

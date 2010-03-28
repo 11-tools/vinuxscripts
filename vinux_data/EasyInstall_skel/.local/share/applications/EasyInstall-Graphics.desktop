@@ -11,3 +11,4 @@ Comment[en_GB]=Install graphics packages
 Name=EasyInstall-Graphics
 Comment=Install graphics packages
 Icon=gnome-display-properties
+Categories=System;Settings;
