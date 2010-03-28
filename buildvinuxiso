@@ -10,9 +10,24 @@ echo "Enter the release number, for example 3.0-alpha3"
 read RELEASE
 RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
+REMOVE_APPS=yes
+echo 'Remove applications to make it fit on a CD?'
+read ANSWER
+startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+if [ "$startsWithN" != "" ]; then
+    REMOVE_APPS="no"
+else
+    REMOVE_APPS="yes"
+fi
+
 # Make space on system
-echo "Removing applications to make room on the CD"
-apt-get purge -y ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
+if [ "$REMOVE_APPS" = "yes" ]; then
+    echo "Removing applications to make room on the CD"
+    apt-get purge -y ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
+    # Add EasyInstal to /etc/skel
+    rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
+    chmod -R a+r /etc/skel
+fi
 
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
