@@ -4,7 +4,7 @@
 # Run this script using sudo.
 
 LOGFILE=/dev/null
-if [ $1 = "-l" ]; then
+if [ "$1" = "-l" ]; then
     shift
     if [ $# -lt 1 ]; then
 	echo "Expecting log file name"
