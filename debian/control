@@ -1,0 +1,18 @@
+Source: vinuxscripts
+Section: unknown
+Priority: extra
+Maintainer: Bill Cox <waywardgeek@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.4
+Homepage: http://vinux.org.uk
+
+Package: vinuxscripts
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: gksu
+Description: Scripts to convert a raw Ubuntu installation into Vinux
+ Vinux is a version of Linux for the blind, based on Ubuntu.
+ The buildvinux script will convert an Ubuntu Lucid installation into
+ an equivalent version of Vinux 3.0.  Pulseaudio will be make
+ system-wide, speakup will be installed, and various minor changes
+ are made to make your system more suitable for the blind.

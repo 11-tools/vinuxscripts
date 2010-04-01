@@ -1,0 +1,25 @@
+This work was packaged for Debian by:
+
+    Bill Cox <waywardgeek@gmail.com> on Thu, 01 Apr 2010 12:43:52 -0400
+
+It was downloaded from http://sourceforge.net/projects/vinuxscripts
+
+Upstream Author(s):
+
+    Bill Cox <waywardgeek@gmail.com>
+
+Copyright:
+
+    Copyright (C) 2010 Bill Cox
+    Copyright (C) 2010 Tony Sales
+
+License:
+
+    Vinuxscripts is released under the GNU GPL, version 2.0
+
+The Debian packaging is:
+
+    Copyright (C) 2010 Bill Cox <waywardgeek@gmail.com>
+
+and is licensed under the GPL version 2, 
+see `/usr/share/common-licenses/GPL-2'.
