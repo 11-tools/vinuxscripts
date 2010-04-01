@@ -1,5 +1,5 @@
 Source: vinuxscripts
-Section: unknown
+Section: admin
 Priority: extra
 Maintainer: Bill Cox <waywardgeek@gmail.com>
 Build-Depends: debhelper (>= 7)
