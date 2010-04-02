@@ -3,11 +3,11 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Terminal=true
-Icon[en_GB]=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
-Name[en_GB]=EasyInstall-Restricted
+Terminal=false
+Icon[en_US]=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
+Name[en_US]=EasyInstall-Restricted
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Restricted
-Comment[en_GB]=Install non-free codecs etc
+Comment[en_US]=Install non-free codecs etc
 Name=EasyInstall-Restricted
 Comment=Install non-free codecs etc
 Icon=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
