@@ -1,22 +1,35 @@
 #! /bin/bash
 
-sudo apt-get update
-sudo apt-get install ubuntu-docs
+if zenity --question --text "Do you want to install the Ubuntu documentation?"; then
+
+b=$USER
+
+gksu su
+
+gksu apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
+gksu 'apt-get -y install ubuntu-docs' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
 
 if [ $? -eq 0 ]; then
 
-app="/EasyInstall-Documentation.desktop"
-rm -f /home/$USER/Desktop/$app
-rm -f /home/$USER/.local/share/applications/$app
-sudo rm -f /etc/skel/Desktop/$app
-sudo rm -f /etc/skel/.local/share/applications/$app
+a="/home/"
+c="/Desktop/EasyInstall-Documentation.desktop"
 
-echo "Installation Successful - Press any key to quit!"
-read input
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+zenity --info --text "Installation successful - Press enter to finish!"
 
 else
 
-echo "Installation Failed - Press any key to quit!"
-read input
+zenity --info --text "Installation failed - Press enter to close!"
 
 fi
+
+else 
+
+zenity --info --text "Installation was cancelled - Press enter to close!"
+
+fi
+
+exit=0
