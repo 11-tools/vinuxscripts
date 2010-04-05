@@ -55,7 +55,6 @@ function set-string {
 }
 
 set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Shift><Control>m'
-set-string /apps/gnome_settings_daemon/keybindings/search '<Shift><Control>s'
 set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
 set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
@@ -77,14 +76,15 @@ function add-customkey {
 
 add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
-add-customkey 2 'Rhythmbox' '<Shift><Control>r' 'rhythmbox'
+add-customkey 2 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
 add-customkey 3 'Dictionary' '<Shift><Control>d' 'gnome-dictionary'
 add-customkey 4 'Brasero' '<Shift><Control>b' 'brasero'
 add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
 add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
 add-customkey 7	'Root Nautilus' '<Shift><Control>n' 'gksu nautilus'
-add-customkey 8	'YASR' '<Shift><Control>y' 'gnome-terminal -e yasr'
+add-customkey 8	'YASR' '<Shift><Control>s' 'gnome-terminal -e yasr'
 add-customkey 9 'Keybindings' '<Shift><Control>k' 'gedit /usr/share/vinux/keybindings.txt'
+
 
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
