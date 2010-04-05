@@ -4,11 +4,8 @@
 Version=1.0
 Type=Application
 Terminal=false
-Icon[en_GB]=/usr/share/icons/Humanity/apps/48/gnome-searchtool.svg
-Name[en_GB]=Enable 3D Desktop
 Exec=compiz --replace
-Comment[en_GB]=Enable 3D Magnification and Colour Changing
 Name=Enable 3D Desktop
 Comment=Enable 3D Magnification and Colour Changing
-Icon=/usr/share/icons/Humanity/apps/48/gnome-searchtool.svg
+Icon=/usr/share/icons/gnome/scalable/apps/preferences-desktop-wallpaper.svg
 Categories=GNOME;GTK;Accessibility

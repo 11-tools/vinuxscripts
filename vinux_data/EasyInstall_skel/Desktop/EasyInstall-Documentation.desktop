@@ -3,11 +3,11 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Terminal=true
-Icon[en_GB]=/usr/share/icons/Humanity/apps/48/gnochm.svg
-Name[en_GB]=EasyInstall-Documentation
+Terminal=false
+Icon[en_US]=/usr/share/icons/Humanity/actions/128/help-contents.svg
+Name[en_US]=EasyInstall-Documentation
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Documentation
-Comment[en_GB]=Install help files and manuals etc
+Comment[en_US]=Install help files and manuals etc
 Name=EasyInstall-Documentation
 Comment=Install help files and manuals etc
-Icon=/usr/share/icons/Humanity/apps/48/gnochm.svg
+Icon=/usr/share/icons/Humanity/actions/128/help-contents.svg

@@ -3,11 +3,11 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Terminal=true
-Icon[en_GB]=/usr/share/icons/Humanity/apps/48/display-capplet.svg
-Name[en_GB]=EasyInstall-Graphics
+Terminal=false
+Icon[en_US]=/usr/share/icons/gnome/scalable/categories/package_graphics.svg
+Name[en_US]=EasyInstall-Graphics
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Graphics
-Comment[en_GB]=Install graphics packages
+Comment[en_US]=Install graphics packages
 Name=EasyInstall-Graphics
 Comment=Install graphics packages
-Icon=/usr/share/icons/Humanity/apps/48/display-capplet.svg
+Icon=/usr/share/icons/gnome/scalable/categories/package_graphics.svg

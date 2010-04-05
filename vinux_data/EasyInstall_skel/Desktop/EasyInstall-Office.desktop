@@ -3,11 +3,11 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Terminal=true
-Icon[en_GB]=/usr/share/icons/Humanity/apps/48/ooo-writer.svg
-Name[en_GB]=EasyInstall-Office
+Terminal=false
+Icon[en_US]=/usr/share/icons/gnome/scalable/categories/applications-office.svg
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Office
-Comment[en_GB]=Install Open Office and Evolution
+Comment[en_US]=Install Open Office and Evolution
+Name[en_US]=EasyInstall-Office
 Name=EasyInstall-Office
 Comment=Install Open Office and Evolution
-Icon=/usr/share/icons/Humanity/apps/48/ooo-writer.svg
+Icon=/usr/share/icons/gnome/scalable/categories/applications-office.svg
