@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Icon[en_GB]=gnome-volume-control
+Name[en_GB]=Restore Speech
+Exec=gksu restorespeech
+Comment[en_GB]=Restore system-wide settings to enable Orca in Gnome, and speakup on the consoles
+Name=Restore Speech
+Comment=Restore system-wide settings to enable Orca in Gnome, and speakup on the consoles
+Icon=gnome-volume-control
+Categories=GNOME;GTK;Accessibility
