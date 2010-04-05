@@ -178,3 +178,9 @@ fi
 
 sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
 update-grub >> $LOGFILE 2>&1
+
+# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
+# updated until we say so.
+echo 'Package: *
+Pin: release o=LP-PPA-vinux-vinux-lucid
+Pin-Priority: 750' > /etc/apt/preferences.d/vinux-lucid-pin-750
