@@ -43,17 +43,17 @@ Launch E-mail client - Ctrl+Shift+e
 Launch Web Browser - Ctrl+Shift+w
 Home Folder - Ctrl+Shift+h
 Root File Browser - Ctrl+Shift+n
-Search - Ctrl+Shift+s
 Run a terminal - Ctrl+Shift+t
 Launch Text Editor - Ctrl+Shift+g
-Open Rhythmbox - Ctrl+Shift+r
 Open Dictionary - Ctrl+Shift+d
 Open Brasero - Ctrl+Shift+b
+
 
 Restart Orca - Ctrl+Shift+o.
 Enable 3D Desktop - Ctrl+Shift+F3
 Disable 3D Desktop - Ctrl+Shift+F2
-Run Yasr - Ctrl+Shift+y
+Run Yasr - Ctrl+Shift+s
+Restore Speech - Ctrl+Shift+Alt+r
 
 Additional Compiz keybindings:
 
