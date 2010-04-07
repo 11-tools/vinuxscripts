@@ -92,6 +92,9 @@ sudo apt-get upgrade -y >> $LOGFILE
 sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan mutt pcmanfm dosemu >> $LOGFILE
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
+# Configure dosemu
+sysctl -w vm.mmap_min_addr=0
+
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
 
