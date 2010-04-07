@@ -1,0 +1,35 @@
+#! /bin/bash
+
+if zenity --question --text "Do you want to install the Text Tools Suite?"; then
+
+b=$USER
+
+gksu su
+
+gksu apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
+gksu 'apt-get -y install units fdutils splitvt console-data screenie mp3blaster cmatrix nethack-console rar urlview a2ps agrep gpm sqlite bash-doc sc htop axel alpine ssh dnsmasq calife clamav calcurse ncftp trash-cli ntp tpp laptop-mode-tools acpitool cpulimit x86info sensord setcd tpconfig laptop-net spicctrl disktype e2tools ink fatresize fatsort gnu-fdisk gpart hfsplus hfsprogs hfsutils-tcltk mountpy sdd djtools poster hostap-utils pconf-detect hp-ppd mdetect usbmount autofs dict apsfilter mpage alsa-oss gtypist away conspy dvtm fbgrab ttyrec xvfb sash zsh funcoeszz tclreadline moreutils ksh dictem edb emms elscreen emacs-goodies-el erc vim wordgrinder nethack-el emacs aee diakonos e3 elvis-console hexcurse hnb jed joe lv most ne tweak vile zile vim-scripts note abcde alsaplayer-text beep bplay cmus cplay cw cwcp madplay morse mp3c mp3rename mp3report mp3splt mp3val mp3wrap mpg123 mpg321 pmidi id3 vlc-nox sox cdtool ecasound yatm angband asciijump bsdgames bsdgames-nonfree crawl omega-rpg zangband empire freesweep frotz megahal nethack-spoilers ninvaders sillypoker sudoku slashem tome caca-utils aewan cowsay aview bb boxes cadubi figlet francine grc linuxlogo tetradraw ticker toilet welcome2l cutmp3 atool gzrt lzop makeself whichman ncompress p7zip-full p7zip-rar rar rzip unp hdup multicd storebackup cd5 cdck cdrskin cdw dvdrtools mp3roaster sgrep mybashburn pcopy e2ps gnome-u2ps html2ps antiword ascii2binary atp catdoc halibut odt2txt pdf2svg pstotext txt2html unhtml uni2ascii wp2x wv cdargs chase clex cruft detox docdiff fdupes fhist limo mrename ncdt pilot safe-rm ssed symlinks tree vifm wcd ytree alien configure-debian debsums dlocate dpkg-awk dselect dpkg-repack dselect rpm2html popularity-contest wajig debian-cd debootstrap simple-cdd locate lookup rpl strigi-utils debian-goodies lfm vfu mmv gadfly nosql aiksaurus dict-devil dict-elements dict-foldoc dict-gcide dict-jargon dict-vera procinfo pydf xtail yacpi since loadwatch dict-wn vera abs-guide anarchism angband-doc asr-manpages aptitude-doc-en ascii cfi-en clamav-docs debconf-doc debian-history debian-reference-en doc-linux-nonfree-text elinks-doc jargon fortunes-debian-hints funny-manpages apt-dpkg-ref jargon-text miscfiles newbiedoc parted-doc partimage-doc rutebook speakup-doc sysadmin-guide tar-doc vim-doc zsh-doc concalc wcalc atop atsar di discus gt5 hddtemp iftop iotop iptraf linuxinfo memstat ncdu nload libgtk2-gladexml-perl dictfmt elinks links links2 netrik newsbeuter nrss finch rtorrent cone giFTcurs samba smbc podracer linphone-nox weechat aria2 clive ctorrent autopsy dares dcfldd foremost scalpel sleuthkit tiger clamav-getfiles fileschanged myrescue magicrescue scrounge-ntfs clamav-daemon clamfs wipe secure-delete recover recoverjpeg ext3grep rdd ccrypt rig pwgen makepasswd chkrootkit mcrypt remind wyrd gcalcli gcal tudu abook when leave devtodo pcal pal birthday hodie rcconf and worklog tina ccal libtime-duration-perl tdl' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
+
+if [ $? -eq 0 ]; then
+
+a="/home/"
+c="/Desktop/EasyInstall-TextTools.desktop"
+
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+zenity --info --text "Installation successful - Press enter to finish!"
+
+else
+
+zenity --info --text "Installation failed - Press enter to close!"
+
+fi
+
+else 
+
+zenity --info --text "Installation was cancelled - Press enter to close!"
+
+fi
+
+exit=0
