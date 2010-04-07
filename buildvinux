@@ -95,6 +95,11 @@ sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 # Configure dosemu
 sysctl -w vm.mmap_min_addr=0
 
+# Download and install ceni - cli network manager
+wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
+dpkg -i *.deb
+rm *.deb
+
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
 
