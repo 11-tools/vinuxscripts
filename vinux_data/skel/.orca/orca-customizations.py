@@ -144,6 +144,40 @@ def sayForecast(script, inputEvent=None):
     return True
 #end sayForecast function
 
+#Define the increase volume function
+#Following function increasing master volume with 5 step, and spokening the new changed volume
+def increasevolume(script, inputEvent=None):
+    #Following command increasing volume with 5 step
+    commands.getoutput('amixer sset Master 5+')
+    #Following command gets increased master volume percentage
+    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    #Final, spokening Orca the new increased volume value
+    orca.speech.speak(volume)
+#End increase volume function
+
+#Define the decrease volume function
+#Following function decreasing master volume with 5 step, and spokening the new changed volume
+def decreasevolume(script, inputEvent=None):
+    #Following command decreasing volume with 5 step
+    commands.getoutput('amixer sset Master 5-')
+    #Following command gets decreased master volume percentage
+    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    #Final, spokening Orca the new decreased volume value
+    orca.speech.speak(volume)
+#End decrease volume function
+
+#Define the toggle volume function
+#Following function toggle master volume mute on/off
+def togglevolumemute(script, inputEvent=None):
+    #Following command toggle master volume mute on/off
+    commands.getoutput('amixer sset Master toggle')
+    #Following command gets master volume mute status
+    mutestatus=commands.getoutput('amixer get Master|grep %|cut -d "[" -f4')
+    #Final, if actual master volume status is on, Orca notify the user the mute is off.
+    if mutestatus=='on]':
+        orca.speech.speak('Mute off.')
+#End toggle volume function
+
 #Set up sayBattery keys
 sayBatteryHandler = orca.input_event.InputEventHandler(
     sayBattery,
@@ -231,6 +265,42 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
     1 << orca.settings.MODIFIER_ORCA,
     1 << orca.settings.MODIFIER_ORCA,
     sayForecastHandler, 2)) # Sets the say weather key
+
+#Add increase volume info
+increasevolumeHandler = orca.input_event.InputEventHandler(
+    increasevolume,
+    "Increasing master volume with 5 step, and spokening the new value") # Shows the function of the key press in learn mode
+
+myKeyBindings.add(orca.keybindings.KeyBinding(
+
+    "Page_Up",
+    orca.settings.ORCA_MODIFIER_MASK,
+    orca.settings.ORCA_MODIFIER_MASK,
+    increasevolumeHandler)) #Set Orca+PageUp key combination with increase volume function
+
+#Add decrease volume info
+decreasevolumeHandler = orca.input_event.InputEventHandler(
+    decreasevolume,
+    "Decreasing master volume with 5 step, and spokening the new value") # Shows the function of the key press in learn mode
+
+myKeyBindings.add(orca.keybindings.KeyBinding(
+
+    "Page_Down",
+    orca.settings.ORCA_MODIFIER_MASK,
+    orca.settings.ORCA_MODIFIER_MASK,
+    decreasevolumeHandler)) #Set Orca+PageDown key combination with decrease volume function
+
+#Add toggle mute volume info
+mutevolumeHandler = orca.input_event.InputEventHandler(
+    togglevolumemute,
+    "Toggle master volume mute on/off") # Shows the function of the key press in learn mode
+
+myKeyBindings.add(orca.keybindings.KeyBinding(
+
+    "End",
+    orca.settings.ORCA_MODIFIER_MASK,
+    orca.settings.ORCA_MODIFIER_MASK,
+    mutevolumeHandler)) #Set Orca+End key combination with toggle volume mute function
 
 orca.settings.keyBindingsMap["default"] = myKeyBindings
 #end time, date, and weather code
