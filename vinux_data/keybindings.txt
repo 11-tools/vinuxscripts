@@ -55,6 +55,8 @@ Run yasr
     Control + Shift + S
 Restore Speech
     Control + Shift + Alt + R
+Set font size to 6,8,10,12,14,16,18,20,22 or 24
+    Alt + 1,2,3,4,5,6,7,8,9 or 0
 
 2. Compiz Keybindings
 
