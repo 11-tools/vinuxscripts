@@ -11,7 +11,7 @@ gksu 'apt-get -y install units fdutils splitvt screenie mp3blaster cmatrix netha
 
 if [ $? -eq 0 ]; then
 
-echo "export EDITOR=nano" >> ~/.bashrc 
+sudo sh -c 'echo "export EDITOR=nano" >> /etc/inputrc'
 a="/home/"
 c="/Desktop/EasyInstall-TextTools.desktop"
 
