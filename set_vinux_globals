@@ -54,13 +54,10 @@ function set-string {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string "$1" "$2"
 }
 
-set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Shift><Control>m'
 set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
 set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
 set-string /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>l'
-set-string /apps/gnome_settings_daemon/keybindings/volume_up '<Shift><Control>Up'
-set-string /apps/gnome_settings_daemon/keybindings/volume_down '<Shift><Control>Down'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Shift><Control>t'
 set-string /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Control>z'
 set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>a'

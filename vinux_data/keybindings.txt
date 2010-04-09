@@ -5,24 +5,18 @@ for Gnome, Orca, Compiz, Speakup, Yasr  and Bash, as well
 as a list of customised Bash Aliases which are available. 
 It is divided into nine sections:
 
-1. Vinux Gnome Keybindings
-2. Vinux Compiz Keybindings
-3. Standard Orca Desktop Keybindings
-4. Standard Orca Laptop Keybindings
-5. Vinux Bash Aliases
-6. Standard Speakup Desktop Keybindings
-7. Standard Bash Keybindings
-8. Standard Yasr Keybindings
-9. Standard Yasr Review Mode Keybindings
+1. Gnome Keybindings
+2. Compiz Keybindings
+3. Orca Desktop Keybindings
+4. Orca Laptop Keybindings
+5. Bash Aliases
+6. Speakup Desktop Keybindings
+7. Bash Keybindings
+8. Yasr Edit Mode Keybindings
+9. Yasr Review Mode Keybindings
 
-1. Vinux Gnome Keybindings
+1. Gnome Keybindings
 
-Volume mute
-    Control + Shift + M
-Volume down
-    Control + Shift + Down
-Volume up
-    Control + Shift + Up
 Toggle fullscreen mode
     Control + Shift + F
 Toggle maximization state
@@ -62,7 +56,7 @@ Run yasr
 Restore Speech
     Control + Shift + Alt + R
 
-2. Vinux Compiz Keybindings
+2. Compiz Keybindings
 
 Zoom in (mouse)
     Windows + Left Click
@@ -121,8 +115,14 @@ Next panel
 Previous panel
     Control + Shift + Alt +Tab
 
-3. Standard Orca Desktop Keybindings
+3. Orca Desktop Keybindings
 
+Volume mute
+    Insert + End
+Volume down
+    Insert + PageDown
+Volume up
+    Insert + PageUp
 Increase Speech Rate
     Insert + Up
 Decrease Speech Rate
@@ -218,8 +218,14 @@ Print debug information about ancestry of the object with focus
 Print debug information about hierarchy of the application with focus
     Ctrl + Alt + Insert + Page_Down
 
-4. Standard Orca Laptop Keybindings
+4. Orca Laptop Keybindings
 
+Volume mute
+    Capslock + End
+Volume down
+    Capslock + PageDown
+Volume up
+    Capslock + PageUp
 Increase Speech Rate
     Capslock + Up
 Decrease Speech Rate
@@ -315,7 +321,7 @@ Print debug information about ancestry of the object with focus
 Print debug information about hierarchy of the application with focus
     Caps Lock + Alt + Ctrl + Page Down
 
-5. Vinux Bash Aliases
+5. Bash Aliases
 
 White text on black
     1
@@ -445,7 +451,7 @@ Move all files and directories (requires target directory)
 Delete all files and directories (be very careful)
     Z or Zap
 
-6. Standard Speakup Desktop Keybindings (Replace Insert with Capslock on Laptop)
+6. SSpeakup Desktop Keybindings (Replace Insert with Capslock on Laptop)
 
 Volume decrement
     Insert + 1
@@ -626,7 +632,7 @@ Say first character
 Say last character
     Insert + Page Down
 
-7. Standard Bash Keybindings
+7. Bash Keybindings
 
 Move cursor forward one word on the current line
     Alt + f
@@ -721,7 +727,7 @@ Entries from "/etc/hosts"
 Output like "ls" or "dir"
     = + Double Press Tab
 
-8. Standard Yasr Keybindings
+8. Yasr Edit Mode Keybindings
 
 Say application cursor position
     Control + a
@@ -764,7 +770,7 @@ Save settings
 Disable yasr
     Alt + Enter
 
-9. Standard Yasr Review Mode Keybindings
+9. Yasr Review Mode Keybindings
 
 Say cursor position
     Space
