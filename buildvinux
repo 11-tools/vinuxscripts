@@ -89,7 +89,7 @@ echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk lynx vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan mutt pcmanfm dosemu >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk lynx vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan mutt pcmanfm dosemu nautilus-open-terminal >> $LOGFILE
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
 # Configure dosemu
