@@ -33,7 +33,7 @@ fi
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
 sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
-        s/CUSTOMISO=.*/CUSTOMISO=\"vinux-$RELEASE.iso\"/" /etc/remastersys.conf
+        s/CUSTOMISO=.*/CUSTOMISO=\"Vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
 # Fix infinite loop in Ubiquity when installing with large fonts on small screens:
 patch /usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py /usr/share/vinux/ubiquity.patch
