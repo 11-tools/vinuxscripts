@@ -7,7 +7,7 @@ b=$USER
 gksu su
 
 gksu apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
-gksu 'apt-get -y install ubuntu-restricted-extras libdvdcss2 w32codecs' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
+gksu 'apt-get -y install ubuntu-restricted-extras libdvdcss2 non-free-codecs' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
 
 if [ $? -eq 0 ]; then
 

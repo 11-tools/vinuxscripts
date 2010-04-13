@@ -23,7 +23,7 @@ fi
 # Make space on system
 if [ "$REMOVE_APPS" = "yes" ]; then
     echo "Removing applications to make room on the CD"
-    apt-get purge -y ubuntu-docs openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
+    apt-get purge -y openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
     # Add EasyInstal to /etc/skel
     rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
     chmod -R a+r /etc/skel
@@ -33,7 +33,7 @@ fi
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
 sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
-        s/CUSTOMISO=.*/CUSTOMISO=\"vinux-$RELEASE.iso\"/" /etc/remastersys.conf
+        s/CUSTOMISO=.*/CUSTOMISO=\"Vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
 # Fix infinite loop in Ubiquity when installing with large fonts on small screens:
 patch /usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py /usr/share/vinux/ubiquity.patch

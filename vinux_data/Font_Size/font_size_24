@@ -1,0 +1,7 @@
+#!/bin/bash
+
+gconftool-2 --set /apps/nautilus/preferences/desktop_font --type string "Sans Bold 24"
+gconftool-2 --set /desktop/gnome/interface/document_font_name --type string "Sans Bold 24"
+gconftool-2 --set /desktop/gnome/interface/font_name --type string "Sans Bold 24"
+gconftool-2 --set /apps/metacity/general/titlebar_font --type string "Sans Bold 24"
+gconftool-2 --set /desktop/gnome/interface/monospace_font_name --type string "Monospace Bold 24"
