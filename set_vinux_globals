@@ -4,9 +4,11 @@
 
 LOGFILE=/dev/null
 ZIPCODE=""
-INSTALL_VINUX_DESKTOP="yes"
+INSTALL_VINUX_DESKTOP="no"
+INSTALL_VINUX_KEYBINDINGS="no"
+INSTALL_BASH_ALIASES="no"
 while [ $# -gt 0 ]; do
-    if [ $1 = "-l" ]; then
+    if [ "$1" = "-l" ]; then
         shift
         if [ $# -lt 1 ]; then
     	    echo "Expecting log file name"
@@ -20,12 +22,14 @@ while [ $# -gt 0 ]; do
     	    exit 1
         fi
         ZIPCODE=$1
-    elif [ $1 = "-d" ]; then
-	INSTALL_VINUX_DESKTOP="no"
+    elif [ "$1" = "-d" ]; then
+	INSTALL_VINUX_DESKTOP="yes"
+    elif [ "$1" = "-k" ]; then
+	INSTALL_VINUX_KEYBINDINGS="yes"
+    elif [ "$1" = "-b" ]; then
+	INSTALL_BASH_ALIASES="yes"
     else
         echo "Unknown option $1"
-        echo "Usage: restore_vinux_environment [-z zipcode] [-g] [-d] [-l logFile]"
-	echo "    -d  : Don't modify the Ubuntu desktop panels and background"
         exit 1
     fi
     shift
@@ -36,15 +40,14 @@ if [ "$ZIPCODE" = "" ]; then
     read ZIPCODE
 fi
 
-# Update menus
-echo "Updating main menu"
-cp -r /usr/share/vinux/menus/* /usr/share/applications
-chmod -R a+r /usr/share/applications
-# Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
-rm -f /usr/share/applications/desktop.*.cache
-
-# Set Vinux keybindings
-echo "Setting Vinux keybindings"
+if [ $INSTALL_VINUX_DESKTOP = "yes" ]; then
+    # Update menus
+    echo "Updating main menu"
+    cp -r /usr/share/vinux/menus/* /usr/share/applications
+    chmod -R a+r /usr/share/applications
+    # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
+    rm -f /usr/share/applications/desktop.*.cache
+fi
 
 function gct {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults $*
@@ -54,6 +57,14 @@ function set-string {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string "$1" "$2"
 }
 
+# takes custom key number, name, binding, and action in that order
+function add-customkey {
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
+}
+
+if [ $INSTALL_VINUX_KEYBINDINGS = "yes" ]; then
 set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
 set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
@@ -63,13 +74,6 @@ set-string /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Cont
 set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>a'
 set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
 set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
-
-# takes custom key number, name, binding, and action in that order
-function add-customkey {
-    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
-    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
-    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
-}
 
 add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
@@ -123,6 +127,9 @@ set-string /apps/compiz/plugins/switcher/allscreens/options/prev_panel_key '<Shi
 
 # Set active plugins
 gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active_plugins '[core,mousepoll,neg,place,vpswitch,session,resize,gnomecompat,regex,commands,imgjpeg,png,svg,dbus,workarounds,decoration,text,mag,animation,resizeinfo,wall,expo,snap,fade,ezoom,move,scale,colorfilter,switcher,scaleaddon]'
+else
+add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
+fi
 
 # Enable Orca
 gct -s -t bool /desktop/gnome/interface/accessibility true
@@ -131,11 +138,6 @@ set-string /desktop/gnome/applications/window_manager/default /usr/bin/metacity
 gct -s -t bool /desktop/gnome/applications/at/visual/startup true
 set-string /desktop/gnome/applications/at/visual/exec orca
 set-string /apps/empathy/conversation/theme classic
-
-#gct_gdm -s -t bool /desktop/gnome/interface/accessibility true
-#gct_gdm -s -t bool /desktop/gnome/applications/at/visual/startup true
-#gct_gdm -s -t string /desktop/gnome/applications/at/visual/exec orca 
-#gct_gdm -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
@@ -161,6 +163,9 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi
+if [ "$INSTALL_BASH_ALIASES" = "no" ]; then
+    rm -f /etc/skel/.bash_aliases
+fi
 if [ "$ZIPCODE" != "" ]; then
     sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 fi
@@ -184,7 +189,8 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     remove_applet fast_user_switch
 fi
 
-sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
+# Enable beep at grub startup
+sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub
 update-grub >> $LOGFILE 2>&1
 
 # Pin the priority of Vinux packages as higher than Ubuntu, so they don't get

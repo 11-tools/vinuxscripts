@@ -14,6 +14,8 @@
 
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
+INSTALL_VINUX_KEYBINDINGS=""
+INSTALL_BASH_ALIASES=""
 ZIPCODE=""
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
@@ -31,14 +33,28 @@ while [ $# -gt 0 ]; do
         fi
         ZIPCODE=$1
     elif [ $1 = "-d" ]; then
-	INSTALL_VINUX_DESKTOP="no"
-    elif [ $1 = "-D" ]; then
 	INSTALL_VINUX_DESKTOP="yes"
+    elif [ $1 = "-D" ]; then
+	INSTALL_VINUX_DESKTOP="no"
+    elif [ $1 = "-k" ]; then
+	INSTALL_VINUX_DESKTOP="yes"
+    elif [ $1 = "-k" ]; then
+	INSTALL_VINUX_DESKTOP="no"
+    elif [ $1 = "-b" ]; then
+	INSTALL_BASH_ALIASES="yes"
+    elif [ $1 = "-B" ]; then
+	INSTALL_BASH_ALIASES="no"
     else
         echo "Unknown option $1"
-        echo "Usage: restore_vinux_environment [-z zipcode] [-d|-D] [-l logFile]"
-	echo "    -d  : Don't modify the Ubuntu desktop panels and background"
-	echo "    -D  : Modify the Ubuntu desktop panels and background to like Vinux"
+        echo "Usage: restore_vinux_environment [-d|-D] [-k|-K] [-l logFile] [-z zipcode]"
+	echo "    -D  : Don't modify the Ubuntu desktop panels and background"
+	echo "    -d  : Modify the Ubuntu desktop panels and background to like Vinux"
+	echo "    -B  : Don't add any Vinux bash aliases."
+	echo "    -b  : Add all Vinux bash aliases"
+	echo "    -K  : Don't add any Vinux keybindings, except restart Orca will be bound to"
+	echo "          Control+Alt+o"
+	echo "    -k  : Add all Vinux keybindings. Restart Orca will be bound to"
+	echo "          Shift+Control+o"
         exit 1
     fi
     shift
@@ -57,6 +73,28 @@ if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
 	INSTALL_VINUX_DESKTOP="no"
     else
 	INSTALL_VINUX_DESKTOP="yes"
+    fi
+fi
+
+if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
+    echo "Do you want to install Vinux keybinds? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_VINUX_KEYBINDINGS="no"
+    else
+	INSTALL_VINUX_KEYBINDINGS="yes"
+    fi
+fi
+
+if [ "$INSTALL_BASH_ALIASES" = "" ]; then
+    echo "Do you want to install Vinux bash aliases? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_BASH_ALIASES="no"
+    else
+	INSTALL_BASH_ALIASES="yes"
     fi
 fi
 
@@ -106,11 +144,17 @@ if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
 fi
 
 # Set Vinux keybindings, menus, desktop, etc
+options=" -l $LOGFILE -z $ZIPCODE"
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    sudo /usr/bin/set_vinux_globals -l $LOGFILE -z $ZIPCODE
-else
-    sudo /usr/bin/set_vinux_globals -d -l $LOGFILE -z $ZIPCODE
+    options="$options -d"
 fi
+if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
+    options="$options -k"
+fi
+if [ "$INSTALL_BASH_ALIASES" = "yes" ]; then
+    options="$options -b"
+fi
+sudo /usr/bin/set_vinux_globals $options
 
 # Update our desktop to look like Vinux
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
