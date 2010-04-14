@@ -132,9 +132,6 @@ sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr com
 
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
-sudo apt-get remove -y software-center ubuntu-desktop >> $LOGFILE
-sudo apt-get install -y gnome-app-install >> $LOGFILE
-
 # Download and install ceni - cli network manager
 wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
 dpkg -i *.deb
