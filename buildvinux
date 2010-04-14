@@ -159,8 +159,8 @@ sudo /usr/bin/set_vinux_globals $options
 # Update our desktop to look like Vinux
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
-    cp /etc/skel/.bash_aliases_vinux ~
-    cp /etc/skel/.bash_aliases_vinux /root
+    cp /etc/skel/bash_aliases_vinux ~
+    cp /etc/skel/bash_aliases_vinux /root
 fi
 cp -r /etc/skel/.orca ~
 
