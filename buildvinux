@@ -128,11 +128,11 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get remove -y --force-yes software-center ubuntu-desktop
-
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal gnome-app-install nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird >> $LOGFILE
 
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
+
+sudo apt-get install -y gnome-app-install >> $LOGFILE
 
 # Download and install ceni - cli network manager
 wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
