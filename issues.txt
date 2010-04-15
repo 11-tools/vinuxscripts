@@ -86,3 +86,4 @@ buildvinux script, and we could enable ssh login so that we could send it comman
 could have it reboot after running buildvinux, and verify that Orca is running at the GDM prompt,
 and that speakup is also running.
 
+Change the default setting for cursor tracking to "off" in speakup.
