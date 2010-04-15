@@ -23,5 +23,5 @@ since gksu causes problems with accessibility.  The issues.txt file is just an
 informal list of tasks that need to be worked on.
 
 Finally, the tinytrace directory is a simple trace program for python
-appllications.  It is included here since it was very helpful in
+applications.  It is included here since it was very helpful in
 debugging ubiquity in Live CD mode.
