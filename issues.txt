@@ -38,10 +38,14 @@ Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
 Make icons in icon tray say their names.
 
+Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
+
+Pick a new background image as the original one seems to have been removed by the latest updates
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
-repository is down.
+repository is down. Also add the ceni .deb package as their server also seems irratic.
 
 Add Wubi compatibility.  This is straight-forward, but a lot of work.  The best documentation is
 in the source code, which you can check out with bazaar at:

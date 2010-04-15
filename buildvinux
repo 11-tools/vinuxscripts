@@ -145,5 +145,8 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 fi
 cp -r /etc/skel/.orca ~
 
+# Install gnome-app-install
+sudo apt-get install -y --force-yes gnome-app-install
+
 echo "Done!  Reboot, and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
