@@ -1,0 +1,75 @@
+Bugs
+----
+Apply update-manager patch to Ubuntu's update-manager and upload patched package to Vinux/Lucid
+PPA.  The patch is at 
+http://launchpadlibrarian.net/44134902/u-m-orca.diff
+It needs to be applied to the file that gets installed to /usr/share/pyshared/UpdateManager/UpdateManager.py.
+
+Deal with Firefox/Orca problems.  Firefox rewrote the caret navigation and it has bugs that make
+structural navigation with Orca difficult.  The bug report is at
+https://bugzilla.mozilla.org/show_bug.cgi?id=546068
+
+fix gnome-app-install check-box bug.  Basically, Orca can't read the check-box
+state.  I suspect that the patch to update-manager shows how to fix gnome-app-install.
+
+Hack ubiquity/remastersys to allow language selection during install.  Currently, Vinux only
+allows English installation, which is a major bug.
+
+speechd-up says "capital" before all capital letters, which is frustrating.  Short term, switch to
+using espeakup, rather than speechd-up, by compiling a custom version of espeakup with pulseaudio
+support enabled, and uploading a new source package to the Vinux/Lucid PPA.  Long-term, work with
+the OpenTTS guys to upgrade speechd-up to be as good as espeakup.
+
+Get festival working.  Some users want it, but it doesn't seem to work in Vinux right now.
+
+One person reported that there was no sound for a new user.  Verify this, and if true, debug.
+
+Install borks Windows boot, but Lucid install does not.  Figure out what's going on, and
+fix.
+
+Fix voxin problems on 64-bit Vinux.
+
+Determine why Computer Janator crashes.
+
+Fix menu organization.  Some applications install to funny menu locations, like System Tools.
+Check Attila's menu hack in vinuxscripts/vinux_data/skel/.config/menus for how to do this.
+
+Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
+
+New Features
+------------
+
+Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
+repository is down.
+
+Add Wubi compatibility.  This is straight-forward, but a lot of work.  The best documentation is
+in the source code, which you can check out with bazaar at:
+http://bazaar.launchpad.net/~ubuntu-installer/wubi/trunk/
+
+Customize Ubiquity to allow CLI vs GDM selection during install.  This would allow us to install a
+CLI or Gnome version of Vinux from the same CD.  Basically, hack ubiquity to have a new dialog
+where we ask Vinux specific questions.
+
+Write a tutorial for new users.
+
+Write an OCR app.  There are lots of comments about this idea on the Vinux forum.
+
+Write an audio book creator app.  I would prefer to enhance speech-dispatcher (now opentts) to
+return audio data rather than playing it.  That way an audio book creation app could be written
+easily in Python, and could use any voice Orca can use.
+
+Voxin instegration.  We would like to allow users to buy Vinux with Voxin pre-installed directly
+from the oralux.org web site.  It sounds like Gilles Casse is interested in helping make this
+happen.
+
+Integrate emacspeak.  First, just get it running in Vinux.  We may need to make a patched package
+for it.  After that, it would be great to have a speech-dispatcher (opentts) driver for it.
+
+Opensapi integration.  Basically, write a speech-dispatcher driver for opensapi.  This would
+enable users to access a large number of Micrsoft voices.
+
+Rewrite gksu as python dialog, rather than using zenity, so we can support all of the options of
+gksu properly.  Also, make the dialog look nicer for sighted users.
+
+Auto-recompile speakup when kernel upgraded.  Right now, every time Ubuntu upgrades the kernel,
+users have to execute the restorespeech script to get speakup working again.

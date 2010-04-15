@@ -19,7 +19,8 @@ buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
               ISO.  This removes many files from your system!  Run with sudo.
 
 In addition, we replace gksu with simple scripts that wrap around sudo,
-since gksu causes problems with accessibility.
+since gksu causes problems with accessibility.  The issues.txt file is just an
+informal list of tasks that need to be worked on.
 
 Finally, the tinytrace directory is a simple trace program for python
 appllications.  It is included here since it was very helpful in
