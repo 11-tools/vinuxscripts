@@ -36,6 +36,8 @@ Check Attila's menu hack in vinuxscripts/vinux_data/skel/.config/menus for how t
 
 Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
+Make icons in icon tray say their names.
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
