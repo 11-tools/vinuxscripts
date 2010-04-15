@@ -1,38 +1,32 @@
---- 30accessibility.orig	2010-04-06 10:51:57.550119314 -0400
-+++ 30accessibility.new	2010-04-06 10:51:02.729318044 -0400
-@@ -75,7 +75,10 @@
- 			if [ -x /target/usr/bin/orca ]; then
- 				if [ -f /home/$USERNAME/.orca/user-settings.py ]; then
- 					cp -r /home/$USERNAME/.orca /target/home/$TARGET_USERNAME/
-+					cp -r /home/$USERNAME/.orca /target/var/lib/gdm/
-+					cp -r /home/$USERNAME/.orca /target/etc/skel/
- 					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
-+					chroot /target chown -R gdm.gdm /target/var/lib/gdm/.orca
- 				else
- 					mkdir -p /target/home/$TARGET_USERNAME/.orca
- 					echo "import orca.settings" >> /target/home/$TARGET_USERNAME/.orca/user-settings.py
-@@ -105,10 +108,12 @@
- 			if [ -x /target/usr/bin/orca ]; then
- 				if [ -f /home/$USERNAME/.orca/user-settings.py ]; then
- 					cp -r /home/$USERNAME/.orca /target/home/$TARGET_USERNAME/
-+					cp -r /home/$USERNAME/.orca /target/var/lib/gdm/
-+					cp -r /home/$USERNAME/.orca /target/etc/skel/
- 					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
-+					chroot /target chown -R gdm.gdm /target/var/lib/gdm/.orca
- 				else
- 					mkdir -p /target/home/$TARGET_USERNAME/.orca
--					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
- 				fi
- 			fi
- 
-@@ -124,7 +129,10 @@
-                         if [ -x /target/usr/bin/orca ]; then
- 				if [ -f /home/$USERNAME/.orca/user-settings.py ]; then
- 					cp -r /home/$USERNAME/.orca /target/home/$TARGET_USERNAME/
-+					cp -r /home/$USERNAME/.orca /target/var/lib/gdm/
-+					cp -r /home/$USERNAME/.orca /target/etc/skel/
- 					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
-+					chroot /target chown -R gdm.gdm /target/var/lib/gdm/.orca
- 				else
- 	                                mkdir -p /target/home/$TARGET_USERNAME/.orca
- 					echo "import orca.settings" >> /target/home/$TARGET_USERNAME/.orca/user-settings.py
+*** 30accessibility.old	2010-04-15 09:03:12.269953680 +0200
+--- 30accessibility	2010-04-15 09:05:37.390952853 +0200
+*************** for x in $(cat /proc/cmdline); do
+*** 107,112 ****
+--- 107,113 ----
+  					cp -r /home/$USERNAME/.orca /target/home/$TARGET_USERNAME/
+  					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
+  					cp -r /home/$USERNAME/.orca /target/var/lib/gdm
++ 					cp -r /home/$USERNAME/.orca /target/etc/skel/
+  					chroot /target chown -R gdm.gdm /var/lib/gdm/.orca
+  				else
+  					mkdir -p /target/home/$TARGET_USERNAME/.orca
+*************** for x in $(cat /proc/cmdline); do
+*** 128,133 ****
+--- 129,135 ----
+  					cp -r /home/$USERNAME/.orca /target/home/$TARGET_USERNAME/
+  					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
+  					cp -r /home/$USERNAME/.orca /target/var/lib/gdm
++ 					cp -r /home/$USERNAME/.orca /target/etc/skel/
+  					chroot /target chown -R gdm.gdm /var/lib/gdm/.orca
+  				else
+  	                                mkdir -p /target/home/$TARGET_USERNAME/.orca
+*************** for x in $(cat /proc/cmdline); do
+*** 136,141 ****
+--- 138,144 ----
+  	                                echo "orca.settings.enableBraille = True" >> /target/home/$TARGET_USERNAME/.orca/user-settings.py
+  					chroot /target chown -R $TARGET_USERNAME.$TARGET_USERNAME /home/$TARGET_USERNAME/.orca
+  					cp -r /home/$TARGET_USERNAME/.orca /target/var/lib/gdm
++ 					cp -r /home/$USERNAME/.orca /target/etc/skel/
+  					chroot /target chown -R gdm.gdm /var/lib/gdm/.orca
+  				fi
+                          fi
