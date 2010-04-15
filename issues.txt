@@ -38,7 +38,6 @@ Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
 New Features
 ------------
-
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
 repository is down.
 
@@ -73,3 +72,11 @@ gksu properly.  Also, make the dialog look nicer for sighted users.
 
 Auto-recompile speakup when kernel upgraded.  Right now, every time Ubuntu upgrades the kernel,
 users have to execute the restorespeech script to get speakup working again.
+
+Build an automated test system that runs whenever we push changes to sourceforge, and probably
+once each night as well.  It should e-mail a status report to team memebers.  I think a clean way
+to do this would be with a virtual machine.  We could save it's state just before running the
+buildvinux script, and we could enable ssh login so that we could send it commands remotely.  We
+could have it reboot after running buildvinux, and verify that Orca is running at the GDM prompt,
+and that speakup is also running.
+
