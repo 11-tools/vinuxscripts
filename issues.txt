@@ -38,6 +38,8 @@ Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
 Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
 
+Pick a new background image as the original one seems to have been removed by the latest updates
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
