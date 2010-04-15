@@ -29,9 +29,6 @@ if [ "$REMOVE_APPS" = "yes" ]; then
     chmod -R a+r /etc/skel
 fi
 
-# Install gnome-app-install after all other apt-get commands
-sudo apt-get install -y gnome-app-install
-
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
 sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
