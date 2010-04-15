@@ -15,7 +15,6 @@
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
 INSTALL_VINUX_KEYBINDINGS=""
-INSTALL_BASH_ALIASES=""
 ZIPCODE=""
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
@@ -40,17 +39,11 @@ while [ $# -gt 0 ]; do
 	INSTALL_VINUX_DESKTOP="yes"
     elif [ $1 = "-k" ]; then
 	INSTALL_VINUX_DESKTOP="no"
-    elif [ $1 = "-b" ]; then
-	INSTALL_BASH_ALIASES="yes"
-    elif [ $1 = "-B" ]; then
-	INSTALL_BASH_ALIASES="no"
     else
         echo "Unknown option $1"
         echo "Usage: restore_vinux_environment [-d|-D] [-k|-K] [-l logFile] [-z zipcode]"
 	echo "    -D  : Don't modify the Ubuntu desktop panels and background"
 	echo "    -d  : Modify the Ubuntu desktop panels and background to like Vinux"
-	echo "    -B  : Don't add any Vinux bash aliases."
-	echo "    -b  : Add all Vinux bash aliases"
 	echo "    -K  : Don't add any Vinux keybindings, except restart Orca will be bound to"
 	echo "          Control+Alt+o"
 	echo "    -k  : Add all Vinux keybindings. Restart Orca will be bound to"
@@ -84,17 +77,6 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
 	INSTALL_VINUX_KEYBINDINGS="no"
     else
 	INSTALL_VINUX_KEYBINDINGS="yes"
-    fi
-fi
-
-if [ "$INSTALL_BASH_ALIASES" = "" ]; then
-    echo "Do you want to install Vinux bash aliases? [Y/n]"
-    read ANSWER
-    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-    if [ "$startsWithN" != "" ]; then
-	INSTALL_BASH_ALIASES="no"
-    else
-	INSTALL_BASH_ALIASES="yes"
     fi
 fi
 
@@ -152,9 +134,6 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 fi
 if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
     options="$options -k"
-fi
-if [ "$INSTALL_BASH_ALIASES" = "yes" ]; then
-    options="$options -b"
 fi
 sudo /usr/bin/set_vinux_globals $options
 
