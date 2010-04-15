@@ -24,10 +24,13 @@ fi
 if [ "$REMOVE_APPS" = "yes" ]; then
     echo "Removing applications to make room on the CD"
     apt-get purge -y openoffice.org-common gnome-games-common gbrainy f-spot evolution-common evolution-data-server
-    # Add EasyInstal to /etc/skel
+    # Add EasyInstall to /etc/skel
     rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
     chmod -R a+r /etc/skel
 fi
+
+# Install gnome-app-install after all other apt-get commands
+sudo apt-get install -y gnome-app-install
 
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
