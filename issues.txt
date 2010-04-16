@@ -38,6 +38,14 @@ Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
 Make icons in icon tray say their names.
 
+Change ceni menu launcher to ru with gksu (or hide launcher)
+
+Add theme changing scripts and keybindings
+
+Add more apps to existing easyinstall scripts
+
+Add some more easyinstall scripts for other catagories such as Development, Games and Multimedia etc
+
 Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
 
 New Features
