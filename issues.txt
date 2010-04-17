@@ -29,10 +29,13 @@ fix.
 
 Fix voxin problems on 64-bit Vinux.
 
-Determine why Computer Janator crashes.
+Determine why Computer Janitor crashes.
 
 Fix menu organization.  Some applications install to funny menu locations, like System Tools.
 Check Attila's menu hack in vinuxscripts/vinux_data/skel/.config/menus for how to do this.
+(It is possible to change menu locations by editing the package.desktop script in /usr/share/applications -
+the last line dictates where the item should appear.) Gnome-app-install is placed in system tools by
+default, and maybe this is the right place for it to be? Should we remove Attila's .config file?
 
 Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 

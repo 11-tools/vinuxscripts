@@ -70,7 +70,7 @@ if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
 fi
 
 if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
-    echo "Do you want to install Vinux keybinds? [Y/n]"
+    echo "Do you want to install Vinux keybindings? [Y/n]"
     read ANSWER
     startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
     if [ "$startsWithN" != "" ]; then
