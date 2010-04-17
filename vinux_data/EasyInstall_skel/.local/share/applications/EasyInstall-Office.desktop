@@ -11,3 +11,4 @@ Name[en_US]=EasyInstall-Office
 Name=EasyInstall-Office
 Comment=Install Open Office and Evolution
 Icon=/usr/share/icons/gnome/scalable/categories/applications-office.svg
+Categories=System;
