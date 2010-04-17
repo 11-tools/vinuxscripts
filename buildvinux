@@ -118,6 +118,7 @@ sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
 dpkg -i *.deb
 rm *.deb
+rm /usr/share/applications/ceni.desktop
 
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
