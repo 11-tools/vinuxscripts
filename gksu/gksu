@@ -17,7 +17,7 @@ function help () {
     echo '    display!'
 }
 
-TEMP=`getopt -o "?hu:lpm:kt:i:gdsSwP::aD:" --long \
+TEMP=`getopt -o "+?hu:lpm:kt:i:gdsSwP::aD:" --long \
 help,login,preserv-env,preserve-env,user:,print-pass,message:,title:,icon:,disable-grab::,ssh-fwd,debug,sudo-mode,su-mode,prompt::,desktop:,description: \
 -n 'gksu' -- "$@"`
 
@@ -54,4 +54,4 @@ done
 
 export SUDO_ASKPASS="/usr/bin/askpass"
 export SUDO_COMMAND=$1
-sudo -A $OPTIONS $*
+sudo -A $OPTIONS -- "$@"
