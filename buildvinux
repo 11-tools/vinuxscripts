@@ -114,6 +114,9 @@ sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr com
 
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
+# Fix bug where espea gives error: bt_audio_service_open: connect() failed: Connection refused (111)
+sudo apt-get purge -y bluez-alsa >> $LOGFILE
+
 # Download and install ceni - cli network manager
 wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
 dpkg -i *.deb
