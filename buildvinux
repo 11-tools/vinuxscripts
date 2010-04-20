@@ -70,7 +70,7 @@ if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
 fi
 
 if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
-    echo "Do you want to install Vinux keybinds? [Y/n]"
+    echo "Do you want to install Vinux keybindings? [Y/n]"
     read ANSWER
     startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
     if [ "$startsWithN" != "" ]; then
@@ -110,7 +110,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome >> $LOGFILE
 
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
@@ -118,6 +118,7 @@ sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
 dpkg -i *.deb
 rm *.deb
+rm /usr/share/applications/ceni.desktop
 
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
@@ -142,6 +143,7 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
     cp /etc/skel/bash_aliases_vinux ~
     cp /etc/skel/bash_aliases_vinux /root
+    cp /etc/skel/ThrowingStones.jpg /usr/share/backgrounds
 fi
 cp -r /etc/skel/.orca ~
 
