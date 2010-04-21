@@ -15,10 +15,7 @@ state.  I suspect that the patch to update-manager shows how to fix gnome-app-in
 Hack ubiquity/remastersys to allow language selection during install.  Currently, Vinux only
 allows English installation, which is a major bug.
 
-speechd-up says "capital" before all capital letters, which is frustrating.  Short term, switch to
-using espeakup, rather than speechd-up, by compiling a custom version of espeakup with pulseaudio
-support enabled, and uploading a new source package to the Vinux/Lucid PPA.  Long-term, work with
-the OpenTTS guys to upgrade speechd-up to be as good as espeakup.
+Switch to opentts, the new fork for speech-dispatcher.
 
 Get festival working.  Some users want it, but it doesn't seem to work in Vinux right now.
 
@@ -29,7 +26,9 @@ fix.
 
 Fix voxin problems on 64-bit Vinux.
 
-Determine why Computer Janitor crashes.
+Determine why Computer Janitor crashes.  Remove if not fixed by the 3.0 release.
+
+Fix usb-creator-gtk.
 
 Fix menu organization.  Some applications install to funny menu locations, like System Tools.
 Check Attila's menu hack in vinuxscripts/vinux_data/skel/.config/menus for how to do this.
@@ -50,6 +49,8 @@ Add more apps to existing easyinstall scripts
 Add some more easyinstall scripts for other catagories such as Development, Games and Multimedia etc
 
 Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
+
+Figure out why Orca is not reading upper case chars in a higher pitch
 
 New Features
 ------------
