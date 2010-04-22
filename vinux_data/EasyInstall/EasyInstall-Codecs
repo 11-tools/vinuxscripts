@@ -24,7 +24,7 @@ set -o pipefail ; if gksu 'apt-get -y install ubuntu-restricted-extras libdvdcss
 # Step 5: Delete desktop icon if it still exists and display the success message
 
 a="/home/"
-c="/Desktop/EasyInstall-Restricted.desktop"
+c="/Desktop/EasyInstall-Codecs.desktop"
 if [ -e $a$b$c ]; then 
 rm $a$b$c
 fi

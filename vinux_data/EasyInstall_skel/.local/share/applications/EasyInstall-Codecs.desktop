@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
+Name[en_GB]=EasyInstall-Codecs
+Exec=/usr/share/vinux/EasyInstall/EasyInstall-Codecs
+Comment[en_GB]=Install Non-Free Multimedia Codecs
+Name=EasyInstall-Codecs
+Comment=Install Non-Free Multimedia Codecs
+Icon=/usr/share/icons/Humanity/apps/48/gstreamer-properties.svg
+Categories=System;
