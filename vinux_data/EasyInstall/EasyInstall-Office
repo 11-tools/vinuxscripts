@@ -6,7 +6,7 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install Open Office and Evolution?"; then
+if zenity --question --text "Do you want to install the Vinux Office Suite?"; then
 
 # Step 2: Get user name and ask for admin password
 
@@ -19,7 +19,7 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu 'apt-get -y install openoffice.org openoffice.org-gnome evolution evolution-exchange' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+set -o pipefail ; if gksu 'apt-get -y install openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer openclipart-png' | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 # Step 5: Delete desktop icon if it still exists and display the success message
 
