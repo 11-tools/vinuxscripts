@@ -110,7 +110,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome transmageddon soundConverter gtk-recordmydesktop isomaster thoggen >> $LOGFILE
 
 sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 
