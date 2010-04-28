@@ -52,6 +52,9 @@ Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
 
 Figure out why Orca is not reading upper case chars in a higher pitch
 
+Fix Vinux so that it still boots with no display attached.  The new digital connector signal to
+Linux if there is no display, and Ubuntu refuses to boot.
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
@@ -97,3 +100,6 @@ could have it reboot after running buildvinux, and verify that Orca is running a
 and that speakup is also running.
 
 Change the default setting for cursor tracking to "off" in speakup.
+
+Keybindings to enable/disable the display.  The blind like to turn it off, and it'd be great to
+make this easy.
