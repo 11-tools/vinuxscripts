@@ -103,3 +103,5 @@ Change the default setting for cursor tracking to "off" in speakup.
 
 Keybindings to enable/disable the display.  The blind like to turn it off, and it'd be great to
 make this easy.
+
+Implement cursor tracking in compiz
