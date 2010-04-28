@@ -146,7 +146,7 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
     cp /etc/skel/bash_aliases_vinux ~
     cp /etc/skel/bash_aliases_vinux /root
-    cp /etc/skel/ThrowingStones.jpg /usr/share/backgrounds
+    cp /etc/skel/Backgrounds/*.jpg /usr/share/backgrounds
 fi
 cp -r /etc/skel/.orca ~
 
