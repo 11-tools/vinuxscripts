@@ -8,4 +8,4 @@ Exec=gksu nautilus
 Name=File Browser (Root)
 Comment=Browse Files and Directories as Superuser
 Icon=/usr/share/icons/gnome/scalable/categories/applications-utilities.svg
-Categories=GNOME;GTK;Utility
+Categories=System;
