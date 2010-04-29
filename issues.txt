@@ -1,5 +1,8 @@
 Bugs
 ----
+
+Orca settings are not being copied to the new user during install.
+
 Apply update-manager patch to Ubuntu's update-manager and upload patched package to Vinux/Lucid
 PPA.  The patch is at 
 http://launchpadlibrarian.net/44134902/u-m-orca.diff
