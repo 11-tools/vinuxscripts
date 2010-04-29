@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/Humanity/apps/48/gpk-repo.svg
+Name[en_GB]=EasyInstall-All
+Exec=/usr/share/vinux/EasyInstall/EasyInstall-All
+Comment[en_GB]=Install all of the Vinux Application Suites
+Name=EasyInstall-All
+Comment=Install all of the Vinux Application Suites
+Icon=/usr/share/icons/Humanity/apps/48/gpk-repo.svg
+Categories=System;
