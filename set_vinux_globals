@@ -124,6 +124,10 @@ set-string /apps/compiz/plugins/switcher/allscreens/options/prev_panel_key '<Shi
 
 # Set active plugins
 gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active_plugins '[core,mousepoll,neg,place,vpswitch,session,resize,gnomecompat,regex,commands,imgjpeg,png,svg,dbus,workarounds,decoration,text,mag,animation,resizeinfo,wall,expo,snap,fade,ezoom,move,scale,colorfilter,switcher,scaleaddon]'
+
+# Enable Control+Alt+Backspace to log out of Gnome
+gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/active_plugins '[terminate	terminate:ctrl_alt_bksp]'
+
 else
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 fi
