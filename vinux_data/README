@@ -27,3 +27,5 @@ keybindings - This is a text file describing all Vinux specific keybindings
 
 ubiquity.patch - This is a patch file needed to fix ubiquity so that it works well with
 Orca without crashing.
+
+Backgrounds - Background images for Vinux

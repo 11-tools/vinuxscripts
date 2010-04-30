@@ -63,7 +63,7 @@ sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
 sed -i 's/^RUN_BRLTTY=.*/RUN_BRLTTY=yes/' /etc/default/brltty
 
 # Needed to enable Orca to access root applications
-if [ "`grep 'ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES'` /etc/sudoers`" = "" ]; then
+if [ "`grep 'ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES' /etc/sudoers`" = "" ]; then
     sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
 fi
 

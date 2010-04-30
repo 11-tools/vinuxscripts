@@ -58,6 +58,9 @@ Figure out why Orca is not reading upper case chars in a higher pitch
 Fix Vinux so that it still boots with no display attached.  The new digital connector signal to
 Linux if there is no display, and Ubuntu refuses to boot.
 
+Users who don't require login report problems with multiple copies of Orca running at once -
+probably the GDM copy.
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
@@ -108,3 +111,5 @@ Keybindings to enable/disable the display.  The blind like to turn it off, and i
 make this easy.
 
 Implement cursor tracking in compiz
+
+Make evince accessible

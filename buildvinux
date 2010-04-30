@@ -1,9 +1,8 @@
 #!/bin/bash
 # This should be run after doing the following instructions.  After that, your system should be
 # identical to Vinux/Lucid.  Note that you only use 'vinux' as the user name if you plan to
-# create a Vinux ISO.  This script can also be used to restore your speech if your system
-# stops talking after an upgrade.  See $LOGFILE for a full output of commands run
-# in this script.
+# create a Vinux ISO.  See $LOGFILE for a full output of commands run in this script.  This
+# script should be run as the user, not with sudo.
 #
 # 1. Download the Ubuntu Lucid Alpha 3 i386 iso and burn it to CD.
 #
@@ -118,10 +117,10 @@ sudo apt-get install -y --force-yes remastersys >> $LOGFILE
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
 
 # Download and install ceni - cli network manager
-wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
-dpkg -i *.deb
+sudo wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
+sudo dpkg -i *.deb
 rm *.deb
-rm /usr/share/applications/ceni.desktop
+sudo rm /usr/share/applications/ceni.desktop
 
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
@@ -145,8 +144,6 @@ sudo /usr/bin/set_vinux_globals $options
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
     cp /etc/skel/bash_aliases_vinux ~
-    cp /etc/skel/bash_aliases_vinux /root
-    cp -r /etc/skel/Backgrounds/ /usr/share/backgrounds
 fi
 cp -r /etc/skel/.orca ~
 

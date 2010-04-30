@@ -156,6 +156,20 @@ gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
 set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
 gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
+# Add our background
+cp -r /usr/vinux/Backgrounds/* /usr/share/backgrounds
+if [ "`grep Vinux /usr/share/gnome-background-properties/ubuntu-wallpapers.xml`" = "" ]; then
+    sed -i 's/<\/wallpapers>/
+      <wallpaper>
+	<name>Vinux Dusk</name>
+	<filename>/usr/share/backgrounds/Vinux-Dusk.jpg</filename>
+	<options>zoom</options>
+	<pcolor>#000000</pcolor>
+	<scolor>#000000</scolor>
+	<shade_type>solid</shade_type>
+      </wallpaper>
+    <\/wallpapers>/' /usr/share/gnome-background-properties/ubuntu-wallpapers.xml
 fi
 
 # Update /etc/skel and /var/lib/gdm
