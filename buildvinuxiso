@@ -27,6 +27,7 @@ if [ "$REMOVE_APPS" = "yes" ]; then
     # Add EasyInstall to /etc/skel
     rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
     chmod -R a+r /etc/skel
+    apt-get clean
 fi
 
 # Next run remastersys and change the username to 'vinux' and the name of the
@@ -38,7 +39,7 @@ sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
 # Make the initial screen beep, set accessiblity mode.
 sed -i 's/\(menu label live - boot the Live System\)$/\1/
     s/^timeout.*/timeout 100/
-    s/^prompt.*/prompt 1/
+    s/^prompt.*/prompt 0\nnoescape 1/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
 

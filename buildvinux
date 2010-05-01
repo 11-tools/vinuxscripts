@@ -106,7 +106,7 @@ echo "Updating package list..."
 sudo apt-get update >> $LOGFILE
 echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
-sudo apt-get upgrade -y >> $LOGFILE
+#sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
