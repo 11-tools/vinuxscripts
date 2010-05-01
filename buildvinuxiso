@@ -35,6 +35,13 @@ sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
         s/CUSTOMISO=.*/CUSTOMISO=\"Vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
+# Make the initial screen beep, set accessiblity mode.
+sed -i 's/\(menu label live - boot the Live System\)$/\1/
+    s/^timeout.*/timeout 100/
+    s/^prompt.*/prompt 1/
+    s/ access=v3//
+    s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
+
 # Fix infinite loop in Ubiquity when installing with large fonts on small screens:
 patch /usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py /usr/share/vinux/ubiquity.patch
 # Copy user's Orca settings to gdm so they can be used at login
@@ -48,8 +55,5 @@ unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs 
 a=0
 for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
 echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
-
-# Make the initial screen beep
-sed -i 's/\(menu live - boot the Live System\)/\1/' /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.cfg
 
 remastersys dist iso
