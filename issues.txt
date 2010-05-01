@@ -61,6 +61,8 @@ Linux if there is no display, and Ubuntu refuses to boot.
 Users who don't require login report problems with multiple copies of Orca running at once -
 probably the GDM copy.
 
+Add ceni packages to Vinux/Lucid PPA, rather than using wget in buildvinux
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
@@ -113,3 +115,5 @@ make this easy.
 Implement cursor tracking in compiz
 
 Make evince accessible
+
+Add beeps to indicate if the sound system failed, or if the speech system failed

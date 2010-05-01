@@ -50,6 +50,6 @@ for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
 echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
 
 # Make the initial screen beep
-sed -i 's/Vinux\(.*\)$/Vinux\1/' /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.txt
+sed -i 's/\(menu live - boot the Live System\)/\1/' /home/remastersys/remastersys/ISOTMP/isolinux/isolinux.cfg
 
 remastersys dist iso
