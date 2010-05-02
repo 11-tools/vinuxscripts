@@ -1,19 +1,9 @@
 Bugs
 ----
 
-Orca settings are not being copied to the new user during install.
-
-Apply update-manager patch to Ubuntu's update-manager and upload patched package to Vinux/Lucid
-PPA.  The patch is at 
-http://launchpadlibrarian.net/44134902/u-m-orca.diff
-It needs to be applied to the file that gets installed to /usr/share/pyshared/UpdateManager/UpdateManager.py.
-
 Deal with Firefox/Orca problems.  Firefox rewrote the caret navigation and it has bugs that make
 structural navigation with Orca difficult.  The bug report is at
 https://bugzilla.mozilla.org/show_bug.cgi?id=546068
-
-fix gnome-app-install check-box bug.  Basically, Orca can't read the check-box
-state.  I suspect that the patch to update-manager shows how to fix gnome-app-install.
 
 Hack ubiquity/remastersys to allow language selection during install.  Currently, Vinux only
 allows English installation, which is a major bug.
@@ -32,14 +22,6 @@ Fix voxin problems on 64-bit Vinux.
 Determine why Computer Janitor crashes.  Remove if not fixed by the 3.0 release.
 
 Fix usb-creator-gtk.
-
-Fix menu organization.  Some applications install to funny menu locations, like System Tools.
-Check Attila's menu hack in vinuxscripts/vinux_data/skel/.config/menus for how to do this.
-(It is possible to change menu locations by editing the package.desktop script in /usr/share/applications -
-the last line dictates where the item should appear.) Gnome-app-install is placed in system tools by
-default, and maybe this is the right place for it to be? Should we remove Attila's .config file?
-
-Enable Control+Alt+Backspace logout keybinding in the set_vinus_globals script.
 
 Make icons in icon tray say their names.
 
