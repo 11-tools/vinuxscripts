@@ -63,6 +63,12 @@ probably the GDM copy.
 
 Add ceni packages to Vinux/Lucid PPA, rather than using wget in buildvinux
 
+Ubuntu software server seems to be kept from machined where buildvinuxiso was run, and not
+detected during user installation.
+
+Wine has a .25 second delay when using pulseaudio, making audio games frustrating.  It probably
+needs work on it's PA driver.
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
