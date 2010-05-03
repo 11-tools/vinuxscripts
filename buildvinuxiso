@@ -27,7 +27,6 @@ if [ "$REMOVE_APPS" = "yes" ]; then
     # Add EasyInstall to /etc/skel
     rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
     chmod -R a+r /etc/skel
-    apt-get clean
 fi
 
 # Next run remastersys and change the username to 'vinux' and the name of the

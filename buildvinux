@@ -1,15 +1,12 @@
 #!/bin/bash
 # This should be run after doing the following instructions.  After that, your system should be
-# identical to Vinux/Lucid.  Note that you only use 'vinux' as the user name if you plan to
-# create a Vinux ISO.  See $LOGFILE for a full output of commands run in this script.  This
-# script should be run as the user, not with sudo.
+# identical to Vinux/Lucid. See $LOGFILE for a full output of commands run in this script.  
 #
-# 1. Download the Ubuntu Lucid Alpha 3 i386 iso and burn it to CD.
+# 1. Download the Ubuntu Lucid i386 iso and burn it to CD.
 #
 # 2. Boot from the CD, Press F5, select 'screen-reader' and boot the live CD.
 #
-# 3. Run the Ubuntu Installer, install the system to hard drive using 'vinux' as the username and
-# password, then reboot.
+# 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
@@ -98,7 +95,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFIL
 # Add medibuntu repository
 sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
 
-sudo apt-get --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
+sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
 
 # Update to the latest packages.
 echo "Updating package list..."
@@ -144,6 +141,7 @@ sudo /usr/bin/set_vinux_globals $options
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
     cp /etc/skel/bash_aliases_vinux ~
+    cp /etc/skel/bash_aliases_vinux /root
 fi
 cp -r /etc/skel/.orca ~
 

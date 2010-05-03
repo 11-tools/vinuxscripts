@@ -22,7 +22,7 @@ Increase Volume
 Decrease Volume 
     Windows + Alt + Down
 Toggle Volume Mute
-    Windows + Alt + Space
+    Windows + Alt + m
 Toggle fullscreen mode
     Control + Shift + F
 Toggle maximization state

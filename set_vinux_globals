@@ -72,7 +72,7 @@ set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Contro
 set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
 set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
 
-set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Alt><Mod4>Space'
+set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Alt><Mod4>m'
 set-string /apps/gnome_settings_daemon/keybindings/volume_up '<Alt><Mod4>Up'
 set-string /apps/gnome_settings_daemon/keybindings/volume_down '<Alt><Mod4>Down'
 
