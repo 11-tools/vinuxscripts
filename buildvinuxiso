@@ -50,10 +50,12 @@ patch /usr/lib/ubiquity/target-config/30accessibility /usr/share/vinux/30accessi
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
 echo "Building ISO..."
-remastersys dist cdfs
-unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs | grep -v " inodes " | grep -v "unsquashfs:" | awk '{print $3}' | grep -v "," > /tmp/size.tmp
-a=0
-for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
-echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
+# remastersys dist cdfs
 
-remastersys dist iso
+# This is now included in remastersys
+#unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs | grep -v " inodes " | grep -v "unsquashfs:" | awk '{print $3}' | grep -v "," > /tmp/size.tmp
+#a=0
+#for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
+#echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
+
+remastersys dist

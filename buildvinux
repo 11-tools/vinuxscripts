@@ -109,7 +109,7 @@ sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr com
 
 # sudo apt-get install -y --force-yes remastersys >> $LOGFILE (Disabled)
 
-# Fix bug where espea gives error: bt_audio_service_open: connect() failed: Connection refused (111)
+# Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
 
 # Download and install remastersys from vinux.org.uk (temporary fix)
