@@ -17,6 +17,12 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
+Increase Volume
+    Windows + Alt + Up
+Decrease Volume 
+    Windows + Alt + Down
+Toggle Volume Mute
+    Windows + Alt + Space
 Toggle fullscreen mode
     Control + Shift + F
 Toggle maximization state
@@ -38,7 +44,7 @@ Home folder
 root file browser
     Control + Shift + N
 run terminal
-    Control + Shift + T
+    Control + Alt + t
 Launch text editor
     Control + Shift + G
 Open dictionary
@@ -56,7 +62,7 @@ Run yasr
 Restore Speech
     Control + Shift + Alt + R
 Set font size to 6,8,10,12,14,16,18,20,22 or 24
-    Alt + 1,2,3,4,5,6,7,8,9 or 0
+    Windows + Alt + 1,2,3,4,5,6,7,8,9 or 0
 
 2. Compiz Keybindings
 
