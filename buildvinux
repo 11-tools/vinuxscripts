@@ -76,15 +76,14 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
     fi
 fi
 
-# Update /etc/apt/sources.list
+# Update /etc/apt/sources.list (removed: deb http://www.geekconnection.org/remastersys/repository karmic/)
 echo "Updating software repositories..."
 egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
 deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
 deb http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main
-deb-src http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main
-deb http://www.geekconnection.org/remastersys/repository karmic/' >> /tmp/vinux.tmp
+deb-src http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main' >> /tmp/vinux.tmp
 sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
@@ -108,10 +107,16 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker >> $LOGFILE
 
-sudo apt-get install -y --force-yes remastersys >> $LOGFILE
+# sudo apt-get install -y --force-yes remastersys >> $LOGFILE (Disabled)
 
 # Fix bug where espea gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
+
+# Download and install remastersys from vinux.org.uk (temporary fix)
+sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data
+sudo wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb
+sudo dpkg -i remastersys_2.0.16-1_all.deb
+rm -f *.deb
 
 # Download and install ceni - cli network manager
 sudo wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
