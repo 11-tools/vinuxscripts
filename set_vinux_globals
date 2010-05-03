@@ -72,6 +72,10 @@ set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Contro
 set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
 set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
 
+set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Super><Alt>Space'
+set-string /apps/gnome_settings_daemon/keybindings/volume_up '<Super><Alt>Up'
+set-string /apps/gnome_settings_daemon/keybindings/volume_down '<Super><Alt>Down'
+
 add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
 add-customkey 2 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
