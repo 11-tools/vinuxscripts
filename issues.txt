@@ -51,6 +51,13 @@ detected during user installation.
 Wine has a .25 second delay when using pulseaudio, making audio games frustrating.  It probably
 needs work on it's PA driver.
 
+Need to patch xulrunner with the Firefox patch.  This library is used by Thunderbird, yelp, and other
+programs using "gecko", and those programs also need the caret navigation fix.
+
+Improve accessibility of GTK+ TreeViews.  Currently apps using TreeModelSorted, TreeModelFiltered,
+or CellRendererPixbuf are typically not accessible, as these classes break the accessibility
+model.
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
