@@ -31,6 +31,62 @@ c="/Desktop/EasyInstall-All.desktop"
 if [ -e $a$b$c ]; then 
 rm $a$b$c
 fi
+
+c="/Desktop/EasyInstall-Codecs.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Development.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Gadgets.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Google.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Graphics.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Multimedia.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-OCR.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Office.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Security.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Virtualize.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
+c="/Desktop/EasyInstall-Windows.desktop"
+if [ -e $a$b$c ]; then 
+rm $a$b$c
+fi
+
 zenity --info --text "Installation was successful - Press enter to finish!"
 
 # Step 6: Execute if installation of packages fails - from Step 4
