@@ -25,13 +25,7 @@ Fix usb-creator-gtk.
 
 Make icons in icon tray say their names.
 
-Change ceni menu launcher to ru with gksu (or hide launcher)
-
 Add theme changing scripts and keybindings
-
-Add more apps to existing easyinstall scripts
-
-Add some more easyinstall scripts for other catagories such as Development, Games and Multimedia etc
 
 Change the text of the 'Install Vinux 3.0' icon to 'Install Vinux'
 
@@ -43,9 +37,9 @@ Linux if there is no display, and Ubuntu refuses to boot.
 Users who don't require login report problems with multiple copies of Orca running at once -
 probably the GDM copy.
 
-Add ceni packages to Vinux/Lucid PPA, rather than using wget in buildvinux
+Add ceni and remastersys packages to Vinux/Lucid PPA, rather than using wget in buildvinux
 
-Ubuntu software server seems to be kept from machined where buildvinuxiso was run, and not
+Ubuntu software server seems to be kept from machine where buildvinuxiso was run, and not
 detected during user installation.
 
 Wine has a .25 second delay when using pulseaudio, making audio games frustrating.  It probably
@@ -60,8 +54,6 @@ model.
 
 New Features
 ------------
-Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
-repository is down. Also add the ceni .deb package as their server also seems irratic.
 
 Add Wubi compatibility.  This is straight-forward, but a lot of work.  The best documentation is
 in the source code, which you can check out with bazaar at:
@@ -79,7 +71,7 @@ Write an audio book creator app.  I would prefer to enhance speech-dispatcher (n
 return audio data rather than playing it.  That way an audio book creation app could be written
 easily in Python, and could use any voice Orca can use.
 
-Voxin instegration.  We would like to allow users to buy Vinux with Voxin pre-installed directly
+Voxin integration.  We would like to allow users to buy Vinux with Voxin pre-installed directly
 from the oralux.org web site.  It sounds like Gilles Casse is interested in helping make this
 happen.
 
@@ -87,7 +79,7 @@ Integrate emacspeak.  First, just get it running in Vinux.  We may need to make 
 for it.  After that, it would be great to have a speech-dispatcher (opentts) driver for it.
 
 Opensapi integration.  Basically, write a speech-dispatcher driver for opensapi.  This would
-enable users to access a large number of Micrsoft voices.
+enable users to access a large number of Microsoft voices.
 
 Rewrite gksu as python dialog, rather than using zenity, so we can support all of the options of
 gksu properly.  Also, make the dialog look nicer for sighted users.

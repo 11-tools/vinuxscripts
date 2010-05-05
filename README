@@ -1,22 +1,21 @@
 These scripts build a Vinux-like environment on top of Ubuntu.  So far, it only
-works with Ubuntu Lucid.  You need to install before runnng the scripts, with:
+works with Ubuntu Lucid.  You need to install before running the scripts, with:
 
 sudo make install
 
-There are four scripts installed:
+There are four scripts installed, they should all be run with sudo:
 
-buildvinux    - Updates sources.list, updates to latest, and runs restorespeech
-                and set_vinux_gloals.
+buildvinux - Updates sources.list, updates to latest, and runs restorespeech
+             and set_vinux_gloals.
 
 restorespeech - Modifies system to allow speakup to run, and restores login
-                window speech. Run this with sudo.
+                window speech. .
 
 set_vinux_globals - Set's default Vinux keybindings, menus, and other user
-	       settings for all users.  Optionally set Vinux-style desktop.
-               Run with sudo.
-
+	            settings for all users.  Optionally set Vinux-style desktop.
+              
 buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
-              ISO.  This removes many files from your system!  Run with sudo.
+                ISO.  This removes many files from your system!  
 
 In addition, we replace gksu with simple scripts that wrap around sudo,
 since gksu causes problems with accessibility.  The issues.txt file is just an

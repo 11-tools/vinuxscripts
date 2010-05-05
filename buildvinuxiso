@@ -1,12 +1,12 @@
 #!/bin/bash
-# This program should run after buildvinux.  It will remove a bunch of
-# applications to make more room on the CD ISO, and it will do other
-# unhappy things to your system.  Unless you are trying to make a new
-# release of Vinux, do not run this script.
 #
-# Run this script with sudo.
+# This script will build a remaster of the installed system, it
+# should run after the buildvinux script. To run it type:
+# 'sudo buildvinuxiso'. It will remove some applications so 
+# that the ISO will fit on a CD, and it make some other changes
+# to the system.
 
-echo "Enter the release number, for example 3.0-alpha3"
+echo "Enter the release number, for example 3.0-Beta-1.0"
 read RELEASE
 RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
@@ -50,12 +50,4 @@ patch /usr/lib/ubiquity/target-config/30accessibility /usr/share/vinux/30accessi
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
 echo "Building ISO..."
-# remastersys dist cdfs
-
-# This is now included in remastersys
-#unsquashfs -lls /home/remastersys/remastersys/ISOTMP/casper/filesystem.squashfs | grep -v " inodes " | grep -v "unsquashfs:" | awk '{print $3}' | grep -v "," > /tmp/size.tmp
-#a=0
-#for i in `cat /tmp/size.tmp`; do a=$(($a+$i)); done
-#echo $a > /home/remastersys/remastersys/ISOTMP/casper/filesystem.size
-
 remastersys dist

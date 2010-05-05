@@ -1,12 +1,16 @@
 #!/bin/bash
-# This should be run after doing the following instructions.  After that, your system should be
-# identical to Vinux/Lucid. See $LOGFILE for a full output of commands run in this script.  
 #
-# 1. Download the Ubuntu Lucid i386 iso and burn it to CD.
+# This scipt should only be run after completing the following steps:
+#
+# 1. Download the latest Ubuntu Lucid i386 iso and burn it to CD.
 #
 # 2. Boot from the CD, Press F5, select 'screen-reader' and boot the live CD.
 #
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
+#
+# Type 'sudo buildvinux' to run the script, when it is finished reboot and
+# your system should be identical to the Vinux/Lucid distribution. See the 
+# buildvinux.log file to read the output of all othe the commands run.  
 
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
@@ -76,7 +80,7 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
     fi
 fi
 
-# Update /etc/apt/sources.list (removed: deb http://www.geekconnection.org/remastersys/repository karmic/)
+# Update /etc/apt/sources.list
 echo "Updating software repositories..."
 egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
@@ -106,8 +110,6 @@ sudo apt-get upgrade -y >> $LOGFILE
 # Install some packages
 
 sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker >> $LOGFILE
-
-# sudo apt-get install -y --force-yes remastersys >> $LOGFILE (Disabled)
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
@@ -153,5 +155,5 @@ cp -r /etc/skel/.orca ~
 # Install gnome-app-install
 sudo apt-get install -y --force-yes gnome-app-install
 
-echo "Done!  Reboot, and enjoy your new Vinux-like environment."
+echo "Done!  Reboot and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"

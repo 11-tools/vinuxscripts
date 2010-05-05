@@ -1,6 +1,8 @@
 #!/bin/bash
-# This script sets Vinux keybindings, menus and such.  It also modifies the desktop, but it
-# doesn't remove any applications.  It should be run as root.
+#
+# This script sets up the Vinux keybindings, menus and such.  It also 
+# modifies the desktop, but it doesn't remove any applications.  It 
+# should be run by typing: 'sudo set_vinux_globals'.
 
 LOGFILE=/dev/null
 ZIPCODE=""
