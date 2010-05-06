@@ -84,6 +84,9 @@ fi
 echo "Updating software repositories..."
 egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
+# If you are willing to help test new Vinux packages, uncomment the following:
+#deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
+#deb-src http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
 deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
 deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
 deb http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main
