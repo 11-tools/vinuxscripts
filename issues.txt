@@ -58,6 +58,10 @@ Improve accessibility of GTK+ TreeViews.  Currently apps using TreeModelSorted, 
 or CellRendererPixbuf are typically not accessible, as these classes break the accessibility
 model.
 
+Fix GTK+ so that we can do first-letter navigation in combo boxes
+
+Improve thunderbird list views - we should not be loading everything at once
+
 New Features
 ------------
 Add remastersys package to Vinux/Lucid PPA.  This is needed because sometimes the remastersys
