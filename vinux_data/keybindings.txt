@@ -61,8 +61,10 @@ Run yasr
     Control + Shift + S
 Restore Speech
     Control + Shift + Alt + R
-Set font size to 6,8,10,12,14,16,18,20,22 or 24
-    Windows + Alt + 1,2,3,4,5,6,7,8,9 or 0
+Change to default theme/font size 8,12,16,20 or 24
+    Windows + Alt + 1,2,3,4 or 5
+Change to dark theme/font size 8,12,16,20 or 24
+    Windows + Alt + 6,7,8,9 or 0
 
 2. Compiz Keybindings
 
