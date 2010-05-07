@@ -56,6 +56,8 @@ Fix GTK+ so that we can do first-letter navigation in combo boxes
 
 Improve thunderbird list views - we should not be loading everything at once
 
+Figure out why youtube search doesn't work in movie player.
+
 New Features
 ------------
 
