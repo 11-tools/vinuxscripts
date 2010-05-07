@@ -17,11 +17,11 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
-Increase Volume
+Increase volume
     Windows + Alt + Up
-Decrease Volume 
+Decrease volume 
     Windows + Alt + Down
-Toggle Volume Mute
+Toggle volume mute
     Windows + Alt + m
 Toggle fullscreen mode
     Control + Shift + F
@@ -41,9 +41,9 @@ Launch web browser
     Control + Shift + W
 Home folder
     Control + Shift + H
-root file browser
+Root file browser
     Control + Shift + N
-run terminal
+Run terminal
     Control + Alt + t
 Launch text editor
     Control + Shift + G
