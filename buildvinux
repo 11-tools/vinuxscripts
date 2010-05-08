@@ -99,9 +99,9 @@ sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE 2>&1
 
 # Add medibuntu repository
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
+(sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update) >> $LOGFILE
 
-sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
+(sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu) >> $LOGFILE
 
 # Update to the latest packages.
 echo "Updating package list..."
@@ -118,19 +118,23 @@ sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr com
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
 
 # Download and install remastersys from vinux.org.uk (temporary fix)
-sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data
-sudo wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb
-sudo dpkg -i remastersys_2.0.16-1_all.deb
+# The following line should not be needed, since we fix the dependencies later
+# sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data >> $LOGFILE
+echo "Downloading and installing remastersys"
+sudo wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb >> $LOGFILE
+sudo dpkg -i remastersys_2.0.16-1_all.deb 2>&1 >> $LOGFILE
 rm -f *.deb
 
 # Download and install ceni - cli network manager
-sudo wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb
-sudo dpkg -i *.deb
+echo "Downloading and installing ceni.  Sometimes this takes several minutes"
+sudo wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb >> $LOGFILE
+sudo dpkg -i *.deb 2>&1 >> $LOGFILE
 rm -f *.deb
 sudo rm /usr/share/applications/ceni.desktop
 
 # Fix any missing dependencies
-sudo apt-get -f install
+echo "Installing packages needed by remastersys and ceni"
+sudo apt-get -f -y install >> $LOGFILE
 
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
