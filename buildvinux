@@ -129,6 +129,9 @@ sudo dpkg -i *.deb
 rm -f *.deb
 sudo rm /usr/share/applications/ceni.desktop
 
+# Fix any missing dependencies
+sudo apt-get -f install
+
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
 
