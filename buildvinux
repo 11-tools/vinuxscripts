@@ -151,12 +151,14 @@ sudo /usr/bin/set_vinux_globals $options
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     cp -r /etc/skel/.gconf ~
     cp /etc/skel/bash_aliases_vinux ~
-    cp /etc/skel/bash_aliases_vinux /root
 fi
 cp -r /etc/skel/.orca ~
 
 # Install gnome-app-install
 sudo apt-get install -y --force-yes gnome-app-install
+
+# Clean up any packages we don't need
+sudo apt-get autoremove
 
 echo "Done!  Reboot and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
