@@ -58,6 +58,8 @@ Improve thunderbird list views - we should not be loading everything at once
 
 Figure out why youtube search doesn't work in movie player.
 
+Fix pacfman accessibilty before "details" turned on
+
 New Features
 ------------
 
