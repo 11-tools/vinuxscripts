@@ -63,6 +63,8 @@ Fix pacfman accessibilty before "details" turned on
 Fix issues setting Orca preferences in login window.  The preferences dialog wont close, and
 hitting Caps Lock for the Orca key toggles caps lock as well.
 
+PulseAudio is generating tons of syslog errors like "pulseaudio[2127]: ratelimit.c: 128 events suppressed"
+
 New Features
 ------------
 
