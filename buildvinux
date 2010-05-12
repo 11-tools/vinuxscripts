@@ -95,8 +95,20 @@ sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
+# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
+# updated until we say so.
+echo 'Package: *
+Pin: release o=LP-PPA-vinux-vinux-lucid
+Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
+sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
+
 # Import the Vinux/Ubuntu Team repository key.
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE 2>&1
+
+# Downgrade Firefox to version 3.5
+echo "Downgrading Firefox to version 3.5"
+sudo apt-get remove -y firefox >> $LOGFILE
+sudo apt-get install -y firefox-3.5 firefox-3.5-branding firefox-3.5-gnome-support >> $LOGFILE
 
 # Add medibuntu repository
 (sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update) >> $LOGFILE
@@ -165,7 +177,7 @@ cp -r /etc/skel/.orca ~
 sudo apt-get install -y --force-yes gnome-app-install
 
 # Clean up any packages we don't need
-sudo apt-get autoremove
+sudo apt-get -y autoremove >> $LOGFILE
 
 echo "Done!  Reboot and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"

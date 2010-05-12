@@ -1,3 +1,15 @@
+vinuxscripts (0.2.1ubuntu1) lucid; urgency=low
+
+  * More mods for RC4
+
+ -- Bill Cox <waywardgeek@gmail.com>  Wed, 12 May 2010 05:46:21 -0400
+
+vinuxscripts (0.2.1) lucid; urgency=low
+
+  * Mods for building Vinux 3.0 RC4
+
+ -- Bill Cox <waywardgeek@gmail.com>  Tue, 11 May 2010 16:57:03 -0400
+
 vinuxscripts (0.1-1) lucid; urgency=low
 
   * Initial release

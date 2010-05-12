@@ -13,20 +13,6 @@ orca.settings.enabledBrailledTextAttributes = "font-size:; font-family:; font-we
 # Set up a user key-bindings profile
 #
 def overrideAppKeyBindings(script, keyB):
-   keyB.removeByHandler(script.inputEventHandlers['entryGoNext'])
-   keyB.add(orca.keybindings.KeyBinding(
-      'e',
-      365,
-      0,
-      script.inputEventHandlers["entryGoNext"]))
-
-   keyB.removeByHandler(script.inputEventHandlers['entryGoPrevious'])
-   keyB.add(orca.keybindings.KeyBinding(
-      'e',
-      365,
-      1,
-      script.inputEventHandlers["entryGoPrevious"]))
-
    keyB.removeByHandler(script.inputEventHandlers['checkBoxGoNext'])
    keyB.add(orca.keybindings.KeyBinding(
       'c',
@@ -40,6 +26,13 @@ def overrideAppKeyBindings(script, keyB):
       365,
       0,
       script.inputEventHandlers["comboBoxGoNext"]))
+
+   keyB.removeByHandler(script.inputEventHandlers['entryGoNext'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'e',
+      365,
+      0,
+      script.inputEventHandlers["entryGoNext"]))
 
    keyB.removeByHandler(script.inputEventHandlers['radioButtonGoNext'])
    keyB.add(orca.keybindings.KeyBinding(
@@ -62,6 +55,13 @@ def overrideAppKeyBindings(script, keyB):
       1,
       script.inputEventHandlers["comboBoxGoPrevious"]))
 
+   keyB.removeByHandler(script.inputEventHandlers['entryGoPrevious'])
+   keyB.add(orca.keybindings.KeyBinding(
+      'e',
+      365,
+      1,
+      script.inputEventHandlers["entryGoPrevious"]))
+
    keyB.removeByHandler(script.inputEventHandlers['radioButtonGoPrevious'])
    keyB.add(orca.keybindings.KeyBinding(
       'period',
@@ -83,7 +83,7 @@ orca.settings.overridePronunciations = overridePronunciations
 
 orca.scripts.toolkits.Gecko.script_settings.controlCaretNavigation = True
 orca.scripts.toolkits.Gecko.script_settings.structuralNavigationEnabled = True
-orca.scripts.toolkits.Gecko.script_settings.grabFocusOnAncestor = False
+orca.scripts.toolkits.Gecko.script_settings.grabFocusOnAncestor = True
 orca.scripts.toolkits.Gecko.script_settings.arrowToLineBeginning = True
 orca.scripts.toolkits.Gecko.script_settings.sayAllOnLoad = True
 orca.scripts.toolkits.Gecko.script_settings.speakResultsDuringFind = True
