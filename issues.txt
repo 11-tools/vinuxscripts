@@ -117,3 +117,9 @@ Implement cursor tracking in compiz
 Make evince accessible
 
 Add beeps to indicate if the sound system failed, or if the speech system failed
+
+Create tool to aid in supporting remote blind users.  It should forward VNC ports, as well as the
+pulseaudio stream, and it should only be accessibly by support team members, and only while the
+remote user allows access.
+
+Create accessibe Server version of Ubuntu Lucid with speakup.

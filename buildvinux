@@ -124,7 +124,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni >> $LOGFILE
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
@@ -133,19 +133,12 @@ sudo apt-get purge -y bluez-alsa >> $LOGFILE
 # The following line should not be needed, since we fix the dependencies later
 # sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data >> $LOGFILE
 echo "Downloading and installing remastersys"
-sudo wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb >> $LOGFILE
+wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb >> $LOGFILE
 sudo dpkg -i remastersys_2.0.16-1_all.deb 2>&1 >> $LOGFILE
 rm -f *.deb
 
-# Download and install ceni - cli network manager
-echo "Downloading and installing ceni.  Sometimes this takes several minutes"
-sudo wget ftp://mirror.aarnet.edu.au/pub/sidux/debian/pool/main/c/ceni/*.deb >> $LOGFILE
-sudo dpkg -i *.deb 2>&1 >> $LOGFILE
-rm -f *.deb
-sudo rm /usr/share/applications/ceni.desktop
-
 # Fix any missing dependencies
-echo "Installing packages needed by remastersys and ceni"
+echo "Installing packages needed by remastersys"
 sudo apt-get -f -y install >> $LOGFILE
 
 # Enable speech
@@ -174,7 +167,7 @@ fi
 cp -r /etc/skel/.orca ~
 
 # Install gnome-app-install
-sudo apt-get install -y --force-yes gnome-app-install
+sudo apt-get install -y --force-yes gnome-app-install >> $LOGFILE
 
 # Clean up any packages we don't need
 sudo apt-get -y autoremove >> $LOGFILE
