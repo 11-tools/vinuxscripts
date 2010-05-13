@@ -134,7 +134,8 @@ sudo apt-get purge -y bluez-alsa >> $LOGFILE
 # sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data >> $LOGFILE
 echo "Downloading and installing remastersys"
 wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb >> $LOGFILE
-sudo dpkg -i remastersys_2.0.16-1_all.deb 2>&1 >> $LOGFILE
+echo "It's normal to have lot's of Remastersys warnings here... we fix them with apt-get -f install later" >> $LOGFILE
+sudo dpkg -i remastersys_2.0.16-1_all.deb >> $LOGFILE 2>&1 
 rm -f *.deb
 
 # Fix any missing dependencies
