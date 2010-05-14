@@ -88,9 +88,7 @@ echo '# Repositories supporting vinux packages.
 #deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
 #deb-src http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
 deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
-deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
-deb http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main
-deb-src http://ppa.launchpad.net/vinux/vinux-karmic/ubuntu karmic main' >> /tmp/vinux.tmp
+deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main' >> /tmp/vinux.tmp
 sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
@@ -105,42 +103,27 @@ sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
 # Import the Vinux/Ubuntu Team repository key.
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE 2>&1
 
-# Downgrade Firefox to version 3.5
-echo "Downgrading Firefox to version 3.5"
-sudo apt-get remove -y firefox >> $LOGFILE
-sudo apt-get install -y firefox-3.5 firefox-3.5-branding firefox-3.5-gnome-support >> $LOGFILE
-
 # Add medibuntu repository
 (sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update) >> $LOGFILE
 
 (sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu) >> $LOGFILE
 
+# Downgrade Firefox to version 3.5
+echo "Downgrading Firefox to version 3.5"
+sudo apt-get remove -y firefox >> $LOGFILE
+sudo apt-get install -y firefox-3.5 firefox-3.5-branding firefox-3.5-gnome-support >> $LOGFILE
+
 # Update to the latest packages.
-echo "Updating package list..."
-sudo apt-get update >> $LOGFILE
 echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni remastersys >> $LOGFILE
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
-
-# Download and install remastersys from vinux.org.uk (temporary fix)
-# The following line should not be needed, since we fix the dependencies later
-# sudo apt-get install squashfs-tools casper user-setup discover1 discover xresprobe localechooser-data libdiscover2 discover-data >> $LOGFILE
-echo "Downloading and installing remastersys"
-wget http://vinux.org.uk/packages/remastersys_2.0.16-1_all.deb >> $LOGFILE
-echo "It's normal to have lot's of Remastersys warnings here... we fix them with apt-get -f install later" >> $LOGFILE
-sudo dpkg -i remastersys_2.0.16-1_all.deb >> $LOGFILE 2>&1 
-rm -f *.deb
-
-# Fix any missing dependencies
-echo "Installing packages needed by remastersys"
-sudo apt-get -f -y install >> $LOGFILE
 
 # Enable speech
 sudo /usr/bin/restorespeech -l $LOGFILE
