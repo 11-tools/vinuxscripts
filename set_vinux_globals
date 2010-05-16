@@ -74,10 +74,6 @@ set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Contro
 set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
 set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
 
-set-string /apps/gnome_settings_daemon/keybindings/volume_mute '<Alt><Mod4>m'
-set-string /apps/gnome_settings_daemon/keybindings/volume_up '<Alt><Mod4>Up'
-set-string /apps/gnome_settings_daemon/keybindings/volume_down '<Alt><Mod4>Down'
-
 add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
 add-customkey 2 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
@@ -85,7 +81,7 @@ add-customkey 3 'Dictionary' '<Shift><Control>d' 'gnome-dictionary'
 add-customkey 4 'Brasero' '<Shift><Control>b' 'brasero'
 add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
 add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
-add-customkey 7	'Root Nautilus' '<Shift><Control>n' 'gksu nautilus'
+add-customkey 7	'Root Nautilus' '<Shift><Control>r' 'gksu nautilus'
 add-customkey 8	'YASR' '<Shift><Control>s' 'gnome-terminal -e yasr'
 add-customkey 9 'Keybindings' '<Shift><Control>k' 'gedit /usr/share/vinux/keybindings.txt'
 add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
@@ -98,6 +94,11 @@ add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklook
 add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
 add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
 add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
+
+# Make these work soon:
+#add-customkey 20 'Alt Mute' '<Alt><Mod4>m' /usr/share/vinux/volume-mute
+#add-customkey 21 'Alt Volume up' '<Alt><Mod4>Up' /usr/share/vinux/volume-up
+#add-customkey 22 'Alt Volumd down' '<Alt><Mod4>Down' /usr/share/vinux/volume-down
 
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
@@ -132,7 +133,7 @@ set-string /apps/compiz/plugins/switcher/allscreens/options/prev_panel_key '<Shi
 gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active_plugins '[core,mousepoll,neg,place,vpswitch,session,resize,gnomecompat,regex,commands,imgjpeg,png,svg,dbus,workarounds,decoration,text,mag,animation,resizeinfo,wall,expo,snap,fade,ezoom,move,scale,colorfilter,switcher,scaleaddon]'
 
 # Enable Control+Alt+Backspace to log out of Gnome
-gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/active_plugins '[terminate	terminate:ctrl_alt_bksp]'
+gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
 
 else
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'

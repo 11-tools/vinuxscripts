@@ -82,13 +82,15 @@ fi
 
 # Update /etc/apt/sources.list
 echo "Updating software repositories..."
-egrep -v 'vinux|remastersys' /etc/apt/sources.list > /tmp/vinux.tmp
+egrep -v 'vinux|mangler' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 # If you are willing to help test new Vinux packages, uncomment the following:
 #deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
 #deb-src http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
 deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
-deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main' >> /tmp/vinux.tmp
+deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
+deb http://ppa.launchpad.net/mangler/mangler/ubuntu lucid main 
+deb-src http://ppa.launchpad.net/mangler/mangler/ubuntu lucid main' >> /tmp/vinux.tmp
 sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
@@ -120,7 +122,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni remastersys >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni remastersys mangler >> $LOGFILE
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
