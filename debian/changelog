@@ -1,4 +1,10 @@
-vinuxscripts (0.2.3ubuntu1) lucid; urgency=low
+vinuxscripts (0.2.5) lucid; urgency=low
+
+  * Another update for RC5
+
+ -- Bill Cox <waywardgeek@gmail.com>  Sun, 16 May 2010 12:12:06 -0400
+
+vinuxscripts (0.2.4) lucid; urgency=low
 
   * Updates for RC5
 
