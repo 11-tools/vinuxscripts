@@ -67,6 +67,10 @@ PulseAudio is generating tons of syslog errors like "pulseaudio[2127]: ratelimit
 
 Turn on key echo in GDM's copy of Orca, even if the user turned it off while installing.
 
+Fix gnome calendar to be accessible.
+
+Read only text boxes are "inaccessible" to Orca, but flat review works!
+
 New Features
 ------------
 
