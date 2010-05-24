@@ -47,6 +47,7 @@ sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
 
 # Setup YASR
+apt-get install -y yasr >> $LOGFILE
 sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
     s/^#synthesizer=speech dispatcher/synthesizer=speech dispatcher/
     s/^#synthesizer port=127.0.0.1:6560/synthesizer port=127.0.0.1:6560/

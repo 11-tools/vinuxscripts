@@ -210,3 +210,6 @@ update-grub >> $LOGFILE 2>&1
 echo 'Package: *
 Pin: release o=LP-PPA-vinux-vinux-lucid
 Pin-Priority: 750' > /etc/apt/preferences.d/vinux-lucid-pin-750
+echo 'Package: *
+Pin: release o=LP-PPA-vinux-vinux-lucid-testing
+Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760

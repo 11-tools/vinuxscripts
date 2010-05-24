@@ -27,7 +27,7 @@ orca.settings.overridePronunciations = overridePronunciations
 
 orca.scripts.toolkits.Gecko.script_settings.controlCaretNavigation = True
 orca.scripts.toolkits.Gecko.script_settings.structuralNavigationEnabled = True
-orca.scripts.toolkits.Gecko.script_settings.grabFocusOnAncestor = True
+orca.scripts.toolkits.Gecko.script_settings.grabFocusOnAncestor = False
 orca.scripts.toolkits.Gecko.script_settings.arrowToLineBeginning = True
 orca.scripts.toolkits.Gecko.script_settings.sayAllOnLoad = True
 orca.scripts.toolkits.Gecko.script_settings.speakResultsDuringFind = True

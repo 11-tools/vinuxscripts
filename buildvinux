@@ -110,9 +110,9 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFIL
 (sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu) >> $LOGFILE
 
 # Downgrade Firefox to version 3.5
-echo "Downgrading Firefox to version 3.5"
-sudo apt-get remove -y firefox >> $LOGFILE
-sudo apt-get install -y firefox-3.5 firefox-3.5-branding firefox-3.5-gnome-support >> $LOGFILE
+#echo "Downgrading Firefox to version 3.5"
+#sudo apt-get remove -y firefox >> $LOGFILE
+#sudo apt-get install -y firefox-3.5 firefox-3.5-branding firefox-3.5-gnome-support >> $LOGFILE
 
 # Update to the latest packages.
 echo "Upgrading all packages... This can take a few minutes."
@@ -121,7 +121,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted yasr compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni remastersys mangler >> $LOGFILE
+sudo apt-get install -y gnome-orca speakup-source speakup-tools gparted compizconfig-settings-manager speech-dispatcher-voxin acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk partimage deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker ceni remastersys mangler >> $LOGFILE
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE

@@ -23,7 +23,8 @@ Determine why Computer Janitor crashes.  Remove if not fixed by the 3.0 release.
 
 Fix usb-creator-gtk.
 
-Make icons in icon tray say their names.
+Make icons in icon tray say their names.  Make non-accessible icons like skype say inaccessible,
+and stop them from locking the focus on them.
 
 Add theme changing scripts and keybindings
 
@@ -70,6 +71,10 @@ Turn on key echo in GDM's copy of Orca, even if the user turned it off while ins
 Fix gnome calendar to be accessible.
 
 Read only text boxes are "inaccessible" to Orca, but flat review works!
+
+Sound seems to be goofy for a while while booting, but then recovers.  On a VinuxBox virtual
+machine, pulseaudio often fails to boot, but can be started manually.  This may all be related to
+the grub beep.
 
 New Features
 ------------
