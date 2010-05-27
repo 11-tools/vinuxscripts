@@ -76,6 +76,8 @@ Sound seems to be goofy for a while while booting, but then recovers.  On a Vinu
 machine, pulseaudio often fails to boot, but can be started manually.  This may all be related to
 the grub beep.
 
+Fix accerciser so that ipython console does not grab and refuse to release focus.
+
 New Features
 ------------
 

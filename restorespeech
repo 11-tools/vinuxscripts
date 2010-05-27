@@ -27,6 +27,9 @@ sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
 sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
+if [ "`grep 'sleep 4' /etc/init.d/pulseaudio`" = "" ]; then
+    sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 4\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
+fi
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
