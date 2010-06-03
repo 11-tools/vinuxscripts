@@ -144,13 +144,30 @@ def sayForecast(script, inputEvent=None):
     return True
 #end sayForecast function
 
+#Define the volume 0 value detect and correct function
+def volumedetect():
+#This function detect if the master volume is 0.
+#If the master value is 0, increasing volume with 58%.
+#Following command gets master volume actual value percentage
+    volume=commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
+    mute=commands.getoutput('amixer get \'Master\',0|grep \'\[off\]\'')
+    print "volume=%s, mute=%s\n" % (volume, mute)
+    #If the getted volume value is 0%, increasing volume with 58%.
+    if mute!="":
+        commands.getoutput('amixer sset \'Master\',0 toggle')
+    if volume=="0":
+        commands.getoutput('amixer set \'Master\',0 58%')
+#End the volume 0 value detect and correct function
+
 #Define the increase volume function
 #Following function increasing master volume with 5 step, and spokening the new changed volume
 def increasevolume(script, inputEvent=None):
     #Following command increasing volume with 5 step
-    commands.getoutput('amixer sset Master 5+')
+    commands.getoutput("amixer sset \'Master\',0 5+")
     #Following command gets increased master volume percentage
-    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    volume=commands.getoutput('amixer get \'Master\',0|grep %|cut -d "[" -f2')
+    #Following command cut unneed ] character with spokened output.
+    volume=volume.replace("]", "")
     #Final, spokening Orca the new increased volume value
     orca.speech.speak(volume)
 #End increase volume function
@@ -159,9 +176,11 @@ def increasevolume(script, inputEvent=None):
 #Following function decreasing master volume with 5 step, and spokening the new changed volume
 def decreasevolume(script, inputEvent=None):
     #Following command decreasing volume with 5 step
-    commands.getoutput('amixer sset Master 5-')
+    commands.getoutput("amixer sset \'Master\',0 5-")
     #Following command gets decreased master volume percentage
-    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    volume=commands.getoutput('amixer get \'Master\',0|grep %|cut -d "[" -f2')
+    #Following command cut unneed ] character with spokened output.
+    volume=volume.replace("]", "")
     #Final, spokening Orca the new decreased volume value
     orca.speech.speak(volume)
 #End decrease volume function
@@ -169,12 +188,12 @@ def decreasevolume(script, inputEvent=None):
 #Define the toggle volume function
 #Following function toggle master volume mute on/off
 def togglevolumemute(script, inputEvent=None):
-    #Following command toggle master volume mute on/off
-    commands.getoutput('amixer sset Master toggle')
     #Following command gets master volume mute status
-    mutestatus=commands.getoutput('amixer get Master|grep %|cut -d "[" -f4')
+    mutestatus=commands.getoutput('amixer get \'Master\',0|grep "\[off\]"')
+    #Following command toggle master volume mute on/off
+    commands.getoutput('amixer sset \'Master\',0 toggle')
     #Final, if actual master volume status is on, Orca notify the user the mute is off.
-    if mutestatus=='on]':
+    if mutestatus!='':
         orca.speech.speak('Mute off.')
 #End toggle volume function
 
@@ -304,4 +323,7 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
 
 orca.settings.keyBindingsMap["default"] = myKeyBindings
 #end time, date, and weather code
+#Following command execute the volume detect function with always script start.
+#This function detects if master volume is 0, and increasing with 58% audible value.
+volumedetect()
 

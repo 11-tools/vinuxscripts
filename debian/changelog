@@ -1,3 +1,9 @@
+vinuxscripts (0.2.7) lucid; urgency=low
+
+  * Updated to mirror final 3.0 release.
+
+ -- Bill Cox <waywardgeek@gmail.com>  Tue, 01 Jun 2010 17:28:28 -0400
+
 vinuxscripts (0.2.6) lucid; urgency=low
 
   * Another RC5 update.
