@@ -151,7 +151,6 @@ def volumedetect():
 #Following command gets master volume actual value percentage
     volume=commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
     mute=commands.getoutput('amixer get \'Master\',0|grep \'\[off\]\'')
-    print "volume=%s, mute=%s\n" % (volume, mute)
     #If the getted volume value is 0%, increasing volume with 58%.
     if mute!="":
         commands.getoutput('amixer sset \'Master\',0 toggle')
