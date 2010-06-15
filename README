@@ -6,7 +6,7 @@ sudo make install
 There are four scripts installed, they should all be run with sudo:
 
 buildvinux - Updates sources.list, updates to latest, and runs restorespeech
-             and set_vinux_gloals.
+             and set_vinux_globals.
 
 restorespeech - Modifies system to allow speakup to run, and restores login
                 window speech. .
