@@ -15,6 +15,7 @@
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
 INSTALL_VINUX_KEYBINDINGS=""
+INSTALL_VINUX_DVD=""
 ZIPCODE=""
 while [ $# -gt 0 ]; do
     if [ $1 = "-l" ]; then
@@ -80,6 +81,17 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
     fi
 fi
 
+if [ "$INSTALL_VINUX_DVD" = "" ]; then
+    echo "Do you want to install all of the extra DVD packages? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_VINUX_DVD="no"
+    else
+	INSTALL_VINUX_DVD="yes"
+    fi
+fi
+
 # Update /etc/apt/sources.list
 echo "Updating software repositories..."
 sudo apt-add-repository ppa:mangler/mangler
@@ -104,10 +116,10 @@ sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
 # Import the Vinux/Ubuntu Team repository key.
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE 2>&1
 
-# Add medibuntu repository - commented out since it seems not to be up
-#(sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update) >> $LOGFILE
+# Add medibuntu repository - uncommented it since it seems to be up again
+sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
 
-#(sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu) >> $LOGFILE
+sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
 
 # Downgrade Firefox to version 3.5
 #echo "Downgrading Firefox to version 3.5"
@@ -142,6 +154,11 @@ fi
 if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
     options="$options -k"
 fi
+
+if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
+sudo apt-get -y install cuneiform ocropus ubuntu-restricted-extras libdvdcss2 non-free-codecs gambas2 unetbootin uck screenlets gdesklets google-gadgets-gtk prism-google-groups googleearth prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus gnome-specimen gcolor2 openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu  >> $LOGFILE
+fi
+
 sudo /usr/bin/set_vinux_globals $options
 
 # Update our desktop to look like Vinux
