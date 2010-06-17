@@ -157,6 +157,7 @@ fi
 
 if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
 sudo apt-get -y install cuneiform ocropus ubuntu-restricted-extras libdvdcss2 non-free-codecs gambas2 unetbootin uck screenlets gdesklets google-gadgets-gtk prism-google-groups googleearth prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus gnome-specimen gcolor2 openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu  extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser vlc vlc-nox vlc-plugin-pulse dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric speedy-ocr sound-juicer me-tv mediatomb sox rox-filer automake intltool gnome-common exactimage >> $LOGFILE
+fi
 
 sudo /usr/bin/set_vinux_globals $options
 
@@ -175,3 +176,4 @@ sudo apt-get -y autoremove >> $LOGFILE
 
 echo "Done!  Reboot and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"
+
