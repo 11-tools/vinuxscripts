@@ -149,13 +149,22 @@ def volumedetect():
 #This function detect if the master volume is 0.
 #If the master value is 0, increasing volume with 58%.
 #Following command gets master volume actual value percentage
-    volume=commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
-    mute=commands.getoutput('amixer get \'Master\',0|grep \'\[off\]\'')
-    #If the getted volume value is 0%, increasing volume with 58%.
-    if mute!="":
-        commands.getoutput('amixer sset \'Master\',0 toggle')
-    if volume=="0":
+    mute = commands.getoutput('amixer get \'Master\',0|grep \'\[off\]\'')
+    #If the master channel is muted unmute everything pulseaudio typically mutes
+    if mute != "":
+        commands.getoutput('amixer sset \'Master\',0 unmute')
+        commands.getoutput('amixer sset \'Headphone\',0 unmute')
+        commands.getoutput('amixer sset \'Speaker\',0 unmute')
+    #If the volume value is 0%, increasing volume to 58%.
+    volume = commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
+    if volume == "0":
         commands.getoutput('amixer set \'Master\',0 58%')
+    volume = commands.getoutput('amixer get \'Headphone\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
+    if volume == "0":
+        commands.getoutput('amixer set \'Headphone\',0 58%')
+    volume = commands.getoutput('amixer get \'Speaker\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
+    if volume == "0":
+        commands.getoutput('amixer set \'Speaker\',0 58%')
 #End the volume 0 value detect and correct function
 
 #Define the increase volume function
