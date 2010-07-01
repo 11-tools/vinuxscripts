@@ -59,6 +59,10 @@ Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
     Windows + Alt + 6,7,8,9 or 0
+Turn monitor off
+    Control + Shift + M
+Turn monitor on
+    Control + Alt +Shift + M
 
 2. Compiz Keybindings
 
