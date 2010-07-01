@@ -199,10 +199,15 @@ def togglevolumemute(script, inputEvent=None):
     #Following command gets master volume mute status
     mutestatus=commands.getoutput('amixer get \'Master\',0|grep "\[off\]"')
     #Following command toggle master volume mute on/off
-    commands.getoutput('amixer sset \'Master\',0 toggle')
-    #Final, if actual master volume status is on, Orca notify the user the mute is off.
     if mutestatus!='':
+        commands.getoutput('amixer sset \'Master\',0 unmute')
+        commands.getoutput('amixer sset \'Headphone\',0 unmute')
+        commands.getoutput('amixer sset \'Speaker\',0 unmute')
         orca.speech.speak('Mute off.')
+    else:
+        commands.getoutput('amixer sset \'Master\',0 mute')
+        commands.getoutput('amixer sset \'Headphone\',0 mute')
+        commands.getoutput('amixer sset \'Speaker\',0 mute')
 #End toggle volume function
 
 #Set up sayBattery keys
