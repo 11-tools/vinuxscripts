@@ -115,11 +115,12 @@ sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
 
 # Import the Vinux/Ubuntu Team repository key.
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE 2>&1
+sudo apt-get update
 
 # Add medibuntu repository - uncommented it since it seems to be up again
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
+#sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
 
-sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
+#sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
 
 # Downgrade Firefox to version 3.5
 #echo "Downgrading Firefox to version 3.5"
@@ -130,6 +131,9 @@ sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medi
 echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
+
+# Causes problems only if you run buildvinux!
+sudo apt-get remove -y ndiswrapper-dkms
 
 # Install some packages
 
