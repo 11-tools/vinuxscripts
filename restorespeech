@@ -31,18 +31,6 @@ if [ "`grep 'sleep 4' /etc/init.d/pulseaudio`" = "" ]; then
     sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 4\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
 
-# Rebuild speakup from source
-#echo "Rebuilding speakup from source.  This can take a minute or so."
-#apt-get install -y module-assistant >> $LOGFILE
-#echo y | m-a a-i -f speakup-source -q >> $LOGFILE 2>&1
-#modprobe speakup_soft
-
-# Install speechd-up
-#if [ -f /etc/init.d/speechd-up ]; then
-    #/etc/init.d/speechd-up stop >> $LOGFILE
-#fi
-#apt-get install -y speechd-up >> $LOGFILE
-
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 
