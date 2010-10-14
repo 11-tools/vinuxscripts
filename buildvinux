@@ -169,7 +169,7 @@ fi
 cp -r /etc/skel/.orca ~
 
 # Install gnome-app-install
-sudo apt-get install -y --force-yes gnome-app-install >> $LOGFILE
+# sudo apt-get install -y --force-yes gnome-app-install >> $LOGFILE
 
 # Clean up any packages we don't need
 sudo apt-get -y autoremove >> $LOGFILE
