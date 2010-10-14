@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Development
 Comment[en_GB]=Install Gambas, Unetbootin and UCK
 Name=EasyInstall-Development
 Comment=Install Gambas, Unetbootin and UCK
-Icon=/usr/share/icons/gnome/scalable/apps/im-jabber.svg
+Icon=/usr/share/icons/gnome/48x48/categories/package_development.png
 Categories=System;

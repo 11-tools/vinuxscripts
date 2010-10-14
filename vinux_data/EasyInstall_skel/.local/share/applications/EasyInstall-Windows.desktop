@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Windows
 Comment[en_GB]=Install Windows compatibility packages
 Name=EasyInstall-Windows
 Comment=Install Windows compatibility packages
-Icon=/usr/share/icons/gnome/scalable/actions/edit-delete.svg
+Icon=/usr/share/icons/gnome/48x48/places/emptytrash.png
 Categories=System;

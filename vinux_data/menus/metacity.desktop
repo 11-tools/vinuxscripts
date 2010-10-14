@@ -7,5 +7,5 @@ Terminal=false
 Exec=metacity --replace
 Name=Disable 3D Desktop
 Comment=Disable 3D Magnification and Colour Changing
-Icon=/usr/share/icons/gnome/scalable/devices/display.svg
+Icon=/usr/share/icons/gnome/48x48/actions/gtk-zoom-out.png
 Categories=GNOME;GTK;Accessibility
