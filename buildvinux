@@ -133,7 +133,8 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins aptoncd bareftp gwget gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more bluefish thunderbird smuxi-frontend-gnome soundConverter gtk-recordmydesktop isomaster thoggen ndisgtk tasks startupmanager giggle pybackpack gespeaker mangler remastersys speakup speechd-up  speakup-tools >> $LOGFILE
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk tasks startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools >> $LOGFILE
+
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
 sudo apt-get purge -y bluez-alsa >> $LOGFILE
@@ -156,7 +157,7 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
 fi
 
 if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
-sudo apt-get -y install cuneiform ocropus ubuntu-restricted-extras non-free-codecs gambas2 unetbootin uck screenlets gdesklets google-gadgets-gtk prism-google-groups googleearth prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus gnome-specimen gcolor2 openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser vlc vlc-nox vlc-plugin-pulse dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric speedy-ocr sound-juicer sox automake intltool gnome-common exactimage tuxguitar tuxcmd twitux gtkhash gwrite gworldclock gshutdown solfege gperiodic gtkdiskfree >> $LOGFILE
+sudo apt-get -y install cuneiform ocropus ubuntu-restricted-extras gambas2 unetbootin uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus gnome-specimen gcolor2 openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser vlc vlc-nox vlc-plugin-pulse dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric sound-juicer sox automake intltool gnome-common exactimage tuxguitar tuxcmd twitux gtkhash gwrite gworldclock gshutdown solfege gperiodic gtkdiskfree >> $LOGFILE
 fi
 
 sudo /usr/bin/set_vinux_globals $options
