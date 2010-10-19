@@ -17,52 +17,34 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
-Toggle fullscreen mode
-    Control + Shift + F
-Toggle maximization state
-    Control + Shift + X
-Maximise window vertically
-    Control + Shift + A
-Maximise window horizontally
-    Control + Shift + Z
 List keybindings
-    Control + Shift + K
-Launch calculator
-    Control + Shift + L
-Launch e-mail client
-    Control + Shift + E
+    Control + Alt + K
 Launch web browser
-    Control + Shift + W
+    Control + Alt + W
 Home folder
-    Control + Shift + H
+    Control + Alt + H
 Root file browser
-    Control + Shift + R
+    Control + Alt + R
 Run terminal
     Control + Alt + t
-Launch text editor
-    Control + Shift + G
-Open dictionary
-    Control + Shift + D
-Open brasero
-    Control + Shift + B
+Launch Gedit text editor
+    Control + Alt + g
 Restart orca
-    Control + Shift + O
+    Control + Alt + o
 Enable 3d desktop
-    Control + Shift + F3
+    Control + Alt + F3
 Disable 3d desktop
-    Control + Shift + F2
+    Control + Alt + F2
 Run yasr
-    Control + Shift + S
+    Control + Alt + y
 Restore Speech
     Control + Shift + Alt + R
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
     Windows + Alt + 6,7,8,9 or 0
-Turn monitor off
-    Control + Shift + M
-Turn monitor on
-    Control + Alt +Shift + M
+Toggle monitor on/off
+    Control + Alt + m
 
 2. Compiz Keybindings
 

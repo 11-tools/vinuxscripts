@@ -117,7 +117,7 @@ sudo mv /tmp/vinux-maverick-pin-750 /etc/apt/preferences.d
 echo "Importing repository keys"
 # Import the Vinux/Ubuntu Team repository key.
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE
-# Import the Exrtras key
+# Import the Extras key
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 >> $LOGFILE
 echo "Updating package list"
 sudo apt-get update >> $LOGFILE
@@ -133,7 +133,7 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 # Install some packages
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk tasks startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools >> $LOGFILE
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk tasks startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop bluefish smuxi >> $LOGFILE
 
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
