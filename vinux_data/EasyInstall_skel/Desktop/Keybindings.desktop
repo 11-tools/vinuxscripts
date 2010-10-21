@@ -11,3 +11,4 @@ Comment[en_GB]=Open a list of keybindings
 Name=Keybindings
 Comment=Open a list of keybindings
 Icon=/usr/share/icons/gnome/48x48/devices/input-keyboard.png
+Categories=GNOME;GTK;Accessibility
