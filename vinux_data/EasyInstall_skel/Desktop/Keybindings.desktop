@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/gnome/48x48/devices/input-keyboard.png
+Name[en_GB]=Keybindings
+Exec=gedit /usr/share/vinux/keybindings.txt
+Comment[en_GB]=Open a list of keybindings
+Name=Keybindings
+Comment=Open a list of keybindings
+Icon=/usr/share/icons/gnome/48x48/devices/input-keyboard.png
