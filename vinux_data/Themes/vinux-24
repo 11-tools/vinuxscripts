@@ -13,6 +13,6 @@ gconftool-2 --set /desktop/gnome/interface/font_name --type string 'Sans Bold 24
 gconftool-2 --set /apps/metacity/general/titlebar_font --type string 'Sans Bold 24'
 
 gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_size -s -t int  48
-gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string 'DMZ-White'
+gconftool-2 --set /desktop/gnome/peripherals/mouse/cursor_theme --type string 'DMZ-Black'
 gconftool-2 --set /apps/compiz/general/allscreens/options/cursor_size -s -t int 48
-gconftool-2 --set /apps/compiz/general/allscreens/options/cursor_theme --type string 'DMZ-White'
+gconftool-2 --set /apps/compiz/general/allscreens/options/cursor_theme --type string 'DMZ-Black'
