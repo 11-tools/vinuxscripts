@@ -3,7 +3,7 @@
 gconftool-2 --set /desktop/gnome/interface/icon_theme --type string 'Humanity-Dark'
 gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string 'New Wave'
 gconftool-2 --set /apps/metacity/general/theme --type string 'Ambiance'
-gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dawn.jpg"
 gconftool-2 --set /apps/metacity/general/button_layout --type string "close,minimize,maximize:"
 
 gconftool-2 --set /apps/nautilus/preferences/desktop_font  --type string 'Sans Bold 12'

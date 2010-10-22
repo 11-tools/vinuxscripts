@@ -141,8 +141,9 @@ set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
 set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
 set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
 set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
-set-string /desktop/gnome/interface/icon_theme 'Humanity-Dark'
-set-string /desktop/gnome/interface/gtk_theme 'New Wave'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Humanity-Dark'
+set-string /apps/metacity/general/theme --type string 'Ambiance'
 
 # Set mouse pointer
 gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
