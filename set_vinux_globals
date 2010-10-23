@@ -143,7 +143,7 @@ set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
 set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
 set-string /desktop/gnome/interface/icon_theme 'Mist'
 set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
-set-string /apps/metacity/general/theme --type string 'Mist'
+set-string /apps/metacity/general/theme 'Mist'
 
 # Set mouse pointer
 gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
