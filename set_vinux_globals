@@ -144,6 +144,7 @@ set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
 set-string /desktop/gnome/interface/icon_theme 'Mist'
 set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
 set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
 
 # Set mouse pointer
 gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
