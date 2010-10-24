@@ -18,13 +18,13 @@ It is divided into nine sections:
 1. Gnome Keybindings
 
 List keybindings
-    Control + Alt + K
+    Control + Alt + k
 Launch web browser
-    Control + Alt + W
+    Control + Alt + w
 Home folder
-    Control + Alt + H
+    Control + Alt + h
 Root file browser
-    Control + Alt + R
+    Control + Alt + r
 Run terminal
     Control + Alt + t
 Launch Gedit text editor
@@ -37,8 +37,6 @@ Disable 3d desktop
     Control + Alt + F2
 Run yasr
     Control + Alt + y
-Restore Speech
-    Control + Shift + Alt + R
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24

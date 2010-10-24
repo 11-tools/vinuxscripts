@@ -71,27 +71,21 @@ set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Metacity' '<Control><Alt>F2' 'metacity --replace'
 add-customkey 2	'Compiz' '<Control><Alt>F3' 'compiz --replace'
-#add-customkey 3 'Monitor Toggle' '<Control><Alt>m' '/usr/bin/monitor-toggle'
 add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
-add-customkey 5 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
-add-customkey 6 'Root Nautilus' '<Control><Alt>r' 'gksu nautilus'
-add-customkey 7 'YASR' '<Control><Alt>y' 'gnome-terminal -e yasr'
-add-customkey 8 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 5 'Root Nautilus' '<Control><Alt>r' 'gksu nautilus'
+add-customkey 6 'YASR' '<Control><Alt>y' 'gnome-terminal -e yasr'
+add-customkey 7 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
 
-add-customkey 9 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
-add-customkey 10 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
-add-customkey 11 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
-add-customkey 12 'Vinux-20' '<Alt><Mod4>4' '/usr/share/vinux/Themes/vinux-20'
-add-customkey 13 'Vinux-24' '<Alt><Mod4>5' '/usr/share/vinux/Themes/vinux-24'
-add-customkey 14 'Darklooks-8' '<Alt><Mod4>6' '/usr/share/vinux/Themes/darklooks-8'
-add-customkey 15 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklooks-12'
-add-customkey 16 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
-add-customkey 17 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
-add-customkey 18 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
-
-#add-customkey 19 'Alt Mute' '<Alt><Mod4>m' /usr/share/vinux/volume-mute
-#add-customkey 20 'Alt Volume up' '<Alt><Mod4>Up' /usr/share/vinux/volume-up
-#add-customkey 21 'Alt Volumd down' '<Alt><Mod4>Down' /usr/share/vinux/volume-down
+add-customkey 8 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
+add-customkey 9 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
+add-customkey 10 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
+add-customkey 11 'Vinux-20' '<Alt><Mod4>4' '/usr/share/vinux/Themes/vinux-20'
+add-customkey 12 'Vinux-24' '<Alt><Mod4>5' '/usr/share/vinux/Themes/vinux-24'
+add-customkey 13 'Darklooks-8' '<Alt><Mod4>6' '/usr/share/vinux/Themes/darklooks-8'
+add-customkey 14 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklooks-12'
+add-customkey 15 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
+add-customkey 16 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
+add-customkey 17 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
 
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
