@@ -305,7 +305,7 @@ Print debug information about ancestry of the object with focus
 Print debug information about hierarchy of the application with focus
     Caps Lock + Alt + Ctrl + Page Down
 
-5. Bash Aliases (*To enable run: mv bash_aliases_vinux .bash_aliases)
+5. Bash Aliases (*To enable run: mv .bash_aliases_vinux .bash_aliases)
 
 White text on black
     1
@@ -384,7 +384,7 @@ Move or rename file (requires source and target)
 Delete a file or directory (requires file/directory name)
     z or zap
 
-Run As Root Or With Sudo (*To enable run: sudo mv /root/bash_aliases_vinux /root/.bash_aliases)
+Run As Root Or With Sudo (*To enable run: sudo mv /root/.bash_aliases_vinux /root/.bash_aliases)
 
 Remove a package and all config files (requires package name)
     A or Abolish
