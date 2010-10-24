@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sed -i 's/include ".gtkrc-2.0-gnome-color-chooser-light"/include ".gtkrc-2.0-gnome-color-chooser-dark"/' /home/$USER/.gtkrc-2.0
+
 gconftool-2 --set /desktop/gnome/interface/icon_theme --type string 'Mist'
 gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string 'Darklooks'
 gconftool-2 --set /apps/metacity/general/theme --type string 'Mist'

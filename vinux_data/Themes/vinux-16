@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sed -i 's/include ".gtkrc-2.0-gnome-color-chooser-dark"/include ".gtkrc-2.0-gnome-color-chooser-light"/' /home/$USER/.gtkrc-2.0
+
 gconftool-2 --set /desktop/gnome/interface/icon_theme --type string 'Humanity-Dark'
 gconftool-2 --set /desktop/gnome/interface/gtk_theme --type string 'New Wave'
 gconftool-2 --set /apps/metacity/general/theme --type string 'Ambiance'
