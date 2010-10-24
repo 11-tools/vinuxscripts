@@ -155,7 +155,7 @@ fi
 # Update /etc/skel and /var/lib/gdm
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     rsync -r /usr/share/vinux/skel/ /etc/skel
-    cp /etc/skel/bash_aliases_vinux /root
+    cp /etc/skel/.bash_aliases_vinux /root
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi
