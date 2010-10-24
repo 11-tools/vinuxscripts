@@ -12,8 +12,6 @@ It is divided into nine sections:
 5. Bash Aliases
 6. Speakup Desktop Keybindings
 7. Bash Keybindings
-8. Yasr Edit Mode Keybindings
-9. Yasr Review Mode Keybindings
 
 1. Gnome Keybindings
 
@@ -35,8 +33,6 @@ Enable 3d desktop
     Control + Alt + F3
 Disable 3d desktop
     Control + Alt + F2
-Run yasr
-    Control + Alt + y
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
@@ -714,100 +710,3 @@ Entries from "/etc/hosts"
     @ + Double Press Tab
 Output like "ls" or "dir"
     = + Double Press Tab
-
-8. Yasr Edit Mode Keybindings
-
-Say application cursor position
-    Control + a
-Say lineK
-    Control + l
-Bypass yasr
-    Control + n
-Flush speech buffer
-    Control + x
-Say previous character
-    Alt + b
-Say character
-    Alt + c
-Say word
-    Alt + d
-Read from cursor to bottom
-    Alt + e
-Reinitialize yasr
-    Alt + i
-say previous line
-    Alt + k
-Read line
-    Alt + l
-Read next line
-    Alt + m
-Toggle review mode
-    Alt + r
-Read from top to cursor
-    Alt + t
-Read entire screen
-    Alt + w
-Silence speech
-    Alt + x
-Keyboard wizard
-    Control + Alt + k
-Options menu
-    Control + Alt + o
-Save settings
-    Control + Alt + s
-Disable yasr
-    Alt + Enter
-
-9. Yasr Review Mode Keybindings
-
-Say cursor position
-    Space
-Start of line
-    ^
-End of line
-    $
-Say previous character
-    b
-Say character
-    c
-Say next character
-    d
-Read from cursor
-    e
-Search for text
-    f
-Search from cursor to top
-    <
-Search from cursor to bottom
-    >
-Move up a line
-    k
-Say current line
-    l
-Move down a line
-    m
-Bypass yasr
-    n
-Read from top to cursor
-    t
-Read entire screen
-    w
-Previous word
-    z
-Next word
-    x
-Previous line
-    Up Arrow
-Next line
-    Down Arrow
-Back one character
-    Left Arrow
-Forward one character
-    Right Arrow
-Previous paragraph
-    (
-Next paragraph
-    )
-Ascii value of character
-    `
-
