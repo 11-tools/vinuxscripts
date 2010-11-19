@@ -71,6 +71,7 @@ set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Metacity' '<Control><Alt>F2' 'metacity --replace'
 add-customkey 2	'Compiz' '<Control><Alt>F3' 'compiz --replace'
+add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
 add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
 add-customkey 5 'Root Nautilus' '<Control><Alt>r' 'gksu nautilus'
 add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
