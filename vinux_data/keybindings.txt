@@ -20,9 +20,9 @@ List keybindings
 Launch web browser
     Control + Alt + w
 Home folder
-    Control + Alt + h
+    Control + Alt + n
 Root file browser
-    Control + Alt + r
+    Control + Alt + shift + n
 Run terminal
     Control + Alt + t
 Launch Gedit text editor
@@ -30,9 +30,9 @@ Launch Gedit text editor
 Restart orca
     Control + Alt + o
 Enable 3d desktop
-    Control + Alt + F3
+    Control + Alt + 3
 Disable 3d desktop
-    Control + Alt + F2
+    Control + Alt + 2
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
