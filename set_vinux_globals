@@ -148,9 +148,7 @@ set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
 cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
-if [ "`grep Vinux /usr/share/gnome-background-properties/ubuntu-wallpapers.xml`" = "" ]; then
-    sed -i 's:</wallpapers>:  <wallpaper>\n   <name>Vinux Dusk</name>\n    <filename>/usr/share/backgrounds/Vinux-Dusk.jpg</filename>\n    <options>zoom</options>\n    <pcolor>#000000</pcolor> <scolor>#000000</scolor>\n    <shade_type>solid</shade_type>\n  </wallpaper>\n</wallpapers>:' /usr/share/gnome-background-properties/ubuntu-wallpapers.xml
-fi
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
 fi
 
 # Update /etc/skel and /var/lib/gdm
