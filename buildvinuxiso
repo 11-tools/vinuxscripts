@@ -23,7 +23,7 @@ fi
 # Make space on system
 if [ "$REMOVE_APPS" = "yes" ]; then
 echo "Removing applications to make room on the CD"
-apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server computer-janitor speakup-source shotwell ubuntu-docs example-content
+apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server computer-janitor speakup-source shotwell
 
 apt-get autoremove -y
 
