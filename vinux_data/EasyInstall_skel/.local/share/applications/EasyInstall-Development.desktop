@@ -4,11 +4,8 @@
 Version=1.0
 Type=Application
 Terminal=false
-Icon[en_GB]=/usr/share/icons/gnome/scalable/apps/im-jabber.svg
-Name[en_GB]=EasyInstall-Development
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Development
-Comment[en_GB]=Install Gambas, Unetbootin and UCK
 Name=EasyInstall-Development
 Comment=Install Gambas, Unetbootin and UCK
-Icon=/usr/share/icons/gnome/48x48/categories/applications-engineering.png
+Icon=/usr/share/pixmaps/gdm-setup.png
 Categories=System;
