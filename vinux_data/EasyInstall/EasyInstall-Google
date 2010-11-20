@@ -19,7 +19,7 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu apt-get -y install prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs smuxi | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y install prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 # Step 5: Delete desktop icon if it still exists and display the success message
 
