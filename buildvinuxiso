@@ -23,7 +23,7 @@ fi
 # Make space on system
 if [ "$REMOVE_APPS" = "yes" ]; then
 echo "Removing applications to make room on the CD"
-apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server shotwell ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ubuntu-docs ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share ubuntu-desktop
+apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server shotwell ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share
 
 apt-get autoremove -y
 
