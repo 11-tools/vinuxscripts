@@ -144,8 +144,6 @@ sudo apt-get upgrade -y >> $LOGFILE
 
 sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop gnome-color-chooser ceni cfh geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 smuxi bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator firestarter gnome-schedule hardinfo searchmonkey nanny desktopnova file-browser-applet >> $LOGFILE
 
-
-
 # Install x-tile from repository
 sudo wget http://www.giuspen.com/software/x-tile_1.8.3-1_all.deb
 sudo dpkg -i x-tile_1.8.3-1_all.deb
