@@ -68,10 +68,6 @@ set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
 
-gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"
-gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_down "<Alt><Mod4>Left"
-gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_mute "<Alt><Mod4>Down"
-
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
 add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'

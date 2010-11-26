@@ -2,15 +2,17 @@
 #
 # This script should only be run after completing the following steps:
 #
-# 1. Download the latest Ubuntu Lucid i386 iso and burn it to CD.
+# 1. Download the latest Ubuntu Maverick iso and burn it to CD.
 #
-# 2. Boot from the CD, Press F5, select 'screen-reader' and boot the live CD.
+# 2. Boot from the CD, Press Space, Enter, F5, select 'screen-reader' and 
+#    Enter again twice boot the live CD.
 #
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 #
-# Type 'sudo buildvinux' to run the script, when it is finished reboot and
-# your system should be identical to the Vinux/Lucid distribution. See the 
-# buildvinux.log file to read the output of all othe the commands run.  
+# Type 'sudo buildvinux' to run the script, then 'volume_keys' when it is 
+# finished reboot and your system should be identical to the Vinux/Lucid 
+# distribution. See the buildvinux.log file to read the output of all other 
+# commands run.  
 
 LOGFILE="buildvinux.log"
 INSTALL_VINUX_DESKTOP=""
@@ -136,12 +138,7 @@ echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
-# Causes problems only if you run buildvinux!
-# Let's see if this problem is gone in Maverick
-#sudo apt-get remove -y ndiswrapper-dkms
-
 # Install some packages
-
 sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop gnome-color-chooser ceni cfh geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 smuxi bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet vlc vlc-nox vlc-plugin-pulse >> $LOGFILE
 
 # Install x-tile from repository
@@ -181,8 +178,6 @@ if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 fi
 cp -r /etc/skel/.orca ~
 
-# Install gnome-app-install
-# sudo apt-get install -y --force-yes gnome-app-install >> $LOGFILE
 
 # Clean up any packages we don't need
 sudo apt-get -y autoremove >> $LOGFILE
