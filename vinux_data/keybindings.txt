@@ -22,7 +22,7 @@ Launch web browser
 Home folder
     Control + Alt + n
 Root file browser
-    Control + Alt + shift + n
+    Control + Alt + Shift + n
 Run terminal
     Control + Alt + t
 Launch Gedit text editor
@@ -39,6 +39,14 @@ Change to dark theme/font size 8,12,16,20 or 24
     Windows + Alt + 6,7,8,9 or 0
 Toggle monitor on/off
     Control + Alt + m
+Enable Vinux Volume Keybindings*
+    Control + Alt + Shift + Up
+*Vinux Volume Up
+    Control + Alt + Right
+*Vinux Volume Down
+    Control + Alt + Left
+*Vinux Toggle Volume Mute
+    Control + Alt + Down
 
 2. Compiz Keybindings
 
