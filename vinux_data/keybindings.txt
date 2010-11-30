@@ -64,8 +64,6 @@ Zoom level 2
     Windows + 2
 Zoom level 3
     Windows + 3
-Lock zoom area
-    Windows + l
 Pan zoom left
     Windows + Left
 Pan zoom right
@@ -74,10 +72,6 @@ Pan zoom up
     Windows + Up
 Pan zoom down
     Windows + Down
-Fit window
-    Windows + r
-Fit zoomed
-    Windows + z
 Toggle window negative
     Windows + n
 Toggle screen negative
@@ -88,20 +82,6 @@ Zoom in lens magnifier
     Windows + Shift + Left Click
 Zoom out lens magnifier
     Windows + Shift + Right Click
-Toggle window filtering
-    Windows + f
-Toggle screen filtering
-    Windows + d
-Switch filter
-    Control + Windows + s
-Increase brightness
-    Windows + b
-Decrease brightness
-    Windows + v
-Increase saturation
-    Windows + t
-Decrease saturation
-    Windows + y
 Next panel
     Control + Alt + Tab
 Previous panel
