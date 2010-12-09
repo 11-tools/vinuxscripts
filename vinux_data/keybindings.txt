@@ -40,13 +40,13 @@ Change to dark theme/font size 8,12,16,20 or 24
 Toggle monitor on/off
     Control + Alt + m
 Enable Vinux Volume Keybindings*
-    Control + Alt + Shift + Up
+    Windows + Alt + Shift + Up
 *Vinux Volume Up
-    Control + Alt + Right
+    Windows + Alt + Right
 *Vinux Volume Down
-    Control + Alt + Left
+    Windows + Alt + Left
 *Vinux Toggle Volume Mute
-    Control + Alt + Down
+    Windows + Alt + Down
 
 2. Compiz Keybindings
 
