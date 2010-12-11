@@ -194,7 +194,7 @@ fi
 
 # Install some 3D Games - not accessible with screen-reader*
 if [ "$INSTALL_VINUX_GAMES" = "yes" ]; then
-sudo apt-get -y install assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie >> $LOGFILE
+sudo apt-get -y install assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble >> $LOGFILE
 fi
 
 if [ "$INSTALL_VINUX_CODECS" = "yes" ]; then
