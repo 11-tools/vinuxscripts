@@ -94,6 +94,18 @@ if [ "$INSTALL_VINUX_DVD" = "" ]; then
     fi
 fi
 
+if [ "$INSTALL_VINUX_GAMES" = "" ]; then
+    echo "Do you want to install the extra 3D games packages? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_VINUX_GAMES="no"
+    else
+	INSTALL_VINUX_GAMES="yes"
+    fi
+fi
+
+
 # Update /etc/apt/sources.list
 echo "Updating software repositories..."
 sudo apt-add-repository ppa:mangler/mangler
@@ -138,7 +150,7 @@ echo "Upgrading all packages... This can take a few minutes."
 echo "See $LOGFILE for progress."
 sudo apt-get upgrade -y >> $LOGFILE
 
-# Install some packages
+# Install the default packages
 sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk startupmanager pybackpack gespeaker mangler remastersys speakup speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop gnome-color-chooser ceni cfh geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 smuxi bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet vlc-nox vlc-plugin-pulse gnome-media-player partimage ntp >> $LOGFILE
 
 # Install x-tile from repository
@@ -165,8 +177,14 @@ if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
     options="$options -k"
 fi
 
+# Install all of the DVD Packages
 if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
 sudo apt-get -y install cuneiform ocropus ubuntu-restricted-extras gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus  openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen libdvdcss2 non-free-codecs speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown >> $LOGFILE
+fi
+
+# Install some 3D Games - not accessible with screen-reader*
+if [ "$INSTALL_VINUX_GAMES" = "yes" ]; then
+sudo apt-get -y install assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie >> $LOGFILE
 fi
 
 sudo /usr/bin/set_vinux_globals $options
