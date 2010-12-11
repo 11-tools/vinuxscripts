@@ -44,11 +44,6 @@ sed -i 's/^timeout.*/timeout 100/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
 
-# Fix infinite loop in Ubiquity when installing with large fonts on small screens:
-patch /usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py /usr/share/vinux/ubiquity.patch
-# Copy user's Orca settings to gdm so they can be used at login
-patch /usr/lib/ubiquity/target-config/30accessibility /usr/share/vinux/30accessibility.patch
-
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
 echo "Building ISO..."
