@@ -194,7 +194,7 @@ fi
 
 # Install some 3D Games - not accessible with screen-reader
 if [ "$INSTALL_VINUX_GAMES" = "yes" ]; then
-sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble gnome-art bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xfce4 xfce4* xaralx xaralx-examples photoprint icc-profiles >> $LOGFILE
+sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles >> $LOGFILE
 fi
 
 # Install non-free packages - non-distributable
