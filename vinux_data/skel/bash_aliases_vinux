@@ -3,10 +3,10 @@
 # This file contains a collection of bash aliases which can make using the terminal
 # a lot faster if you can remember the characters or name assigned to each command. 
 # If you want to enable these aliases you need to change the name of this file to: 
-# '.bash_aliases' manually or run: mv bash_aliases_vinux .bash_aliases in a terminal.
+# '.bash_aliases' manually or run: mv .bash_aliases_vinux .bash_aliases in a terminal.
 # If you want to enable the uppercase 'root' aliases you will have to rename the 
 # identical file in the /root folder manually or simple run the following command: 
-# sudo mv /root/bash_aliases_vinux /root/.bash_aliases in a terminal. Enjoy...
+# sudo mv /root/bash_aliases_vinux /.root/.bash_aliases in a terminal. Enjoy...
 
 alias 1='setterm -foreground white -background black -store -clear'
 alias 2='setterm -foreground black -background white -store -clear'
