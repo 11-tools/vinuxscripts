@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Type=Application
+Exec=espeak "Press Control + Alt + Q to open the Quick Start Guide!"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_GB]=QuickStart
+Name=QuickStart
+Comment[en_GB]=QuickStart Keybinding Prompt
+Comment=QuickStart Keybinding Prompt
