@@ -64,26 +64,21 @@ function add-customkey {
 }
 
 if [ $INSTALL_VINUX_KEYBINDINGS = "yes" ]; then
-set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
-set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
-set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
-set-string /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>l'
+set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
+set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
-set-string /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Control>z'
-set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>a'
-set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
-set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
 
-add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
-add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
-add-customkey 2 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
-add-customkey 3 'Dictionary' '<Shift><Control>d' 'gnome-dictionary'
-add-customkey 4 'Brasero' '<Shift><Control>b' 'brasero'
-add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
-add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
-add-customkey 7	'Root Nautilus' '<Shift><Control>r' 'gksu nautilus'
-add-customkey 8	'YASR' '<Shift><Control>s' 'gnome-terminal -e yasr'
-add-customkey 9 'Keybindings' '<Shift><Control>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
+add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
+add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'
+add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
+add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
+add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
+add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
+add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/share/vinux/quickstart.html'
+add-customkey 9	'YASR' '<Control><Alt>s' 'gnome-terminal -e yasr'
+
 add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
 add-customkey 11 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
 add-customkey 12 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
@@ -94,14 +89,7 @@ add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklook
 add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
 add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
 add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
-add-customkey 20 'Monitor off' '<Shift><Control>m' '/usr/bin/monitor-off'
-add-customkey 20 'Monitor on' '<Shift><Control><Alt>m' '/usr/bin/monitor-on'
-
-# Make these work soon:
-#add-customkey 20 'Alt Mute' '<Alt><Mod4>m' /usr/share/vinux/volume-mute
-#add-customkey 21 'Alt Volume up' '<Alt><Mod4>Up' /usr/share/vinux/volume-up
-#add-customkey 22 'Alt Volumd down' '<Alt><Mod4>Down' /usr/share/vinux/volume-down
-
+add-customkey 20 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_out_button '<Super>Button3'
@@ -157,8 +145,10 @@ set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
 set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
 set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
 set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
-set-string /desktop/gnome/interface/icon_theme 'Humanity-Dark'
-set-string /desktop/gnome/interface/gtk_theme 'New Wave'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
+set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
 
 # Set mouse pointer
 gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
@@ -168,15 +158,13 @@ set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
 cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
-if [ "`grep Vinux /usr/share/gnome-background-properties/ubuntu-wallpapers.xml`" = "" ]; then
-    sed -i 's:</wallpapers>:  <wallpaper>\n   <name>Vinux Dusk</name>\n    <filename>/usr/share/backgrounds/Vinux-Dusk.jpg</filename>\n    <options>zoom</options>\n    <pcolor>#000000</pcolor> <scolor>#000000</scolor>\n    <shade_type>solid</shade_type>\n  </wallpaper>\n</wallpapers>:' /usr/share/gnome-background-properties/ubuntu-wallpapers.xml
-fi
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
 fi
 
 # Update /etc/skel and /var/lib/gdm
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     rsync -r /usr/share/vinux/skel/ /etc/skel
-    cp /etc/skel/bash_aliases_vinux /root
+    cp /etc/skel/.bash_aliases_vinux /root
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi
