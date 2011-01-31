@@ -4,11 +4,8 @@
 Version=1.0
 Type=Application
 Terminal=false
-Icon[en_GB]=/usr/share/icons/gnome/scalable/actions/edit-delete.svg
-Name[en_GB]=EasyInstall-Windows
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Windows
-Comment[en_GB]=Install Windows compatibility packages
 Name=EasyInstall-Windows
 Comment=Install Windows compatibility packages
-Icon=/usr/share/icons/gnome/scalable/actions/edit-delete.svg
+Icon=/usr/share/pixmaps/gnome-applets.png
 Categories=System;

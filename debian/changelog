@@ -1,3 +1,9 @@
+vinuxscripts (0.2.11) lucid; urgency=low
+
+  * Updating lucid scripts to match maverick
+
+ -- Tony Sales <vinux.development@gmail.com>  Mon, 31 Jan 2011 15:45:00 -0400
+
 vinuxscripts (0.2.10) lucid; urgency=low
 
   * Fixing mistake in 0.2.9 where I release the Maverick branch of

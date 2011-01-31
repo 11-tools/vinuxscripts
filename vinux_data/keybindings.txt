@@ -17,52 +17,42 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
-Toggle fullscreen mode
-    Control + Shift + F
-Toggle maximization state
-    Control + Shift + X
-Maximise window vertically
-    Control + Shift + A
-Maximise window horizontally
-    Control + Shift + Z
 List keybindings
-    Control + Shift + K
-Launch calculator
-    Control + Shift + L
-Launch e-mail client
-    Control + Shift + E
+    Control + Alt + k
 Launch web browser
-    Control + Shift + W
+    Control + Alt + w
 Home folder
-    Control + Shift + H
+    Control + Alt + n
 Root file browser
-    Control + Shift + R
+    Control + Alt + Shift + n
 Run terminal
     Control + Alt + t
-Launch text editor
-    Control + Shift + G
-Open dictionary
-    Control + Shift + D
-Open brasero
-    Control + Shift + B
+Launch Gedit text editor
+    Control + Alt + g
 Restart orca
-    Control + Shift + O
+    Control + Alt + o
 Enable 3d desktop
-    Control + Shift + F3
+    Control + Alt + 3
 Disable 3d desktop
-    Control + Shift + F2
-Run yasr
-    Control + Shift + S
-Restore Speech
-    Control + Shift + Alt + R
+    Control + Alt + 2
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
     Windows + Alt + 6,7,8,9 or 0
-Turn monitor off
-    Control + Shift + M
-Turn monitor on
-    Control + Alt +Shift + M
+Toggle monitor on/off
+    Control + Alt + m
+Enable Vinux Volume Keybindings*
+    Windows + Alt + Shift + Up
+*Vinux Volume Up
+    Windows + Alt + Right
+*Vinux Volume Down
+    Windows + Alt + Left
+*Vinux Toggle Volume Mute
+    Windows + Alt + Down
+Run yasr
+    Control + Alt + S
+Restore Speech
+    Control + Shift + Alt + R
 
 2. Compiz Keybindings
 
@@ -80,8 +70,6 @@ Zoom level 2
     Windows + 2
 Zoom level 3
     Windows + 3
-Lock zoom area
-    Windows + l
 Pan zoom left
     Windows + Left
 Pan zoom right
@@ -90,10 +78,6 @@ Pan zoom up
     Windows + Up
 Pan zoom down
     Windows + Down
-Fit window
-    Windows + r
-Fit zoomed
-    Windows + z
 Toggle window negative
     Windows + n
 Toggle screen negative
@@ -104,20 +88,6 @@ Zoom in lens magnifier
     Windows + Shift + Left Click
 Zoom out lens magnifier
     Windows + Shift + Right Click
-Toggle window filtering
-    Windows + f
-Toggle screen filtering
-    Windows + d
-Switch filter
-    Control + Windows + s
-Increase brightness
-    Windows + b
-Decrease brightness
-    Windows + v
-Increase saturation
-    Windows + t
-Decrease saturation
-    Windows + y
 Next panel
     Control + Alt + Tab
 Previous panel
@@ -329,7 +299,7 @@ Print debug information about ancestry of the object with focus
 Print debug information about hierarchy of the application with focus
     Caps Lock + Alt + Ctrl + Page Down
 
-5. Bash Aliases (*To enable run: mv bash_aliases_vinux .bash_aliases)
+5. Bash Aliases (*To enable run: mv .bash_aliases_vinux .bash_aliases)
 
 White text on black
     1
@@ -408,7 +378,7 @@ Move or rename file (requires source and target)
 Delete a file or directory (requires file/directory name)
     z or zap
 
-Run As Root Or With Sudo (*To enable run: sudo mv /root/bash_aliases_vinux /root/.bash_aliases)
+Run As Root Or With Sudo (*To enable run: sudo mv /root/.bash_aliases_vinux /root/.bash_aliases)
 
 Remove a package and all config files (requires package name)
     A or Abolish
@@ -829,5 +799,3 @@ Previous paragraph
 Next paragraph
     )
 Ascii value of character
-    `
-

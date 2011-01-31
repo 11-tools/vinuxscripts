@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Google
 Comment[en_GB]=Install a suite of Google applications
 Name=EasyInstall-Google
 Comment=Install a suite of Google applications
-Icon=/usr/share/icons/gnome/scalable/apps/web-browser.svg
+Icon=/usr/share/icons/gnome/48x48/categories/applications-internet.png
 Categories=System;

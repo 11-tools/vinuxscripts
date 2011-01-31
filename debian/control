@@ -8,7 +8,7 @@ Homepage: http://vinux.org.uk
 
 Package: vinuxscripts
 Architecture: any
-Depends: cfh (>= 0.1.10), ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: gksu
 Description: Scripts to convert a raw Ubuntu installation into Vinux
  Vinux is a version of Linux for the blind, based on Ubuntu.
