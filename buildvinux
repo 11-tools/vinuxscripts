@@ -9,77 +9,9 @@
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 #
 # Type 'sudo buildvinux' to run the script, when it is finished reboot and
-# your system should be identical to the Vinux/Lucid distribution. See the 
-# buildvinux.log file to read the output of all othe the commands run.  
-
-LOGFILE="buildvinux.log"
-INSTALL_VINUX_DESKTOP=""
-INSTALL_VINUX_KEYBINDINGS=""
-INSTALL_VINUX_DVD=""
-ZIPCODE=""
-while [ $# -gt 0 ]; do
-    if [ $1 = "-l" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting log file name"
-    	    exit 1
-        fi
-        LOGFILE=$1
-    elif [ $1 = "-z" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting zipcode"
-    	    exit 1
-        fi
-        ZIPCODE=$1
-    elif [ $1 = "-d" ]; then
-	INSTALL_VINUX_DESKTOP="yes"
-    elif [ $1 = "-D" ]; then
-	INSTALL_VINUX_DESKTOP="no"
-    elif [ $1 = "-k" ]; then
-	INSTALL_VINUX_KEYBINDINGS="yes"
-    elif [ $1 = "-K" ]; then
-	INSTALL_VINUX_KEYBINDINGS="no"
-    else
-        echo "Unknown option $1"
-        echo "Usage: restore_vinux_environment [-d|-D] [-k|-K] [-l logFile] [-z zipcode]"
-	echo "    -D  : Don't modify the Ubuntu desktop panels and background"
-	echo "    -d  : Modify the Ubuntu desktop panels and background to like Vinux"
-	echo "    -K  : Don't add any Vinux keybindings, except restart Orca will be bound to"
-	echo "          Control+Alt+o"
-	echo "    -k  : Add all Vinux keybindings. Restart Orca will be bound to"
-	echo "          Shift+Control+o"
-        exit 1
-    fi
-    shift
-done
-
-# Ask this first, so the user doesn't have to wait around listening carefully.
-if [ "$ZIPCODE" = "" ]; then
-    echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-    read ZIPCODE
-fi
-if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
-    echo "Do you want to install Vinux destop panels and background image? [Y/n]"
-    read ANSWER
-    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-    if [ "$startsWithN" != "" ]; then
-	INSTALL_VINUX_DESKTOP="no"
-    else
-	INSTALL_VINUX_DESKTOP="yes"
-    fi
-fi
-
-if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
-    echo "Do you want to install Vinux keybindings? [Y/n]"
-    read ANSWER
-    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-    if [ "$startsWithN" != "" ]; then
-	INSTALL_VINUX_KEYBINDINGS="no"
-    else
-	INSTALL_VINUX_KEYBINDINGS="yes"
-    fi
-fi
+# your system should be identical to the Vinux/Lucid distribution. If you 
+# want a log of the build process run the 'script' command first and 'exit'
+# when finished - the log will be in a file called 'typescript'..  
 
 if [ "$INSTALL_VINUX_DVD" = "" ]; then
     echo "Do you want to install all of the extra DVD packages? [Y/n]"
@@ -171,15 +103,6 @@ if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
     sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
 fi
 
-# Set Vinux keybindings, menus, desktop, etc
-options=" -l $LOGFILE -z $ZIPCODE"
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    options="$options -d"
-fi
-if [ "$INSTALL_VINUX_KEYBINDINGS" = "yes" ]; then
-    options="$options -k"
-fi
-
 # Install all of the DVD Packages
 if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
 sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede 
@@ -195,14 +118,7 @@ if [ "$INSTALL_VINUX_CODECS" = "yes" ]; then
 sudo apt-get install -y --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs skype acroread acroread-fonts 
 fi
 
-sudo /usr/bin/set_vinux_globals $options
-
-# Update our desktop to look like Vinux
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    cp -r /etc/skel/.gconf ~
-    cp /etc/skel/.bash_aliases_vinux ~
-fi
-cp -r /etc/skel/.orca ~
+sudo /usr/bin/set_vinux_globals
 
 # Install gnome-app-install
 sudo apt-get install -y --force-yes gnome-app-install 

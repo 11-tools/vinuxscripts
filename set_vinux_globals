@@ -4,39 +4,31 @@
 # modifies the desktop, but it doesn't remove any applications.  It 
 # should be run by typing: 'sudo set_vinux_globals'.
 
-LOGFILE=/dev/null
-ZIPCODE=""
-INSTALL_VINUX_DESKTOP="no"
-INSTALL_VINUX_KEYBINDINGS="no"
-while [ $# -gt 0 ]; do
-    if [ "$1" = "-l" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting log file name"
-    	    exit 1
-        fi
-        LOGFILE=$1
-    elif [ $1 = "-z" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting zipcode"
-    	    exit 1
-        fi
-        ZIPCODE=$1
-    elif [ "$1" = "-d" ]; then
-	INSTALL_VINUX_DESKTOP="yes"
-    elif [ "$1" = "-k" ]; then
-	INSTALL_VINUX_KEYBINDINGS="yes"
-    else
-        echo "Unknown option $1"
-        exit 1
-    fi
-    shift
-done
-
 if [ "$ZIPCODE" = "" ]; then
     echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
     read ZIPCODE
+fi
+
+if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
+    echo "Do you want to install Vinux destop panels and background image? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_VINUX_DESKTOP="no"
+    else
+	INSTALL_VINUX_DESKTOP="yes"
+    fi
+fi
+
+if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
+    echo "Do you want to install Vinux keybindings? [Y/n]"
+    read ANSWER
+    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
+    if [ "$startsWithN" != "" ]; then
+	INSTALL_VINUX_KEYBINDINGS="no"
+    else
+	INSTALL_VINUX_KEYBINDINGS="yes"
+    fi
 fi
 
 if [ $INSTALL_VINUX_DESKTOP = "yes" ]; then
@@ -190,6 +182,13 @@ remove_applet()
 if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
     remove_applet fast_user_switch
 fi
+
+# Update our desktop to look like Vinux
+if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+    cp -r /etc/skel/.gconf ~
+    cp /etc/skel/.bash_aliases_vinux ~
+fi
+cp -r /etc/skel/.orca ~
 
 # Enable beep at grub startup
 sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub

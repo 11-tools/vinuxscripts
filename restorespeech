@@ -4,22 +4,6 @@
 # Speech currently is often broken by system updates from Ubuntu. To run the script
 # type: 'sudo restorespeech'.
 
-LOGFILE=/dev/null
-if [ "$1" = "-l" ]; then
-    shift
-    if [ $# -lt 1 ]; then
-	echo "Expecting log file name"
-	exit 1
-    fi
-    LOGFILE=$1
-    shift
-fi
-
-if [ $# != 0 ]; then
-    echo "Usage: restorespeech [-l logFile]"
-    exit 1
-fi
-
 # Set pulseaudio to run as system-wide daemon.
 echo "Setting pulseaudio to run system-wide"
 sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
