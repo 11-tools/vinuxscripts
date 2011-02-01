@@ -10,5 +10,5 @@ Exec=firefox http://vinux.org.uk
 Comment[en_GB]=Visit vinux.org.uk
 Name=Vinux.org.uk
 Comment=Visit vinux.org.uk
-Icon=/usr/share/icons/gnome/48x48/apps/web-browser.png
+Icon=/usr/share/icons/Nuvola/scalable/categories/gnome-globe.svg
 Categories=GNOME;GTK;Accessibility

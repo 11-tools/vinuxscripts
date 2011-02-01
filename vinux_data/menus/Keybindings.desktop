@@ -10,5 +10,5 @@ Exec=gedit /usr/share/vinux/keybindings.txt
 Comment[en_GB]=Open a list of keybindings
 Name=Keybindings
 Comment=Open a list of keybindings
-Icon=/usr/share/icons/gnome/48x48/devices/input-keyboard.png
+Icon=/usr/share/icons/Nuvola/scalable/categories/applications-multimedia.svg
 Categories=GNOME;GTK;Accessibility

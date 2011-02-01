@@ -10,4 +10,4 @@ Exec=firefox /usr/share/vinux/quickstart.html
 Comment[en]=Beginners start here!
 Name=QuickStart Guide
 Comment=Beginners start here!
-Icon=softwarecenter
+Icon=/usr/share/icons/Nuvola/scalable/apps/accessibility-directory.svg

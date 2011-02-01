@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Virtualize
 Comment[en_GB]=Install Qemu and VirtualBox
 Name=EasyInstall-Virtualize
 Comment=Install Qemu and VirtualBox
-Icon=/usr/share/icons/gnome/48x48/devices/computer.png
+Icon=/usr/share/icons/Nuvola/scalable/actions/go-jump.svg
 Categories=System;

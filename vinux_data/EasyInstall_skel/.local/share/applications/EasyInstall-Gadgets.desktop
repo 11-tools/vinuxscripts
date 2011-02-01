@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Gadgets
 Comment[en_GB]=Install desktop gadgets
 Name=EasyInstall-Gadgets
 Comment=Install desktop gadgets
-Icon=/usr/share/icons/gnome/48x48/categories/gnome-util.png
+Icon=/usr/share/icons/Nuvola/scalable/devices/ipod_mount.svg
 Categories=System;

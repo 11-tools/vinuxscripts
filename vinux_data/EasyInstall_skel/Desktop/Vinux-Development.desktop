@@ -10,5 +10,5 @@ Exec=firefox http://groups.google.co.uk/group/vinux-development
 Comment[en_GB]=Visit the Vinux development Forum
 Name=Vinux Development
 Comment=Visit the Vinux development Forum
-Icon=/usr/share/icons/gnome/48x48/categories/applications-science.png
+Icon=/usr/share/icons/Nuvola/scalable/categories/applications-development.svg
 Categories=GNOME;GTK;Accessibility

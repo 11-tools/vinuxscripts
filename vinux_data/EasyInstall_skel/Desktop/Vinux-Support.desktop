@@ -10,5 +10,5 @@ Exec=firefox http://groups.google.co.uk/group/vinux-support
 Comment[en_GB]=Visit the Vinux Support Forum
 Name=Vinux Support
 Comment=Visit the Vinux Support Forum
-Icon=/usr/share/icons/gnome/48x48/categories/applications-utilities.png
+Icon=/usr/share/icons/Nuvola/scalable/categories/preferences-system.svg
 Categories=GNOME;GTK;Accessibility

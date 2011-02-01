@@ -7,5 +7,5 @@ Terminal=false
 Exec=gksu nautilus
 Name=File Browser (Root)
 Comment=Browse Files and Directories as Superuser
-Icon=/usr/share/icons/gnome/48x48/emblems/emblem-important.png
+Icon=/usr/share/icons/Nuvola/scalable/status/dialog-warning.svg
 Categories=System;

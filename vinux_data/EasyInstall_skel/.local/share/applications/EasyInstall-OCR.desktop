@@ -10,5 +10,5 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-OCR
 Comment[en_GB]=Install some command line OCR packages
 Name=EasyInstall-OCR
 Comment=Install some command line OCR packages
-Icon=/usr/share/icons/gnome/48x48/devices/scanner.png
+Icon=/usr/share/icons/Nuvola/scalable/apps/xsane.svg
 Categories=System;
