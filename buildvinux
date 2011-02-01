@@ -138,34 +138,34 @@ sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
 
 echo "Importing repository keys"
 # Import the Vinux/Ubuntu Team repository key.
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF > $LOGFILE
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF #> $LOGFILE
 # Import the Extras key
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 >> $LOGFILE
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 #>> $LOGFILE
 echo "Updating package list"
-sudo apt-get update >> $LOGFILE
+sudo apt-get update #>> $LOGFILE
 
 # Add medibuntu repository - uncommented it since it seems to be up again
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update >> $LOGFILE
+sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update #>> $LOGFILE
 
-sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu >> $LOGFILE
+sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu #>> $LOGFILE
 
 # Update to the latest packages.
 echo "Upgrading all packages... This can take a few minutes."
-echo "See $LOGFILE for progress."
-sudo apt-get upgrade -y >> $LOGFILE
+#echo "See $LOGFILE for progress."
+sudo apt-get upgrade -y #>> $LOGFILE
 
 # Install the default packages
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk startupmanager pybackpack gespeaker mangler remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop gnome-color-chooser ceni cfh geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 smuxi bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet vlc-nox vlc-plugin-pulse partimage ntp >> $LOGFILE
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi mc lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins  gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter ndisgtk startupmanager pybackpack gespeaker mangler remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster giggle gtk-recordmydesktop gnome-color-chooser ceni cfh geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 smuxi bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet vlc-nox vlc-plugin-pulse partimage ntp #>> $LOGFILE
 
 # Install x-tile from repository
 sudo wget http://www.giuspen.com/software/x-tile_1.8.3-1_all.deb
 sudo dpkg -i x-tile_1.8.3-1_all.deb
 
 # Fix bug where espeak gives error: bt_audio_service_open: connect() failed: Connection refused (111)
-sudo apt-get purge -y bluez-alsa >> $LOGFILE
+sudo apt-get purge -y bluez-alsa #>> $LOGFILE
 
 # Enable speech
-sudo /usr/bin/restorespeech -l $LOGFILE
+sudo /usr/bin/restorespeech #-l $LOGFILE
 
 # Edit speechd.conf to enable ibmtts.
 if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
@@ -183,12 +183,12 @@ fi
 
 # Install all of the DVD Packages
 if [ "$INSTALL_VINUX_DVD" = "yes" ]; then
-sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede >> $LOGFILE
+sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser dasher easystroke gnome-mousetrap gxneur gok abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede #>> $LOGFILE
 fi
 
 # Install some 3D Games - not accessible with screen-reader
 if [ "$INSTALL_VINUX_GAMES" = "yes" ]; then
-sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles >> $LOGFILE
+sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles #>> $LOGFILE
 fi
 
 # Install non-free packages - non-distributable
@@ -206,10 +206,10 @@ fi
 cp -r /etc/skel/.orca ~
 
 # Install gnome-app-install
-sudo apt-get install -y --force-yes gnome-app-install >> $LOGFILE
+sudo apt-get install -y --force-yes gnome-app-install #>> $LOGFILE
 
 # Clean up any packages we don't need
-sudo apt-get -y autoremove >> $LOGFILE
+sudo apt-get -y autoremove #>> $LOGFILE
 
 echo "Done!  Reboot and enjoy your new Vinux-like environment."
 echo "Please report bugs to vinux-development@googlegroups.com"

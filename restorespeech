@@ -33,15 +33,15 @@ fi
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
-apt-get install -y module-assistant >> $LOGFILE
-echo y | m-a a-i -f speakup-source -q >> $LOGFILE 2>&1
+apt-get install -y module-assistant #>> $LOGFILE
+echo y | m-a a-i -f speakup-source -q #>> $LOGFILE 2>&1
 modprobe speakup_soft
 
 # Install speechd-up
 if [ -f /etc/init.d/speechd-up ]; then
-    /etc/init.d/speechd-up stop >> $LOGFILE
+    /etc/init.d/speechd-up stop #>> $LOGFILE
 fi
-apt-get install -y speechd-up >> $LOGFILE
+apt-get install -y speechd-up #>> $LOGFILE
 
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
@@ -50,7 +50,7 @@ sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
 
 # Setup YASR
-apt-get install -y yasr >> $LOGFILE
+apt-get install -y yasr #>> $LOGFILE
 sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
     s/^#synthesizer=speech dispatcher/synthesizer=speech dispatcher/
     s/^#synthesizer port=127.0.0.1:6560/synthesizer port=127.0.0.1:6560/
