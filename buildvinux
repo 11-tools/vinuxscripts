@@ -37,9 +37,9 @@ while [ $# -gt 0 ]; do
     elif [ $1 = "-D" ]; then
 	INSTALL_VINUX_DESKTOP="no"
     elif [ $1 = "-k" ]; then
-	INSTALL_VINUX_DESKTOP="yes"
-    elif [ $1 = "-k" ]; then
-	INSTALL_VINUX_DESKTOP="no"
+	INSTALL_VINUX_KEYBINDINGS="yes"
+    elif [ $1 = "-K" ]; then
+	INSTALL_VINUX_KEYBINDINGS="no"
     else
         echo "Unknown option $1"
         echo "Usage: restore_vinux_environment [-d|-D] [-k|-K] [-l logFile] [-z zipcode]"
