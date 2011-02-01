@@ -193,7 +193,7 @@ fi
 
 # Enable beep at grub startup
 sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub
-update-grub #>> $LOGFILE 2>&1
+update-grub
 
 # Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
 # updated until we say so.
