@@ -71,11 +71,11 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
 
 remove_applet fast_user_switch
 
-cp -r /etc/skel/.gconf ~
-cp /etc/skel/.bash_aliases_vinux ~
-
 rsync -r /usr/share/vinux/skel/ /etc/skel
 cp /etc/skel/.bash_aliases_vinux /root
+
+cp -r /etc/skel/.gconf ~
+cp /etc/skel/.bash_aliases_vinux ~
 
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
