@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This is a fix in case the system is muted after boot
+
 if zenity --question --text "Do you want to activate the Vinux Master Volume keybindings";
 then
 gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"

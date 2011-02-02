@@ -3,6 +3,10 @@
 # This script can be run anytime to restore speech to a working state on a system.  
 # Speech currently is often broken by system updates from Ubuntu. To run the script
 # type: 'sudo restorespeech'.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 1 - Configure PulseAudio
 
 # Set pulseaudio to run as system-wide daemon.
 echo "Setting pulseaudio to run system-wide"
@@ -14,6 +18,10 @@ sed -i 's/load-module module-native-protocol-unix$/load-module module-native-pro
 if [ "`grep 'sleep 4' /etc/init.d/pulseaudio`" = "" ]; then
     sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 4\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 2 - Configuring Speech
 
 # Rebuild speakup from source
 echo "Rebuilding speakup from source.  This can take a minute or so."
@@ -46,5 +54,10 @@ sed -i 's/^RUN_BRLTTY=.*/RUN_BRLTTY=yes/' /etc/default/brltty
 # Needed to enable Orca to access root applications
 if [ "`grep 'ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES' /etc/sudoers`" = "" ]; then
     sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
+fi
+
+# Edit speechd.conf to enable ibmtts.
+if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
+    sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
 fi
 

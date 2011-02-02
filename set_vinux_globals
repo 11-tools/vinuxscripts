@@ -3,42 +3,10 @@
 # This script sets up the Vinux keybindings, menus and such.  It also 
 # modifies the desktop, but it doesn't remove any applications.  It 
 # should be run by typing: 'sudo set_vinux_globals'.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-if [ "$ZIPCODE" = "" ]; then
-    echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-    read ZIPCODE
-fi
-
-if [ "$INSTALL_VINUX_DESKTOP" = "" ]; then
-    echo "Do you want to install Vinux destop panels and background image? [Y/n]"
-    read ANSWER
-    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-    if [ "$startsWithN" != "" ]; then
-	INSTALL_VINUX_DESKTOP="no"
-    else
-	INSTALL_VINUX_DESKTOP="yes"
-    fi
-fi
-
-if [ "$INSTALL_VINUX_KEYBINDINGS" = "" ]; then
-    echo "Do you want to install Vinux keybindings? [Y/n]"
-    read ANSWER
-    startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-    if [ "$startsWithN" != "" ]; then
-	INSTALL_VINUX_KEYBINDINGS="no"
-    else
-	INSTALL_VINUX_KEYBINDINGS="yes"
-    fi
-fi
-
-if [ $INSTALL_VINUX_DESKTOP = "yes" ]; then
-    # Update menus
-    echo "Updating main menu"
-    cp -r /usr/share/vinux/menus/* /usr/share/applications
-    chmod -R a+r /usr/share/applications
-    # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
-    rm -f /usr/share/applications/desktop.*.cache
-fi
+# Stage 1 - Declare Functions
 
 function gct {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults "$@"
@@ -48,14 +16,78 @@ function set-string {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string "$1" "$2"
 }
 
-# takes custom key number, name, binding, and action in that order
 function add-customkey {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
 }
 
-if [ $INSTALL_VINUX_KEYBINDINGS = "yes" ]; then
+remove_applet()
+{
+    local line_no prior_line next_line
+
+    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
+    [ "$line_no" ] || return
+    prior_line=$((line_no-1))
+    next_line=$((line_no+1))
+    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
+    update-gconf-defaults
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 2 - Configuring the Desktop
+
+echo "Do you want to install all the Vinux desktop? [Y/n]"
+read ANSWER
+if [ "$ANSWER" = "y" ]; then  
+    # Update menus
+    echo "Updating main menu"
+    cp -r /usr/share/vinux/menus/* /usr/share/applications
+    chmod -R a+r /usr/share/applications
+    # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
+    rm -f /usr/share/applications/desktop.*.cache
+
+# Set fonts
+set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
+set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
+set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
+set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
+set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
+set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
+
+# Set mouse pointer
+gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
+set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
+gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
+set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
+# Add our background
+cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
+
+remove_applet fast_user_switch
+
+cp -r /etc/skel/.gconf ~
+cp /etc/skel/.bash_aliases_vinux ~
+
+rsync -r /usr/share/vinux/skel/ /etc/skel
+cp /etc/skel/.bash_aliases_vinux /root
+
+else
+    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
+fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 3 - Configuring the Keybindings
+
+echo "Do you want to install the Vinux Keybindings? [Y/n]"
+read ANSWER
+if [ "$ANSWER" = "y" ]; then  
 set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
@@ -121,6 +153,16 @@ else
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 fi
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 4 - Configuring Orca
+
+echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
+read ZIPCODE
+sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
+
+cp -r /etc/skel/.orca ~
+
 # Enable Orca
 gct -s -t bool /desktop/gnome/interface/accessibility true
 gct -s -t bool /apps/gksu/disable-grab true
@@ -130,75 +172,13 @@ set-string /desktop/gnome/applications/at/visual/exec orca
 set-string /apps/empathy/conversation/theme classic
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-# Set fonts
-set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
-set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
-set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
-set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
-set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
-set-string /desktop/gnome/interface/icon_theme 'Mist'
-set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
-set-string /apps/metacity/general/theme 'Mist'
-set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
-
-# Set mouse pointer
-gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
-set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
-gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
-set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
-
-# Add our background
-cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
-gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
-fi
-
-# Update /etc/skel and /var/lib/gdm
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    rsync -r /usr/share/vinux/skel/ /etc/skel
-    cp /etc/skel/.bash_aliases_vinux /root
-else
-    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
-fi
-if [ "$ZIPCODE" != "" ]; then
-    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
-fi
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
 
-remove_applet()
-{
-    local line_no prior_line next_line
 
-    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
-    [ "$line_no" ] || return
-    prior_line=$((line_no-1))
-    next_line=$((line_no+1))
-    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
-    update-gconf-defaults
-}
 
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    remove_applet fast_user_switch
-fi
 
-# Update our desktop to look like Vinux
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    cp -r /etc/skel/.gconf ~
-    cp /etc/skel/.bash_aliases_vinux ~
-fi
-cp -r /etc/skel/.orca ~
 
-# Enable beep at grub startup
-sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub
-update-grub
 
-# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
-# updated until we say so.
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid
-Pin-Priority: 750' > /etc/apt/preferences.d/vinux-lucid-pin-750
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
+

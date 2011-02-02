@@ -5,23 +5,22 @@
 # 'sudo buildvinuxiso'. It will remove some applications so 
 # that the ISO will fit on a CD, and it make some other changes
 # to the system.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 1 - Specify Release Version
 
 echo "Enter the release number, for example 3.0-Beta-1.0"
 read RELEASE
 RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
-REMOVE_APPS=yes
-echo 'Remove applications to make it fit on a CD?'
-read ANSWER
-startsWithN=`echo $ANSWER | egrep -i '^[ \t]*n'`
-if [ "$startsWithN" != "" ]; then
-    REMOVE_APPS="no"
-else
-    REMOVE_APPS="yes"
-fi
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Make space on system
-if [ "$REMOVE_APPS" = "yes" ]; then
+# Stage 2 - Remove Applications
+
+echo "Do you want to remove packages to fit the iso onto a CD? [Y/n]"
+read ANSWER
+if [ "$ANSWER" = "y" ]; then  
 echo "Removing applications to make room on the CD"
 apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server shotwell ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share
 
@@ -31,6 +30,10 @@ apt-get autoremove -y
 rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
 chmod -R a+r /etc/skel
 fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 3 - Configure Remastersys
 
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
@@ -43,6 +46,10 @@ sed -i 's/^timeout.*/timeout 100/
     s/^prompt.*/prompt 0\nnoescape 1/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 4 - Build Iso
 
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
