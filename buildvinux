@@ -122,19 +122,19 @@ fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Stage 4 - Configure Speech
-
-# Run the restorespeech script
-echo "Configuring speech..."
-sudo /usr/bin/restorespeech
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# Stage 5 - Configure Desktop and Keybindings
+# Stage 4 - Configure Desktop and Keybindings
 
 # Run the set_vinux_globals script
 echo "Configuring desktop and keybindings..."
 sudo /usr/bin/set_vinux_globals
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 5 - Configure Speech
+
+# Run the restorespeech script
+echo "Configuring speech..."
+sudo /usr/bin/restorespeech
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

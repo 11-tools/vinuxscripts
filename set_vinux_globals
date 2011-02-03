@@ -154,15 +154,6 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
  # Copy user files to /etc/skel
     rsync -r /usr/share/vinux/skel/ /etc/skel
 
-    # Copy files from /etc/skel to user directory
-    cp -r /etc/skel/.gconf ~
-    cp -r /etc/skel/.orca ~
-    cp -r /etc/skel/.config ~
-    cp -r /etc/skel/.mangler ~
-    cp /etc/skel/.gtkrc* ~
-    cp /etc/skel/.bash_aliases_vinux ~
-    cp /etc/skel/.bash_aliases_vinux /root
-
 echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
 read ZIPCODE
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
@@ -172,6 +163,15 @@ chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
 
 remove_applet fast_user_switch
+
+    # Copy files from /etc/skel to user directory
+    cp -r /etc/skel/.gconf ~
+    cp -r /etc/skel/.orca ~
+    cp -r /etc/skel/.config ~
+    cp -r /etc/skel/.mangler ~
+    cp /etc/skel/.gtkrc* ~
+    cp /etc/skel/.bash_aliases_vinux ~
+    cp /etc/skel/.bash_aliases_vinux /root
 
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
