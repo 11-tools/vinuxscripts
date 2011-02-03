@@ -164,13 +164,16 @@ chown -R gdm.gdm /var/lib/gdm/.orca
 
 remove_applet fast_user_switch
 
+echo "Please enter your username: "
+read USER
+
     # Copy files from /etc/skel to user directory
-    cp -r /etc/skel/.gconf /home/vinux/
-    cp -r /etc/skel/.orca /home/vinux/
-    cp -r /etc/skel/.config /home/vinux/
-    cp -r /etc/skel/.mangler /home/vinux/
-    cp /etc/skel/.gtkrc* /home/vinux/
-    cp /etc/skel/.bash_aliases_vinux /home/vinux/
+    cp -r /etc/skel/.gconf /home/$USER
+    cp -r /etc/skel/.orca /home/$USER
+    cp -r /etc/skel/.config /home/$USER
+    cp -r /etc/skel/.mangler /home/$USER
+    cp /etc/skel/.gtkrc* /home/$USER
+    cp /etc/skel/.bash_aliases_vinux /home/$USER
     cp /etc/skel/.bash_aliases_vinux /root
 
 else
