@@ -50,17 +50,14 @@ if [ "$ANSWER" = "y" ]; then
     # Force the menus cache to be rebuilt 
     rm -f /usr/share/applications/desktop.*.cache
 
-    # Copy user files to /etc/skel
-    rsync -r /usr/share/vinux/skel/ /etc/skel
-
-    # Copy files from /etc/skel to user directory
-    cp -r /etc/skel/.gconf ~
-    cp -r /etc/skel/.orca ~
-    cp -r /etc/skel/.config ~
-    cp -r /etc/skel/.mangler ~
-    cp /etc/skel/.gtkrc* ~
-    cp /etc/skel/.bash_aliases_vinux ~
-    cp /etc/skel/.bash_aliases_vinux /root
+# Enable Orca
+gct -s -t bool /desktop/gnome/interface/accessibility true
+gct -s -t bool /apps/gksu/disable-grab true
+set-string /desktop/gnome/applications/window_manager/default /usr/bin/metacity
+gct -s -t bool /desktop/gnome/applications/at/visual/startup true
+set-string /desktop/gnome/applications/at/visual/exec orca
+set-string /apps/empathy/conversation/theme classic
+gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
 # Set fonts
 set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
@@ -83,20 +80,23 @@ set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
 gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
 
-remove_applet fast_user_switch
+ # Copy user files to /etc/skel
+    rsync -r /usr/share/vinux/skel/ /etc/skel
 
-# Enable Orca
-gct -s -t bool /desktop/gnome/interface/accessibility true
-gct -s -t bool /apps/gksu/disable-grab true
-set-string /desktop/gnome/applications/window_manager/default /usr/bin/metacity
-gct -s -t bool /desktop/gnome/applications/at/visual/startup true
-set-string /desktop/gnome/applications/at/visual/exec orca
-set-string /apps/empathy/conversation/theme classic
-gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
+    # Copy files from /etc/skel to user directory
+    cp -r /etc/skel/.gconf ~
+    cp -r /etc/skel/.orca ~
+    cp -r /etc/skel/.config ~
+    cp -r /etc/skel/.mangler ~
+    cp /etc/skel/.gtkrc* ~
+    cp /etc/skel/.bash_aliases_vinux ~
+    cp /etc/skel/.bash_aliases_vinux /root
 
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
+
+remove_applet fast_user_switch
 
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
@@ -176,13 +176,4 @@ read ZIPCODE
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 
 fi
-
-
-
-
-
-
-
-
-
 
