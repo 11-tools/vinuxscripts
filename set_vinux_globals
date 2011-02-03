@@ -92,6 +92,10 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
     cp /etc/skel/.bash_aliases_vinux ~
     cp /etc/skel/.bash_aliases_vinux /root
 
+echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
+read ZIPCODE
+sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
+
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
@@ -170,10 +174,6 @@ gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active
 
 # Enable Control+Alt+Backspace to log out of Gnome
 gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
-
-echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-read ZIPCODE
-sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 
 fi
 
