@@ -6,6 +6,38 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Stage 1 - Declare Functions
 
 function gct {
@@ -38,9 +70,22 @@ remove_applet()
 
 # Stage 2 - Configuring the Keybindings
 
+echo
+bell
+red
 echo "Do you want to install the Vinux Keybindings? [Y/n]"
 read ANSWER
+green
+echo
+
 if [ "$ANSWER" = "y" ]; then  
+
+echo
+blue
+echo "Setting up custom keybindings..."
+green
+echo
+
 set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
 set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
@@ -109,12 +154,20 @@ fi
 
 # Stage 3 - Configuring the Desktop
 
+echo
+bell
+red
 echo "Do you want to install all the Vinux desktop? [Y/n]"
 read ANSWER
+green
+echo
+
 if [ "$ANSWER" = "y" ]; then 
  
     # Update menus
-    echo "Updating main menu"
+    blue
+    echo "Installing Vinux desktop..."
+    green
     cp -r /usr/share/vinux/menus/* /usr/share/applications
     chmod -R a+r /usr/share/applications
 
@@ -154,8 +207,14 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
  # Copy user files to /etc/skel
     rsync -r /usr/share/vinux/skel/ /etc/skel
 
+echo
+bell
+red
 echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
 read ZIPCODE
+green
+echo
+
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
 
 cp -r /etc/skel/.orca /var/lib/gdm
@@ -164,8 +223,13 @@ chown -R gdm.gdm /var/lib/gdm/.orca
 
 remove_applet fast_user_switch
 
+echo
+bell
+red
 echo "Please enter your username: "
 read USER
+green
+echo
 
     # Copy files from /etc/skel to user directory
     cp -r /etc/skel/.gconf /home/$USER

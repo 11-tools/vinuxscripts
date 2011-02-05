@@ -6,10 +6,47 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Stage 1 - Configure PulseAudio
 
 # Set pulseaudio to run as system-wide daemon.
+echo
+blue
 echo "Setting pulseaudio to run system-wide"
+green
+echo
+
 sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
 sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
@@ -24,7 +61,13 @@ fi
 # Stage 2 - Configuring Speech
 
 # Rebuild speakup from source
+
+echo
+blue
 echo "Rebuilding speakup from source.  This can take a minute or so."
+green
+echo
+
 apt-get install -y module-assistant 
 echo y | m-a a-i -f speakup-source -q
 modprobe speakup_soft
@@ -34,6 +77,12 @@ if [ -f /etc/init.d/speechd-up ]; then
     /etc/init.d/speechd-up stop 
 fi
 apt-get install -y speechd-up 
+
+echo
+blue
+echo "Setting up speech packages..."
+green
+echo
 
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher

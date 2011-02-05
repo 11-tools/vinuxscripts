@@ -8,20 +8,70 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Stage 1 - Specify Release Version
 
+echo
+bell
+red
 echo "Enter the release number, for example 3.0-Beta-1.0"
 read RELEASE
+green
+echo
+
 RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 2 - Remove Applications
 
+echo
+bell
+red
 echo "Do you want to remove packages to fit the iso onto a CD? [Y/n]"
 read ANSWER
+green
+echo
+
 if [ "$ANSWER" = "y" ]; then  
+
+echo
+blue
 echo "Removing applications to make room on the CD"
+green
+echo
+
 apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server shotwell ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share
 
 apt-get autoremove -y
@@ -34,6 +84,12 @@ fi
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 3 - Configure Remastersys
+
+echo
+blue
+echo "Configuring remastersys..."
+green
+echo
 
 # Next run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
@@ -53,5 +109,10 @@ sed -i 's/^timeout.*/timeout 100/
 
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. The
 # iso should be in /home/remastersys in about 15-20 minutes.
+
+echo
+blue
 echo "Building ISO..."
+green
+echo
 remastersys dist
