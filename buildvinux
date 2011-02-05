@@ -291,6 +291,6 @@ echo
 echo
 bell
 red
-echo "press any key to exit..."
+echo "Press any key to exit..."
 read
 reset
