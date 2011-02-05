@@ -73,7 +73,7 @@ remove_applet()
 echo
 bell
 red
-echo "Do you want to install the Vinux Keybindings? [y/n]"
+echo -n "Do you want to install the Vinux Keybindings? [y/n]: "
 read ANSWER
 green
 echo
@@ -157,7 +157,7 @@ fi
 echo
 bell
 red
-echo "Do you want to install all the Vinux desktop? [y/n]"
+echo -n "Do you want to install all the Vinux desktop? [y/n]: "
 read ANSWER
 green
 echo
@@ -213,8 +213,7 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
 echo
 bell
 red
-echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-read ZIPCODE
+echo -n "Please enter your weather zipcode: "; read ZIPCODE
 green
 echo
 
@@ -229,8 +228,7 @@ remove_applet fast_user_switch
 echo
 bell
 red
-echo "Please enter your username: "
-read USER
+echo -n "Please enter your username: " ; read USER
 green
 echo
 

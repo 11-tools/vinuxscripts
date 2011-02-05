@@ -196,8 +196,7 @@ sudo apt-get -y autoremove
 echo
 bell
 red
-echo "Do you want to install all of the extra DVD packages? [y/n]"
-read ANSWER
+echo -n "Do you want to install all of the extra DVD packages? [y/n]: "; read ANSWER
 green
 echo
 
@@ -217,8 +216,7 @@ fi
 echo
 bell
 red
-echo "Do you want to install the 3D games packages? [y/n]"
-read ANSWER
+echo -n "Do you want to install the 3D games packages? [y/n]: "; read ANSWER
 green
 echo
 
@@ -238,8 +236,7 @@ fi
 echo
 bell
 red
-echo "Do you want to install all of the non-free packages? [y/n]"
-read ANSWER
+echo -n "Do you want to install all of the non-free packages? [y/n]: "; read ANSWER
 green
 echo
 
