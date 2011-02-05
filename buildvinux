@@ -295,4 +295,5 @@ echo
 bell
 red
 echo "press any key to exit..."
+read
 reset

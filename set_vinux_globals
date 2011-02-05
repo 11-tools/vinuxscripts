@@ -165,9 +165,12 @@ echo
 if [ "$ANSWER" = "y" ]; then 
  
     # Update menus
+    echo
     blue
     echo "Installing Vinux desktop..."
     green
+    echo
+
     cp -r /usr/share/vinux/menus/* /usr/share/applications
     chmod -R a+r /usr/share/applications
 
