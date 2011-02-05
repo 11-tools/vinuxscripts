@@ -64,7 +64,7 @@ fi
 
 echo
 blue
-echo "Rebuilding speakup from source.  This can take a minute or so."
+echo "Rebuilding speakup from source.  This can take a minute or two."
 green
 echo
 

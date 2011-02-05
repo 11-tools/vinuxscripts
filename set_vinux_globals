@@ -73,7 +73,7 @@ remove_applet()
 echo
 bell
 red
-echo "Do you want to install the Vinux Keybindings? [Y/n]"
+echo "Do you want to install the Vinux Keybindings? [y/n]"
 read ANSWER
 green
 echo
@@ -157,7 +157,7 @@ fi
 echo
 bell
 red
-echo "Do you want to install all the Vinux desktop? [Y/n]"
+echo "Do you want to install all the Vinux desktop? [y/n]"
 read ANSWER
 green
 echo
@@ -232,12 +232,7 @@ green
 echo
 
     # Copy files from /etc/skel to user directory
-    cp -r /etc/skel/.gconf /home/$USER
-    cp -r /etc/skel/.orca /home/$USER
-    cp -r /etc/skel/.config /home/$USER
-    cp -r /etc/skel/.mangler /home/$USER
-    cp /etc/skel/.gtkrc* /home/$USER
-    cp /etc/skel/.bash_aliases_vinux /home/$USER
+    rsync -r /etc/skel/ /home/$USER
     cp /etc/skel/.bash_aliases_vinux /root
 
 else

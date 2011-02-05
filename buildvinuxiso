@@ -59,7 +59,7 @@ RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 echo
 bell
 red
-echo "Do you want to remove packages to fit the iso onto a CD? [Y/n]"
+echo "Do you want to remove packages to fit the iso onto a CD? [y/n]"
 read ANSWER
 green
 echo
