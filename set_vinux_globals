@@ -238,8 +238,8 @@ echo
     cp -r /etc/skel/.irssi /home/$USER
     cp -r /etc/skel/.mangler /home/$USER
     cp -r /etc/skel/.orca /home/$USER
-    cp -r /etc/skel/.gtkrc* /home/$USER
-    cp -r /etc/skel/.bash_aliases_vinux /home/$USER
+    cp /etc/skel/.gtkrc* /home/$USER
+    cp /etc/skel/.bash_aliases_vinux /home/$USER
     cp /etc/skel/.bash_aliases_vinux /root
 
 else
