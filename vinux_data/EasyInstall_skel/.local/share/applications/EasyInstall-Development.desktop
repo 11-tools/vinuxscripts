@@ -6,6 +6,6 @@ Type=Application
 Terminal=false
 Exec=/usr/share/vinux/EasyInstall/EasyInstall-Development
 Name=EasyInstall-Development
-Comment=Install Gambas, Unetbootin and UCK
+Comment=Install Gambas and Accerciser
 Icon=/usr/share/pixmaps/gdm-setup.png
 Categories=System;
