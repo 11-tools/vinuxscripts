@@ -19,7 +19,7 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu apt-get -y install cuneiform ocropus ubuntu-restricted-extras gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu thoggen ubuntu-docs example-content speedy-ocr markup-binder pandoc non-free-codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y install cuneiform ocropus ubuntu-restricted-extras gambas2 screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose wine playonlinux dosbox dosemu thoggen ubuntu-docs example-content speedy-ocr markup-binder pandoc non-free-codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 # Make dosemu usable by ordinary user
 sysctl -w vm.mmap_min_addr=0
