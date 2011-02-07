@@ -6,7 +6,8 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install all of the Vinux Application Suites?"; then
+if zenity --question --text "Do you want to install all of the Vinux Application Suites? This will install the \
+cuneiform, ocropus, ubuntu-restricted-extras, gambas2, screenlets, gdesklets, google-gadgets-gtk, prism-google-groups, \ prism-google-mail, chromium-browser, prism-google-calendar, prism-google-docs, gimp, inkscape, scribus, openclipart-png, \ transmageddon, cheese, audacity, jokosher, gtkpod, openoffice.org, openoffice.org-gnome, evolution, evolution-exchange, \ ooo-thumbnailer, bleachbit, clamtk, gufw, nautilus-clamscan, spamassassin, qemu-launcher, virtualbox-ose, wine, \ playonlinux, dosbox, dosemu, thoggen, ubuntu-docs, example-content, speedy-ocr, markup-binder, pandoc, non-free-codecs \ and  libdvdcss2 packages!"; then
 
 # Step 2: Get user name and ask for admin password
 
