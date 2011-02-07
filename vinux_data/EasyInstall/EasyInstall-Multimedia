@@ -6,7 +6,8 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Multimedia Suite? This will install the \
+if zenity --question --text "Do you want to install the Vinux Multimedia Suite? All of \
+these applications are accessible with a screen-reader. This will install the \
 transmageddon, thoggen, cheese, audacity, jokosher and gtkpod packages!"; then
 
 # Step 2: Get user name and ask for admin password
