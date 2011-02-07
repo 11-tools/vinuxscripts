@@ -43,7 +43,7 @@ function bell {
 # Set pulseaudio to run as system-wide daemon.
 echo
 blue
-echo "Setting pulseaudio to run system-wide"
+echo "Setting pulseaudio to run system-wide..."
 green
 echo
 
@@ -64,7 +64,7 @@ fi
 
 echo
 blue
-echo "Rebuilding speakup from source.  This can take a minute or two."
+echo "Rebuilding speakup from source..."
 green
 echo
 
