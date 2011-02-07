@@ -6,7 +6,9 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Office Suite?"; then
+if zenity --question --text "Do you want to install the Vinux Office Suite? This will install the \
+openoffice.org, openoffice.org-gnome, evolution, evolution-exchange, ooo-thumbnailer, pandoc and markup-binder \
+packages!"; then
 
 # Step 2: Get user name and ask for admin password
 

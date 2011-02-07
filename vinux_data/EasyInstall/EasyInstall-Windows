@@ -6,7 +6,8 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Windows Compatibility Suite?"; then
+if zenity --question --text "Do you want to install the Vinux Windows Compatibility Suite? This will install \
+the wine, playonlinux, dosbox and dosemu packages!"; then
 
 # Step 2: Get user name and ask for admin password
 

@@ -6,7 +6,8 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Desktop Gadgets Suite?"; then
+if zenity --question --text "Do you want to install the Vinux Desktop Gadgets Suite? This will install \
+the screenlets, gdesklets and google-gadgets-gtk packages!"; then
 
 # Step 2: Get user name and ask for admin password
 

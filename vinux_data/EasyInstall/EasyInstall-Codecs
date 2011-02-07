@@ -6,7 +6,8 @@
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Non-Free Multimedia Codecs Suite?"; then
+if zenity --question --text "Do you want to install the Vinux Non-Free Multimedia Codecs Suite? This will install \
+the ubuntu-restricted-extras, libdvdcss2 and non-free-codecs packages!"; then
 
 # Step 2: Get user name and ask for admin password
 
