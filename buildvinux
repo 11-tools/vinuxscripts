@@ -187,6 +187,10 @@ echo
 
 sudo apt-get -y autoremove 
 
+# Switch off automatic updates notification message
+
+sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 3 - Install Optional Packages
