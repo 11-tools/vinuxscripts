@@ -246,5 +246,3 @@ else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi
 
-# configure emacspeak
-dpkg-reconfigure emacspeak
