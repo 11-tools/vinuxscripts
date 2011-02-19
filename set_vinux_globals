@@ -233,12 +233,13 @@ green
 echo
 
     # Copy files from /etc/skel to user directory
-    cp -r /etc/skel/.config /home/$USER
-    cp -r /etc/skel/.gconf /home/$USER
-    cp -r /etc/skel/.mangler /home/$USER
-    cp -r /etc/skel/.orca /home/$USER
-    cp /etc/skel/.gtkrc* /home/$USER
-    cp /etc/skel/.bash_aliases_vinux /home/$USER
+    cp -rp /etc/skel/.config /home/$USER
+    cp -rp /etc/skel/.gconf /home/$USER
+    cp -rp /etc/skel/.mangler /home/$USER
+    cp -rp /etc/skel/.orca /home/$USER
+    cp -p /etc/skel/.gtkrc* /home/$USER
+    cp -p /etc/skel/.bash_aliases_vinux /home/$USER
+
     cp /etc/skel/irssi.conf /etc
     cp /etc/skel/.bash_aliases_vinux /root
 
