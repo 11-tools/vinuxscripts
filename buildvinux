@@ -232,7 +232,7 @@ echo "Installing games packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome stellarium marble
+sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome
 fi
 
 # Install non-free packages - non-distributable
