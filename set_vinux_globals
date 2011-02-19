@@ -225,6 +225,8 @@ chown -R gdm.gdm /var/lib/gdm/.orca
 
 remove_applet fast_user_switch
 
+export COPY="yes"
+
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi

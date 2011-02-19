@@ -269,6 +269,8 @@ echo
 
 sudo /usr/bin/set_vinux_globals
 
+if [ "$COPY" = "yes" ]; then
+
 # Copy files from /etc/skel to user directory
 cp -r /etc/skel/.config ~
 cp -r /etc/skel/.gconf ~
@@ -279,6 +281,8 @@ cp /etc/skel/.bash_aliases_vinux ~
 
 sudo cp /etc/skel/irssi.conf /etc
 sudo cp /etc/skel/.bash_aliases_vinux /root
+
+fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
