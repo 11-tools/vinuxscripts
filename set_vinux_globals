@@ -240,6 +240,7 @@ chown -R $USER.$USER /home/$USER
 echo "Don't worry, you can safely ignore this error!"
 
 cp /etc/skel/irssi.conf /etc
+rm /etc/skel/irssi.conf
 cp /etc/skel/.bash_aliases_vinux /root
 
 else
