@@ -235,6 +235,7 @@ echo
 # Copy files from /etc/skel to user directory
 
 rsync -r /etc/skel/ /home/$USER
+rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
 rm /home/$USER/irssi.conf
 chown -R $USER.$USER /home/$USER
 echo "Don't worry, you can safely ignore this error!"
