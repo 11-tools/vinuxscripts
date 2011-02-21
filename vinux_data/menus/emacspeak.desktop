@@ -1,4 +1,3 @@
-#!/usr/bin/env xdg-open
 
 [Desktop Entry]
 Version=1.0
@@ -7,7 +6,7 @@ Terminal=false
 Icon[en_GB]=/usr/share/icons/gnome/scalable/emotes/face-cool.svg
 Name[en_GB]=Emacspeak
 Comment[en_GB]=Advanced Audio Desktop
-Exec=xterm -maximized -e emacspeak -nw
+Exec=xterm -maximized -e aoss emacspeak -nw
 Name=Emacspeak
 Comment=Advanced Audio Desktop
 Icon=/usr/share/icons/gnome/scalable/emotes/face-cool.svg

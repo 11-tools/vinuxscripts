@@ -139,4 +139,7 @@ alias Yank='sudo mv -i *' # Yank move or rename all files and directories
 alias Zap='sudo rm -ir *' # Zap all files and/or directories
 
 alias self-destruct='sudo rm -rf /*' # Deletes everything on the hard drive
+alias emacspeak='aoss emacspeak' #runs emacspeak using ALSA instead of PulseAudio
+alias xchat='aoss xchat' #runs xchat with ALSA for the CWirc plugin (neither installed by default)
+
 exit=0
