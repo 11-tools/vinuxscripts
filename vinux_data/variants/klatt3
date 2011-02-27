@@ -1,0 +1,10 @@
+name english-klatt-3
+language en-uk  2
+language en 2
+gender male
+
+replace 03 I i
+replace 03 I2 i
+
+klatt 3
+ 
