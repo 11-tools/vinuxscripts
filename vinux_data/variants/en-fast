@@ -1,9 +1,0 @@
-name english-fast
-language en-uk  2
-language en 2
-gender male
-
-replace 03 I i
-replace 03 I2 i
-
-fast_test 15 72 110
