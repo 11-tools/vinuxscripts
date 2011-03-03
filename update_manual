@@ -6,5 +6,6 @@ rm -r vinux-docs
 fi
 git clone git://vinux-docs.git.sourceforge.net/gitroot/vinux-docs/vinux-docs
 cd vinux-docs
-git checkout lucid
+BRANCH=`lsb_release -cs`
+git checkout $BRANCH
 exit=0
