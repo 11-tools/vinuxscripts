@@ -17,6 +17,8 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
+Open the Vinux Manual
+    Control + Alt + Q
 List keybindings
     Control + Alt + k
 Launch web browser
