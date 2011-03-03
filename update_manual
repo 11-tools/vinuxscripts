@@ -6,6 +6,12 @@ rm -r vinux-docs
 fi
 git clone git://vinux-docs.git.sourceforge.net/gitroot/vinux-docs/vinux-docs
 cd vinux-docs
+
 BRANCH=`lsb_release -cs`
+
+if [ $BRANCH == "maverick" ]; then
+BRANCH="master"
+fi
+
 git checkout $BRANCH
 exit=0
