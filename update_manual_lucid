@@ -1,7 +1,9 @@
 #!/bin/bash
 
 cd /usr/share/vinux
+if [ -d "vinux-docs" ]; then
 rm -r vinux-docs
+fi
 git clone git://vinux-docs.git.sourceforge.net/gitroot/vinux-docs/vinux-docs
 cd vinux-docs
 git checkout lucid
