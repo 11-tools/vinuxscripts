@@ -8,7 +8,7 @@ install:
 	install set_vinux_globals $(DESTDIR)/usr/bin
 	install buildvinuxiso $(DESTDIR)/usr/bin
 	install volume_keys $(DESTDIR)/usr/bin
-	install update_manual_lucid $(DESTDIR)/usr/bin
+	install update_manual $(DESTDIR)/usr/bin
 	install gksu/gksu $(DESTDIR)/usr/bin
 	install gksu/askpass $(DESTDIR)/usr/bin
 	cp -r --preserve=mode vinux_data/* $(DESTDIR)/usr/share/vinux
