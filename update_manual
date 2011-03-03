@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd /usr/share/vinux
+rm -r vinux-docs
+git clone git://vinux-docs.git.sourceforge.net/gitroot/vinux-docs/vinux-docs
+cd vinux-docs
+git checkout lucid
+exit=0
