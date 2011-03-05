@@ -72,6 +72,29 @@ sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
+# Add libreoffice repository and purge openoffice
+
+sudo add-apt-repository ppa:libreoffice/ppa
+
+echo
+bell
+red
+echo -n "Do you want to remove OpenOffice? [y/n]: "; read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then  
+
+echo
+blue
+echo "Removing Open Office..."
+green
+echo
+
+sudo apt-get purge -y openoffice.org-common
+ 
+fi
+
 # Add medibuntu repository - uncommented it since it seems to be up again
 
 echo
@@ -193,7 +216,7 @@ sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Stage 3 - Install Optional Packages
+# Stage 3 - Install/Remove Optional Packages
 
 # Install all of the DVD Packages
 
@@ -212,7 +235,9 @@ echo "Installing DVD packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
+sudo apt-get purge -y openoffice.org-common
+
+sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
 fi
 
 # Install some 3D Games - not accessible with screen-reader

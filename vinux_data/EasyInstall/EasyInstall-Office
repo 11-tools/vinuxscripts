@@ -13,7 +13,7 @@ if [ ! -e $a$b/.Office ]; then
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Office Suite? All of these applications are accessible with a screen-reader. This will install the openoffice.org, openoffice.org-gnome, evolution, evolution-exchange, ooo-thumbnailer, pandoc and markup-binder packages!"; then
+if zenity --question --text "Do you want to install the Vinux Office Suite? All of these applications are accessible with a screen-reader. This will install the libreoffice, libreoffice-gnome, evolution, evolution-exchange, pandoc and markup-binder packages! It will also remove OpenOffice if it is installed."; then
 
 # Step 2: Get user name and ask for admin password
 
@@ -25,7 +25,9 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu apt-get -y install openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+sudo apt-get purge -y openoffice.org-common
+
+set -o pipefail ; if gksu apt-get -y install libreoffice libreoffice-gnome libbase-java-openoffice.org libcommons-codec-java libcommons-httpclient-java libcommons-lang-java libflute-java-openoffice.org libfonts-java-openoffice.org libformula-java-openoffice.org liblayout-java-openoffice.org libloader-java-openoffice.org libmysqlcppconn4 libpentaho-reporting-flow-engine-java-openoffice.org libreoffice-help-en-gb libreoffice-l10n-common libreoffice-l10n-en-gb libreoffice-mysql-connector libreoffice-ogltrans libreoffice-pdfimport libreoffice-presentation-minimizer libreoffice-presenter-console libreoffice-report-builder libreoffice-wiki-publisher librepository-java-openoffice.org libsac-java libsac-java-gcj libserializer-java-openoffice.org libxml-java-openoffice.org mozilla-libreoffice evolution evolution-exchange pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 touch /$a$b/.Office
 
@@ -58,11 +60,11 @@ fi
 
 # Step 9: Remove Packages - from Step 0
 
-elif zenity --question --text "Do you want to remove the Vinux Office Suite? This will remove the openoffice.org, openoffice.org-gnome, evolution, evolution-exchange, ooo-thumbnailer, pandoc and markup-binder packages!"; then
+elif zenity --question --text "Do you want to remove the Vinux Office Suite? This will remove the libreoffice, libreoffice-gnome, evolution, evolution-exchange, pandoc and markup-binder packages!"; then
 
 gksu su
 
-set -o pipefail ; if gksu apt-get -y remove openoffice.org openoffice.org-gnome evolution evolution-exchange ooo-thumbnailer pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y remove libreoffice libreoffice-gnome libbase-java-openoffice.org libcommons-codec-java libcommons-httpclient-java libcommons-lang-java libflute-java-openoffice.org libfonts-java-openoffice.org libformula-java-openoffice.org liblayout-java-openoffice.org libloader-java-openoffice.org libmysqlcppconn4 libpentaho-reporting-flow-engine-java-openoffice.org libreoffice-help-en-gb libreoffice-l10n-common libreoffice-l10n-en-gb libreoffice-mysql-connector libreoffice-ogltrans libreoffice-pdfimport libreoffice-presentation-minimizer libreoffice-presenter-console libreoffice-report-builder libreoffice-wiki-publisher librepository-java-openoffice.org libsac-java libsac-java-gcj libserializer-java-openoffice.org libxml-java-openoffice.org mozilla-libreoffice evolution evolution-exchange pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
 
 rm /$a$b/.Office
 
