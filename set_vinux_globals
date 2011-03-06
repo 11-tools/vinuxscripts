@@ -175,7 +175,9 @@ if [ "$ANSWER" = "y" ]; then
     chmod -R a+r /usr/share/applications
 
     # Force the menus cache to be rebuilt 
+    rm -f /usr/share/applications/emacs23.desktop
     rm -f /usr/share/applications/desktop.*.cache
+
 
 # Enable Orca
 gct -s -t bool /desktop/gnome/interface/accessibility true
