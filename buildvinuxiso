@@ -102,6 +102,10 @@ sed -i 's/^timeout.*/timeout 100/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
 
+# Change boot background
+
+cp -f /usr/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 4 - Build Iso
