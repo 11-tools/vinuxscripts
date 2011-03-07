@@ -94,7 +94,7 @@ add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatch
 add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
 add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'
 add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
-add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
+add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit %U'
 add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
 add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
 add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
