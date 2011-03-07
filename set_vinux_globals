@@ -244,6 +244,13 @@ echo "Don't worry, you can safely ignore this error!"
 rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
 cp /etc/skel/.bash_aliases_vinux /root
 
+# prevent ubuntu boot splash being shown
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
+update-grub
+
+# If you don't want the Vinux desktop...
+
 else
     rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi

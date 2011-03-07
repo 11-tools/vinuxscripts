@@ -222,6 +222,10 @@ sudo apt-get -y autoremove
 
 sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
 
+# Open emacspeak in customizable mode
+
+sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 3 - Install/Remove Optional Packages
