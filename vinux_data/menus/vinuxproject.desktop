@@ -7,7 +7,5 @@ Icon[en_GB]=/usr/share/icons/gnome/48x48/apps/web-browser.png
 Name[en_GB]=vinuxproject.org
 Exec=firefox http://vinuxproject.org
 Comment[en_GB]=Visit the Vinux Wbsite!
-Name=Vinux.org.uk
-Comment=Visit vinux.org.uk
 Icon=/usr/share/icons/Nuvola/scalable/categories/applications-internet.svg
 Categories=GNOME;GTK;Accessibility
