@@ -181,8 +181,8 @@ echo "installing x-tile..."
 green
 echo
 
-sudo wget http://www.giuspen.com/software/x-tile_1.8.3-1_all.deb
-sudo dpkg -i x-tile_1.8.3-1_all.deb
+sudo wget http://www.giuspen.com/software/x-tile_1.8.4-1_all.deb
+sudo dpkg -i x-tile_1.8.4-1_all.deb
 
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
