@@ -182,7 +182,7 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "vinux"; user_name = "vinux"; nick = "vinux"; };
+  core = { real_name = ""; user_name = ""; nick = ""; };
   "fe-text" = { actlist_sort = "refnum"; };
   "irc/core" = { alternate_nick = ""; skip_motd = "yes"; };
   "fe-common/core" = { show_nickmode = "no"; window_auto_change = "yes"; };
