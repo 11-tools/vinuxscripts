@@ -1,0 +1,18 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Categories=GNOME;GTK;Settings;
+Exec=gnome-control-center
+GenericName=The GNOME configuration tool
+Icon=gnome-control-center
+Name=Control Center
+NoDisplay=false
+OnlyShowIn=GNOME;
+StartupNotify=true
+Terminal=false
+Type=Application
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Component=shell
+X-GNOME-Bugzilla-Product=gnome-control-center
+X-GNOME-Bugzilla-Version=2.30.1
+X-Ubuntu-Gettext-Domain=gnome-control-center-2.0

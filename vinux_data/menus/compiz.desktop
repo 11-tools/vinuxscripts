@@ -7,5 +7,5 @@ Terminal=false
 Exec=compiz --replace
 Name=Enable 3D Desktop
 Comment=Enable 3D Magnification and Colour Changing
-Icon=/usr/share/icons/gnome/scalable/apps/preferences-desktop-wallpaper.svg
+Icon=/usr/share/pixmaps/apple-green.png
 Categories=GNOME;GTK;Accessibility

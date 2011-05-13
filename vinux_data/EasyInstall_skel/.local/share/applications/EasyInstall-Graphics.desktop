@@ -9,6 +9,6 @@ Name[en_GB]=EasyInstall-Graphics
 Comment[en_GB]=Install Gimp, Inkscape and Scribus
 Name=EasyInstall-Graphics
 Comment=Install a variety of graphics packages
-Icon=/usr/share/icons/gnome/scalable/categories/gnome-graphics.svg
+Icon=/usr/share/icons/Nuvola/scalable/categories/applications-accessories.svg
 Categories=System;
 Comment[en_GB.utf8]=Install Gimp, Inkscape and Scribus

@@ -1,0 +1,30 @@
+// moving towards US English
+name english-us-norbert
+language en-us 2
+language en-r
+language en 3
+gender male
+
+phonemes en_us
+dictrules 3 6
+option reduce_t 1
+
+stressLength 145 125 200 170 0 0 265 280
+stressAmp  17 16  20 20  20 22  22 20
+
+replace 03 I  i
+replace 03 I2 i
+replace 03 @  @/
+
+formant 0 100 100 100
+formant 2 75  50 100
+formant 3 100 100 100
+formant 5 100 100 100
+formant 6 100 100 100
+formant 7 100 100 100
+formant 8 100 100 100
+
+intonation 1
+pitch 82 118
+tone 600 255  1000 100 5000 255
+

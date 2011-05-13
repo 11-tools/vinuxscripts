@@ -1,6 +1,8 @@
 Bugs
 ----
 
+This is now very out of date, although some of the issues are still valid.
+
 Deal with Firefox/Orca problems.  Firefox rewrote the caret navigation and it has bugs that make
 structural navigation with Orca difficult.  The bug report is at
 https://bugzilla.mozilla.org/show_bug.cgi?id=546068

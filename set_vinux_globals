@@ -3,50 +3,42 @@
 # This script sets up the Vinux keybindings, menus and such.  It also 
 # modifies the desktop, but it doesn't remove any applications.  It 
 # should be run by typing: 'sudo set_vinux_globals'.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-LOGFILE=/dev/null
-ZIPCODE=""
-INSTALL_VINUX_DESKTOP="no"
-INSTALL_VINUX_KEYBINDINGS="no"
-while [ $# -gt 0 ]; do
-    if [ "$1" = "-l" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting log file name"
-    	    exit 1
-        fi
-        LOGFILE=$1
-    elif [ $1 = "-z" ]; then
-        shift
-        if [ $# -lt 1 ]; then
-    	    echo "Expecting zipcode"
-    	    exit 1
-        fi
-        ZIPCODE=$1
-    elif [ "$1" = "-d" ]; then
-	INSTALL_VINUX_DESKTOP="yes"
-    elif [ "$1" = "-k" ]; then
-	INSTALL_VINUX_KEYBINDINGS="yes"
-    else
-        echo "Unknown option $1"
-        exit 1
-    fi
-    shift
-done
+# Stage 0 - Declare text colour/system bell functions
 
-if [ "$ZIPCODE" = "" ]; then
-    echo "Please enter your zipcode for Stormdragon's weather reporting using Orca+w"
-    read ZIPCODE
-fi
+function black {
+    tput setf 0   
+}
 
-if [ $INSTALL_VINUX_DESKTOP = "yes" ]; then
-    # Update menus
-    echo "Updating main menu"
-    cp -r /usr/share/vinux/menus/* /usr/share/applications
-    chmod -R a+r /usr/share/applications
-    # Force the menus cache to be rebuilt - it happens next time a package is installed with a menu
-    rm -f /usr/share/applications/desktop.*.cache
-fi
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 1 - Declare Functions
 
 function gct {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults "$@"
@@ -56,34 +48,59 @@ function set-string {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string "$1" "$2"
 }
 
-# takes custom key number, name, binding, and action in that order
 function add-customkey {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
 }
 
-if [ $INSTALL_VINUX_KEYBINDINGS = "yes" ]; then
-set-string /apps/gnome_settings_daemon/keybindings/home '<Shift><Control>h'
-set-string /apps/gnome_settings_daemon/keybindings/www '<Shift><Control>w'
-set-string /apps/gnome_settings_daemon/keybindings/email '<Shift><Control>e'
-set-string /apps/gnome_settings_daemon/keybindings/calculator '<Shift><Control>l'
-set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
-set-string /apps/metacity/window_keybindings/maximize_horizontally '<Shift><Control>z'
-set-string /apps/metacity/window_keybindings/maximize_vertically '<Shift><Control>a'
-set-string /apps/metacity/window_keybindings/toggle_maximized '<Shift><Control>x'
-set-string /apps/metacity/window_keybindings/toggle_fullscreen '<Shift><Control>f'
+remove_applet()
+{
+    local line_no prior_line next_line
 
-add-customkey 0 'Orca Restart' '<Shift><Control>o' 'sh -c "killall speech-dispatcher; orca --replace"'
-add-customkey 1 'Gedit' '<Shift><Control>g' 'gedit'
-add-customkey 2 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
-add-customkey 3 'Dictionary' '<Shift><Control>d' 'gnome-dictionary'
-add-customkey 4 'Brasero' '<Shift><Control>b' 'brasero'
-add-customkey 5 'Metacity' '<Shift><Control>F2' 'metacity --replace'
-add-customkey 6	'Compiz' '<Shift><Control>F3' 'compiz --replace'
-add-customkey 7	'Root Nautilus' '<Shift><Control>r' 'gksu nautilus'
-add-customkey 8	'YASR' '<Shift><Control>s' 'gnome-terminal -e yasr'
-add-customkey 9 'Keybindings' '<Shift><Control>k' 'gedit /usr/share/vinux/keybindings.txt'
+    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
+    [ "$line_no" ] || return
+    prior_line=$((line_no-1))
+    next_line=$((line_no+1))
+    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
+    update-gconf-defaults
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 2 - Configuring the Keybindings
+
+echo
+bell
+red
+echo -n "Do you want to install the Vinux Keybindings? [y/n]: "
+read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then  
+
+echo
+blue
+echo "Setting up custom keybindings..."
+green
+echo
+
+set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
+set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
+set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
+
+add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
+add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
+add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'
+add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
+add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
+add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
+add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
+add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/share/vinux/vinux-docs/the-vinux-manual/index.html'
+add-customkey 9	'YASR' '<Control><Alt>s' 'gnome-terminal -e yasr'
+
 add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
 add-customkey 11 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
 add-customkey 12 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
@@ -94,13 +111,7 @@ add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklook
 add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
 add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
 add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
-add-customkey 20 'Monitor off' '<Shift><Control>m' '/usr/bin/monitor-off'
-add-customkey 20 'Monitor on' '<Shift><Control><Alt>m' '/usr/bin/monitor-on'
-
-# Make these work soon:
-#add-customkey 20 'Alt Mute' '<Alt><Mod4>m' /usr/share/vinux/volume-mute
-#add-customkey 21 'Alt Volume up' '<Alt><Mod4>Up' /usr/share/vinux/volume-up
-#add-customkey 22 'Alt Volumd down' '<Alt><Mod4>Down' /usr/share/vinux/volume-down
+add-customkey 20 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
 
 # Compiz
 set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
@@ -137,9 +148,36 @@ gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active
 # Enable Control+Alt+Backspace to log out of Gnome
 gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
 
-else
-add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 3 - Configuring the Desktop
+
+echo
+bell
+red
+echo -n "Do you want to install the Vinux desktop? [y/n]: "
+read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then 
+ 
+    # Update menus
+    echo
+    blue
+    echo "Installing Vinux desktop..."
+    green
+    echo
+
+    cp -r /usr/share/vinux/menus/* /usr/share/applications
+    chmod -R a+r /usr/share/applications
+
+    # Force the menus cache to be rebuilt 
+    rm -f /usr/share/applications/emacs23.desktop
+    rm -f /usr/share/applications/desktop.*.cache
+
 
 # Enable Orca
 gct -s -t bool /desktop/gnome/interface/accessibility true
@@ -150,15 +188,16 @@ set-string /desktop/gnome/applications/at/visual/exec orca
 set-string /apps/empathy/conversation/theme classic
 gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
 
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
 # Set fonts
 set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
 set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
 set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
 set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
 set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
-set-string /desktop/gnome/interface/icon_theme 'Humanity-Dark'
-set-string /desktop/gnome/interface/gtk_theme 'New Wave'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
+set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
 
 # Set mouse pointer
 gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
@@ -168,50 +207,51 @@ set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
 cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
-if [ "`grep Vinux /usr/share/gnome-background-properties/ubuntu-wallpapers.xml`" = "" ]; then
-    sed -i 's:</wallpapers>:  <wallpaper>\n   <name>Vinux Dusk</name>\n    <filename>/usr/share/backgrounds/Vinux-Dusk.jpg</filename>\n    <options>zoom</options>\n    <pcolor>#000000</pcolor> <scolor>#000000</scolor>\n    <shade_type>solid</shade_type>\n  </wallpaper>\n</wallpapers>:' /usr/share/gnome-background-properties/ubuntu-wallpapers.xml
-fi
-fi
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
 
-# Update /etc/skel and /var/lib/gdm
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
+ # Copy user files to /etc/skel
     rsync -r /usr/share/vinux/skel/ /etc/skel
-    cp /etc/skel/bash_aliases_vinux /root
-else
-    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
-fi
-if [ "$ZIPCODE" != "" ]; then
-    sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
-fi
+
+echo
+bell
+red
+echo -n "Please enter your weather zipcode: "; read ZIPCODE
+green
+echo
+
+sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
+
 cp -r /etc/skel/.orca /var/lib/gdm
 chmod -R a+r /etc/skel
 chown -R gdm.gdm /var/lib/gdm/.orca
 
-remove_applet()
-{
-    local line_no prior_line next_line
+remove_applet fast_user_switch
 
-    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
-    [ "$line_no" ] || return
-    prior_line=$((line_no-1))
-    next_line=$((line_no+1))
-    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
-    update-gconf-defaults
-}
+echo
+bell
+red
+echo -n "Enter your username: "; read USER
+green
+echo
 
-if [ "$INSTALL_VINUX_DESKTOP" = "yes" ]; then
-    remove_applet fast_user_switch
+# Copy files from /etc/skel to user directory
+
+rsync -r /etc/skel/ /home/$USER
+rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
+chown -R $USER.$USER /home/$USER
+echo "Don't worry, you can safely ignore this error!"
+
+rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
+cp /etc/skel/.bash_aliases_vinux /root
+
+# prevent ubuntu boot splash being shown
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
+update-grub
+
+# If you don't want the Vinux desktop...
+
+else
+    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
 fi
 
-# Enable beep at grub startup
-sed -i 's/#GRUB_INIT_TUNE/GRUB_INIT_TUNE/' /etc/default/grub
-update-grub >> $LOGFILE 2>&1
-
-# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
-# updated until we say so.
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid
-Pin-Priority: 750' > /etc/apt/preferences.d/vinux-lucid-pin-750
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760

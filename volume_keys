@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This is a fix in case the system is muted after boot
+
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+bell
+if zenity --question --text "Do you want to activate the Vinux Master Volume keybindings";
+then
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_down "<Alt><Mod4>Left"
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_mute "<Alt><Mod4>Down"
+zenity --info --text "Master Volume Up/Down/Mute has now been set to Windows+Alt+Right/Left/Down"
+fi
+exit=0
+

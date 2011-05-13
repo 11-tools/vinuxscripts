@@ -10,4 +10,4 @@ Exec=/usr/share/vinux/EasyInstall/EasyInstall-Multimedia
 Comment[en_GB]=Install a variety of multimedia applications
 Name=EasyInstall-Multimedia
 Comment=Install a variety of multimedia applications
-Icon=/usr/share/icons/gnome/scalable/devices/ipod_mount.svg
+Icon=/usr/share/icons/Nuvola/scalable/apps/gnome-cd.svg
