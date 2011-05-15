@@ -2,7 +2,7 @@
 #
 # This script should only be run after completing the following steps:
 #
-# 1. Download the latest Ubuntu Lucid iso and burn it to CD.
+# 1. Download the latest Ubuntu Natty iso and burn it to CD.
 #
 # 2. Boot from the CD, Press Space, Enter, F5, select 'screen-reader' and 
 # Enter again to boot the live CD.
@@ -59,7 +59,7 @@ echo "Updating software repositories..."
 green
 echo
 
-sudo apt-add-repository ppa:mangler/mangler
+# sudo apt-add-repository ppa:mangler/mangler
 egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 # If you are willing to help test new Vinux packages, uncomment the following:
@@ -74,12 +74,12 @@ sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
 # Add libreoffice repository and purge openoffice
 
-sudo add-apt-repository ppa:libreoffice/ppa
+# sudo add-apt-repository ppa:libreoffice/ppa
 
 echo
 bell
 red
-echo -n "Do you want to remove OpenOffice? [y/n]: "; read ANSWER
+echo -n "Do you want to remove LibreOffice? [y/n]: "; read ANSWER
 green
 echo
 
@@ -87,11 +87,11 @@ if [ "$ANSWER" = "y" ]; then
 
 echo
 blue
-echo "Removing Open Office..."
+echo "Removing Libre Office..."
 green
 echo
 
-sudo apt-get purge -y openoffice.org-common
+sudo apt-get purge -y libreoffice*
  
 fi
 
@@ -171,7 +171,7 @@ echo "Installing default packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker mangler remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speakup speechd-up
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol conkeror gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speakup speechd-up
 
 # Install x-tile from repository
 
@@ -196,13 +196,13 @@ sudo apt-get purge -y bluez-alsa
 
 # Install gnome-app-install
 
-echo
-blue
-echo "Installing gnome-app-install..."
-green
-echo
+# echo
+# blue
+# echo "Installing gnome-app-install..."
+# green
+# echo
 
-sudo apt-get install -y --force-yes gnome-app-install 
+# sudo apt-get install -y --force-yes gnome-app-install 
 
 # Installing Vinux Manual
 
