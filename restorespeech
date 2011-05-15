@@ -52,37 +52,15 @@ sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
 sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
-if [ "`grep 'sleep 8' /etc/init.d/pulseaudio`" = "" ]; then
-    sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 8\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
+if [ "`grep 'sleep 12' /etc/init.d/pulseaudio`" = "" ]; then
+    sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 12\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 2 - Configuring Speech
 
-# Rebuild speakup from source
 
-echo
-blue
-echo "Rebuilding speakup from source..."
-green
-echo
-
-apt-get install -y module-assistant 
-echo y | m-a a-i -f speakup-source -q
-modprobe speakup_soft
-
-# Install speechd-up
-if [ -f /etc/init.d/speechd-up ]; then
-    /etc/init.d/speechd-up stop 
-fi
-apt-get install -y speechd-up 
-
-echo
-blue
-echo "Setting up speech packages..."
-green
-echo
 
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
