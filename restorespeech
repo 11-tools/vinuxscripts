@@ -60,8 +60,6 @@ fi
 
 # Stage 2 - Configuring Speech
 
-
-
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 
