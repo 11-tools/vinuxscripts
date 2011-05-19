@@ -59,7 +59,7 @@ echo "Updating software repositories..."
 green
 echo
 
-# sudo apt-add-repository ppa:mangler/mangler
+# sudo apt-add-repository ppa:mangler/mangler ### not available ?
 egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 # If you are willing to help test new Vinux packages, uncomment the following:
@@ -126,7 +126,7 @@ Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
 sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
 echo 'Package: *
 Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
+Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760 ### permissions issue?
 
 # Import the Vinux/Ubuntu Team repository key.
 
@@ -171,28 +171,28 @@ echo "Installing default packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speechd-up
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speechd-up # speechd-up problem
 
 # Install x-tile from repository
 
-echo
-blue
-echo "installing x-tile..."
-green
-echo
+# echo
+# blue
+# echo "installing x-tile..."
+# green
+# echo
 
-sudo wget http://www.giuspen.com/software/x-tile_1.8.6-1_all.deb
-sudo dpkg -i x-tile_1.8.6-1_all.deb
+# sudo wget http://www.giuspen.com/software/x-tile_1.8.6-2_all.deb
+# sudo dpkg -i x-tile_1.8.6-2_all.deb
 
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
-echo
-blue
-echo "Removing bluez-alsa..."
-green
-echo
+# echo
+# blue
+# echo "Removing bluez-alsa..."
+# green
+# echo
 
-sudo apt-get purge -y bluez-alsa 
+# sudo apt-get purge -y bluez-alsa # removed as test
 
 # Install gnome-app-install
 
