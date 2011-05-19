@@ -5,7 +5,7 @@
 # 1. Download the latest Ubuntu Natty iso and burn it to CD.
 #
 # 2. Boot from the CD, Press Space, Enter, F5, select 'screen-reader' and 
-# Enter again to boot the live CD.
+# Enter again twice to boot the live CD.
 #
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 #
@@ -59,7 +59,6 @@ echo "Updating software repositories..."
 green
 echo
 
-# sudo apt-add-repository ppa:mangler/mangler ### not available ?
 egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
 echo '# Repositories supporting vinux packages.
 # If you are willing to help test new Vinux packages, uncomment the following:
@@ -72,28 +71,9 @@ sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
-# Add libreoffice repository and purge openoffice
+# Add libreoffice repository 
 
-# sudo add-apt-repository ppa:libreoffice/ppa
-
-echo
-bell
-red
-echo -n "Do you want to remove LibreOffice? [y/n]: "; read ANSWER
-green
-echo
-
-if [ "$ANSWER" = "y" ]; then  
-
-echo
-blue
-echo "Removing Libre Office..."
-green
-echo
-
-sudo apt-get purge -y libreoffice*
- 
-fi
+sudo add-apt-repository ppa:libreoffice/ppa
 
 # Add ubuntu-tweak repository
 
@@ -139,6 +119,7 @@ echo
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF
 
 # Import the Extras key
+
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -171,38 +152,28 @@ echo "Installing default packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speechd-up # speechd-up problem
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak speechd-up # speech-dispatcher/speechd-up problem
 
 # Install x-tile from repository
 
-# echo
-# blue
-# echo "installing x-tile..."
-# green
-# echo
+echo
+blue
+echo "installing x-tile..."
+green
+echo
 
-# sudo wget http://www.giuspen.com/software/x-tile_1.8.6-2_all.deb
-# sudo dpkg -i x-tile_1.8.6-2_all.deb
+sudo wget http://www.giuspen.com/software/x-tile_1.8.6-2_all.deb
+sudo dpkg -i x-tile_1.8.6-2_all.deb #install gnome-applet package?
 
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
-# echo
-# blue
-# echo "Removing bluez-alsa..."
-# green
-# echo
+echo
+blue
+echo "Removing bluez-alsa..."
+green
+echo
 
-# sudo apt-get purge -y bluez-alsa # removed as test
-
-# Install gnome-app-install
-
-# echo
-# blue
-# echo "Installing gnome-app-install..."
-# green
-# echo
-
-# sudo apt-get install -y --force-yes gnome-app-install 
+sudo apt-get purge -y bluez-alsa
 
 # Installing Vinux Manual
 
@@ -249,7 +220,7 @@ echo
 
 sudo apt-get purge -y openoffice.org-common
 
-sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
+sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets chromium-browser gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
 fi
 
 # Install some 3D Games - not accessible with screen-reader
