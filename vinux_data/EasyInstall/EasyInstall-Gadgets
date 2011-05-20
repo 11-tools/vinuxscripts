@@ -13,7 +13,7 @@ if [ ! -e $a$b/.Gadgets ]; then
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Desktop Gadgets Suite? None of these applications are accessible with a screen-reader. This will install the screenlets, gdesklets and google-gadgets-gtk packages!"; then
+if zenity --question --text "Do you want to install the Vinux Desktop Gadgets Suite? None of these applications are accessible with a screen-reader. This will install the screenlets and gdesklets !"; then
 
 # Step 2: Get user name and ask for admin password
 
@@ -25,7 +25,7 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu apt-get -y install screenlets gdesklets google-gadgets-gtk | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y install screenlets gdesklets | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 touch /$a$b/.Gadgets
 # Step 5: Delete desktop icon if it still exists and display the success message
@@ -61,7 +61,7 @@ elif zenity --question --text "Do you want to remove the Vinux Desktop Gadgets S
 
 gksu su
 
-set -o pipefail ; if gksu apt-get -y remove screenlets gdesklets google-gadgets-gtk | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y remove screenlets gdesklets | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
 
 rm /$a$b/.Gadgets
 

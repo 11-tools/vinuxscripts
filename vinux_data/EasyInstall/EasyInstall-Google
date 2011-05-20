@@ -13,7 +13,7 @@ if [ ! -e $a$b/.Google ]; then
 
 # Step 1: Ask for confirmation - if cancelled go to Step 8
 
-if zenity --question --text "Do you want to install the Vinux Google Suite? None of these applications are accessible with a screen-reader. This will install the prism-google-groups, prism-google-mail, chromium-browser, prism-google-calendar and prism-google-docs packages!"; then
+if zenity --question --text "Do you want to install the Vinux Google Suite? None of these applications are accessible with a screen-reader. This will only install the chromium-browser package!"; then
 
 # Step 2: Get user name and ask for admin password
 
@@ -25,7 +25,7 @@ set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-cl
 
 # Step 4: Update packages and check that it was successful - if not go to Step 6
 
-set -o pipefail ; if gksu apt-get -y install prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y install chromium-browser | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
 
 touch /$a$b/.Google
 
@@ -62,7 +62,8 @@ elif zenity --question --text "Do you want to remove the Vinux Google Suite? Thi
 
 gksu su
 
-set -o pipefail ; if gksu apt-get -y remove prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
+set -o pipefail ; if gksu apt-get -y remove chromium-browser
+| zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
 
 rm /$a$b/.Google
 
