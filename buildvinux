@@ -201,7 +201,7 @@ sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package
 
 # Open emacspeak in customizable mode
 
-sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+# sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
