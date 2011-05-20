@@ -9,5 +9,5 @@ Comment[en_GB]=Advanced Audio Desktop
 Exec=xterm -maximized -e aoss emacspeak -nw
 Name=Emacspeak
 Comment=Advanced Audio Desktop
-Icon=/usr/share/icons/gnome/scalable/emotes/face-cool.svg
+Icon=/usr/share/icons/Gorilla/scalable/emblems/emblem-cool.svg
 Categories=GNOME;GTK;Accessibility

@@ -4,7 +4,7 @@
 Categories=Development;
 Comment=Python Interpreter (v2.6)
 Exec=/usr/bin/python2.6
-Icon=/usr/share/pixmaps/python2.6.xpm
+Icon=/usr/share/pixmaps/python.xpm
 Name=Python (v2.6)
 NoDisplay=false
 StartupNotify=true
