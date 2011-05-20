@@ -71,10 +71,6 @@ sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
-# Add libreoffice repository 
-
-sudo add-apt-repository ppa:libreoffice/ppa
-
 # Add ubuntu-tweak repository
 
 sudo add-apt-repository ppa:tualatrix/ppa
