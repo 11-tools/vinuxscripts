@@ -58,7 +58,7 @@ fi
 
 # Step 9: Remove Packages - from Step 0
 
-elif zenity --question --text "Do you want to remove the Vinux Google Suite? This will remove the prism-google-groups, prism-google-mail, chromium-browser, prism-google-calendar and prism-google-docs packages!"; then
+elif zenity --question --text "Do you want to remove the Vinux Google Suite? This will remove the chromium-browser package!"; then
 
 gksu su
 
