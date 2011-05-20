@@ -82,11 +82,12 @@ sudo add-apt-repository ppa:tualatrix/ppa
 # Add Speech-Dispatcher Daily Build
 
 sudo add-apt-repository ppa:dusek/spd-daily
+sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 
 # Add Orca Daily Build
 
 sudo add-apt-repository ppa:dusek/gnome-orca-daily
-# need to change natty to maverick in /etc/apt/source.list.d/dusek-spd-daily-natty.list
+
 
 # Add medibuntu repository - uncommented it since it seems to be up again
 
