@@ -162,7 +162,7 @@ sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-man
 
 # Force update of speech-dispatcher/python-speechd from the daily repositories
 
-sudo apt-get install -t dusek-spd-daily speech-dispatcher python-speechd
+sudo apt-get install -t dusek-spd-daily-natty speech-dispatcher python-speechd
 
 # Install x-tile from repository
 
