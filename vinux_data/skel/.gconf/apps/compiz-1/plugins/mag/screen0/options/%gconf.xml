@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="zoom_out_button" mtime="1306336052" type="string">
+		<stringvalue>&lt;Shift&gt;&lt;Super&gt;Button3</stringvalue>
+	</entry>
+	<entry name="zoom_in_button" mtime="1306336044" type="string">
+		<stringvalue>&lt;Shift&gt;&lt;Super&gt;Button1</stringvalue>
+	</entry>
+</gconf>
