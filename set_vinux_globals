@@ -167,9 +167,9 @@ echo
 
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.local/share/orca/orca-customizations.py
 
-# cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
-# chmod -R a+r /etc/skel
-# chown -R gdm.gdm /var/lib/gdm/.local/share/orca
+cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
+chmod -R a+r /etc/skel
+chown -R gdm.gdm /var/lib/gdm/.local/share/orca
 
 remove_applet fast_user_switch
 
