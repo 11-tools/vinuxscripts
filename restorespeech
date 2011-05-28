@@ -41,6 +41,16 @@ function bell {
 # Stage 1 - Configure PulseAudio
 
 # Set pulseaudio to run as system-wide daemon.
+
+echo
+bell
+red
+echo -n "Do you want to run speakup and pulseaudio as a system service? [y/n]: "; read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then   
+
 echo
 blue
 echo "Setting pulseaudio to run system-wide..."
@@ -50,11 +60,14 @@ echo
 sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
 sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
-sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
+sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 if [ "`grep 'sleep 3' /etc/init.d/pulseaudio`" = "" ];then
 sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 3\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
+fi
+
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
