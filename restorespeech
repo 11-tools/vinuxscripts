@@ -67,15 +67,15 @@ sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 3\n\tstart-stop-daemon\1--sta
 fi
 fi
 
-
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 2 - Configuring Speech
 
 # Enable speakup
 
+if [ "`grep 'speakup_soft start=1' /etc/modules`" = "" ]; then
 echo "speakup_soft start=1" >> /etc/modules
+fi
 
 # Enable speech-dispatcher to run system-wide
 sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
@@ -95,4 +95,3 @@ fi
 if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
     sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
 fi
-
