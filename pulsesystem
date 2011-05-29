@@ -52,7 +52,5 @@ sed -i 's/load-module module-native-protocol-unix$/load-module module-native-pro
 if [ "`grep 'sleep 3' /etc/init.d/pulseaudio`" = "" ];then
 sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 3\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
-fi
 
-
-
+shutdown -r now

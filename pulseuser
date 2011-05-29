@@ -46,4 +46,4 @@ sed -i 's/^ *; *autospawn = no/autospawn = yes/' /etc/pulse/client.conf
 
 cp /usr/share/vinux/pulseaudio.desktop /etc/xdg/autostart/pulseaudio.desktop 
 
-
+shutdown -r now
