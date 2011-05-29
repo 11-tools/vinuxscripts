@@ -4,7 +4,9 @@ all:
 install:
 	install -d $(DESTDIR)/usr/bin $(DESTDIR)/usr/share/vinux
 	install buildvinux $(DESTDIR)/usr/bin
-	install restorespeech $(DESTDIR)/usr/bin
+	install configurespeech $(DESTDIR)/usr/bin
+	install pulseuser $(DESTDIR)/usr/bin
+	install pulsesystem $(DESTDIR)/usr/bin
 	install set_vinux_globals $(DESTDIR)/usr/bin
 	install buildvinuxiso $(DESTDIR)/usr/bin
 	install volume_keys $(DESTDIR)/usr/bin
