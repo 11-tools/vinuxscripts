@@ -299,7 +299,7 @@ echo "Configuring speech..."
 green
 echo
 
-sudo /usr/bin/restorespeech
+sudo /usr/bin/pulsesystem
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
