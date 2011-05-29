@@ -1,8 +1,6 @@
 #!/bin/bash
 #
-# This script can be run anytime to restore speech to a working state on a system.  
-# Speech currently is often broken by system updates from Ubuntu. To run the script
-# type: 'sudo pulsesystem'.
+# This script can be run to switch pulseaudio into system mode - restart required
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
