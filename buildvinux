@@ -308,6 +308,7 @@ echo
 
 sudo /usr/bin/pulsesystem
 
+fi
 # Stage 6 - Configure Speech
 
 # Run the restorespeech script
