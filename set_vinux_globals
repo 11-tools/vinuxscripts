@@ -111,8 +111,8 @@ add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklook
 add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
 add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
 add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
-add-customkey 20 'Pulse System' '<Control><Alt>s' 'gksu pulsesystem'
-add-customkey 21 'Pulse User' '<Control><Alt>u' 'gksu pulseuser'
+# add-customkey 20 'Pulse System' '<Control><Alt>s' 'gksu pulsesystem'
+# add-customkey 21 'Pulse User' '<Control><Alt>u' 'gksu pulseuser'
 
 # Enable Control+Alt+Backspace to log out of Gnome
 gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
