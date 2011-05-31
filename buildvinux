@@ -334,6 +334,7 @@ echo
 echo
 bell
 red
-echo "Press any key to exit..."
+echo "Press any key to restart..."
 read
 reset
+shutdown -r now

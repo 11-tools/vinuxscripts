@@ -48,4 +48,4 @@ cp /usr/share/vinux/pulseaudio.desktop /etc/xdg/autostart/pulseaudio.desktop
 
 sed -i".bak" '/sleep 3/d' /etc/init.d/pulseaudio
 
-shutdown -r now
+# shutdown -r now
