@@ -49,7 +49,7 @@ echo "speakup_soft start=1" >> /etc/modules
 fi
 
 # Enable speech-dispatcher to run system-wide
-sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
+# sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 
 # Edit speechd.conf to enable ibmtts.
 sed -i 's/#AddModule "ibmtts"/AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
