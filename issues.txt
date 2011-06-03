@@ -137,4 +137,4 @@ Create tool to aid in supporting remote blind users.  It should forward VNC port
 pulseaudio stream, and it should only be accessibly by support team members, and only while the
 remote user allows access.
 
-Create accessibe Server version of Ubuntu Lucid with speakup.
+Create accessible Server version of Ubuntu Lucid with speakup.
