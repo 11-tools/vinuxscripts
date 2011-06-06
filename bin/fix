@@ -10,25 +10,25 @@ if [ "$TERM" == "linux" ]; then # Check to see whether you are in a console sess
 
 # If you are in a console session restart pulseaudio, speech-dispatcher and speechd-up (speakup)
 
-espeak "Restarting audio system - please enter your password" 
+espeak "Generated message, Restarting audio system. Please enter your password" 
 
 sudo /etc/init.d/pulseaudio restart
 
-sudo killall speech-dispatcher
+sudo killall -9 speech-dispatcher
 
-espeak "Audio system restarted - now restarting speakup" 
+espeak "Audio system restarted - now restarting speeched up" 
 
 sudo /etc/init.d/speechd-up restart
 
 else # if you are not in a console restart  pulseaudio, speech-dispatcher and orca
 
-espeak "Restarting audio system - please enter your password" 
+espeak "Generated message, Restarting audio system. Please enter your password" 
 
 gksudo /etc/init.d/pulseaudio restart 
 
-sudo killall speech-dispatcher
+sudo killall -9 speech-dispatcher
 
-espeak "Audio system restarted - now restarting orca" 
+espeak "Audio system restarted,  now restarting orca" 
 
 orca --replace
 
