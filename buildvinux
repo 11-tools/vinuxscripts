@@ -158,12 +158,13 @@ echo "Installing default packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu \
-nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack \
-gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data \
-pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw \
-gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder alsa-oss ubuntu-tweak python-gnomeapplet talking-clock ttytter \
-orca-teacher speechd-up # emacspeak cpufreqd pastebinit
+sudo apt-get install -y --force-yes \
+acpi aptitude nautilus-gksu ubiquity-frontend-gtk gparted testdisk gedit gnome-orca remastersys speechd-up speakup-tools aptoncd wajig ubuntu-tweak \
+compizconfig-settings-manager vlock lfm  lynx-cur pdmenu sysv-rc-conf deborphan pcmanfm alpine orca-teacher partimage speechd-up \
+irssi pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype pavucontrol ceni alsa-oss python-gnomeapplet audiobook-converter gespeaker gtk-recordmydesktop \
+talking-clock alarm-clock emacspeak nautilus-open-terminal nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper-plugins  thunderbird soundConverter startupmanager pybackpack \
+gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more gnome-color-chooser gtk gtk-chtheme fslint \
+bareftp gwget  isomaster geditpdf monitor-toggle  ttytter  gnome-specimen gcolor2 bluefish gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-parcellite  dlumepastebinit gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld ntp dasher easystroke gnome-mousetrap gxneur gok surfraw wordgrinder ttytter \
 
 # Force update of speech-dispatcher/python-speechd from the daily repositories
 
@@ -189,6 +190,11 @@ green
 echo
 
 sudo apt-get purge -y bluez-alsa
+
+# Set up irssi global configuration and soundpack
+
+cp irssi/irssi.conf /etc/irssi.conf
+cp -Rf irssi/scripts/* /usr/share/irssi/scripts
 
 # Installing Vinux Manual
 
