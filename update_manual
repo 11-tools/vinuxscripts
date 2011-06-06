@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cd /usr/share/vinux
 if [ -d "vinux-docs" ]; then
