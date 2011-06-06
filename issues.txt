@@ -138,3 +138,9 @@ pulseaudio stream, and it should only be accessibly by support team members, and
 remote user allows access.
 
 Create accessibe Server version of Ubuntu Lucid with speakup.
+
+Track down espeak-data issue where after being installed espeak switches to another language
+
+Determine why gksu promtps for passwords for every event which sudo should handle, upstream issue
+
+Figure out permitting speakup and associated tools to gain access to sound system when not logged into a user, consolekit?
