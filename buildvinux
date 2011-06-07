@@ -158,6 +158,7 @@ echo "Installing default packages..."
 green
 echo
 
+
 sudo apt-get install -y --force-yes acpi aptitude nautilus-gksu ubiquity-frontend-gtk gparted testdisk gedit gnome-orca remastersys speechd-up speakup-tools aptoncd wajig ubuntu-tweak compizconfig-settings-manager vlock lfm  lynx-cur pdmenu sysv-rc-conf deborphan pcmanfm alpine orca-teacher partimage speechd-up irssi pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype pavucontrol ceni alsa-oss python-gnomeapplet audiobook-converter gespeaker gtk-recordmydesktop talking-clock alarm-clock emacspeak nautilus-open-terminal nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper-plugins thunderbird soundConverter startupmanager pybackpack gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more gnome-color-chooser gtk-chtheme fslint bareftp gwget isomaster geditpdf monitor-toggle  ttytter  gnome-specimen gcolor2 bluefish gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk parcellite dlume pastebinit gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld ntp dasher easystroke gnome-mousetrap gxneur gok surfraw wordgrinder ttytter 
 
 # Force update of speech-dispatcher/python-speechd from the daily repositories
