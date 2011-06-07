@@ -71,9 +71,7 @@ echo "Removing applications to make room on the CD"
 green
 echo
 
-apt-get -qq purge -y \
-libreoffice* gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core \
-ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share
+apt-get -qq purge -y libreoffice* gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share
 
 apt-get -qq autoremove -y
 
@@ -85,7 +83,7 @@ chmod -R a+r /etc/skel
 sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
 
 echo branding Vinux console
-sudo echo "Vinux $RELEASE_SPACES \n \l" > issue
+sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
 
 fi
 
