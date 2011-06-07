@@ -100,19 +100,19 @@ sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medi
 # Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
 # updated until we say so.
 
-echo
-blue
-echo "Pinning Vinux repositories..."
-green
-echo
+#echo
+#blue
+#echo "Pinning Vinux repositories..."
+#green
+#echo
 
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid
-Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
-sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760 
+#echo 'Package: *
+#Pin: release o=LP-PPA-vinux-vinux-lucid
+#Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
+#sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
+#echo 'Package: *
+#Pin: release o=LP-PPA-vinux-vinux-lucid-testing
+#Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760 
 
 # Import the Vinux/Ubuntu Team repository key.
 
