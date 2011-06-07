@@ -29,7 +29,12 @@ $VERSION = '0.0.3';
 
 sub pub_msg {
         my ($server,$msg,$nick,$address,$target) = @_;
-system("$soundCommand /usr/share/irssi/scripts/soundpack/publicmsg.ogg &");
+
+        my $winitem = $server->window_item_find($target);
+        return unless defined $winitem;
+        return if $winitem->window() == Irssi::active_win();
+
+        system("$soundCommand /usr/share/irssi/scripts/soundpack/publicmsg.ogg &");
 }
 
 #--------------------------------------------------------------------
@@ -38,7 +43,13 @@ system("$soundCommand /usr/share/irssi/scripts/soundpack/publicmsg.ogg &");
 
 sub pri_msg {
         my ($server,$msg,$nick,$address,$target) = @_;
-system("$soundCommand /usr/share/irssi/scripts/soundpack/privatemsg.ogg &");
+
+
+        my $winitem = $server->window_item_find($target);
+        return unless defined $winitem;
+        return if $winitem->window() == Irssi::active_win();
+
+        system("$soundCommand /usr/share/irssi/scripts/soundpack/privatemsg.ogg &");
 }
 
 #--------------------------------------------------------------------
@@ -48,4 +59,3 @@ system("$soundCommand /usr/share/irssi/scripts/soundpack/privatemsg.ogg &");
 Irssi::signal_add_last("message public", "pub_msg");
 Irssi::signal_add_last("message private", "pri_msg");
 #- end
-
