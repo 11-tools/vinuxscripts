@@ -193,7 +193,7 @@ cp -Rf irssi/scripts/* /usr/share/irssi/scripts
 
 # Installing Vinux Manual
 
-#sudo ./update_manual
+sudo ./update_manual
 
 # Clean up any packages we don't need
 
@@ -211,7 +211,7 @@ sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package
 
 # Open emacspeak in customizable mode
 
-# sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -283,10 +283,10 @@ fi
 
 # Stage 4 - Configure Desktop and Keybindings
 
-# First copy Vinux specific files
+# First copy Vinux specific files - this is done in the makefile with 'sudo make install'
 
-sudo cp -f bin/* /usr/bin
-sudo cp -Rf vinux_data /usr/share/vinux
+# sudo cp -f bin/* /usr/bin
+# sudo cp -Rf vinux_data /usr/share/vinux
 
 # Run the set_vinux_globals script
 
