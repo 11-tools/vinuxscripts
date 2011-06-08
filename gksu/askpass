@@ -1,0 +1,2 @@
+#!/bin/bash
+zenity  --title "Enter Password" --entry --hide-text --text "Enter your password to run `basename $SUDO_COMMAND`"

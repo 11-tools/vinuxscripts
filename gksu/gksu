@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function help () {
+    echo 'This is the accessible replacement for gksu.'
+    echo ''
+    echo 'Usage: /usr/bin/gksudo [-u <user>] [options] <command>'
+    echo ''
+    echo '  --user <user>, -u <user>'
+    echo '    Call <command> as the specified user.'
+    echo '  --preserve-env, -k'
+    echo '    Preserve the current environments, does not set $HOME'
+    echo '    nor $PATH, for example.'
+    echo '  --login, -l'
+    echo '    Make this a login shell. Beware this may cause'
+    echo '    problems with the Xauthority magic. Run xhost'
+    echo '    to allow the target user to open windows on your'
+    echo '    display!'
+}
+
+TEMP=`getopt -o "+?hu:lpm:kt:i:gdsSwP::aD:" --long \
+help,login,preserv-env,preserve-env,user:,print-pass,message:,title:,icon:,disable-grab::,ssh-fwd,debug,sudo-mode,su-mode,prompt::,desktop:,description: \
+-n 'gksu' -- "$@"`
+
+if [ $? != 0 ] ; then echo "No command given.  Exiting..." >&2 ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+OPTIONS=""
+while true ; do
+    case "$1" in
+    --help|-h|'-?') help; exit 0 ;;
+    --login|-l) OPTIONS="$OPTIONS -i" ;;
+    --preserv-env|-k) OPTIONS="$OPTIONS -E" ;;
+    --preserve-env|-k) OPTIONS="$OPTIONS -E" ;;
+    --user|-u) OPTIONS="$OPTIONS -u $2" ; shift ;;
+    --print-pass|-p) echo "--print-pass not supported... Exiting" ; exit 1 ;;
+    --message|-m) shift ;;
+    --title|-t) ;;
+    --icon|-i) ;;
+    --disable-grab|-g) shift ;;
+    --ssh-fwd|-s) ;;
+    --debug|-d) ;;
+    --sudo-mode|-S) ;;
+    --su-mode|-w) ;;
+    --prompt|-P) shift ;;
+    --desktop|-D) shift ;;
+    --description|-D) shift ;;
+    --) shift ; break ;;
+    *) echo "Invalid option $1" ; exit 1 ;;
+    esac
+    shift
+done
+
+export SUDO_ASKPASS="/usr/bin/askpass"
+export SUDO_COMMAND=$1
+sudo -A $OPTIONS -- "$@"
