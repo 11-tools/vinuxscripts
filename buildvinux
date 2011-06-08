@@ -93,9 +93,11 @@ echo "Adding medibuntu repository..."
 green
 echo
 
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get -qq update && sudo apt-get --yes -qq --allow-unauthenticated install medibuntu-keyring && sudo apt-get -qq update 
+sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get -qq update &&
+sudo apt-get --yes -qq --allow-unauthenticated install medibuntu-keyring && sudo apt-get -qq update
 
-sudo apt-get -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
+
+sudo apt-get -y -q --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
 
 # Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
 # updated until we say so.
@@ -193,7 +195,7 @@ cp -Rf irssi/scripts/* /usr/share/irssi/scripts
 
 # Installing Vinux Manual
 
-sudo ./update_manual
+sudo update_manual
 
 # Clean up any packages we don't need
 
@@ -203,7 +205,7 @@ echo "Removing unnecessary packages..."
 green
 echo
 
-sudo apt-get -y autoremove 
+sudo apt-get -y -qq autoremove 
 
 # Switch off automatic updates notification message
 
