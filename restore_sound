@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# This will check to see if a currennt known state can be loaded
+# Otherwise will try quietly to initialise any devices to a default state.
+# I do not know if Ubuntu has somethign similar, surely would do. This is a cheap temparoory fix.
+# Rob Whyte
+if [[ -e /var/lib/alsa/asound.state ]]; then
+alsactl -g restore
+else
+alsactl -g init 0
+fi
