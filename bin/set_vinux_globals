@@ -170,7 +170,7 @@ sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.local/share/orc
 
 cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
 chmod -R a+r /etc/skel
-chown -R gdm.gdm /var/lib/gdm/.local/share/orca
+chown -R gdm:gdm /var/lib/gdm/.local/share/orca
 
 remove_applet fast_user_switch
 
@@ -186,15 +186,16 @@ echo
 
 rsync -r /etc/skel/ /home/$USER
 rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
-chown -R $USER.$USER /home/$USER
-echo "Don't worry, you can safely ignore this error!"
+chown -Rf $USER.$USER /home/$USER
+#echo "Don't worry, you can safely ignore this error!"
 
 rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
 cp /etc/skel/.bash_aliases_vinux /root
 
 # prevent ubuntu boot splash being shown
 
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
+
+#sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
 update-grub
 
 # If you don't want the Vinux desktop...
