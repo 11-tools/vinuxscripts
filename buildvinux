@@ -161,7 +161,7 @@ green
 echo
 
 
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder alsa-oss ubuntu-tweak python-gnomeapplet talking-clock ttytter orca-teacher speechd-up git-core pastebinit emacspeak cfh
+sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder alsa-oss ubuntu-tweak python-gnomeapplet talking-clock ttytter orca-teacher speechd-up git-core pastebinit emacspeak
 
 # Force update of speech-dispatcher/python-speechd from the daily repositories
 
@@ -340,16 +340,9 @@ sudo configurespeech
 echo
 bell
 blue
-echo "Done!  Reboot and enjoy your new Vinux-like environment."
-echo "Please report bugs to vinux-development@googlegroups.com"
-echo
-
-echo
-bell
-red
 echo "You are done, Press any key to restart your system..."
 echo "Or, to continue working push control C now..."
 read
 reset
-#shutdown -r now
+shutdown -r now
 
