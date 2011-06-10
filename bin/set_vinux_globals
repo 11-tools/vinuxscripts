@@ -114,6 +114,11 @@ add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklook
 # add-customkey 20 'Pulse System' '<Control><Alt>s' 'gksu pulsesystem'
 # add-customkey 21 'Pulse User' '<Control><Alt>u' 'gksu pulseuser'
 
+# Set up volume keys
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_down "<Alt><Mod4>Left"
+gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_mute "<Alt><Mod4>Down"
+
 # Enable Control+Alt+Backspace to log out of Gnome
 gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
 
