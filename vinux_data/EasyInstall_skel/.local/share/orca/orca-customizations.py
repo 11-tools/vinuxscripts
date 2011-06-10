@@ -153,15 +153,15 @@ def volumedetect():
     #If the master channel is muted unmute everything pulseaudio typically mutes
     if mute != "":
         commands.getoutput('amixer sset \'Master\',0 unmute')
-        commands.getoutput('amixer sset \'Headphone\',0 unmute')
+        commands.getoutput('amixer sset \'PCM\',0 unmute')
         commands.getoutput('amixer sset \'Speaker\',0 unmute')
     #If the volume value is 0%, increasing volume to 58%.
     volume = commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
     if volume == "0":
         commands.getoutput('amixer set \'Master\',0 58%')
-    volume = commands.getoutput('amixer get \'Headphone\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
+    volume = commands.getoutput('amixer get \'PCM\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
     if volume == "0":
-        commands.getoutput('amixer set \'Headphone\',0 58%')
+        commands.getoutput('amixer set \'PCM\',0 58%')
     volume = commands.getoutput('amixer get \'Speaker\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
     if volume == "0":
         commands.getoutput('amixer set \'Speaker\',0 58%')
@@ -201,12 +201,12 @@ def togglevolumemute(script, inputEvent=None):
     #Following command toggle master volume mute on/off
     if mutestatus!='':
         commands.getoutput('amixer sset \'Master\',0 unmute')
-        commands.getoutput('amixer sset \'Headphone\',0 unmute')
+        commands.getoutput('amixer sset \'PCM\',0 unmute')
         commands.getoutput('amixer sset \'Speaker\',0 unmute')
         orca.speech.speak('Mute off.')
     else:
         commands.getoutput('amixer sset \'Master\',0 mute')
-        commands.getoutput('amixer sset \'Headphone\',0 mute')
+        commands.getoutput('amixer sset \'PCM\',0 mute')
         commands.getoutput('amixer sset \'Speaker\',0 mute')
 #End toggle volume function
 
