@@ -97,7 +97,7 @@ add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
 add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
 add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
 add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
-add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
+# add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
 add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/share/vinux/vinux-docs/the-vinux-manual/index.html'
 add-customkey 9	'Fix Audio' '<Control><Alt>f' 'fix'
 

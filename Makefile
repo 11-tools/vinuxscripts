@@ -12,6 +12,7 @@ install:
 	install bin/volume_keys $(DESTDIR)/usr/bin
 	install bin/update_manual $(DESTDIR)/usr/bin
 	install bin/fix $(DESTDIR)/usr/bin
+	install bin/restore_sound $(DESTDIR)/usr/bin
 	install gksu/gksu $(DESTDIR)/usr/bin
 	install gksu/askpass $(DESTDIR)/usr/bin
 	cp -r --preserve=mode vinux_data/* $(DESTDIR)/usr/share/vinux
