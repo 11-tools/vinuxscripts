@@ -339,17 +339,10 @@ sudo configurespeech
 
 echo
 bell
-blue
-echo "Done!  Reboot and enjoy your new Vinux-like environment."
-echo "Please report bugs to vinux-development@googlegroups.com"
-echo
-
-echo
-bell
 red
 echo "You are done, Press any key to restart your system..."
 echo "Or, to continue working push control C now..."
 read
 reset
-#shutdown -r now
+shutdown -r now
 
