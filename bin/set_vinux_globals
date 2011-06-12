@@ -91,9 +91,7 @@ set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
 set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
 
 # Set up volume keys
-set-string /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"
-set-string /apps/gnome_settings_daemon/keybindings/volume_down "<Alt><Mod4>Left"
-set-string /apps/gnome_settings_daemon/keybindings/volume_mute "<Alt><Mod4>Down"
+/usr/bin/volume_keys
 
 add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
 add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
