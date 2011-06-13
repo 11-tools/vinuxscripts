@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=emacs
+Name[en_GB]=Emacspeak
+Exec=xterm -e emacspeak -nw
+Comment[en_GB]=Emacspeak - The complete audio desktop!
+Name=Emacspeak
+Comment=Emacspeak - The complete audio desktop!
+Icon=emacs
