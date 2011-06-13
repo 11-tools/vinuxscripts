@@ -7,6 +7,6 @@ if [ ! -s /tmp/index.google ];then
 zenity --error --text "There is no internet connection!"
 else
 apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
-apt-get install ubuntu-restricted-extras non-free-codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Installing packages, please wait..."
+apt-get install -y --force-yes ubuntu-restricted-extras non-free-codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
 zenity --info --text "Installation Complete!" 
 fi 
