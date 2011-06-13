@@ -36,12 +36,10 @@ function bell {
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 bell
-if zenity --question --text "Do you want to activate the Vinux Master Volume keybindings";
-then
+
 gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_up "<Alt><Mod4>Right"
 gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_down "<Alt><Mod4>Left"
 gconftool-2 --type string --set /apps/gnome_settings_daemon/keybindings/volume_mute "<Alt><Mod4>Down"
-zenity --info --text "Master Volume Up/Down/Mute has now been set to Windows+Alt+Right/Left/Down"
-fi
+
 exit=0
 
