@@ -82,7 +82,7 @@ sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 
 # Add Orca Daily Build
 
-sudo add-apt-repository ppa:dusek/gnome-orca-daily
+# sudo add-apt-repository ppa:dusek/gnome-orca-daily
 
 
 # Add medibuntu repository - uncommented it since it seems to be up again
