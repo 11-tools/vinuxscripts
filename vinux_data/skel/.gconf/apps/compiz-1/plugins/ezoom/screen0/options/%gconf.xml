@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="autoscale_min" mtime="1306336540" type="float" value="0.25"/>
+	<entry name="fit_to_window_key" mtime="1306335877" type="string">
+		<stringvalue>&lt;Super&gt;z</stringvalue>
+	</entry>
+	<entry name="fit_to_zoom_key" mtime="1306335901" type="string">
+		<stringvalue>&lt;Super&gt;w</stringvalue>
+	</entry>
+	<entry name="pan_down_key" mtime="1306335850" type="string">
+		<stringvalue>&lt;Super&gt;Down</stringvalue>
+	</entry>
+	<entry name="pan_up_key" mtime="1306335843" type="string">
+		<stringvalue>&lt;Super&gt;Up</stringvalue>
+	</entry>
+	<entry name="pan_right_key" mtime="1306335837" type="string">
+		<stringvalue>&lt;Super&gt;Right</stringvalue>
+	</entry>
+	<entry name="pan_left_key" mtime="1306335830" type="string">
+		<stringvalue>&lt;Super&gt;Left</stringvalue>
+	</entry>
+	<entry name="zoom_specific_3_key" mtime="1306335807" type="string">
+		<stringvalue>&lt;Super&gt;3</stringvalue>
+	</entry>
+	<entry name="zoom_specific_2_key" mtime="1306335800" type="string">
+		<stringvalue>&lt;Super&gt;2</stringvalue>
+	</entry>
+	<entry name="zoom_specific_1_key" mtime="1306335794" type="string">
+		<stringvalue>&lt;Super&gt;1</stringvalue>
+	</entry>
+	<entry name="zoom_out_key" mtime="1306335760" type="string">
+		<stringvalue>&lt;Super&gt;minus</stringvalue>
+	</entry>
+	<entry name="zoom_in_key" mtime="1306335752" type="string">
+		<stringvalue>&lt;Super&gt;equal</stringvalue>
+	</entry>
+	<entry name="zoom_out_button" mtime="1306335731" type="string">
+		<stringvalue>&lt;Super&gt;Button3</stringvalue>
+	</entry>
+	<entry name="zoom_in_button" mtime="1306335721" type="string">
+		<stringvalue>&lt;Super&gt;Button1</stringvalue>
+	</entry>
+</gconf>

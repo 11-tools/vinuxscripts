@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Categories=GNOME;GTK;Utility;Accessibility;X-GNOME-PersonalSettings;
+Comment=Change onBoard settings
+Exec=onboard-settings
+GenericName=onBoard onscreen keyboard settings
+Icon=/usr/share/icons/hicolor/scalable/apps/onboard.svg
+MimeType=application/x-onboardsettings;
+Name=onBoard Settings
+NoDisplay=false
+Terminal=false
+Type=Application
+X-Ubuntu-Gettext-Domain=onboard

@@ -3,16 +3,18 @@ works with Ubuntu Lucid.  You need to install before running the scripts, with:
 
 sudo make install
 
-There are four scripts installed, they should all be run with sudo:
+There are five scripts installed, they should all be run with sudo (except volume_keys):
 
 buildvinux - Updates sources.list, updates to latest, and runs restorespeech
              and set_vinux_globals.
 
 restorespeech - Modifies system to allow speakup to run, and restores login
-                window speech. .
+                window speech.
 
 set_vinux_globals - Set's default Vinux keybindings, menus, and other user
 	            settings for all users.  Optionally set Vinux-style desktop.
+
+volume_keys - sets the gnome volume keybindings (don't run with sudo)
               
 buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
                 ISO.  This removes many files from your system!  

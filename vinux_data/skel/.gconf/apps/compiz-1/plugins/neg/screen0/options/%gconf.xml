@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="screen_toggle_key" mtime="1306336011" type="string">
+		<stringvalue>&lt;Super&gt;i</stringvalue>
+	</entry>
+</gconf>

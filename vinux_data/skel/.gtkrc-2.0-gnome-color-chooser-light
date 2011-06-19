@@ -1,0 +1,10 @@
+pixmap_path "/home/vinux/.gnome-color-chooser/images/"
+
+style "gnome-color-chooser-desktop-icon"
+{
+  NautilusIconContainer::frame_text = 1
+  text[NORMAL] = "#000000"
+  base[NORMAL] = "#FFFFFF"
+}
+widget_class "*DesktopIcon*" style "gnome-color-chooser-desktop-icon"
+

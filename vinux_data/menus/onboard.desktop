@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Categories=GNOME;GTK;Utility;Accessibility;X-GNOME-PersonalSettings;
+Comment=Flexible onscreen keyboard for GNOME
+Exec=onboard
+GenericName=onBoard onscreen keyboard
+Icon=/usr/share/icons/hicolor/scalable/apps/onboard.svg
+MimeType=application/x-onboard;
+Name=onBoard
+NoDisplay=false
+Terminal=false
+Type=Application
+X-Ubuntu-Gettext-Domain=onboard

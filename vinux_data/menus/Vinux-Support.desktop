@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/gnome/48x48/categories/applications-utilities.png
+Name[en_GB]=Vinux-Support
+Exec=firefox http://groups.google.co.uk/group/vinux-support
+Comment[en_GB]=Visit the Vinux Support Forum
+Name=Vinux Support
+Comment=Visit the Vinux Support Forum
+Icon=/usr/share/icons/Nuvola/scalable/categories/package_settings.svg
+Categories=GNOME;GTK;Accessibility

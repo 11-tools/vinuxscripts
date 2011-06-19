@@ -1,6 +1,8 @@
 Bugs
 ----
 
+This is now very out of date, although some of the issues are still valid.
+
 Deal with Firefox/Orca problems.  Firefox rewrote the caret navigation and it has bugs that make
 structural navigation with Orca difficult.  The bug report is at
 https://bugzilla.mozilla.org/show_bug.cgi?id=546068
@@ -136,3 +138,9 @@ pulseaudio stream, and it should only be accessibly by support team members, and
 remote user allows access.
 
 Create accessibe Server version of Ubuntu Lucid with speakup.
+
+Track down espeak-data issue where after being installed espeak switches to another language
+
+Determine why gksu promtps for passwords for every event which sudo should handle, upstream issue
+
+Figure out permitting speakup and associated tools to gain access to sound system when not logged into a user, consolekit?
