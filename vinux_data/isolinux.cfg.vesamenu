@@ -8,12 +8,12 @@ menu background splash.png
 menu color title 1;37;44 #c0ffffff #00000000 std
 
 label live
-  menu label live - boot the Live System from the CD
+  menu label live - boot the Live System from the CD 
   kernel /casper/vmlinuz
   append  file=/cdrom/preseed/custom.seed boot=casper access=v3 initrd=/casper/initrd.gz quiet splash --
 
 label live
-  menu label toram - copy the Live System into RAM
+  menu label toram - copy the Live System into RAM 
   kernel /casper/vmlinuz
   append  file=/cdrom/preseed/custom.seed boot=casper access=v3 initrd=/casper/initrd.gz quiet splash toram --
 
