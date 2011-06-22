@@ -167,6 +167,13 @@ sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-man
 
 sudo apt-get install -y -t dusek-spd-daily-natty speech-dispatcher python-speechd libttspico-data
 
+# Disable speech-dispatcher daily repo
+
+sed -i 's/deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-maverick.list
+
+sed -i 's/deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-maverick.list
+
+
 # Install x-tile from giuspen.com
 
 echo
