@@ -103,11 +103,15 @@ sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
         s/CUSTOMISO=.*/CUSTOMISO=\"Vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
+# copy modified isolinux.cfg.vesamenu
+
+cp -f /usr/share/vinux/isolinux.cfg.vesamenu /etc/remastersys/isolinux/isolinux.cfg.vesamenu
+
 # Set timeout and accessibility mode
-sed -i 's/^timeout.*/timeout 100/
-    s/^prompt.*/prompt 0\nnoescape 1/
-    s/ access=v3//
-    s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
+# sed -i 's/^timeout.*/timeout 100/
+   # s/^prompt.*/prompt 0\nnoescape 1/
+   # s/ access=v3//
+   # s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
 
 # Change boot background
 
