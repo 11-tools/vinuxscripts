@@ -760,8 +760,160 @@ Unmaximize All Windows
 
 10. Firefox Keybindings
 
-Navigation:
-
+Goes to next heading at level 1 
+    1
+Goes to next heading at level 2 
+    2
+Goes to next heading at level 3 
+    3
+Goes to next heading at level 4 
+    4
+Goes to next heading at level 5 
+    5
+Goes to next heading at level 6 
+    6
+Goes to next anchor 
+    a
+Causes the current combo box to be expanded 
+    Left Alt + Down
+Goes down one cell 
+    Left Alt + Shift + Down
+Goes to the last cell in a table 
+    Left Alt + Shift + End
+Goes to the first cell in a table 
+    Left Alt + Shift + Home
+Goes left one cell 
+    Left Alt + Shift + Left
+Goes right one cell 
+    Left Alt + Shift + Right
+Goes up one cell 
+    Left Alt + Shift + Up
+Goes to next button 
+    b
+Advance live region politeness setting 
+    backslash
+Goes to next tick box 
+    c
+Goes to next combo box 
+    comma
+Goes to the bottom of the file 
+    Control + End
+Goes to the top of the file 
+    Control + Home
+Goes to previous word 
+    Control + Left
+Goes to next word 
+    Control + Right
+Goes to next live region 
+    d
+Goes to next line 
+    Down
+Goes to next entry 
+    e
+Goes to the end of the line 
+    End
+Goes to next heading 
+    h
+Goes to the beginning of the line 
+    Home
+Goes to next list item 
+    i
+Goes to next list 
+    I
+Goes to previous character 
+    Left
+Goes to next landmark 
+    m
+Goes to next large object 
+    o
+Review live region announcement 
+    Insert + f1
+Switches between Gecko native and Insert caret navigation 
+    Insert + F12
+Moves focus into and away from the current mouse over 
+    Insert + Numpad Multiply
+Goes to the previous object 
+    Insert + Left
+Goes to the next object 
+    Insert + Right
+Monitor live regions 
+    Insert + Shift + backslash
+Goes to previous form field 
+    Insert + Shift + Tab
+Goes to next form field 
+    Insert + Tab
+Toggles structural navigation keys 
+    Insert + z
+Goes to next paragraph 
+    p
+Goes to next radio button 
+    period
+Goes to next blockquote 
+    q
+Goes to next character 
+    Right
+Goes to next separator 
+    s
+Goes to previous heading at level 1 
+    Shift + 1
+Goes to previous heading at level 2 
+    Shift + 2
+Goes to previous heading at level 3 
+    Shift + 3
+Goes to previous heading at level 4 
+    Shift + 4
+Goes to previous heading at level 5 
+    Shift + 5
+Goes to previous heading at level 6 
+    Shift + 6
+Goes to previous anchor 
+    Shift + a
+Goes to previous button 
+    Shift + b
+Set default live region politeness level to off 
+    Shift + backslash
+Goes to previous tick box 
+    Shift + c
+Goes to previous combo box 
+    Shift + comma
+Goes to previous live region 
+    Shift + d
+Goes to previous entry 
+    Shift + e
+Goes to previous heading 
+    Shift + h
+Goes to previous list item 
+    Shift + i
+Goes to previous list 
+    Shift + I
+Goes to previous landmark 
+    Shift + m
+Goes to previous large object 
+    Shift + o
+Goes to previous paragraph 
+    Shift + p
+Goes to previous radio button 
+    Shift + period
+Goes to previous blockquote 
+    Shift + q
+Goes to previous separator 
+    Shift + s
+Goes to previous table 
+    Shift + t
+Goes to previous unvisited link 
+    Shift + u
+Goes to previous visited link 
+    Shift + v
+Goes to next table 
+    t
+Goes to next unvisited link 
+    u
+Goes to previous line 
+    Up
+Goes to next visited link 
+    v
+Goes to the last live region which made an announcement 
+    y
 Back
     Alt+Left Arrow
 Forward
