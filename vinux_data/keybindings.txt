@@ -1,9 +1,9 @@
 Vinux Keybindings
 
 This document contains a list of all of the keybindings
-for Gnome, Orca, Compiz, Speakup, Yasr  and Bash, as well
-as a list of customised Bash Aliases which are available. 
-It is divided into nine sections:
+for Gnome, Compiz, Orca, Speakup, Bash, Unity, X-Tile and 
+Firefox as well as a list of customised Bash Aliases which 
+are included but not enabled. It is divided into ten sections:
 
 1. Gnome Keybindings
 2. Compiz Keybindings
