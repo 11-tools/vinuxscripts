@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This is a prototype script which will burn an iso to CD and then verify 
+# that the md5sums of the original image and the burnt CD match. All the 
+# user has to do is to choose the iso file and provide the path to the CD
+# burner. 
+
+# choose iso file
+iso=`zenity --file-selection --title "Select an ISO file to burn to CD/DVD..."`
+
+# get iso md5sum
+md5=`cat $iso | md5sum` 
+
+# get iso length
+lng=`echo $(( $(ls -l $iso | awk '{ print $5 }') / 2048 ))` 
+
+# get path to burner
+rom=`zenity --entry --text "Type path to CD/DVD burner..." --entry-text "/dev/cdrom"`
+
+# burn iso
+cdrecord dev=$rom speed=4 padsize=63s -pad -v -eject $iso 
+
+# wait for CD to eject
+sleep 1
+
+# close CD draw
+zenity --info --text "Please close the CD/DVD draw and then click OK..."
+
+# wait for CD to close and CD to be detected
+sleep 30
+
+# get cd md5sum
+sum=`dd if=$rom bs=2048 count=$lng | md5sum`  
+
+# See if md5sums match
+if [[ "$md5" = "$sum" ]]
+then
+zenity --info --text "Success - md5sums match!"
+else zenity --error --text "Failure - md5sums do not match!"
+fi
+
+# eject CD
+eject
+
+zenity --info --text "Remove the CD/DVD and click OK to exit"
+
+exit=0

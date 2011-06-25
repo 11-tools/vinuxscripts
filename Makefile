@@ -8,6 +8,7 @@ install:
 	install bin/pulseuser $(DESTDIR)/usr/bin
 	install bin/pulsesystem $(DESTDIR)/usr/bin
 	install bin/set_vinux_globals $(DESTDIR)/usr/bin
+	install bin/cdburn $(DESTDIR)/usr/bin
 	install buildvinuxiso $(DESTDIR)/usr/bin
 	install bin/volume_keys $(DESTDIR)/usr/bin
 	install bin/update_manual $(DESTDIR)/usr/bin
