@@ -111,8 +111,20 @@ add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklook
 add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
 add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
 add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
-# add-customkey 20 'Pulse System' '<Control><Alt>s' 'gksu pulsesystem'
-# add-customkey 21 'Pulse User' '<Control><Alt>u' 'gksu pulseuser'
+
+add-customkey 20 'Tile Verically' '<Alt><Mod4>v' 'x-tile v'
+add-customkey 21 'Tile Horizontally' '<Alt><Mod4>h' 'x-tile h'
+add-customkey 22 'Tile Quad' '<Alt><Mod4>v' 'x-tile q'
+add-customkey 23 'Maximise All' '<Alt><Mod4>m' 'x-tile m'
+add-customkey 24 'Close All' '<Alt><Mod4>c' 'x-tile c'
+add-customkey 25 'Tile Triangle Up' '<Alt><Mod4>u' 'x-tile u'
+add-customkey 26 'Tile Triangle down' '<Alt><Mod4>d' 'x-tile d'
+add-customkey 27 'Tile Triangle left' '<Alt><Mod4>l' 'x-tile l'
+add-customkey 28 'Tile Triangle right' '<Alt><Mod4>r' 'x-tile r'
+add-customkey 29 'Undo Last Tiling' '<Alt><Mod4>z' 'x-tile z'
+add-customkey 30 'Invert Last Tiling' '<Alt><Mod4>i' 'x-tile i'
+add-customkey 31 'Show X-Tile Window' '<Alt><Mod4>w' 'x-tile w'
+add-customkey 32 'Unmaximize All Windows' '<Alt><Mod4>x' 'x-tile M'
 
 # Enable Control+Alt+Backspace to log out of Gnome
 gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'

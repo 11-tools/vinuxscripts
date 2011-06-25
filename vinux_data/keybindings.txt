@@ -13,6 +13,7 @@ It is divided into nine sections:
 6. Speakup Desktop Keybindings
 7. Bash Keybindings
 8. Unity Keybindings
+9. X-Tile Keybindings
 
 1. Gnome Keybindings
 
@@ -727,3 +728,31 @@ Open Files & Folders place
 Open the first menu on the panel
     F10
 
+9. X-Tile Keybindings
+
+Tile All Verically
+    Windows + Alt + v
+Tile All Horizontally
+    Windows + Alt + h
+Tile All Quad
+    Windows + Alt + v
+Maximise All
+    Windows + Alt + m
+Close All
+    Windows + Alt + c
+Tile All Triangle Up
+    Windows + Alt + u
+Tile All Triangle down
+    Windows + Alt + d
+Tile All Triangle left
+    Windows + Alt + l
+Tile All Triangle right
+    Windows + Alt + r
+Undo Last Tiling
+    Windows + Alt + z
+Invert Last Tiling
+    Windows + Alt + i
+Show X-Tile Window
+    Windows + Alt + w
+Unmaximize All Windows
+    Windows + Alt + x
