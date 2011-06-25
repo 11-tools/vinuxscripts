@@ -14,6 +14,7 @@ It is divided into nine sections:
 7. Bash Keybindings
 8. Unity Keybindings
 9. X-Tile Keybindings
+10. Firefox Keybindings
 
 1. Gnome Keybindings
 
@@ -756,3 +757,171 @@ Show X-Tile Window
     Windows + Alt + w
 Unmaximize All Windows
     Windows + Alt + x
+
+10. Firefox Keybindings
+
+Navigation:
+
+Back
+    Alt+Left Arrow
+Forward
+    Alt+Right Arrow
+Home 	
+    Alt+Home
+Open File 	
+    Ctrl+O
+Reload 	
+    F5
+Reload (override cache) 	
+    Ctrl+F5
+Stop 	
+    Esc
+Go to Bottom of Page 	
+    End
+Go to Top of Page 	
+    Home
+Move to Next Frame 	
+    F6
+Move to Previous Frame 	
+    Shift+F6
+Page Info 	
+    Ctrl+I
+Page Source 	
+    Ctrl+U
+Print 	
+    Ctrl+P
+Save Page As 	
+    Ctrl+S
+Zoom In 	
+    Ctrl++
+Zoom Out 	
+    Ctrl+-
+Zoom Reset 	
+    Ctrl+0
+Copy 
+    Ctrl+C
+Cut 	
+    Ctrl+X
+Delete 	
+    Delete
+Paste 	
+    Ctrl+V
+Redo 	
+    Ctrl+Shift+Z
+Select All 	
+    Ctrl+A
+Undo 	
+    Ctrl+Z
+Find 	
+    Ctrl+F
+Find Again 	
+    F3
+Find Previous 	
+    Shift+F3
+Find As You Type Link 	
+    '
+Find As You Type Text 	
+    /
+Search bar 	
+    Ctrl+K
+Close Tab 	
+    Ctrl+F4
+Close Window 	
+    Alt+F4
+Move Tab in focus Left 	
+    Ctrl+Left Arrow
+Move Tab in focus Right 	
+    Ctrl+Right Arrow
+Move Tab in focus to start 	
+    Ctrl+Home
+Move Tab in focus to end 	
+    Ctrl+End
+New Tab 	
+    Ctrl+T
+New Window 	
+    Ctrl+N
+Next Tab 	
+    Ctrl+Tab
+Ctrl+Page 
+    Down
+Open Address in New Tab
+    Alt+Enter 	
+Previous Tab 	
+    Ctrl+Shift+Tab
+Undo Close Tab 	
+    Ctrl+Shift+T
+Undo Close Window 	
+    Ctrl+Shift+N
+Select Tab (1 to 8) 	
+    Alt+(1 to 8)
+Select Last Tab 	
+    Alt+9
+Tab Groups View 	
+    Ctrl+Shift+E
+History sidebar 	
+    Ctrl+H
+Library window (History) 	
+    Ctrl + Shift + H
+Bookmark This Page 	
+    Ctrl+D
+Bookmarks sidebar 	
+    Ctrl+B
+Library window (Bookmarks) 	
+    Ctrl+Shift+O
+Downloads 	
+    Ctrl + Shift + Y
+Add-ons 	
+    Ctrl + Shift + A
+Error Console 	
+    Ctrl + Shift + J
+Web Console 	
+    Ctrl + Shift + K
+Toggle Private Browsing 	
+    Ctrl + Shift + P
+Clear Recent History 	
+    Ctrl + Shift + Del
+Complete .com Address 	
+    Ctrl+Enter
+Complete .net Address 	
+    Shift+Enter
+Complete .org Address 	
+    Ctrl+Shift+Enter
+Delete Selected Autocomplete Entry 	
+    Del
+Toggle Full Screen 	
+    F11
+Toggle Menu Bar (when hidden) 	
+    F10
+Show/Hide Add-on Bar 	
+    Ctrl + /
+Caret Browsing 	
+    F7
+Select Location Bar 	
+    Alt+D
+Select or Manage Search Engines
+    Alt+Up Arrow
+  
+Firefox Media shortcuts (Ogg and WebM Videos Only)
+
+Toggle Play / Pause 	
+    Space
+Decrease volume 	
+    Arrow down
+Increase volume 	
+    Arrow up
+Mute audio 	
+    Ctrl+Down Arrow
+Unmute audio 	
+    Ctrl+Arrow up
+Seek back 15 seconds 	
+    Left Arrow
+Seek back 10 % 	
+    Ctrl+Left Arrow
+Seek forward 15 seconds 	
+    Right Arrow
+Seek forward 10 % 	
+    Ctrl+Right Arrow
+Seek to the beginning 	
+    Home
+Seek to the end 	
+    End
