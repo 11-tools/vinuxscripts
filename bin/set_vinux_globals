@@ -114,7 +114,7 @@ add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklook
 
 add-customkey 20 'Tile Verically' '<Alt><Mod4>v' 'x-tile v'
 add-customkey 21 'Tile Horizontally' '<Alt><Mod4>h' 'x-tile h'
-add-customkey 22 'Tile Quad' '<Alt><Mod4>v' 'x-tile q'
+add-customkey 22 'Tile Quad' '<Alt><Mod4>q' 'x-tile q'
 add-customkey 23 'Maximise All' '<Alt><Mod4>m' 'x-tile m'
 add-customkey 24 'Close All' '<Alt><Mod4>c' 'x-tile c'
 add-customkey 25 'Tile Triangle Up' '<Alt><Mod4>u' 'x-tile u'
