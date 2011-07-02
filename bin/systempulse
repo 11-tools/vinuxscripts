@@ -48,7 +48,7 @@ echo
 sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pulseaudio
 
 # sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
-sed -i 's/autospawn = yes/autospawn = no/' /etc/pulse/client.conf
+sed -i 's/; autospawn = yes/autospawn = no/' /etc/pulse/client.conf
 
 rm -f /etc/xdg/autostart/pulseaudio.desktop
 rm -f /etc/xdg/autostart/pulseaudio-kde.desktop
