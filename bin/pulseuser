@@ -42,8 +42,8 @@ echo
 
 sed -i 's/PULSEAUDIO_SYSTEM_START=1/PULSEAUDIO_SYSTEM_START=0/' /etc/default/pulseaudio
 
-sed -i 's/^ *; *autospawn = no/autospawn = yes/' /etc/pulse/client.conf 
-
+# sed -i 's/^ *; *autospawn = no/autospawn = yes/' /etc/pulse/client.conf 
+sed -i 's/autospawn = no/autospawn = yes/' /etc/pulse/client.conf 
 cp /usr/share/vinux/pulseaudio.desktop /etc/xdg/autostart/pulseaudio.desktop 
 
 sed -i".bak" '/sleep 2.0/d' /etc/init.d/pulseaudio
