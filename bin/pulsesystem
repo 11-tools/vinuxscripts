@@ -49,7 +49,7 @@ sed -i 's/PULSEAUDIO_SYSTEM_START=0/PULSEAUDIO_SYSTEM_START=1/' /etc/default/pul
 sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
 rm -f /etc/xdg/autostart/pulseaudio-kde.desktop
-sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
+sed -i 's/load-module module-native-protocol-unix/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
 if [ "`grep 'sleep 2.0' /etc/init.d/pulseaudio`" = "" ];then
 sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 2.0\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi

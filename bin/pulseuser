@@ -46,6 +46,8 @@ sed -i 's/^ *; *autospawn = no/autospawn = yes/' /etc/pulse/client.conf
 
 cp /usr/share/vinux/pulseaudio.desktop /etc/xdg/autostart/pulseaudio.desktop 
 
-sed -i".bak" '/sleep 3/d' /etc/init.d/pulseaudio
+sed -i".bak" '/sleep 2.0/d' /etc/init.d/pulseaudio
+
+sed -i 's/load-module module-native-protocol-unix auth-anonymous=1/load-module module-native-protocol-unix/' /etc/pulse/system.pa
 
 # shutdown -r now
