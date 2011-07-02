@@ -330,6 +330,16 @@ echo
 
 sudo systempulse
 
+else
+
+echo
+blue
+echo "Setting pulseaudio to run in user mode..."
+green
+echo
+
+sed -i 's/; autospawn = yes/autospawn = yes/' /etc/pulse/client.conf
+
 fi
 
 
