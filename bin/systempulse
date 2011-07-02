@@ -55,18 +55,4 @@ if [ "`grep 'sleep 2.0' /etc/init.d/pulseaudio`" = "" ];then
 sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 2.0\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 fi
 
-echo
-bell
-red
-echo -n "Do you want to restart the computer now? [y/n]: "; read ANSWER
-green
-echo
-
-if [ "$ANSWER" = "y" ]; then  
-
-shutdown -r now
-
-fi
-
-exit=0
-
+# shutdown -r now

@@ -7,6 +7,7 @@ install:
 	install bin/configurespeech $(DESTDIR)/usr/bin
 	install bin/pulseuser $(DESTDIR)/usr/bin
 	install bin/pulsesystem $(DESTDIR)/usr/bin
+	install bin/systempulse $(DESTDIR)/usr/bin
 	install bin/set_vinux_globals $(DESTDIR)/usr/bin
 	install bin/cdburn $(DESTDIR)/usr/bin
 	install bin/usbinstall $(DESTDIR)/usr/bin

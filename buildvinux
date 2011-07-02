@@ -328,7 +328,7 @@ echo "Setting pulseaudio to run in system mode..."
 green
 echo
 
-sudo pulsesystem
+sudo systempulse
 
 fi
 

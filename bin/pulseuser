@@ -50,4 +50,17 @@ sed -i".bak" '/sleep 2.0/d' /etc/init.d/pulseaudio
 
 sed -i 's/load-module module-native-protocol-unix auth-anonymous=1/load-module module-native-protocol-unix/' /etc/pulse/system.pa
 
-# shutdown -r now
+echo
+bell
+red
+echo -n "Do you want to restart the computer now? [y/n]: "; read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then  
+
+shutdown -r now
+
+fi
+
+exit=0
