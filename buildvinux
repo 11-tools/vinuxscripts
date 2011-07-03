@@ -83,11 +83,6 @@ sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 # Add unetbootin repository
 sudo apt-add-repository ppa:gezakovacs/ppa
 
-# Add Orca Daily Build
-
-# sudo add-apt-repository ppa:dusek/gnome-orca-daily
-
-
 # Add medibuntu repository - uncommented it since it seems to be up again
 
 echo
@@ -101,23 +96,6 @@ sudo apt-get --yes -qq --allow-unauthenticated install medibuntu-keyring && sudo
 
 
 sudo apt-get -y -q --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
-
-# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
-# updated until we say so.
-
-#echo
-#blue
-#echo "Pinning Vinux repositories..."
-#green
-#echo
-
-#echo 'Package: *
-#Pin: release o=LP-PPA-vinux-vinux-lucid
-#Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
-#sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
-#echo 'Package: *
-#Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-#Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760 
 
 # Import the Vinux/Ubuntu Team repository key.
 
@@ -200,8 +178,7 @@ sudo apt-get purge -y bluez-alsa
 
 # Set up irssi global configuration and soundpack
 
-cp vinux_data/irssi/irssi.conf /etc/irssi.conf
-# cp -Rf irssi/scripts/* /usr/share/irssi/scripts
+sudo cp /usr/share/vinux/irssi/irssi.conf /etc/irssi.conf
 
 # Installing Vinux Manual
 
@@ -220,10 +197,6 @@ sudo apt-get -y -qq autoremove
 # Switch off automatic updates notification message
 
 sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
-
-# Open emacspeak in customizable mode
-
-sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -295,11 +268,6 @@ fi
 
 # Stage 4 - Configure Desktop and Keybindings
 
-# First copy Vinux specific files - this is done in the makefile with 'sudo make install'
-
-# sudo cp -f bin/* /usr/bin
-# sudo cp -Rf vinux_data /usr/share/vinux
-
 # Run the set_vinux_globals script
 
 echo
@@ -345,7 +313,7 @@ fi
 
 # Stage 6 - Configure Speech
 
-# Run the restorespeech script
+# Run the configure speech script
 
 echo
 blue
