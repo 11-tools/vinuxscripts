@@ -59,15 +59,15 @@ echo "Updating software repositories..."
 green
 echo
 
-sudo egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
-sudo echo '# Repositories supporting vinux packages.
+egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
+echo '# Repositories supporting vinux packages.
 # If you are willing to help test new Vinux packages, uncomment the following:
 # deb http://ppa.launchpad.net/vinux/natty+testing/ubuntu natty main
 # deb-src http://ppa.launchpad.net/vinux/natty+testing/ubuntu natty main
 deb http://www.geekconnection.org/remastersys/repository karmic/
 deb http://ppa.launchpad.net/vinux/natty-/ubuntu natty main
 deb-src http://ppa.launchpad.net/vinux/natty-/ubuntu natty main' >> /tmp/vinux.tmp
-sudo sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
+sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
     s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
 sudo mv /tmp/vinux.tmp /etc/apt/sources.list
 
@@ -78,10 +78,15 @@ sudo add-apt-repository ppa:tualatrix/ppa
 # Add Speech-Dispatcher Daily Build - if this isn't installed do it manually
 
 sudo add-apt-repository ppa:dusek/spd-daily
-sudo sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
+sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 
 # Add unetbootin repository
 sudo apt-add-repository ppa:gezakovacs/ppa
+
+# Add Orca Daily Build
+
+# sudo add-apt-repository ppa:dusek/gnome-orca-daily
+
 
 # Add medibuntu repository - uncommented it since it seems to be up again
 
@@ -96,6 +101,23 @@ sudo apt-get --yes -qq --allow-unauthenticated install medibuntu-keyring && sudo
 
 
 sudo apt-get -y -q --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
+
+# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
+# updated until we say so.
+
+#echo
+#blue
+#echo "Pinning Vinux repositories..."
+#green
+#echo
+
+#echo 'Package: *
+#Pin: release o=LP-PPA-vinux-vinux-lucid
+#Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
+#sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
+#echo 'Package: *
+#Pin: release o=LP-PPA-vinux-vinux-lucid-testing
+#Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760 
 
 # Import the Vinux/Ubuntu Team repository key.
 
@@ -141,6 +163,7 @@ echo "Installing default packages..."
 green
 echo
 
+
 sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp gxneur surfraw audiobook-converter wajig wordgrinder alsa-oss ubuntu-tweak python-gnomeapplet talking-clock ttytter orca-teacher speechd-up git-core pastebinit epiphany-browser fluxbox fbdesk fbpager bbtime bbrun sox gshutdown gtkdiskfree gpm screen splitvt figlet cmatrix txt2html html2text pdf2svg pstotext units mc trash-cli vrms dict gnome-dictionary sc htop linuxinfo w3m elinks-lite urlview finch axel calcurse tdl unetbootin extlinux # emacspeak  
 
 # Force update of speech-dispatcher/python-speechd from the daily repositories
@@ -149,9 +172,9 @@ sudo apt-get install -y -t dusek-spd-daily-natty speech-dispatcher python-speech
 
 # Disable speech-dispatcher daily repo
 
-sudo sed -i 's/deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
+sed -i 's/deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 
-sudo sed -i 's/deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
+sed -i 's/deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
 
 
 # Install x-tile from giuspen.com
@@ -177,7 +200,8 @@ sudo apt-get purge -y bluez-alsa
 
 # Set up irssi global configuration and soundpack
 
-sudo cp vinux_data/irssi/irssi.conf /etc/irssi.conf
+cp vinux_data/irssi/irssi.conf /etc/irssi.conf
+# cp -Rf irssi/scripts/* /usr/share/irssi/scripts
 
 # Installing Vinux Manual
 
@@ -195,11 +219,11 @@ sudo apt-get -y -qq autoremove
 
 # Switch off automatic updates notification message
 
-sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
+sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
 
 # Open emacspeak in customizable mode
 
-# sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -314,7 +338,7 @@ echo "Setting pulseaudio to run in user mode..."
 green
 echo
 
-sudo sed -i 's/; autospawn = yes/autospawn = yes/' /etc/pulse/client.conf
+sed -i 's/; autospawn = yes/autospawn = yes/' /etc/pulse/client.conf
 
 fi
 
@@ -341,4 +365,5 @@ echo "Or, to continue working push control C now..."
 read
 reset
 shutdown -r now
+
 
