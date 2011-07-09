@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Remastersys Installer
+GenericName=Live Installer
+Comment=Install live system to hard drive
+Exec=remsu /usr/bin/remastersys-installer gui
+Icon=/usr/share/icons/remastersys.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=SystemBackup;Applications;GTK;System;Settings
+NotShowIn=KDE
+X-KDE-SubstituteUID=true
+GenericName[en_US]=System Backup

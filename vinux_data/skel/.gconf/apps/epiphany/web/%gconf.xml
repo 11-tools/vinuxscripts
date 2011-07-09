@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="browse_with_caret" mtime="1310179354" type="bool" value="true"/>
+</gconf>

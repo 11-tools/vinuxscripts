@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="default_sort_order" mtime="1310181239" type="string">
+		<stringvalue>name</stringvalue>
+	</entry>
+</gconf>

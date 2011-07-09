@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="navigation_window_saved_maximized" mtime="1310181381" type="bool" value="false"/>
+	<entry name="navigation_window_saved_geometry" mtime="1310181381" type="string">
+		<stringvalue>800x550+238+131</stringvalue>
+	</entry>
+	<entry name="enable_delete" mtime="1310181324" type="bool" value="true"/>
+	<entry name="thumbnail_limit" mtime="1310181268" type="int" value="5242880"/>
+	<entry name="default_folder_viewer" mtime="1310181239" type="string">
+		<stringvalue>list_view</stringvalue>
+	</entry>
+</gconf>

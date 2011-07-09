@@ -1,0 +1,47 @@
+#!/bin/sh
+
+#
+# This will update your sources.list to include Vinux repositories and suggested repositories.
+#
+
+# Does the file exist
+touch /etc/apt/sources.list
+
+# Vinux
+
+if ! grep -Fxq "deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main" /etc/apt/sources.list
+then
+echo '# Repositories supporting vinux packages
+# If you are willing to help test new Vinux packages, uncomment the following:
+# Vinux testing repository
+deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
+deb-src http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
+# Vinux repository
+deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
+deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main' >> /etc/apt/sources.list
+fi
+
+# Remastersys Squeeze
+
+if ! grep -Fxq "deb http://www.geekconnection.org/remastersys/repository squeeze/" /etc/apt/sources.list
+then
+echo '# Remastersys Squeeze
+deb http://www.geekconnection.org/remastersys/repository squeeze/' >> /etc/apt/sources.list
+fi
+
+# Squeeze backports
+
+if ! grep -Fxq "deb http://backports.debian.org/debian-backports squeeze-backports main" /etc/apt/sources.list
+then
+echo '#Squeeze backports
+deb http://backports.debian.org/debian-backports squeeze-backports main' >> /etc/apt/sources.list
+fi
+
+# Debian multi-media
+
+if ! grep -Fxq "deb http://www.debian-multimedia.org stable main non-free" /etc/apt/sources.list
+then
+echo '# Debian multi-media
+deb http://www.debian-multimedia.org stable main non-free' >> /etc/apt/sources.list
+fi
+
