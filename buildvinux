@@ -2,100 +2,40 @@
 #
 # This script should only be run after completing the following steps:
 #
-# 1. Download the latest Ubuntu Natty iso and burn it to CD.
-#
-# 2. Boot from the CD, Press Space, Enter, F5, select 'screen-reader' and 
-# Enter again twice to boot the live CD.
-#
-# 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
-#
-# Type 'sudo buildvinux' to run the script, when it is finished reboot and
-# your system should be identical to the Vinux/Natty distribution. If you 
-# want a log of the build process run the 'script' command first and 'exit'
+# 1. Download any Debian Squeeze iso and burn it, including net-installer.
+# 2. Install to hard drive then run these scripts.
+## 3. if you  used a net-installer, make sure you install make before running make install.
+# 4. Type in the vinuxscripts directory, sudo make install.
+# 5. Type './buildvinux' as root to run the script, when it is finished reboot and
+# your system should be identical to the Vinux/Squeeze distribution. If you 
+# want a log of the build process? run the 'script' command first and 'exit'
 # when finished - the log will be in a file called 'typescript'.. 
 # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 # Stage 0 - Declare text colour/system bell functions
 
-function black {
-    tput setf 0   
-}
-
-function green {
-    tput setf 2    
-}
-
-function blue {
-    tput setf 3
-}
-
-function red {
-    tput setf 4    
-}
-
-function white {
-    tput setf 7
-}
-
-function reset {
-    tput reset
-}
-
-function bell {
-    echo -en "\007"    
-}
-
+function black { tput setf 0; }
+function green { tput setf 2; }
+function blue { tput setf 3; }
+function red { tput setf 4;
+}   
+function white { tput setf 7; }
+function reset { tput reset; }
+function bell { echo -en "\007"; }   
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 1 - Configuring Repositories
 
 # Update /etc/apt/sources.list
+# This installs Vinux, Remastersys, Squeeze-backports and Debian multi-media repos.
 
 echo
 blue
-echo "Updating software repositories..."
+echo "Updating software repositories... and importing keys..."
 green
-echo
-
-egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
-echo '# Repositories supporting vinux packages.
-# If you are willing to help test new Vinux packages, uncomment the following:
-# deb http://ppa.launchpad.net/vinux/natty+testing/ubuntu natty main
-# deb-src http://ppa.launchpad.net/vinux/natty+testing/ubuntu natty main
-deb http://www.geekconnection.org/remastersys/repository karmic/
-deb http://ppa.launchpad.net/vinux/natty-/ubuntu natty main
-deb-src http://ppa.launchpad.net/vinux/natty-/ubuntu natty main' >> /tmp/vinux.tmp
-sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
-    s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
-sudo mv /tmp/vinux.tmp /etc/apt/sources.list
-
-# Add ubuntu-tweak repository
-
-sudo add-apt-repository ppa:tualatrix/ppa
-
-# Add Speech-Dispatcher Daily Build - if this isn't installed do it manually
-
-sudo add-apt-repository ppa:dusek/spd-daily
-sed -i 's/natty/maverick/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
-
-# Add unetbootin repository
-sudo apt-add-repository ppa:gezakovacs/ppa
-
-# Add medibuntu repository - uncommented it since it seems to be up again
-
-echo
-blue
-echo "Adding medibuntu repository..."
-green
-echo
-
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get -qq update &&
-sudo apt-get --yes -qq --allow-unauthenticated install medibuntu-keyring && sudo apt-get -qq update
-
-
-sudo apt-get -y -q --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
+set_vinux_sources
 
 # Import the Vinux/Ubuntu Team repository key.
 
@@ -105,11 +45,19 @@ echo "Importing repository keys..."
 green
 echo
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF
+gpg -q --keyserver keys.gnupg.net --recv-keys EF2AFDCF ; gpg --export EF2AFDCF | apt-key add -
 
-# Import the Extras key
+# Import the Ubuntu extras key
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 
+gpg -q --keyserver keys.gnupg.net --recv-keys  16126D3A3E5C1192 ; gpg --export  16126D3A3E5C1192 | apt-key add -
+
+# May as well update package list now, ignore multi-media key error.
+
+apt-get update -qq
+
+# Get the Squeeze multi media key
+
+apt-get install -y -qq --force-yes --allow-unauthenticated debian-multimedia-keyring
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -123,15 +71,13 @@ echo "Updating package list..."
 green
 echo
 
-sudo apt-get update  -qq
-
 echo
 blue
-echo "Upgrading all packages... This can take a few minutes."
+echo "Upgrading all packages... This can take some time."
 green
 echo
 
-sudo apt-get upgrade -y --force-yes
+apt-get upgrade -y --force-yes -qq -f --no-install-recommends
 
 # Install the default packages
 
@@ -140,20 +86,13 @@ blue
 echo "Installing default packages..."
 green
 echo
+apt-get install -f -y --force-yes -qq --allow-unauthenticated gnome-orca gnome-terminal gparted compizconfig-settings-manager acpi vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter gedit-plugins gnome-themes gnome-themes-extras icedove soundConverter startupmanager pybackpack gespeaker remastersys speakup-tools aptoncd isomaster gtk-recordmydesktop gnome-color-chooser pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash gworldclock mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gnome-schedule hardinfo searchmonkey partimage ntp surfraw wajig wordgrinder alsa-oss python-gnomeapplet git-core pastebinit sox gpm screen splitvt toilet txt2html html2text pdf2svg pstotext units mc dict gnome-dictionary sc htop linuxinfo w3m elinks-lite urlview finch axel calcurse tdl extlinux transmission-gtk ceni geditpdf monitor-toggle sonic talking-clock ttytter orca-teacher emacspeak speech-dispatcher make totem network-manager-gnome network-manager gnome-backgrounds mousetweaks gnome-accessibility-themes software-center synaptic gnome-system-monitor preload epiphany-browser sudo gdm3 espeakup iceweasel wodim python-at-spi libjack-jackd2-0 resolvconf
 
-
-sudo apt-get install -y --force-yes gnome-orca gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker remastersys speechd-up speakup-tools bareftp gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle sonic ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gtodo terminator gufw gnome-schedule hardinfo searchmonkey file-browser-applet meld partimage ntp gxneur surfraw audiobook-converter wajig wordgrinder alsa-oss ubuntu-tweak python-gnomeapplet talking-clock ttytter orca-teacher speechd-up git-core pastebinit epiphany-browser fluxbox fbdesk fbpager bbtime bbrun sox gshutdown gtkdiskfree gpm screen splitvt figlet cmatrix txt2html html2text pdf2svg pstotext units mc trash-cli vrms dict gnome-dictionary sc htop linuxinfo w3m elinks-lite urlview finch axel calcurse tdl unetbootin extlinux # emacspeak  
-
-# Force update of speech-dispatcher/python-speechd from the daily repositories
-
-sudo apt-get install -y -t dusek-spd-daily-natty speech-dispatcher python-speechd libttspico-data
-
-# Disable speech-dispatcher daily repo
-
-sed -i 's/deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
-
-sed -i 's/deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/# deb-src http:\/\/ppa.launchpad.net\/dusek\/spd-daily\/ubuntu maverick main/' /etc/apt/sources.list.d/dusek-spd-daily-natty.list
-
+# Fix missing simlink for resolv.conf
+ln /etc/resolvconf/resolv.conf.d/original /etc/resolv.conf
+ 
+# Enable parallel starts
+echo 'CONCURRENCY=shell' >> /etc/default/rcS
 
 # Install x-tile from giuspen.com
 
@@ -163,8 +102,8 @@ echo "installing x-tile..."
 green
 echo
 
-sudo wget -c -q http://www.giuspen.com/software/x-tile_1.9-1_all.deb
-sudo dpkg -i x-tile_1.9-1_all.deb
+wget -c -q http://www.giuspen.com/software/x-tile_1.9-1_all.deb
+dpkg -i x-tile_1.9-1_all.deb
 
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
@@ -174,15 +113,15 @@ echo "Removing bluez-alsa..."
 green
 echo
 
-sudo apt-get purge -y bluez-alsa
+apt-get purge -y -qq bluez-alsa
 
 # Set up irssi global configuration and soundpack
 
-sudo cp /usr/share/vinux/irssi/irssi.conf /etc/irssi.conf
+cp vinux_data/irssi/irssi.conf /etc/irssi.conf
 
 # Installing Vinux Manual
 
-sudo update_manual
+update_manual
 
 # Clean up any packages we don't need
 
@@ -192,11 +131,15 @@ echo "Removing unnecessary packages..."
 green
 echo
 
-sudo apt-get -y -qq autoremove 
+apt-get -y -qq autoremove 
 
 # Switch off automatic updates notification message
 
-sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
+#sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
+
+# Open emacspeak in customizable mode
+
+sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -219,12 +162,12 @@ echo "Installing DVD packages..."
 green
 echo
 
-sudo apt-get purge -y openoffice.org-common
+apt-get purge -y -qq openoffice.org-common
 
-sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets chromium-browser gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite devede bum xaralx photoprint icc-profiles  
+apt-get install -y -qq --force-yes ocrodjvu ocropus gambas2 uck screenlets gdesklets chromium-browser gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious paman paprefs padevchooser abiword gnumeric automake intltool gnome-common exactimage tuxguitar solfege gperiodic thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite devede bum photoprint icc-profiles  
 fi
 
-# Install some 3D Games - not accessible with screen-reader
+# Install some 3D Games - not accessible with screen readers
 
 echo
 bell
@@ -241,7 +184,7 @@ echo "Installing games packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome
+apt-get install -y -qq --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 celestia-gnome
 fi
 
 # Install non-free packages - non-distributable
@@ -261,7 +204,7 @@ echo "Installing non-free packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs skype acroread acroread-fonts 
+apt-get install -y -qq --force-yes libdvdcss2 w32codecs
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -276,44 +219,13 @@ echo "Configuring desktop and keybindings..."
 green
 echo
 
-sudo set_vinux_globals
+set_vinux_globals
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Stage 5 - set pulseaudio to run system wide
-echo
-bell
-red
-echo -n "Do you want to run pulseaudio in system mode? [y/n]: "; read ANSWER
-green
-echo
+# Stage 5 - Configure Speech
 
-if [ "$ANSWER" = "y" ]; then  
-
-echo
-blue
-echo "Setting pulseaudio to run in system mode..."
-green
-echo
-
-sudo systempulse
-
-else
-
-echo
-blue
-echo "Setting pulseaudio to run in user mode..."
-green
-echo
-
-sed -i 's/; autospawn = yes/autospawn = yes/' /etc/pulse/client.conf
-
-fi
-
-
-# Stage 6 - Configure Speech
-
-# Run the configure speech script
+# Run the restorespeech script
 
 echo
 blue
@@ -321,17 +233,18 @@ echo "Configuring speech..."
 green
 echo
 
-sudo configurespeech
+configurespeech
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo
 bell
 red
+
 echo "You are done, Press any key to restart your system..."
-echo "Or, to continue working push control C now..."
-read
+ read
 reset
-shutdown -r now
+#shutdown -r now
+
 
 

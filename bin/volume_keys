@@ -4,34 +4,15 @@
 
 # Stage 0 - Declare text colour/system bell functions
 
-function black {
-    tput setf 0   
+function black { tput setf 0; 
 }
+function green {tput setf 2; }
+function blue { tput setf 3; }
+function red { tput setf 4; }
+function white { tput setf 7; }
 
-function green {
-    tput setf 2    
-}
-
-function blue {
-    tput setf 3
-}
-
-function red {
-    tput setf 4    
-}
-
-function white {
-    tput setf 7
-}
-
-
-function reset {
-    tput reset
-}
-
-function bell {
-    echo -en "\007"    
-}
+function reset { tput reset; }
+function bell { echo -en "\007"; }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

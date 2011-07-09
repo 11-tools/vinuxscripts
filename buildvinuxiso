@@ -71,20 +71,27 @@ echo "Removing applications to make room on the CD"
 green
 echo
 
-apt-get  purge -y libreoffice* gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share ubiquity-slideshow-ubuntu
+apt-get  purge -y -qq openoffice.org* libreoffice* gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-wqy-microhei ttf-punjabi-fonts ttf-lao ttf-kacst-one festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share gnome-user-guide fluxbox bbtime bbrun debian-installer-launcher debian-installer libqtgui4 unetbootin tomboy gtodo libopal3.6.8 foomatic-db oxygen-icon-theme kdebase-runtime-data kdelibs5-data libkdecore5 libkdesu5 gnome-themes-more libgl1-mesa-dri* virtuoso-opensource-6.1-bin speechd-up
+apt-get autoremove -y -qq
+apt-get clean
 
-apt-get -qq autoremove -y
-# apt-get -qq clean
+echo Cleaning up /root home directory before remastersys, nano history, bash_history, wajig and aptitude. 
+rm -f /root/.nano_history
+rm -f /root/.bash_history
+rm -rf /root/.wajig
+rm -rf /root/.aptitude
+rm -rf /root/.ssh
+
 # Add EasyInstall to /etc/skel
 rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
 chmod -R a+r /etc/skel
 
 #Enable grub beep
+echo Enabling pc speaker beep at Grub boot menu.
 sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
 
 echo branding Vinux console
 sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
-
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -97,7 +104,7 @@ echo "Configuring remastersys..."
 green
 echo
 
-# Next run remastersys and change the username to 'vinux' and the name of the
+# Run remastersys and change the username to 'vinux' and the name of the
 # CD and ISO file to the Vinux RELEASE name specified above (.iso)
 sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
@@ -120,6 +127,11 @@ cp -f /usr/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 4 - Build Iso
+
+# Clean remastersys first from previous builds
+echo Clean up previous remastersys
+
+remastersys clean
 
 # Run remastersys in 'dist' mode from the Menu Launcher or the terminal. 
 # The iso should be in /home/remastersys in about 5 to 20 minutes depending on your computers speed.

@@ -4,9 +4,9 @@ WGET="/usr/bin/wget"
 
 $WGET -q --tries=10 --timeout=10 http://www.google.com -O /tmp/index.google &> /dev/null
 if [ ! -s /tmp/index.google ];then
-zenity --error --text "There is no internet connection!"
+zenity --error --text "There does not appear to be an internet connection!"
 else
 apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
-apt-get install -y --force-yes ubuntu-restricted-extras non-free-codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
+apt-get install -y --force-yes w32codecs libdvdcss2 | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
 zenity --info --text "Installation Complete!" 
 fi 

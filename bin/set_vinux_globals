@@ -164,6 +164,8 @@ gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
+# Does the directory exist?
+mkdir -p /usr/share/backgrounds
 cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
 gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
 
@@ -174,15 +176,16 @@ gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr
 echo
 bell
 red
-echo -n "Please enter your weather zipcode: "; read ZIPCODE
+echo -n "Please enter your weather zipcode: If you do not know it, leave blank."; read ZIPCODE
 green
 echo
 
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.local/share/orca/orca-customizations.py
-
-cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
+# Create orca gdm directory if needed
+mkdir -p /var/lib/gdm3/.local/share
+cp -r /etc/skel/.local/share/orca /var/lib/gdm3/.local/share/
 chmod -R a+r /etc/skel
-chown -R gdm:gdm /var/lib/gdm/.local/share/orca
+chown -R Debian-gdm:Debian-gdm /var/lib/gdm3/.local/share/orca
 
 remove_applet fast_user_switch
 
@@ -199,15 +202,22 @@ echo
 rsync -r /etc/skel/ /home/$USER
 rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
 chown -Rf $USER.$USER /home/$USER
-#echo "Don't worry, you can safely ignore this error!"
+
 
 rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
 cp /etc/skel/.bash_aliases_vinux /root
+# Enable bash alias inclusion from bashrc, stil lneed to rename bash aliases to use it
+# Still needs a check to see if it is already present from previous build, multiple entries otherwise.
+echo 'if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi' >> /usr/share/base-files/dot.bashrc
 
-# prevent ubuntu boot splash being shown
+# Then /root/.bashrc alias append
 
+echo 'if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi' >> /root/.bashrc
 
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
 update-grub
 
 # If you don't want the Vinux desktop...

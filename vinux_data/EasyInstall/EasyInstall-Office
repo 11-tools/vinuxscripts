@@ -7,6 +7,7 @@ if [ ! -s /tmp/index.google ];then
 zenity --error --text "There is no internet connection!"
 else
 apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
-apt-get install -y --force-yes libreoffice libreoffice-gnome evolution evolution-exchange cuneiform ocropus speedy-ocr markup-binder pandoc | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
+apt-get install --force-yes -y -t squeeze-backports ure
+apt-get install -y --force-yes libreoffice-base libreoffice-base-core libreoffice-gtk libreoffice-core libreoffice libreoffice-gnome evolution evolution-exchange ocrodjvu ocropus speedy-ocr markup-binder pandoc | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
 zenity --info --text "Installation Complete!" 
 fi 
