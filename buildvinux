@@ -2,12 +2,12 @@
 #
 # This script should only be run after completing the following steps:
 #
-# 1. Download any Debian Squeeze iso and burn it, including net-installer.
+# 1. Download LMDE gnome latest iso, it's rollin g release so # can be an older edition. 
 # 2. Install to hard drive then run these scripts.
-## 3. if you  used a net-installer, make sure you install make before running make install.
-# 4. Type in the vinuxscripts directory, sudo make install.
-# 5. Type './buildvinux' as root to run the script, when it is finished reboot and
-# your system should be identical to the Vinux/Squeeze distribution. If you 
+ before running make install.
+# 3. Type in the vinuxscripts directory, sudo make install.
+# 4. Type './buildvinux' as root to run the script, when it is finished reboot and
+# your system should be identical to VMDE. If you 
 # want a log of the build process? run the 'script' command first and 'exit'
 # when finished - the log will be in a file called 'typescript'.. 
 # 
@@ -29,7 +29,7 @@ function bell { echo -en "\007"; }
 # Stage 1 - Configuring Repositories
 
 # Update /etc/apt/sources.list
-# This installs Vinux, Remastersys, Squeeze-backports and Debian multi-media repos.
+# This installs Vinux, and Remastersys repos.
 
 echo
 blue
@@ -51,15 +51,11 @@ gpg -q --keyserver keys.gnupg.net --recv-keys EF2AFDCF ; gpg --export EF2AFDCF |
 
 gpg -q --keyserver keys.gnupg.net --recv-keys  16126D3A3E5C1192 ; gpg --export  16126D3A3E5C1192 | apt-key add -
 
-# May as well update package list now, ignore multi-media key error.
+# May as well update package list
 
 apt-get update -qq
 
-# Get the Squeeze multi media key
-
-apt-get install -y -qq --force-yes --allow-unauthenticated debian-multimedia-keyring
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ # # # # # # # # #
 
 # Stage 2 - Install Default Packages
 
@@ -77,7 +73,7 @@ echo "Upgrading all packages... This can take some time."
 green
 echo
 
-apt-get upgrade -y --force-yes -qq -f --no-install-recommends
+apt-get upgrade -y --force-yes -qq -f
 
 # Install the default packages
 
@@ -86,11 +82,15 @@ blue
 echo "Installing default packages..."
 green
 echo
-apt-get install -f -y --force-yes -qq --allow-unauthenticated gnome-orca gnome-terminal gparted compizconfig-settings-manager acpi vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter gedit-plugins gnome-themes gnome-themes-extras icedove soundConverter startupmanager pybackpack gespeaker remastersys speakup-tools aptoncd isomaster gtk-recordmydesktop gnome-color-chooser pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash gworldclock mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gnome-schedule hardinfo searchmonkey partimage ntp surfraw wajig wordgrinder alsa-oss python-gnomeapplet git-core pastebinit sox gpm screen splitvt toilet txt2html html2text pdf2svg pstotext units mc dict gnome-dictionary sc htop linuxinfo w3m elinks-lite urlview finch axel calcurse tdl extlinux transmission-gtk ceni geditpdf monitor-toggle sonic talking-clock ttytter orca-teacher emacspeak speech-dispatcher make totem network-manager-gnome network-manager gnome-backgrounds mousetweaks gnome-accessibility-themes software-center synaptic gnome-system-monitor preload epiphany-browser sudo gdm3 espeakup iceweasel wodim python-at-spi resolvconf
+apt-get install -f -y --force-yes -qq --allow-unauthenticated gnome-orca gnome-terminal gparted compizconfig-settings-manager acpi vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter gedit-plugins gnome-themes gnome-themes-extras icedove soundConverter startupmanager pybackpack gespeaker remastersys speakup-tools aptoncd isomaster gtk-recordmydesktop gnome-color-chooser pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash gworldclock mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume gnome-schedule hardinfo searchmonkey partimage ntp surfraw wajig wordgrinder alsa-oss python-gnomeapplet git-core pastebinit sox gpm screen splitvt toilet txt2html html2text pdf2svg pstotext units mc dict gnome-dictionary sc htop linuxinfo w3m elinks-lite urlview finch axel calcurse tdl extlinux transmission-gtk ceni geditpdf monitor-toggle sonic talking-clock ttytter orca-teacher emacspeak speech-dispatcher make totem network-manager-wicd gnome-backgrounds mousetweaks gnome-accessibility-themes software-center synaptic gnome-system-monitor preload epiphany-browser sudo gdm3 espeakup thunderbird wodim python-at-spi resolvconf
 
 # Fix missing simlink for resolv.conf
 ln /etc/resolvconf/resolv.conf.d/original /etc/resolv.conf
- 
+
+# fix missing symbolic link for libuuid - liveramfs-tools
+ln -s -f libuuid.so.1.3.0  libuuid.so.1
+
+
 # Enable parallel starts
 echo 'CONCURRENCY=shell' >> /etc/default/rcS
 
