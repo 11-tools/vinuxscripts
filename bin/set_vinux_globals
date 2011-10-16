@@ -1,0 +1,257 @@
+#!/bin/bash
+#
+# This script sets up the Vinux keybindings, menus and such.  It also 
+# modifies the desktop, but it doesn't remove any applications.  It 
+# should be run by typing: 'sudo set_vinux_globals'.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 1 - Declare Functions
+
+function gct {
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults "$@"
+}
+
+function set-string {
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string "$1" "$2"
+}
+
+function add-customkey {
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/action "$4"
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/name "$2"
+    gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
+}
+
+remove_applet()
+{
+    local line_no prior_line next_line
+
+    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
+    [ "$line_no" ] || return
+    prior_line=$((line_no-1))
+    next_line=$((line_no+1))
+    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
+    update-gconf-defaults
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 2 - Configuring the Keybindings
+
+echo
+bell
+red
+echo -n "Do you want to install the Vinux Keybindings? [y/n]: "
+read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then  
+
+echo
+blue
+echo "Setting up custom keybindings..."
+green
+echo
+
+set-string /apps/gnome_settings_daemon/keybindings/home '<Control><Alt>n'
+set-string /apps/gnome_settings_daemon/keybindings/www '<Control><Alt>w'
+set-string /apps/metacity/global_keybindings/run_command_terminal '<Control><Alt>t'
+
+add-customkey 0 'Orca Restart' '<Control><Alt>o' 'sh -c "killall speech-dispatcher; orca --replace"'
+add-customkey 1 'Metacity' '<Control><Alt>2' 'metacity --replace'
+add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'
+add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
+add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
+add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
+add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
+add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/share/vinux/vinux-docs/the-vinux-manual/index.html'
+add-customkey 9	'YASR' '<Control><Alt>s' 'gnome-terminal -e yasr'
+
+add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
+add-customkey 11 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
+add-customkey 12 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
+add-customkey 13 'Vinux-20' '<Alt><Mod4>4' '/usr/share/vinux/Themes/vinux-20'
+add-customkey 14 'Vinux-24' '<Alt><Mod4>5' '/usr/share/vinux/Themes/vinux-24'
+add-customkey 15 'Darklooks-8' '<Alt><Mod4>6' '/usr/share/vinux/Themes/darklooks-8'
+add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklooks-12'
+add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
+add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
+add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
+add-customkey 20 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
+
+# Compiz
+set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_in_button '<Super>Button1'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_out_button '<Super>Button3'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_1_key '<Super>1'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_2_key '<Super>2'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/zoom_specific_3_key '<Super>3'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/lock_zoom_key '<Super>l'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/pan_left_key '<Super>Left'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/pan_right_key '<Super>Right'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/pan_up_key '<Super>Up'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/pan_down_key '<Super>Down'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/fit_to_zoom_key '<Super>r'
+set-string /apps/compiz/plugins/ezoom/allscreens/options/fit_to_window_key '<Super>z'
+gct -s -t bool /apps/compiz/plugins/ezoom/screen0/options/hide_original_mouse true
+gct -s -t bool /apps/compiz/plugins/ezoom/screen0/options/scale_mouse true
+set-string /apps/compiz/plugins/neg/allscreens/options/screen_toggle_key '<Super>s'
+set-string /apps/compiz/plugins/mag/allscreens/options/zoom_in_button '<Shift><Super>Button1'
+set-string /apps/compiz/plugins/mag/allscreens/options/zoom_out_button '<Shift><Super>Button3'
+gct -s -t int /apps/compiz/plugins/mag/screen0/options/box_width 640
+gct -s -t int /apps/compiz/plugins/mag/screen0/options/box_height 480
+set-string /apps/compiz/plugins/obs/allscreens/options/brightness_increase_key '<Super>b'
+set-string /apps/compiz/plugins/obs/allscreens/options/brightness_decrease_key '<Super>v'
+set-string /apps/compiz/plugins/obs/allscreens/options/saturation_increase_key '<Super>t'
+set-string /apps/compiz/plugins/obs/allscreens/options/saturation_decrease_key '<Super>y'
+set-string /apps/compiz/plugins/switcher/allscreens/options/next_all_key 'Disabled'
+set-string /apps/compiz/plugins/switcher/allscreens/options/prev_all_key 'Disabled'
+set-string /apps/compiz/plugins/switcher/allscreens/options/next_panel_key '<Control><Alt>Tab'
+set-string /apps/compiz/plugins/switcher/allscreens/options/prev_panel_key '<Shift><Control><Alt>Tab'
+
+# Set active plugins
+gct -s -t list --list-type string /apps/compiz/general/allscreens/options/active_plugins '[core,mousepoll,neg,place,vpswitch,session,resize,gnomecompat,regex,commands,imgjpeg,png,svg,dbus,workarounds,decoration,text,mag,animation,resizeinfo,wall,expo,snap,fade,ezoom,move,scale,colorfilter,switcher,scaleaddon]'
+
+# Enable Control+Alt+Backspace to log out of Gnome
+gct -s -t list --list-type string /desktop/gnome/peripherals/keyboard/kbd/options '[terminate	terminate:ctrl_alt_bksp]'
+
+fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 3 - Configuring the Desktop
+
+echo
+bell
+red
+echo -n "Do you want to install the Vinux desktop? [y/n]: "
+read ANSWER
+green
+echo
+
+if [ "$ANSWER" = "y" ]; then 
+ 
+    # Update menus
+    echo
+    blue
+    echo "Installing Vinux desktop..."
+    green
+    echo
+
+    cp -r /usr/share/vinux/menus/* /usr/share/applications
+    chmod -R a+r /usr/share/applications
+
+    # Force the menus cache to be rebuilt 
+    rm -f /usr/share/applications/emacs23.desktop
+    rm -f /usr/share/applications/desktop.*.cache
+
+
+# Enable Orca
+gct -s -t bool /desktop/gnome/interface/accessibility true
+gct -s -t bool /apps/gksu/disable-grab true
+set-string /desktop/gnome/applications/window_manager/default /usr/bin/metacity
+gct -s -t bool /desktop/gnome/applications/at/visual/startup true
+set-string /desktop/gnome/applications/at/visual/exec orca
+set-string /apps/empathy/conversation/theme classic
+gct -s -t bool /desktop/gnome/applications/at/screen_reader_enabled true
+
+# Set fonts
+set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
+set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
+set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
+set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
+set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
+set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
+
+# Set mouse pointer
+gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
+set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
+gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
+set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
+# Add our background
+cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
+
+ # Copy user files to /etc/skel
+    rsync -r /usr/share/vinux/skel/ /etc/skel
+
+echo
+bell
+red
+echo -n "Please enter your weather zipcode: "; read ZIPCODE
+green
+echo
+
+sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
+
+cp -r /etc/skel/.orca /var/lib/gdm
+chmod -R a+r /etc/skel
+chown -R gdm.gdm /var/lib/gdm/.orca
+
+remove_applet fast_user_switch
+
+echo
+bell
+red
+echo -n "Enter your username: "; read USER
+green
+echo
+
+# Copy files from /etc/skel to user directory
+
+rsync -r /etc/skel/ /home/$USER
+rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
+chown -R $USER.$USER /home/$USER
+echo "Don't worry, you can safely ignore this error!"
+
+rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
+cp /etc/skel/.bash_aliases_vinux /root
+
+# prevent ubuntu boot splash being shown
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
+update-grub
+
+# If you don't want the Vinux desktop...
+
+else
+    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
+fi
+
