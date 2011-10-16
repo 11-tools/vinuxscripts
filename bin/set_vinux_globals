@@ -220,10 +220,10 @@ green
 echo
 
 sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.orca/orca-customizations.py
-
-cp -r /etc/skel/.orca /var/lib/gdm
+mkdir -p /var/lib/gdm/.local/share/
+cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
 chmod -R a+r /etc/skel
-chown -R gdm.gdm /var/lib/gdm/.orca
+chown -R gdm.gdm /var/lib/gdm/.local/share/orca
 
 remove_applet fast_user_switch
 
@@ -238,8 +238,8 @@ echo
 
 rsync -r /etc/skel/ /home/$USER
 rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
-chown -R $USER.$USER /home/$USER
-echo "Don't worry, you can safely ignore this error!"
+chown -R $USER.$USER /home/$USER | grep -v gvfs
+#echo "Don't worry, you can safely ignore this error!"
 
 rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
 cp /etc/skel/.bash_aliases_vinux /root
