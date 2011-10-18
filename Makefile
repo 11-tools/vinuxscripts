@@ -12,4 +12,5 @@ install:
 	install bin/update_manual $(DESTDIR)/usr/bin
 	install gksu/gksu $(DESTDIR)/usr/bin
 	install gksu/askpass $(DESTDIR)/usr/bin
+	install lsb-release $(DESTDIR)/etc
 	cp -r --preserve=mode vinux_data/* $(DESTDIR)/usr/share/vinux

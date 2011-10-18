@@ -88,7 +88,6 @@ sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
 rm -rf /root/.bash_history /root/.nano_history /root/.ssh /root/.wajig
 echo branding Vinux console
 sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
-sudo cp lsb-release /etc/lsb-release
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
