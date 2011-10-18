@@ -8,4 +8,4 @@ OnlyShowIn=GNOME;
 AutostartCondition=GNOME /desktop/gnome/sound/event_sounds
 X-GNOME-Autostart-Phase=Application
 X-GNOME-Provides=login-sound
-X-GNOME-Autostart-enabled=false
+X-GNOME-Autostart-enabled=true

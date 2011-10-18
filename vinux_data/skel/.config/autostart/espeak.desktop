@@ -1,7 +1,7 @@
 
 [Desktop Entry]
 Type=Application
-Exec=espeak "Press Control + Alt + Q to open the Vinux Manual!"
+Exec=espeak -s 170 "To view the quick launch guide, please push Control, Alt, plus Q;"
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
