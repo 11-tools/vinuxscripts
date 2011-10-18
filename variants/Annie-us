@@ -1,0 +1,33 @@
+// moving towards US English
+name english-us-annie
+language en-us 2
+language en-r
+language en 3
+gender male
+
+phonemes en_us
+dictrules 3 6
+option reduce_t 1
+
+stressLength 145 125 200 170 0 0 265 280
+stressAmp  17 16  20 20  20 22  22 20
+
+replace 03 I  i
+replace 03 I2 i
+replace 03 @  @/
+
+pitch 120 280
+
+formant 0 105 125 120
+formant 1 120 140 120
+formant 2 120 150 140
+formant 3 130 150 130
+formant 4 120 120 110
+formant 5 120 120 110
+formant 6 120 140 130
+formant 7 120 140 130
+formant 8 120 140 130
+
+intonation 1
+voicing 30
+consonants 110 120
