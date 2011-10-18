@@ -238,7 +238,7 @@ echo
 
 rsync -r /etc/skel/ /home/$USER
 rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
-chown -R $USER.$USER /home/$USER | grep -v gvfs
+chown -R $USER.$USER /home/$USER | grep -v -i gvfs
 #echo "Don't worry, you can safely ignore this error!"
 
 rsync -r /usr/share/vinux/variants/* /usr/share/espeak-data/voices/en
