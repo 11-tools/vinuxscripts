@@ -4,7 +4,6 @@ all:
 install:
 	install -d $(DESTDIR)/usr/bin $(DESTDIR)/usr/share/vinux
 	install buildvinux $(DESTDIR)/usr/bin
-	install bin/configurespeech $(DESTDIR)/usr/bin
 	install bin/set_vinux_globals $(DESTDIR)/usr/bin
 	install bin/cdburn $(DESTDIR)/usr/bin
 	install bin/usbinstall $(DESTDIR)/usr/bin
