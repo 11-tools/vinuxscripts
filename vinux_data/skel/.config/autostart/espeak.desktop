@@ -1,7 +1,7 @@
 
 [Desktop Entry]
 Type=Application
-Exec=espeak -s 170 "To view the quick launch guide, please push Control, Alt, plus Q;"
+sleep 4 && Exec=espeak -s 170 "To view the quick launch guide, please push Control, Alt, plus Q;"
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
