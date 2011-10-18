@@ -7,6 +7,7 @@ install:
 	install bin/set_vinux_globals $(DESTDIR)/usr/bin
 	install buildvinuxiso $(DESTDIR)/usr/bin
         install bin/restorespeech $(DESTDIR)/usr/bin
+        install bin/configurespeech $(DESTDIR)/usr/bin
 	install bin/volume_keys $(DESTDIR)/usr/bin
 	install bin/update_manual $(DESTDIR)/usr/bin
 	install gksu/gksu $(DESTDIR)/usr/bin
