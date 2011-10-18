@@ -74,7 +74,7 @@ sudo apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Add libreoffice repository and purge openoffice
 
-#sudo add-apt-repository ppa:libreoffice/ppa
+sudo add-apt-repository ppa:libreoffice/ppa
 
 echo
 bell
