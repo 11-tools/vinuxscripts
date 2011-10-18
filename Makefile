@@ -5,7 +5,6 @@ install:
 	install -d $(DESTDIR)/usr/bin $(DESTDIR)/usr/share/vinux
 	install buildvinux $(DESTDIR)/usr/bin
 	install bin/set_vinux_globals $(DESTDIR)/usr/bin
-	install bin/usbinstall $(DESTDIR)/usr/bin
 	install buildvinuxiso $(DESTDIR)/usr/bin
 	install bin/volume_keys $(DESTDIR)/usr/bin
 	install bin/update_manual $(DESTDIR)/usr/bin
