@@ -85,7 +85,11 @@ chmod -R a+r /etc/skel
 sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
 
 #clean up root dir
-rm -rf /root/.bash_history /root/.nano_history /root/.ssh /root/.wajig
+rm -f /root/.bash_history
+rm -f /root/.nano_history
+rm -rf /root/.ssh
+rm -rf /root/.wajig
+
 echo branding Vinux console
 sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
 fi
