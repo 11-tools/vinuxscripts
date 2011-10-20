@@ -60,20 +60,8 @@ green
 echo
 sudo apt-add-repository ppa:vinux/vinux-lucid
 sudo apt-add-repository ppa:vinux/vinux-lucid-testing
-
-#egrep -v 'vinux' /etc/apt/sources.list > /tmp/vinux.tmp
-#echo '# Repositories supporting vinux packages.
-## If you are willing to help test new Vinux packages, uncomment the following:
-##deb http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
-##deb-src http://ppa.launchpad.net/vinux/vinux-lucid-testing/ubuntu lucid main
-#deb http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main
-#deb-src http://ppa.launchpad.net/vinux/vinux-lucid/ubuntu lucid main' >> /tmp/vinux.tmp
-#sed -i 's/^# *deb\(.*\) partner *$/deb\1 partner/
-#    s/^# *deb\(.*\)backports\(.*\)$/deb\1backports\2/' /tmp/vinux.tmp
-#sudo mv /tmp/vinux.tmp /etc/apt/sources.list
-
-# Add libreoffice repository and purge openoffice
-
+sudo add-apt-repository ppa:mozillateam/firefox-stable
+sudo add-apt-repository ppa:mozillateam/thunderbird-stable
 sudo add-apt-repository ppa:libreoffice/ppa
 
 echo
