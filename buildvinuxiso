@@ -92,6 +92,12 @@ rm -rf /root/.wajig
 
 echo branding Vinux console
 sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
+
+# Make grub read lsb-release description line instead of The ID
+sed -i 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
+
+# Change lsb-release description to our build version
+sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
