@@ -62,14 +62,9 @@ apt-add-repository ppa:vinux/vinux-lucid
 apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Disable testing repository by default
-mv /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.disable
+#sed blah
 
 add-apt-repository ppa:mozillateam/firefox-stable
-add-apt-repository ppa:mozillateam/thunderbird-stable
-
-# Disable Ubuntu Mozilla thunderbird stable for now, frequent Thunderbird crashes
-mv /etc/apt/sources.list.d/mozillateam-thunderbird-stable-lucid.list/etc/apt/sources.list.d/mozillateam-thunderbird-stable-lucid.disable
-
 add-apt-repository ppa:libreoffice/ppa
 
 echo
