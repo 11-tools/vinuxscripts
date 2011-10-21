@@ -51,8 +51,6 @@ function bell {
 
 # Stage 1 - Configuring Repositories
 
-# Update /etc/apt/sources.list
-
 echo
 blue
 echo "Updating software repositories..."
