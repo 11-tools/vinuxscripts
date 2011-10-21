@@ -57,7 +57,7 @@ echo "Updating software repositories..."
 green
 echo
 apt-add-repository ppa:vinux/vinux-lucid
-apt-add-repository ppa:vinux/vinux-lucid-testing
+#apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Disable testing repository by default
 #sed blah
