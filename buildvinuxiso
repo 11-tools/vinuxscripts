@@ -71,11 +71,11 @@ echo "Removing applications to make room on the CD"
 green
 echo
 
-apt-get purge -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share ubuntu-docs libflite1 git-core
+apt-get purge -q -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share ubuntu-docs libflite1 git-core openssh-server gwibber
 
 apt-get autoremove -y -q
 
-apt-get clean
+apt-get autoclean
 
 # Add EasyInstall to /etc/skel
 rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
@@ -91,10 +91,10 @@ rm -rf /root/.ssh
 rm -rf /root/.wajig
 
 echo branding Vinux console
-sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
+echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
 
 # Make grub read lsb-release description line instead of The ID
-sed -i 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
+sed -Ei 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
 
 # Change lsb-release description to our build version
 sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
