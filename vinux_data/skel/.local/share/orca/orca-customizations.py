@@ -18,7 +18,7 @@ import urllib2
 
 #variable section
 #Postal code for weather information:
-zipCode = "27517"
+zipCode = "0"
 myKeyBindings = orca.keybindings.KeyBindings()
 
 #places text in the clipboard
@@ -42,8 +42,11 @@ def getWeather(zip_code, forecast = False):
         ycondition = dom.getElementsByTagNameNS(WEATHER_NS, 'condition')[0]
         weatherReport = "It is currently " + ycondition.getAttribute('temp') + " degrees and " + ycondition.getAttribute('text') + "."
         if forecast == True: weatherReport = "Today's forecast is " + str(forecasts[0]) + " with a high temperature of " + forecasts[1] + " and a low of " + forecasts[2] + " degrees."
-        weatherReport = weatherReport.capitalize()
+        weatherReport = weatherReport.replace("AM", "morning")
+        weatherReport = weatherReport.replace("PM", "evening")
+        weatherReport = weatherReport.replace("Wind", "windy")
         weatherReport = weatherReport.replace("/", " and ")
+        weatherReport = weatherReport.capitalize()
     else:
         weatherReport = "No zip code set: Please edit .orca/orca-customizations.py"
     setClipboardText(weatherReport)
@@ -75,7 +78,7 @@ def readClipboard(script, inputEvent=None):
 
 #define the check for updates function
 def checkForUpdates(script, inputEvent=None):
-    oldVer = 4.3
+    oldVer = 7.0
     updateUrl = "http://www.stormdragon.us/orca-customizations/version.txt"
     try:
         fileHandle = urllib2.urlopen(updateUrl)
@@ -97,19 +100,6 @@ def checkForUpdates(script, inputEvent=None):
     return True
 #end checkForUpdates function
 
-#define the import updates function
-def importUpdates(script, inputEvent=None):
-    message = "New customizations file imported.  Please restart Orca so changes will take effect."
-    if os.path.exists("Desktop/orca-customizations.py"):
-        commands.getoutput("mv Desktop/orca-customizations.py .orca/orca-customizations.py")
-    elif os.path.exists("Downloads/orca-customizations.py"):
-        commands.getoutput("mv Downloads/orca-customizations.py .orca/orca-customizations.py")
-    else:
-        message = "customizations.py file not found.  Please make sure you saved it to your Desktop or Downloads folder."
-    orca.speech.speak(message)
-    orca.braille.displayMessage(message)
-    return True
-
 #Define the sayTime function
 def sayTime(script, inputEvent=None):
     message = time.strftime("%I:%M%p", time.localtime())
@@ -128,6 +118,15 @@ def sayDate(script, inputEvent=None):
     return True
 #end sayDate function
 
+#Define the sayVersion function
+def sayVersion(script, inputEvent=None):
+    message = "Orca version " + orca.orca_platform.version
+    orca.speech.speak(message)
+    orca.braille.displayMessage(message)
+    setClipboardText(message)
+    return True
+#end sayVersion function
+
 #Define the sayWeather function
 def sayWeather(script, inputEvent=None):
     message = getWeather(zipCode)
@@ -144,70 +143,44 @@ def sayForecast(script, inputEvent=None):
     return True
 #end sayForecast function
 
-#Define the volume 0 value detect and correct function
-def volumedetect():
-#This function detect if the master volume is 0.
-#If the master value is 0, increasing volume with 58%.
-#Following command gets master volume actual value percentage
-    mute = commands.getoutput('amixer get \'Master\',0|grep \'\[off\]\'')
-    #If the master channel is muted unmute everything pulseaudio typically mutes
-    if mute != "":
-        commands.getoutput('amixer sset \'Master\',0 unmute')
-        commands.getoutput('amixer sset \'Headphone\',0 unmute')
-        commands.getoutput('amixer sset \'Speaker\',0 unmute')
-    #If the volume value is 0%, increasing volume to 58%.
-    volume = commands.getoutput('amixer get \'Master\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
-    if volume == "0":
-        commands.getoutput('amixer set \'Master\',0 58%')
-    volume = commands.getoutput('amixer get \'Headphone\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
-    if volume == "0":
-        commands.getoutput('amixer set \'Headphone\',0 58%')
-    volume = commands.getoutput('amixer get \'Speaker\',0|grep %| sed \'s/%.*//; s/.*\[//\'')
-    if volume == "0":
-        commands.getoutput('amixer set \'Speaker\',0 58%')
-#End the volume 0 value detect and correct function
-
 #Define the increase volume function
-#Following function increasing master volume with 5 step, and spokening the new changed volume
+#By Hammer Attila
+#The following function increases master volume by 3 steps, and speaks the new volume
 def increasevolume(script, inputEvent=None):
-    #Following command increasing volume with 5 step
-    commands.getoutput("amixer sset \'Master\',0 5+")
-    #Following command gets increased master volume percentage
-    volume=commands.getoutput('amixer get \'Master\',0|grep %|cut -d "[" -f2')
-    #Following command cut unneed ] character with spokened output.
-    volume=volume.replace("]", "")
-    #Final, spokening Orca the new increased volume value
+    #The following command increases volume by 3 steps
+    commands.getoutput('amixer sset Master 3+')
+    #The following command gets increased master volume percentage
+    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    #Finally, speak the new increased volume value
     orca.speech.speak(volume)
+    orca.braille.displayMessage(volume)
 #End increase volume function
 
 #Define the decrease volume function
-#Following function decreasing master volume with 5 step, and spokening the new changed volume
+#By Hammer Attila
+#The following function decreases master volume by 3  steps, and speaks the new volume
 def decreasevolume(script, inputEvent=None):
-    #Following command decreasing volume with 5 step
-    commands.getoutput("amixer sset \'Master\',0 5-")
-    #Following command gets decreased master volume percentage
-    volume=commands.getoutput('amixer get \'Master\',0|grep %|cut -d "[" -f2')
-    #Following command cut unneed ] character with spokened output.
-    volume=volume.replace("]", "")
-    #Final, spokening Orca the new decreased volume value
+    #The following command decreases volume by 3 steps
+    commands.getoutput('amixer sset Master 3-')
+    #The following command gets decreased master volume percentage
+    volume=commands.getoutput('amixer get Master|grep %|cut -d "[" -f2')
+    #Finally, speak the new decreased volume value
     orca.speech.speak(volume)
+    orca.braille.displayMessage(volume)
 #End decrease volume function
 
 #Define the toggle volume function
-#Following function toggle master volume mute on/off
+#By Hammer Attila
+#The following function toggles master volume mute on/off
 def togglevolumemute(script, inputEvent=None):
-    #Following command gets master volume mute status
-    mutestatus=commands.getoutput('amixer get \'Master\',0|grep "\[off\]"')
-    #Following command toggle master volume mute on/off
-    if mutestatus!='':
-        commands.getoutput('amixer sset \'Master\',0 unmute')
-        commands.getoutput('amixer sset \'Headphone\',0 unmute')
-        commands.getoutput('amixer sset \'Speaker\',0 unmute')
+    #The following command toggles master volume mute on/off
+    commands.getoutput('amixer sset Master toggle')
+    #The following command gets master volume mute status
+    mutestatus=commands.getoutput('amixer get Master|grep %|cut -d "[" -f4')
+    #Finally, if actual master volume status is on, Orca notifies the user that mute is off.
+    if mutestatus=='on]':
         orca.speech.speak('Mute off.')
-    else:
-        commands.getoutput('amixer sset \'Master\',0 mute')
-        commands.getoutput('amixer sset \'Headphone\',0 mute')
-        commands.getoutput('amixer sset \'Speaker\',0 mute')
+        orca.braille.displayMessage('Mute off.')
 #End toggle volume function
 
 #Set up sayBattery keys
@@ -249,10 +222,21 @@ sayDateHandler = orca.input_event.InputEventHandler(
     "Presents the date.") # Shows the function of the key press in learn mode
 
 myKeyBindings.add(orca.keybindings.KeyBinding(
-    "d",
+    "t",
     1 << orca.settings.MODIFIER_ORCA,
     1 << orca.settings.MODIFIER_ORCA,
-    sayDateHandler)) # Sets the say date key
+    sayDateHandler, 2)) # Sets the say date key
+
+#Set up sayVersion keys
+sayVersionHandler = orca.input_event.InputEventHandler(
+    sayVersion,
+    "Presents the version of Orca.") # Shows the function of the key press in learn mode
+
+myKeyBindings.add(orca.keybindings.KeyBinding(
+    "v",
+    1 << orca.settings.MODIFIER_ORCA,
+    1 << orca.settings.MODIFIER_ORCA,
+    sayVersionHandler)) # Sets the say time key
 
 #add sayWeather info
 sayWeatherHandler = orca.input_event.InputEventHandler(
@@ -276,17 +260,6 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
     1 << orca.settings.MODIFIER_ORCA,
     checkForUpdatesHandler)) # Sets the check for upgrades key
 
-#add importUpdates info
-importUpdatesHandler = orca.input_event.InputEventHandler(
-    importUpdates,
-    "Imports new version of orca-customizations.py.") # Shows the function of the key press in learn mode
-
-myKeyBindings.add(orca.keybindings.KeyBinding(
-    "c",
-    1 << orca.settings.MODIFIER_ORCA,
-    1 << orca.settings.MODIFIER_ORCA,
-    importUpdatesHandler, 2)) # Sets the import upgrades key
-
 #add sayForecast info
 sayForecastHandler = orca.input_event.InputEventHandler(
     sayForecast,
@@ -301,7 +274,7 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
 #Add increase volume info
 increasevolumeHandler = orca.input_event.InputEventHandler(
     increasevolume,
-    "Increasing master volume with 5 step, and spokening the new value") # Shows the function of the key press in learn mode
+    "Increases master volume by 3 steps, and speaks the new value") # Shows the function of the key press in learn mode
 
 myKeyBindings.add(orca.keybindings.KeyBinding(
 
@@ -313,7 +286,7 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
 #Add decrease volume info
 decreasevolumeHandler = orca.input_event.InputEventHandler(
     decreasevolume,
-    "Decreasing master volume with 5 step, and spokening the new value") # Shows the function of the key press in learn mode
+    "Decreases master volume by 3 steps, and speaks the new value") # Shows the function of the key press in learn mode
 
 myKeyBindings.add(orca.keybindings.KeyBinding(
 
@@ -325,7 +298,7 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
 #Add toggle mute volume info
 mutevolumeHandler = orca.input_event.InputEventHandler(
     togglevolumemute,
-    "Toggle master volume mute on/off") # Shows the function of the key press in learn mode
+    "Toggles master volume mute on/off") # Shows the function of the key press in learn mode
 
 myKeyBindings.add(orca.keybindings.KeyBinding(
 
@@ -336,7 +309,4 @@ myKeyBindings.add(orca.keybindings.KeyBinding(
 
 orca.settings.keyBindingsMap["default"] = myKeyBindings
 #end time, date, and weather code
-#Following command execute the volume detect function with always script start.
-#This function detects if master volume is 0, and increasing with 58% audible value.
-volumedetect()
 
