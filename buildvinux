@@ -57,7 +57,7 @@ echo "Updating software repositories..."
 green
 echo
 apt-add-repository ppa:vinux/vinux-lucid
-#apt-add-repository ppa:vinux/vinux-lucid-testing
+apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Disable testing repository by default
 sed -ri '1 s/(^deb)/# \1/' /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list
@@ -82,7 +82,7 @@ echo "Removing Open Office..."
 green
 echo
 
-sudo apt-get purge -y openoffice.org-common
+sudo apt-get purge -y -qq openoffice.org-common
  
 fi
 
@@ -100,7 +100,7 @@ echo
 
 sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update 
 
-sudo apt-get -q -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
+sudo apt-get -qq -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
 
 # Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
 # updated until we say so.
@@ -123,36 +123,20 @@ Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
 
 echo
 blue
-echo "Importing repository keys..."
+#echo "Importing repository keys..."
 green
 echo
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF
 
 # Import the Extras key
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Stage 2 - Install Default Packages
-
-# Update to the latest packages.
+# Stage 2 - Install Default Packages and upgrade
 
 echo
-blue
-echo "Updating package list..."
-green
-echo
-
-sudo apt-get update  -q
-
-echo
-blue
-echo "Upgrading all packages... This can take a few minutes."
-green
-echo
-
-sudo apt-get upgrade -y  -q
 
 # Install the default packages
 
@@ -163,6 +147,8 @@ green
 echo
 
 sudo apt-get install -y -q --force-yes gnome-orca remastersys gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras gnome-themes-more thunderbird soundConverter startupmanager pybackpack gespeaker speechd-up speakup speakup-tools gwget aptoncd isomaster gtk-recordmydesktop gnome-color-chooser ceni geditpdf monitor-toggle ttytter pavucontrol gnome-specimen gcolor2 bluefish pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume terminator gufw gnome-schedule hardinfo searchmonkey meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak cpufreqd 
+
+sudo apt-get upgrade -y  -q
 
 # Install x-tile from repository
 
