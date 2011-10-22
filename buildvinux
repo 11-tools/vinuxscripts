@@ -60,7 +60,8 @@ apt-add-repository ppa:vinux/vinux-lucid
 #apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Disable testing repository by default
-#sed blah
+sed -ri '1 s/(^deb)/# \1/' /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list
+
 
 add-apt-repository ppa:mozillateam/firefox-stable
 add-apt-repository ppa:libreoffice/ppa
