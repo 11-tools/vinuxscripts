@@ -60,17 +60,12 @@ sed -i 's/load-module module-native-protocol-unix$/load-module module-native-pro
 
 # Stage 2 - Configuring Speech
 
-# Rebuild speakup from source
-
 echo
 blue
-#echo "Rebuilding speakup from source..."
 green
 echo
 
-#apt-get install -y module-assistant 
-#echo y | m-a a-i -f speakup-source -q
-#modprobe speakup_soft
+modprobe speakup_soft start=1
 
 # Install speechd-up
 if [ -f /etc/init.d/speechd-up ]; then
@@ -91,7 +86,7 @@ sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
 sed -i 's/#AddModule "ibmtts"/#AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
 
 # Setup YASR
-apt-get install -y yasr 
+apt-get install -y -qq yasr 
 sed -i 's/^synthesizer=emacspeak server/#synthesizer=emacspeak server/
     s/^#synthesizer=speech dispatcher/synthesizer=speech dispatcher/
     s/^#synthesizer port=127.0.0.1:6560/synthesizer port=127.0.0.1:6560/
