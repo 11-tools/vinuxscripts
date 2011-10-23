@@ -71,9 +71,9 @@ echo "Removing applications to make room on the CD"
 green
 echo
 
-apt-get purge -q -y openoffice.org-common gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k nautilus-share ubuntu-docs libflite1 git-core openssh-server gwibber
+apt-get purge -qq -y gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k libflite1 git-core openssh-server gwibber
 
-apt-get autoremove -y -q
+apt-get autoremove -y -qq
 
 apt-get autoclean
 
