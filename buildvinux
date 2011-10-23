@@ -300,7 +300,7 @@ green
 echo
 
 sudo restorespeech
-
+sudo configurespeech
 echo
 bell
 blue
