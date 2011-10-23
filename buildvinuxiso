@@ -6,8 +6,6 @@
 # that the ISO will fit on a CD, and it make some other changes
 # to the system.
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
 # Stage 0 - Declare text colour/system bell functions
 
 function black {
@@ -71,39 +69,39 @@ echo "Removing applications to make room on the CD"
 green
 echo
 
-apt-get purge -qq -y gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k libflite1 git-core openssh-server gwibber
+sudo apt-get purge -qq -y gnome-games-common gbrainy evolution-common evolution-data-server f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k libflite1 git-core openssh-server gwibber
 
-apt-get autoremove -y -qq
+# Remove previous kernel if one exists
+sudo apt-get purge -q -y linux-image-2.6* | grep -v $(uname -r)
 
-apt-get autoclean
+sudo apt-get autoremove -y -qq
 
 # Add EasyInstall to /etc/skel
-rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
+sudo rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
 chmod -R a+r /etc/skel
 
 #Enable grub beep
-sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
+sudo sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
 
 #clean up root dir
-rm -f /root/.bash_history
-rm -f /root/.nano_history
-rm -rf /root/.ssh
-rm -rf /root/.wajig
+sudo rm -f /root/.bash_history
+sudo rm -f /root/.nano_history
+sudo rm -rf /root/.ssh
+sudo rm -rf /root/.wajig
 
 echo branding Vinux console
-echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
+sudo echo "Vinux $RELEASE_SPACES \n \l" > /etc/issue
 
 # Make grub read lsb-release description line instead of The ID
-sed -Ei 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
+sudo sed -Ei 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
 
 # Change lsb-release description to our build version
-sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
+sudo sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
 
 # Update grub so our menu name changes
-update-grub
+sudo update-grub
 fi
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 3 - Configure Remastersys
 
@@ -114,13 +112,13 @@ green
 echo
 
 # Next run remastersys and change the username to 'vinux' and the name of the
-# CD and ISO file to 'Vinux-3.0-Alpha-3(.iso)'
-sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
+# CD and ISO file to 'Vinux-'version'
+sudo sed -i "s/LIVEUSER=.*/LIVEUSER=\"vinux\"/
         s/LIVECDLABEL=.*/LIVECDLABEL=\"Vinux $RELEASE_SPACES\"/
         s/CUSTOMISO=.*/CUSTOMISO=\"Vinux-$RELEASE.iso\"/" /etc/remastersys.conf
 
 # Set timeout and accessibility mode
-sed -i 's/^timeout.*/timeout 100/
+sudo sed -i 's/^timeout.*/timeout 100/
     s/^prompt.*/prompt 0\nnoescape 1/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
@@ -141,4 +139,4 @@ blue
 echo "Building ISO..."
 green
 echo
-remastersys dist
+sudo remastersys dist
