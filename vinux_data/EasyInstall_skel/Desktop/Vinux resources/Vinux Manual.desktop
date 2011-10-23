@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/usr/share/icons/gnome/scalable/actions/address-book-new.svg
+Name[en_GB]=Vinux Manual
+Exec=firefox /usr/share/vinux/vinux-docs/the-vinux-manual/index.html
+Comment[en_GB]=Beginners start here!
+Name=Vinux Manual
+Comment=Beginners start here!
+Icon=/usr/share/icons/gnome/scalable/actions/address-book-new.svg
