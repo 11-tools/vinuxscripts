@@ -1,83 +1,12 @@
 #!/bin/bash
 
-# This is a Vinux EasyInstall script it automates the installation of a suite of applications from a desktop
-# icon, which will disappear if the packages are successfully installed. The menu launchers are not removed
-# so you can install the packages again if you want to update them and/or reinstall them etc. 
+WGET="/usr/bin/wget"
 
-# Step 0: Check whether script has already been run if not go to step 9
-
-b=$USER
-a="/home/"
-
-if [ ! -e $a$b/.Office ]; then 
-
-# Step 1: Ask for confirmation - if cancelled go to Step 8
-
-if zenity --question --text "Do you want to install the Vinux Office Suite? All of these applications are accessible with a screen-reader. This will install the libreoffice, libreoffice-gnome, evolution, evolution-exchange, pandoc and markup-binder packages! It will also remove OpenOffice if it is installed."; then
-
-# Step 2: Get user name and ask for admin password
-
-gksu su
-
-# Step 3: Update package list and check it was successful - if not go to Step 7
-
-set -o pipefail ; if gksu apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..." ; then
-
-# Step 4: Update packages and check that it was successful - if not go to Step 6
-
-sudo apt-get purge -y openoffice.org-common
-
-set -o pipefail ; if gksu apt-get -y install libreoffice libreoffice-gnome libbase-java-openoffice.org libcommons-codec-java libcommons-httpclient-java libcommons-lang-java libflute-java-openoffice.org libfonts-java-openoffice.org libformula-java-openoffice.org liblayout-java-openoffice.org libloader-java-openoffice.org libmysqlcppconn4 libpentaho-reporting-flow-engine-java-openoffice.org libreoffice-help-en-gb libreoffice-l10n-common libreoffice-l10n-en-gb libreoffice-mysql-connector libreoffice-ogltrans libreoffice-pdfimport libreoffice-presentation-minimizer libreoffice-presenter-console libreoffice-report-builder libreoffice-wiki-publisher librepository-java-openoffice.org libsac-java libsac-java-gcj libserializer-java-openoffice.org libxml-java-openoffice.org mozilla-libreoffice evolution evolution-exchange pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..." ; then
-
-touch /$a$b/.Office
-
-# Step 5: Delete desktop icon if it still exists and display the success message
-
-a="/home/"
-c="/Desktop/EasyInstall-Office.desktop"
-if [ -e $a$b$c ]; then 
-rm $a$b$c
-fi
-zenity --info --text "Installation was successful - Press enter to finish!"
-
-# Step 6: Execute if installation of packages fails - from Step 4
-
+$WGET -q --tries=10 --timeout=10 http://www.google.com -O /tmp/index.google &> /dev/null
+if [ ! -s /tmp/index.google ];then
+zenity --error --text "There is no internet connection!"
 else
-zenity --info --text "Installation of packages failed - Press enter to close!"
-fi
-
-# Step 7: Execute if update of package list fails - from Step 3
-
-else
-zenity --info --text "Update of package list failed - Press enter to close!"
-fi
-
-# Step 8: Execute if installation is cancelled - from Step 1
-
-else 
-zenity --info --text "Installation was cancelled - Press enter to close!"
-fi
-
-# Step 9: Remove Packages - from Step 0
-
-elif zenity --question --text "Do you want to remove the Vinux Office Suite? This will remove the libreoffice, libreoffice-gnome, evolution, evolution-exchange, pandoc and markup-binder packages!"; then
-
-gksu su
-
-set -o pipefail ; if gksu apt-get -y remove libreoffice libreoffice-gnome libbase-java-openoffice.org libcommons-codec-java libcommons-httpclient-java libcommons-lang-java libflute-java-openoffice.org libfonts-java-openoffice.org libformula-java-openoffice.org liblayout-java-openoffice.org libloader-java-openoffice.org libmysqlcppconn4 libpentaho-reporting-flow-engine-java-openoffice.org libreoffice-help-en-gb libreoffice-l10n-common libreoffice-l10n-en-gb libreoffice-mysql-connector libreoffice-ogltrans libreoffice-pdfimport libreoffice-presentation-minimizer libreoffice-presenter-console libreoffice-report-builder libreoffice-wiki-publisher librepository-java-openoffice.org libsac-java libsac-java-gcj libserializer-java-openoffice.org libxml-java-openoffice.org mozilla-libreoffice evolution evolution-exchange pandoc markup-binder | zenity --progress --pulsate --auto-close --auto-kill --text="Removing packages, please wait..." ; then
-
-rm /$a$b/.Office
-
-zenity --info --text "Packages were removed - Press enter to close!"
-
-else
-zenity --info --text "Package removal failed - Press enter to close!"
-fi
-
-else
-zenity --info --text "Package removal cancelled - Press enter to close!"
-fi
-
-# Step 10: Exit
-
-exit=0
+apt-get update | zenity --progress --pulsate --auto-close --auto-kill --text="Updating package lists, please wait..."
+apt-get install -y --force-yes libreoffice libreoffice-gnome evolution evolution-exchange cuneiform ocropus speedy-ocr markup-binder pandoc | zenity --progress --pulsate --auto-close --auto-kill --text="Downloading and installing packages, please wait..."
+zenity --info --text "Installation Complete!" 
+fi 
