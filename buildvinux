@@ -186,9 +186,6 @@ sudo apt-get install -y --force-yes gnome-app-install
 
 sudo update_manual
 
-# Set up irssi global configuration
-
-sudo cp /usr/share/vinux/irssi/irssi.conf /etc/irssi.conf
 
 # Clean up any packages we don't need
 
