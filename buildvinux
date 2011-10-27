@@ -53,18 +53,48 @@ function bell {
 
 echo
 blue
-echo "Updating software repositories..."
+echo "Adding personal package archives"
 green
 echo
-apt-add-repository ppa:vinux/vinux-lucid
-apt-add-repository ppa:vinux/vinux-lucid-testing
+sudo apt-add-repository ppa:vinux/vinux-lucid
+sudo apt-add-repository ppa:vinux/vinux-lucid-testing
 
 # Disable testing repository by default
-sed -ri '1 s/(^deb)/# \1/' /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list
+sudo sed -ri '1 s/(^deb)/# \1/' /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list
 
+sudo add-apt-repository ppa:mozillateam/firefox-stable
+sudo add-apt-repository ppa:mozillateam/thunderbird-stable
+sudo add-apt-repository ppa:libreoffice/ppa
+sudo add-apt-repository ppa:tualatrix/ppa
 
-add-apt-repository ppa:mozillateam/firefox-stable
-add-apt-repository ppa:libreoffice/ppa
+# Add medibuntu repository 
+
+echo
+blue
+echo "Adding medibuntu repository..."
+green
+echo
+
+sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get -qq update && sudo apt-get -y -qq --allow-unauthenticated install medibuntu-keyring && sudo apt-get -qq update 
+
+sudo apt-get -qq -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
+
+# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
+# updated until we say so.
+
+echo
+blue
+echo "Pinning Vinux repositories..."
+green
+echo
+
+sudo echo 'Package: *
+Pin: release o=LP-PPA-vinux-vinux-lucid
+Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
+sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
+sudo echo 'Package: *
+Pin: release o=LP-PPA-vinux-vinux-lucid-testing
+Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
 
 echo
 bell
@@ -86,57 +116,13 @@ sudo apt-get purge -y -qq openoffice.org-common openoffice.org-style-human
  
 fi
 
-# Add ubuntu-tweak repository
-
-sudo add-apt-repository ppa:tualatrix/ppa
-
-# Add medibuntu repository 
-
-echo
-blue
-echo "Adding medibuntu repository..."
-green
-echo
-
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update 
-
-sudo apt-get -qq -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
-
-# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
-# updated until we say so.
-
-echo
-blue
-echo "Pinning Vinux repositories..."
-green
-echo
-
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid
-Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
-sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
-echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
-
-# Import the Vinux/Ubuntu Team repository key.
-
-echo
-blue
-#echo "Importing repository keys..."
-green
-echo
-
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF2AFDCF
-
-# Import the Extras key
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192 
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 2 - Install Default Packages and upgrade
 
 echo
+
+sudo apt-get upgrade -y  -qq
 
 # Install the default packages
 
@@ -145,11 +131,30 @@ blue
 echo "Installing default packages..."
 green
 echo
-sudo apt-get install -y -q --force-yes gnome-orca remastersys gparted compizconfig-settings-manager acpi ubiquity-frontend-gtk vlock irssi lfm aptitude lynx-cur pdmenu sysv-rc-conf testdisk deborphan pcmanfm alpine nautilus-open-terminal nautilus-gksu nautilus-image-converter nautilus-script-audio-convert nautilus-wallpaper gedit-plugins gnome-accessibility-themes-extras gnome-themes gnome-themes-extras thunderbird soundConverter startupmanager pybackpack gespeaker speechd-up speakup speakup-tools gwget aptoncd gnome-color-chooser ceni geditpdf monitor-toggle ttytter pavucontrol gnome-specimen gcolor2 pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype gtkhash tuxcmd  gworldclock sound-juicer mhwaveedit autokey-gtk gtk-chtheme fslint parcellite alarm-clock dlume terminator gufw gnome-schedule hardinfo searchmonkey meld partimage ntp dasher easystroke gnome-mousetrap gxneur gok surfraw audiobook-converter wajig wordgrinder emacspeak alsa-oss ubuntu-tweak gtk-recordmydesktop isomaster cpufreqd computer-janitor computer-janitor-gtk ubufox
 
+# Define packages
 
+system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude sysv-rc-conf testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp'
 
-sudo apt-get upgrade -y  -q
+screen_readers='gnome-orca speakup speakup-tools speechd-up gespeaker dasher gok'
+
+accessibility_tools='nautilus-gksu monitor-toggle'
+
+themes='gnome-accessibility-themes-extras gnome-themes gnome-themes-extras'
+
+chat='pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype irssi'
+
+graphics='compizconfig-settings-manager nautilus-wallpaper gnome-color-chooser gcolor2 nautilus-image-converter gtk-chtheme fslint'
+
+cli='mc vlock lfm lynx-cur alpine ceni ttytter emacspeak'
+
+sound='nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer mhwaveedit gtk-recordmydesktop isomaster alarm-clock'
+
+convenient_tools='nautilus-open-terminal gedit-plugins geditpdf ubuntu-tweak terminator autokey-gtk'
+
+common='pcmanfm thunderbird gworldclock parcellite dlume gnome-schedule hardinfo searchmonkey meld easystroke gnome-mousetrap gxneur surfraw wordgrinder ubufox'
+
+sudo apt-get install -y -q --force-yes $system_tools $screen_readers $accessibility_tools $themes $chat $graphics $cli $sound $convenient_tools $common
 
 # Install x-tile from repository
 
@@ -195,15 +200,15 @@ echo "Removing unnecessary packages..."
 green
 echo
 
-sudo apt-get -q -y -q autoremove 
+sudo apt-get -q -y -qq autoremove 
 
 # Switch off automatic updates notification message
 
-sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
+sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/10periodic
 
 # Open emacspeak in customizable mode
 
-sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+sudo sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -225,8 +230,6 @@ blue
 echo "Installing DVD packages..."
 green
 echo
-
-sudo apt-get purge -y openoffice.org-common
 
 sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
 fi
@@ -268,7 +271,7 @@ echo "Installing non-free packages..."
 green
 echo
 
-sudo apt-get install -y --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs skype acroread acroread-fonts 
+sudo apt-get install -y -q --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs acroread acroread-fonts 
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
