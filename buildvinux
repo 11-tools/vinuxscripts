@@ -134,7 +134,7 @@ echo
 
 # Define packages
 
-system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude sysv-rc-conf testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp pastebinit'
+system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude sysv-rc-conf testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp pastebinit cfh'
 
 screen_readers='gnome-orca speakup speakup-tools speechd-up gespeaker dasher gok'
 
