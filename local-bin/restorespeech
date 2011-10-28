@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 # This script can be run anytime to restore speech to a working state on a system.  
-# Speech currently is often broken by kernel updates from Ubuntu. To run the script
 # type: 'sudo restorespeech'.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -52,6 +51,7 @@ sed -i 's/^ *; *autospawn *= *yes *$/autospawn = no/' /etc/pulse/client.conf
 rm -f /etc/xdg/autostart/pulseaudio.desktop
 sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 sed -i 's/load-module module-native-protocol-unix$/load-module module-native-protocol-unix auth-anonymous=1/' /etc/pulse/system.pa
+#disabled to debug
 #if [ "`grep 'sleep 8' /etc/init.d/pulseaudio`" = "" ]; then
 #    sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 8\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
 #fi
@@ -71,7 +71,7 @@ modprobe speakup_soft start=1
 if [ -f /etc/init.d/speechd-up ]; then
     /etc/init.d/speechd-up stop 
 fi
-apt-get install -y speechd-up 
+apt-get install -y -q speechd-up 
 
 echo
 blue
