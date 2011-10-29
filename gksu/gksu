@@ -3,7 +3,7 @@
 function help () {
     echo 'This is the accessible replacement for gksu.'
     echo ''
-    echo 'Usage: /usr/bin/gksudo [-u <user>] [options] <command>'
+    echo 'Usage: gksudo [-u <user>] [options] <command>'
     echo ''
     echo '  --user <user>, -u <user>'
     echo '    Call <command> as the specified user.'
@@ -52,6 +52,6 @@ while true ; do
     shift
 done
 
-export SUDO_ASKPASS="/usr/bin/askpass"
+export SUDO_ASKPASS="askpass"
 export SUDO_COMMAND=$1
 sudo -A $OPTIONS -- "$@"
