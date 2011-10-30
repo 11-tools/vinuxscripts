@@ -74,7 +74,7 @@ sudo apt-get purge -qq -y gnome-games-common gbrainy evolution-common evolution-
 sudo apt-get autoremove -y -qq
 
 # Add EasyInstall to /etc/skel
-sudo rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
+sudo rsync -r /usr/local/share/vinux/EasyInstall_skel/ /etc/skel
 chmod -Rf a+r /etc/skel
 
 #Enable grub beep
