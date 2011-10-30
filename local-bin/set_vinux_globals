@@ -170,7 +170,7 @@ if [ "$ANSWER" = "y" ]; then
     echo
 
     cp -r /usr/local/share/vinux/menus/* /usr/share/applications
-    chmod -R a+r /usr/local/share/applications
+    chmod -R a+r /usr/share/applications
 
     # Force the menus cache to be rebuilt 
     rm -f /usr/share/applications/emacs23.desktop
@@ -204,7 +204,7 @@ gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
-cp -r /usr/local/share/vinux/Backgrounds/* /usr/local/share/backgrounds
+cp -r /usr/share/vinux/Backgrounds/* /usr/local/share/backgrounds
 gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/local/share/backgrounds/Vinux-Dusk.jpg"
 
  # Copy user files to /etc/skel
