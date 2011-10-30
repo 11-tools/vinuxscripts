@@ -204,7 +204,7 @@ gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
-cp -r /usr/share/vinux/Backgrounds/* /usr/local/share/backgrounds
+cp -r /usr/local/share/vinux/Backgrounds/* /usr/share/backgrounds
 gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/local/share/backgrounds/Vinux-Dusk.jpg"
 
  # Copy user files to /etc/skel
