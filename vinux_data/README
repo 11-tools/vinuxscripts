@@ -1,5 +1,6 @@
-The EasyInstall directory gets copied to /usr/share, so that users can execute these scripts
-from a menu or desktop icon.  The Menu files get copied to /usr/share/applications.  This adds
+The EasyInstall directory gets copied to /usr/local/share, so that users may execute these scripts
+from a menu or desktop icon.  The Menu files get copied to: 
+/usr/local/share/applications.  This adds
 new menu items for all users.  The skel directory gets copied to /etc/skel, which is the set
 of files installed in a user's home directory by default.
 
@@ -14,7 +15,7 @@ The contents of the skel directory are:
          ~/.gconf/apps/panel into vinux_data/skel.  To change the desktop background, edit
          vinux_data/skel/.gconf/desktop/gnome/background/%gconf.xml directly
 
-.orca  - Contains default Orca configuration
+.local/share/orca  - Contains default Orca configuration
 
 The EasyInstall_skel directory only gets copied to /etc/skel if the user does a buildvinuxiso
 and selects to remove applications to make the ISO fit on a CD.  Subdirectories are:

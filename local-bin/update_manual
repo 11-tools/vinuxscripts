@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p /usr/local/share/vinux/vinux--docs
 cd /usr/share/vinux
 if [ -d "vinux-docs" ]; then
 rm -r vinux-docs

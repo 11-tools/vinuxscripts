@@ -134,7 +134,7 @@ echo
 
 # Define packages
 
-system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp pastebinit cfh'
+system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp pastebinit software-center openssh-server cfh'
 
 screen_readers='gnome-orca speakup speakup-tools speechd-up gespeaker dasher gok'
 
@@ -175,17 +175,7 @@ echo "Removing bluez-alsa..."
 green
 echo
 
-sudo apt-get purge -q -y bluez-alsa 
-
-# Install gnome-app-install
-
-echo
-blue
-echo "Installing gnome-app-install..."
-green
-echo
-
-sudo apt-get install -y --force-yes gnome-app-install 
+sudo apt-get purge -qq -y bluez-alsa 
 
 # Installing Vinux Manual
 
@@ -200,7 +190,7 @@ echo "Removing unnecessary packages..."
 green
 echo
 
-sudo apt-get -q -y -qq autoremove 
+sudo apt-get autoremove -y -qq
 
 # Switch off automatic updates notification message
 
@@ -209,6 +199,9 @@ sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Pa
 # Open emacspeak in customizable mode
 
 sudo sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
+
+# install our irssi configuration
+sudo cp system/irssi.conf /etc/irssi.conf
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -230,31 +223,11 @@ blue
 echo "Installing DVD packages..."
 green
 echo
+sudo apt-get install -y --force-yes -q cuneiform ocropus screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan tuxmath tuxpaint tuxpuck tuxtype pingus accerciser python-dogtail audacious paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager xaralx photoprint 
 
-sudo apt-get install -y --force-yes cuneiform ocropus gambas2 uck screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail chromium-browser prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk gufw nautilus-clamscan spamassassin qemu-launcher virtualbox-ose extremetuxracer supertux tuxmath tuxpaint tuxpuck tuxtype supertuxkart pingus accerciser python-dogtail audacious pavucontrol paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar twitux solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager bbtime bbrun xaralx photoprint icc-profiles  
 fi
 
-# Install some 3D Games - not accessible with screen-reader
-
-echo
-bell
-red
-echo -n "Do you want to install the 3D games packages? [y/n]: "; read ANSWER
-green
-echo
-
-if [ "$ANSWER" = "y" ]; then 
-
-echo
-blue 
-echo "Installing games packages..."
-green
-echo
-
-sudo apt-get install -y --force-yes assaultcube wesnoth brutalchess foobillard glest neverball neverputt oolite pokerth smc smc-music stormbaancoureur torcs trigger warzone2100 yofrankie celestia-gnome
-fi
-
-# Install non-free packages - non-distributable
+# Install non-free packages - non-distributable in some countries
 
 echo
 bell
@@ -271,7 +244,7 @@ echo "Installing non-free packages..."
 green
 echo
 
-sudo apt-get install -y -q --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs acroread acroread-fonts 
+sudo apt-get install -y -q --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs acroread
 fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -300,12 +273,12 @@ green
 echo
 
 sudo restorespeech
-sudo configurespeech
+
 echo
 bell
 blue
 echo "Done!  Reboot and enjoy your new Vinux-like environment."
-echo "Please report bugs to vinux-development@googlegroups.com"
+echo "Note: if you were using script to log output type exit before rebooting."
 echo
 
 echo

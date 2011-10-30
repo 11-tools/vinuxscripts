@@ -52,6 +52,6 @@ while true ; do
     shift
 done
 
-export SUDO_ASKPASS="askpass"
+export SUDO_ASKPASS="/usr/local/bin/askpass"
 export SUDO_COMMAND=$1
 sudo -A $OPTIONS -- "$@"

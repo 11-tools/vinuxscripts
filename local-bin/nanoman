@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# written by Storm from  www.stormdragon.us
+
 #safely create a temperary file
 manFile=$(tempfile -d /tmp -p manpg)
 #this script accepts 1 and only 1 argument, a man topic.

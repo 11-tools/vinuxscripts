@@ -58,11 +58,11 @@ remove_applet()
 {
     local line_no prior_line next_line
 
-    line_no=$(grep -n "<string>$1</string>" /usr/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
+    line_no=$(grep -n "<string>$1</string>" /usr/local/share/gconf/defaults/05_panel-default-setup.entries | cut -f 1 -d :)
     [ "$line_no" ] || return
     prior_line=$((line_no-1))
     next_line=$((line_no+1))
-    sed -i -n "${prior_line},${next_line}!p" /usr/share/gconf/defaults/05_panel-default-setup.entries
+    sed -i -n "${prior_line},${next_line}!p" /usr/local/share/gconf/defaults/05_panel-default-setup.entries
     update-gconf-defaults
 }
 
@@ -96,19 +96,19 @@ add-customkey 2	'Compiz' '<Control><Alt>3' 'compiz --replace'
 add-customkey 3	'Monitor-Toggle' '<Control><Alt>m' 'monitor-toggle'
 add-customkey 4 'Gedit' '<Control><Alt>g' 'gedit'
 add-customkey 5 'Root Nautilus' '<Control><Alt><Shift>n' 'gksu nautilus'
-add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/share/vinux/keybindings.txt'
+add-customkey 6 'Keybindings' '<Control><Alt>k' 'gedit /usr/local/share/vinux/keybindings.txt'
 add-customkey 7 'Volume Keys' '<Shift><Alt><Mod4>Up' 'volume_keys'
-add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/share/vinux/vinux-docs/the-vinux-manual/index.html'
-add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/share/vinux/Themes/vinux-8'
-add-customkey 11 'Vinux-12' '<Alt><Mod4>2' '/usr/share/vinux/Themes/vinux-12'
-add-customkey 12 'Vinux-16' '<Alt><Mod4>3' '/usr/share/vinux/Themes/vinux-16'
-add-customkey 13 'Vinux-20' '<Alt><Mod4>4' '/usr/share/vinux/Themes/vinux-20'
-add-customkey 14 'Vinux-24' '<Alt><Mod4>5' '/usr/share/vinux/Themes/vinux-24'
-add-customkey 15 'Darklooks-8' '<Alt><Mod4>6' '/usr/share/vinux/Themes/darklooks-8'
-add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/share/vinux/Themes/darklooks-12'
-add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/share/vinux/Themes/darklooks-16'
-add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/share/vinux/Themes/darklooks-20'
-add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/share/vinux/Themes/darklooks-24'
+add-customkey 8 'QuickStart Guide' '<Control><Alt>q' 'firefox /usr/local/share/vinux/vinux-docs/the-vinux-manual/index.html'
+add-customkey 10 'Vinux-8' '<Alt><Mod4>1' '/usr/local/share/vinux/Themes/vinux-8'
+add-customkey 11 'Vinux-12' '<Alt><Mod4>2' '/usr/local/share/vinux/Themes/vinux-12'
+add-customkey 12 'Vinux-16' '<Alt><Mod4>3' '/usr/local/share/vinux/Themes/vinux-16'
+add-customkey 13 'Vinux-20' '<Alt><Mod4>4' '/usr/local/share/vinux/Themes/vinux-20'
+add-customkey 14 'Vinux-24' '<Alt><Mod4>5' '/usr/local/share/vinux/Themes/vinux-24'
+add-customkey 15 'Darklooks-8' '<Alt><Mod4>6' '/usr/local/share/vinux/Themes/darklooks-8'
+add-customkey 16 'Darklooks-12' '<Alt><Mod4>7' '/usr/local/share/vinux/Themes/darklooks-12'
+add-customkey 17 'Darklooks-16' '<Alt><Mod4>8' '/usr/local/share/vinux/Themes/darklooks-16'
+add-customkey 18 'Darklooks-20' '<Alt><Mod4>9' '/usr/local/share/vinux/Themes/darklooks-20'
+add-customkey 19 'Darklooks-24' '<Alt><Mod4>0' '/usr/local/share/vinux/Themes/darklooks-24'
 add-customkey 20 'Restore Speech' '<Shift><Control><Alt>r' 'gksu restorespeech'
 
 # Compiz
@@ -169,12 +169,12 @@ if [ "$ANSWER" = "y" ]; then
     green
     echo
 
-    cp -r /usr/share/vinux/menus/* /usr/share/applications
-    chmod -R a+r /usr/share/applications
+    cp -r /usr/local/share/vinux/menus/* /usr/local/share/applications
+    chmod -R a+r /usr/local/share/applications
 
     # Force the menus cache to be rebuilt 
-    rm -f /usr/share/applications/emacs23.desktop
-    rm -f /usr/share/applications/desktop.*.cache
+    rm -f /usr/local/share/applications/emacs23.desktop
+    rm -f /usr/local/share/applications/desktop.*.cache
 
 
 # Enable Orca
@@ -204,11 +204,11 @@ gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
 set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
 
 # Add our background
-cp -r /usr/share/vinux/Backgrounds/* /usr/share/backgrounds
-gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/share/backgrounds/Vinux-Dusk.jpg"
+cp -r /usr/local/share/vinux/Backgrounds/* /usr/local/share/backgrounds
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/local/share/backgrounds/Vinux-Dusk.jpg"
 
  # Copy user files to /etc/skel
-    rsync -r /usr/share/vinux/skel/ /etc/skel
+    rsync -r /usr/local/share/vinux/skel/ /etc/skel
 
 echo
 bell
@@ -221,7 +221,7 @@ sed -i 's/zipCode = "[0-9]*"/zipCode = "'$ZIPCODE'"/' /etc/skel/.local/share/orc
 mkdir -p /var/lib/gdm/.local/share/
 cp -r /etc/skel/.local/share/orca /var/lib/gdm/.local/share/
 chmod -R a+r /etc/skel
-chown -f -R gdm.gdm /var/lib/gdm/.local/share/orca
+chown -Rf gdm:gdm /var/lib/gdm/.local/share/orca
 
 remove_applet fast_user_switch
 
@@ -235,18 +235,18 @@ echo
 # Copy files from /etc/skel to user directory
 
 rsync -r /etc/skel/ /home/$USER
-rsync -r /usr/share/vinux/EasyInstall_skel/ /home/$USER
-chown -Rf $USER.$USER /home/$USER
+rsync -r /usr/local/share/vinux/EasyInstall_skel/ /home/$USER
+chown -Rf $USER:$USER /home/$USER
 cp /etc/skel/.bash_aliases_vinux /root
 
 # prevent ubuntu boot splash being shown
 
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
-#update-grub
+update-grub
 
 # If you don't want the Vinux desktop...
 
 else
-    rsync -r --exclude=/usr/share/vinux/skel/.gconf /usr/share/vinux/skel/ /etc/skel
+    rsync -r --exclude=/usr/local/share/vinux/skel/.gconf /usr/local/share/vinux/skel/ /etc/skel
 fi
 

@@ -1,7 +1,7 @@
 Vinux Keybindings
 
 This document contains a list of all of the keybindings
-for Gnome, Orca, Compiz, Speakup, Yasr  and Bash, as well
+for Gnome, Orca, Compiz, Speakup and Bash as well
 as a list of customised Bash Aliases which are available. 
 It is divided into nine sections:
 
@@ -12,8 +12,6 @@ It is divided into nine sections:
 5. Bash Aliases
 6. Speakup Desktop Keybindings
 7. Bash Keybindings
-8. Yasr Edit Mode Keybindings
-9. Yasr Review Mode Keybindings
 
 1. Gnome Keybindings
 
@@ -51,8 +49,6 @@ Enable Vinux Volume Keybindings*
     Windows + Alt + Left
 *Vinux Toggle Volume Mute
     Windows + Alt + Down
-Run yasr
-    Control + Alt + S
 Restore Speech
     Control + Shift + Alt + R
 
@@ -100,17 +96,17 @@ Previous panel
 Volume mute
     Insert + End
 Volume down
-    Insert + PageDown
+    Insert + Page Down
 Volume up
-    Insert + PageUp
+    Insert + Page Up
 Increase Speech Rate
     Insert + Up
 Decrease Speech Rate
     Insert + Down
 Increase Speech Pitch
-    Insert + Shift + <
+    Insert + Shift + rightt
 Decrease Speech Pitch
-    Insert + Shift + >
+    Insert + Shift + left
 Toggle magnifier
     Insert + g
 Increase Magnification
@@ -118,7 +114,7 @@ Increase Magnification
 Decrease Magnification
     Insert + -
 Toggle Colour Enhancements
-    Insert + n
+    Insert + nn
 Toggle Mouse Enhancements
     Insert + x
 Battery Power
@@ -132,7 +128,7 @@ Import New Orca Customizations File
 Read Date
     Insert + d
 Read Time
-    Insert + t
+    Inserdt + t
 Read Weather
     Insert + w
 Read 24 Hour Forecast
@@ -183,7 +179,7 @@ Launch the orca configuration dialog
     Insert + Space
 Orca application specific preferences
     Insert + Ctrl + Space
-Toggle speech on and off
+Toggle speech on and off - mute speech
     Insert + S
 Toggle the reading of tables, either by single cell or whole row
     Insert + F11
@@ -211,9 +207,9 @@ Increase Speech Rate
 Decrease Speech Rate
     Capslock + Down
 Increase Speech Pitch
-    Capslock + Shift + <
+    Capslock + Shift + right
 Decrease Speech Pitch
-    Capslock + Shift + >
+    Capslock + Shift + left
 Toggle magnifier
     Capslock + g
 Increase Magnification
@@ -380,9 +376,8 @@ Move or rename file (requires source and target)
 Delete a file or directory (requires file/directory name)
     z or zap
 
-Run As Root Or With Sudo (*To enable run: sudo mv /root/.bash_aliases_vinux /root/.bash_aliases)
-
-Remove a package and all config files (requires package name)
+Run As Root Or With Sudo (*To enable run: 
+sudo mv /root/.bash_aliases_vinux /root/.bash_aliases Remove a package and all config files (requires package name)
     A or Abolish
 Browse the details of a package (requires package name)
     B or Browse
@@ -707,97 +702,4 @@ Entries from "/etc/hosts"
 Output like "ls" or "dir"
     = + Double Press Tab
 
-8. Yasr Edit Mode Keybindings
 
-Say application cursor position
-    Control + a
-Say lineK
-    Control + l
-Bypass yasr
-    Control + n
-Flush speech buffer
-    Control + x
-Say previous character
-    Alt + b
-Say character
-    Alt + c
-Say word
-    Alt + d
-Read from cursor to bottom
-    Alt + e
-Reinitialize yasr
-    Alt + i
-say previous line
-    Alt + k
-Read line
-    Alt + l
-Read next line
-    Alt + m
-Toggle review mode
-    Alt + r
-Read from top to cursor
-    Alt + t
-Read entire screen
-    Alt + w
-Silence speech
-    Alt + x
-Keyboard wizard
-    Control + Alt + k
-Options menu
-    Control + Alt + o
-Save settings
-    Control + Alt + s
-Disable yasr
-    Alt + Enter
-
-9. Yasr Review Mode Keybindings
-
-Say cursor position
-    Space
-Start of line
-    ^
-End of line
-    $
-Say previous character
-    b
-Say character
-    c
-Say next character
-    d
-Read from cursor
-    e
-Search for text
-    f
-Search from cursor to top
-    <
-Search from cursor to bottom
-    >
-Move up a line
-    k
-Say current line
-    l
-Move down a line
-    m
-Bypass yasr
-    n
-Read from top to cursor
-    t
-Read entire screen
-    w
-Previous word
-    z
-Next word
-    x
-Previous line
-    Up Arrow
-Next line
-    Down Arrow
-Back one character
-    Left Arrow
-Forward one character
-    Right Arrow
-Previous paragraph
-    (
-Next paragraph
-    )
-Ascii value of character
