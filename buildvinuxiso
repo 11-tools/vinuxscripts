@@ -122,7 +122,7 @@ sudo sed -i 's/^timeout.*/timeout 100/
 
 # Change boot background
 
-sudo cp -f /usr/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
+sudo cp -f /usr/local/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
