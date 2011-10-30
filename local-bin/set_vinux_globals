@@ -169,12 +169,12 @@ if [ "$ANSWER" = "y" ]; then
     green
     echo
 
-    cp -r /usr/local/share/vinux/menus/* /usr/local/share/applications
+    cp -r /usr/local/share/vinux/menus/* /usr/share/applications
     chmod -R a+r /usr/local/share/applications
 
     # Force the menus cache to be rebuilt 
-    rm -f /usr/local/share/applications/emacs23.desktop
-    rm -f /usr/local/share/applications/desktop.*.cache
+    rm -f /usr/share/applications/emacs23.desktop
+    rm -f /usr/share/applications/desktop.*.cache
 
 
 # Enable Orca
