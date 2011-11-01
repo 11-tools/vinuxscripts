@@ -54,10 +54,11 @@ sed -i 's/load-module module-native-protocol-unix$/load-module module-native-pro
 
 # Changed pulseaudio start dependencies so it starts
 # earlier, depends on speech-dispatcher
+sed -i 's/# Should-Start:      udev NetworkManager/# Should-Start:      udev NetworkManager speech-dispatcher/' /etc/init.d/pulseaudio 
+sed -i 's/# Should-Stop:       udev NetworkManager/# Should-Stop:       udev NetworkManager speech-dispatcher/' /etc/init.d/pulseaudio 
 
-#if [ "`grep 'sleep 8' /etc/init.d/pulseaudio`" = "" ]; then
-#    sed -i 's/\tstart-stop-daemon\(.*\)--start/\tsleep 8\n\tstart-stop-daemon\1--start/' /etc/init.d/pulseaudio
-#fi
+# force update-rc.d to rebuild pulseaudio runlvel scripts
+update-rc.d -f pulseaudio remove && update-rc.d pulseaudio defaults
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -110,5 +111,4 @@ fi
 
 # Stage 5 - Enable brltty for Braille displays
 sed -i 's/^RUN_BRLTTY=.*/RUN_BRLTTY=yes/' /etc/default/brltty
-
 

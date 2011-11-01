@@ -250,3 +250,7 @@ else
     rsync -r --exclude=/usr/local/share/vinux/skel/.gconf /usr/local/share/vinux/skel/ /etc/skel
 fi
 
+
+# Fix remastersys to not remove ssh generated certificates - breaks openssh-server
+sed -i s/^rm.*ssh.*$// /usr/bin/remastersys
+
