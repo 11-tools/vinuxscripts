@@ -142,7 +142,7 @@ accessibility_tools='nautilus-gksu monitor-toggle'
 
 themes='gnome-accessibility-themes-extras gnome-themes gnome-themes-extras'
 
-chat='pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype irssi'
+chat='pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype irssi mangler'
 
 graphics='compizconfig-settings-manager nautilus-wallpaper gnome-color-chooser gcolor2 nautilus-image-converter gtk-chtheme fslint'
 
