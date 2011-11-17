@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# written by Storm from  www.stormdragon.us
+
+#safely create a temperary file
+manFile=$(tempfile -d /tmp -p manpg)
+#this script accepts 1 and only 1 argument, a man topic.
+# still needing to be implemented manpage catagory
+if [[ $# -ne "1" ]] ; then
+echo "Usage mantext man page"
+exit 1
+fi
+#check if the file has anything in it and open if so.
+man $1 > "$manFile"
+if [[ -s ""$manFile"" ]] ; then
+#select gedit if it is available, if not use nano.
+#There's probably a much better way to do this.
+#For now we just check for the existance of the $COLOR term variable.
+if [[ -n $COLORTERM ]] ; then
+gedit "$manFile"&
+else
+nano "$manFile"
+fi
+fi
+exit 0
