@@ -138,7 +138,7 @@ system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude testdisk d
 
 screen_readers='gnome-orca speakup speakup-tools speechd-up gespeaker dasher gok'
 
-accessibility_tools='nautilus-gksu monitor-toggle'
+accessibility_tools='nautilus-gksu monitor-toggle orca-teacher'
 
 themes='gnome-accessibility-themes-extras gnome-themes gnome-themes-extras'
 
