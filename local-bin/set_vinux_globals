@@ -64,6 +64,9 @@ gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -t bool 
 # show trash icon
 gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -t bool -s /apps/nautilus/desktop/trash_icon_visible true
 
+# install extra sound themes
+mkdir -p /usr/local/share/sounds
+rsync -a system/sounds/* /usr/local/share/sounds/
 remove_applet()
 {
     local line_no prior_line next_line
