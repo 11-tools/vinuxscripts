@@ -54,19 +54,14 @@ function add-customkey {
     gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -s -t string /desktop/gnome/keybindings/custom$1/binding "$3"
 }
 
-# add desktop icons
-# show home icon”
-gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -t bool -s /apps/nautilus/desktop/home_icon_visible true
-
-# show icon computer
-gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -t bool -s /apps/nautilus/desktop/computer_icon_visible true
-
-# show trash icon
-gconftool-2 --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults -t bool -s /apps/nautilus/desktop/trash_icon_visible true
-
+# add computer home and trash desktop icons
+set-string /apps/nautilus/desktop/home_icon_visible true
+set-string /apps/nautilus/desktop/computer_icon_visible true
+set-string /apps/nautilus/desktop/trash_icon_visible true
 # install extra sound themes
 mkdir -p /usr/local/share/sounds
-rsync -a system/sounds/* /usr/local/share/sounds/
+cp -Rf /usr/local/share/vinux/sounds /usr/local/share
+
 remove_applet()
 {
     local line_no prior_line next_line
