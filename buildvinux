@@ -167,6 +167,9 @@ echo
 sudo wget http://www.giuspen.com/software/x-tile_1.8.6-1_all.deb
 sudo dpkg -i x-tile_1.8.6-1_all.deb
 
+# installing sound theme manager
+sudo dpkg -i gstmanager_1.1.1-0ubuntu1_all.deb
+
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
 echo
