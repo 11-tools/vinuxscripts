@@ -55,9 +55,9 @@ function add-customkey {
 }
 
 # add computer home and trash desktop icons
-set-string /apps/nautilus/desktop/home_icon_visible true
-set-string /apps/nautilus/desktop/computer_icon_visible true
-set-string /apps/nautilus/desktop/trash_icon_visible true
+#set-string /apps/nautilus/desktop/home_icon_visible true
+#set-string /apps/nautilus/desktop/computer_icon_visible true
+#set-string /apps/nautilus/desktop/trash_icon_visible true
 # install extra sound themes
 mkdir -p /usr/local/share/sounds
 cp -Rf /usr/local/share/vinux/sounds /usr/local/share
