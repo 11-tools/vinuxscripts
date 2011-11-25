@@ -168,8 +168,8 @@ echo "installing x-tile..."
 green
 echo
 
-sudo wget http://www.giuspen.com/software/x-tile_1.8.6-1_all.deb
-sudo dpkg -i x-tile_1.8.6-1_all.deb
+sudo wget http://www.giuspen.com/software/x-tile_2.0-1_all.deb
+sudo dpkg -i x-tile_2.0-1_all.deb
 
 # installing sound theme manager
 sudo dpkg -i system/gstmanager_1.1.1-0ubuntu1_all.deb
