@@ -95,9 +95,6 @@ sudo sed -Ei 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
 # Change lsb-release description to our build version
 sudo sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
 
-# run the updated accessibility patch
-sudo patch -p1 /usr/lib/ubiquity/target-config/30accessibility system/30accessibility.patch
-
 # Update grub so our menu name changes
 sudo update-grub
 fi
@@ -126,8 +123,6 @@ sudo sed -i 's/^timeout.*/timeout 100/
 # Change boot background
 
 sudo cp -f /usr/local/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 4 - Build Iso
 

@@ -1,15 +1,6 @@
-These scripts build a Vinux-like environment on top of Ubuntu.  So far, it only
-works with Ubuntu Lucid.  You need to install before running the scripts, with:
+These scripts build a Vinux-like environment on top of Ubuntu.  This branch works with Ubuntu Precise.  You need to install before running the scripts, with:
 
 sudo make install
-
-There are five scripts installed, they should all be run with sudo (except volume_keys):
-
-buildvinux - Updates sources.list, updates to latest, and runs restorespeech
-             and set_vinux_globals.
-
-restorespeech - Modifies system to allow speakup to run, and restores login
-                window speech.
 
 set_vinux_globals - Set's default Vinux keybindings, menus, and other user
 	            settings for all users.  Optionally set Vinux-style desktop.
@@ -19,10 +10,4 @@ volume_keys - sets the gnome volume keybindings (don't run with sudo)
 buildvinuxiso - After running buildvinux, run buildvinuxiso to create a Vinux
                 ISO.  This removes many files from your system!  
 
-In addition, we replace gksu with simple scripts that wrap around sudo,
-since gksu causes problems with accessibility.  The issues.txt file is just an
-informal list of tasks that need to be worked on.
 
-Finally, the tinytrace directory is a simple trace program for python
-applications.  It is included here since it was very helpful in
-debugging ubiquity in Live CD mode.

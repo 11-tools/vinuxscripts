@@ -2,11 +2,8 @@
 #
 # This script should only be run after completing the following steps:
 #
-# 1. Download the latest Ubuntu Lucid iso and burn it to CD.
-#
-# 2. Boot from the CD, Press Space, Enter, F5, select 'screen-reader' and 
-# Enter again to boot the live CD.
-#
+# 1. Download the latest Ubuntu Precise iso and burn it to CD.
+# 2. Wait to hear the drums, push Control + S and wait for speech to start.
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 #
 # Type 'sudo buildvinux' to run the script, when it is finished reboot and
@@ -56,31 +53,15 @@ blue
 echo "Adding personal package archives"
 green
 echo
-sudo apt-add-repository ppa:vinux/vinux-lucid
-sudo apt-add-repository ppa:vinux/vinux-lucid-testing
+sudo apt-add-repository ppa:vinux/vinux-precise-proposed
+sudo apt-add-repository ppa:vinux/vinux-precise
 
-# Disable testing repository by default
-sudo sed -ri '1 s/(^deb)/# \1/' /etc/apt/sources.list.d/vinux-vinux-lucid-testing-lucid.list
+# Add remastersys
+sudo wget -O - http://www.remastersys.com/ubuntu/remastersys.gpg.key | apt-key add -
+sudo echo '#Remastersys Precise
+deb http://www.remastersys.com/ubuntu precise main' > /etc/apt/sources.list.d/remastersys-precise.list
 
-sudo add-apt-repository ppa:mozillateam/firefox-stable
-sudo add-apt-repository ppa:mozillateam/thunderbird-stable
-sudo add-apt-repository ppa:libreoffice/ppa
-sudo add-apt-repository ppa:tualatrix/ppa
-
-# Add medibuntu repository 
-
-echo
-blue
-echo "Adding medibuntu repository..."
-green
-echo
-
-sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get -qq update && sudo apt-get -y -qq --allow-unauthenticated install medibuntu-keyring && sudo apt-get -qq update 
-
-sudo apt-get -qq -y --force-yes install app-install-data-medibuntu apport-hooks-medibuntu 
-
-
-echo -n "Do you want to remove OpenOffice? [y/n]: "; read ANSWER
+echo -n "Do you want to remove LibreOffice? [y/n]: "; read ANSWER
 green
 echo
 
@@ -88,11 +69,11 @@ if [ "$ANSWER" = "y" ]; then
 
 echo
 blue
-echo "Removing Open Office..."
+echo "Removing Libre Office..."
 green
 echo
 
-sudo apt-get purge -y -qq openoffice.org-common openoffice.org-style-human            
+sudo apt-get purge -y -qq libreoffice-*
  
 fi
 
@@ -113,66 +94,30 @@ echo
 
 # Define packages
 
-system_tools='remastersys gparted acpi ubiquity-frontend-gtk aptitude testdisk deborphan partimage aptoncd startupmanager pybackpack gwget gtkhash cpufreqd computer-janitor computer-janitor-gtk wajig alsa-oss gufw ntp pastebinit software-center openssh-server cfh linux-image-generic linux-headers-generic'
+system_tools='remastersys remastersys-gui gparted acpi ubiquity-frontend-gtk aptitude aptoncd wajig ntp pastebinit vinux-compiz-settings vinux-default-settings vinux-desktop vinux-desktop-settings vinux-keyboard-shortcuts vinux-keyring vinux-user-configs vinux-wallpapers'
 
-screen_readers='gnome-orca speakup speakup-tools speechd-up gespeaker dasher gok'
+screen_readers='gnome-orca speakup-tools speechd-up'
 
 accessibility_tools='nautilus-gksu monitor-toggle orca-teacher'
 
 themes='gnome-accessibility-themes-extras gnome-themes gnome-themes-extras'
 
-chat='pidgin pidgin-data pidgin-facebookchat pidgin-hotkeys pidgin-libnotify pidgin-microblog pidgin-plugin-pack pidgin-skype irssi mangler'
+chat='pidgin pidgin-data pidgin-facebookchat pidgin-microblog irssi mangler'
 
-graphics='compizconfig-settings-manager nautilus-wallpaper gnome-color-chooser gcolor2 nautilus-image-converter gtk-chtheme fslint'
+graphics='nautilus-wallpaper gcolor2 nautilus-image-converter'
 
-cli='mc vlock lfm lynx-cur alpine ceni ttytter emacspeak'
+cli='mc vlock lfm lynx-cur alpine ttytter emacspeak'
 
-sound='nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer mhwaveedit gtk-recordmydesktop isomaster alarm-clock'
+sound='nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer'
 
-convenient_tools='nautilus-open-terminal gedit-plugins geditpdf ubuntu-tweak terminator autokey-gtk'
+convenient_tools='nautilus-open-terminal gedit-plugins geditpdf'
 
-common='pcmanfm thunderbird gworldclock parcellite dlume gnome-schedule hardinfo searchmonkey meld easystroke gnome-mousetrap gxneur surfraw wordgrinder ubufox'
+common='pcmanfm thunderbird easystroke gnome-mousetrap'
 
 sudo apt-get install -y -q --force-yes $system_tools $screen_readers $accessibility_tools $themes $chat $graphics $cli $sound $convenient_tools $common
 
 
 sudo apt-get upgrade -y  -qq
-# Pin the priority of Vinux packages as higher than Ubuntu, so they don't get
-# updated until we say so.
-
-echo
-blue
-echo "Pinning Vinux repositories..."
-green
-echo
-
-sudo echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid
-Pin-Priority: 750' > /tmp/vinux-lucid-pin-750
-sudo mv /tmp/vinux-lucid-pin-750 /etc/apt/preferences.d
-sudo echo 'Package: *
-Pin: release o=LP-PPA-vinux-vinux-lucid-testing
-Pin-Priority: 760' > /etc/apt/preferences.d/vinux-lucid-testing-pin-760
-
-echo
-bell
-red
-
-
-
-# Install x-tile from repository
-
-echo
-blue
-echo "installing x-tile..."
-green
-echo
-
-sudo wget http://www.giuspen.com/software/x-tile_2.0-1_all.deb
-sudo dpkg -i x-tile_2.0-1_all.deb
-
-# installing sound theme manager
-sudo dpkg -i system/gstmanager_1.1.1-0ubuntu1_all.deb
 
 # Fix bug - espeak gives error: bt_audio_service_open: connect() failed: 
 
@@ -183,11 +128,6 @@ green
 echo
 
 sudo apt-get purge -qq -y bluez-alsa 
-
-# Installing Vinux Manual
-
-sudo update_manual
-
 
 # Clean up any packages we don't need
 
@@ -210,7 +150,6 @@ sudo sed -i 's/exec emacs -q -l/exec emacs -l/' /usr/bin/emacspeak
 # install our irssi configuration
 sudo cp system/irssi.conf /etc/irssi.conf
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 3 - Install/Remove Optional Packages
 
@@ -230,31 +169,9 @@ blue
 echo "Installing DVD packages..."
 green
 echo
-sudo apt-get install -y --force-yes -q cuneiform ocropus screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan tuxmath tuxpaint tuxpuck tuxtype pingus accerciser python-dogtail audacious paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager xaralx photoprint 
+sudo apt-get install -y --force-yes -q gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer clamtk nautilus-clamscan audacious paman paprefs thoggen speedy-ocr ttf-aenigma devede photoprint 
 
 fi
-
-# Install non-free packages - non-distributable in some countries
-
-echo
-bell
-red
-echo -n "Do you want to install all of the non-free packages? [y/n]: "; read ANSWER
-green
-echo
-
-if [ "$ANSWER" = "y" ]; then  
-
-echo
-blue
-echo "Installing non-free packages..."
-green
-echo
-
-sudo apt-get install -y -q --force-yes ubuntu-restricted-extras libdvdcss2 non-free-codecs acroread
-fi
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 4 - Configure Desktop and Keybindings
 

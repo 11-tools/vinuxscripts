@@ -1,0 +1,98 @@
+#!/bin/bash
+#
+# This script sets up the Vinux keybindings, menus and such.  It also 
+# modifies the desktop, but it doesn't remove any applications.  It 
+# should be run by typing: 'sudo set_vinux_globals'.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Stage 0 - Declare text colour/system bell functions
+
+function black {
+    tput setf 0   
+}
+
+function green {
+    tput setf 2    
+}
+
+function blue {
+    tput setf 3
+}
+
+function red {
+    tput setf 4    
+}
+
+function white {
+    tput setf 7
+}
+
+function reset {
+    tput reset
+}
+
+function bell {
+    echo -en "\007"    
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Set fonts
+set-string /apps/nautilus/preferences/desktop_font  'Sans Bold 12'
+set-string /desktop/gnome/interface/monospace_font_name 'Monospace Bold 12'
+set-string /desktop/gnome/interface/document_font_name 'Sans Bold 12'
+set-string /desktop/gnome/interface/font_name 'Sans Bold 12'
+set-string /apps/metacity/general/titlebar_font 'Sans Bold 12'
+set-string /desktop/gnome/interface/icon_theme 'Mist'
+set-string /desktop/gnome/interface/gtk_theme 'Darklooks'
+set-string /apps/metacity/general/theme 'Mist'
+set-string /apps/metacity/general/button_layout ":minimize,maximize,close"
+
+# Set mouse pointer
+gct -s -t int /desktop/gnome/peripherals/mouse/cursor_size 48
+set-string /desktop/gnome/peripherals/mouse/cursor_theme 'DMZ-White'
+gct -s -t int /apps/compiz/general/allscreens/options/cursor_size 48
+set-string /apps/compiz/general/allscreens/options/cursor_theme 'DMZ-White'
+
+# Add our background
+cp -r /usr/local/share/vinux/Backgrounds/* /usr/share/backgrounds
+gconftool-2 --set /desktop/gnome/background/picture_filename --type string "/usr/local/share/backgrounds/Vinux-Dusk.jpg"
+
+ # Copy user files to /etc/skel
+    rsync -r /usr/local/share/vinux/skel/ /etc/skel
+
+echo
+bell
+echo
+
+chmod -R a+r /etc/skel
+
+
+
+echo
+bell
+red
+echo -n "Enter your username: "; read USER
+green
+echo
+
+# Copy files from /etc/skel to user directory
+
+rsync -r /etc/skel/ /home/$USER
+rsync -r /usr/local/share/vinux/EasyInstall_skel/ /home/$USER
+chown -Rf $USER:$USER /home/$USER
+cp /etc/skel/.bash_aliases_vinux /root
+
+# prevent ubuntu boot splash being shown
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
+update-grub
+
+# If you don't want the Vinux desktop...
+
+else
+    rsync -r --exclude=/usr/local/share/vinux/skel/.gconf /usr/local/share/vinux/skel/ /etc/skel
+fi
+
+

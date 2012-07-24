@@ -76,17 +76,6 @@ modprobe speakup_soft start=1
 echo "speakup_soft start=1" >> /etc/modules
 fi
 
-# Enable speech-dispatcher to run system-wide
-sed -i 's/RUN_SPEECHD=no/RUN_SPEECHD=yes/' /etc/default/speech-dispatcher
-
-# Edit global speechd.conf to enable ibmtts.
-sed -i 's/#AddModule "ibmtts"/AddModule "ibmtts"/' /etc/speech-dispatcher/speechd.conf
-
-# Edit user speechd.conf to enable ibmtts.
-if [ -f ~/.speech-dispatcher/conf/speechd.conf ]; then
-    sed -i 's/#AddModule "ibmtts"/AddModule "ibmtts"/' ~/.speech-dispatcher/conf/speechd.conf
-fi
-
 echo
 blue
 echo "Setting up speech packages..."
@@ -103,12 +92,6 @@ apt-get install -y -qq speechd-up
 
 sed -i 's/^OnlyShowIn=XFCE;$/OnlyShowIn=GNOME;XFCE;/' /etc/xdg/autostart/gnome-volume-control-applet.desktop
 
-# Stage 4 0 Enable Orca to access root applications
-
-if [ "`grep 'ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES' /etc/sudoers`" = "" ]; then
-    sed -i -e 's/# Host alias specification/Defaults\tenv_keep = "ORBIT_SOCKETDIR XDG_SESSION_COOKIE GTK_MODULES"\n\n# Host alias specification/g' /etc/sudoers
-fi
-
-# Stage 5 - Enable brltty for Braille displays
+# Stage 4 - Enable brltty for Braille displays
 sed -i 's/^RUN_BRLTTY=.*/RUN_BRLTTY=yes/' /etc/default/brltty
 
