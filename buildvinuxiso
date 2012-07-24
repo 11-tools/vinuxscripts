@@ -74,7 +74,7 @@ sudo apt-get purge -qq -y gbrainy evolution-common evolution-data-server evoluti
 sudo apt-get autoremove -y -qq
 
 # Add EasyInstall to /etc/skel
-sudo rsync -r /usr/local/share/vinux/EasyInstall_skel/ /etc/skel
+sudo rsync -r /usr/share/vinux/EasyInstall_skel/ /etc/skel
 chmod -Rf a+r /etc/skel
 
 #Enable grub beep
@@ -122,7 +122,7 @@ sudo sed -i 's/^timeout.*/timeout 100/
 
 # Change boot background
 
-sudo cp -f /usr/local/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
+sudo cp -f /usr/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
 
 # Stage 4 - Build Iso
 

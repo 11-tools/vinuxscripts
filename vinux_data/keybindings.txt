@@ -1,4 +1,4 @@
-Vinux Keybindings
+Vinux Keybindings - not fully documented for Precise
 
 This document contains a list of all of the keybindings
 for Gnome, Orca, Compiz, Speakup and Bash as well
@@ -15,33 +15,25 @@ It is divided into nine sections:
 
 1. Gnome Keybindings
 
-Open the Vinux Manual
-    Control + Alt + Q
 List keybindings
     Control + Alt + k
 Launch web browser
-    Control + Alt + w
+Super + 2
 Home folder
-    Control + Alt + n
+Super + 1
 Root file browser
-    Control + Alt + Shift + n
+    Control + Alt + Shift + R
 Run terminal
     Control + Alt + t
 Launch Gedit text editor
     Control + Alt + g
 Restart orca
     Control + Alt + o
-Enable 3d desktop
-    Control + Alt + 3
-Disable 3d desktop
-    Control + Alt + 2
 Change to default theme/font size 8,12,16,20 or 24
     Windows + Alt + 1,2,3,4 or 5
 Change to dark theme/font size 8,12,16,20 or 24
     Windows + Alt + 6,7,8,9 or 0
-Toggle monitor on/off
-    Control + Alt + m
-Enable Vinux Volume Keybindings*
+Enable Vinux Volume Key bindings
     Windows + Alt + Shift + Up
 *Vinux Volume Up
     Windows + Alt + Right
@@ -49,10 +41,8 @@ Enable Vinux Volume Keybindings*
     Windows + Alt + Left
 *Vinux Toggle Volume Mute
     Windows + Alt + Down
-Restore Speech
-    Control + Shift + Alt + R
 
-2. Compiz Keybindings
+2. Compiz Keybindings - not tested
 
 Zoom in (mouse)
     Windows + Left Click

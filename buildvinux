@@ -54,7 +54,7 @@ echo "Adding personal package archives"
 green
 echo
 sudo apt-add-repository ppa:vinux/vinux-precise-proposed
-sudo apt-add-repository ppa:vinux/vinux-precise
+
 
 # Add remastersys
 sudo wget -O - http://www.remastersys.com/ubuntu/remastersys.gpg.key | apt-key add -
@@ -92,30 +92,7 @@ echo "Installing default packages..."
 green
 echo
 
-# Define packages
-
-system_tools='remastersys remastersys-gui gparted acpi ubiquity-frontend-gtk aptitude aptoncd wajig ntp pastebinit vinux-compiz-settings vinux-default-settings vinux-desktop vinux-desktop-settings vinux-keyboard-shortcuts vinux-keyring vinux-user-configs vinux-wallpapers'
-
-screen_readers='gnome-orca speakup-tools speechd-up'
-
-accessibility_tools='nautilus-gksu monitor-toggle orca-teacher'
-
-themes='gnome-accessibility-themes-extras gnome-themes gnome-themes-extras'
-
-chat='pidgin pidgin-data pidgin-facebookchat pidgin-microblog irssi mangler'
-
-graphics='nautilus-wallpaper gcolor2 nautilus-image-converter'
-
-cli='mc vlock lfm lynx-cur alpine ttytter emacspeak'
-
-sound='nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer'
-
-convenient_tools='nautilus-open-terminal gedit-plugins geditpdf'
-
-common='pcmanfm thunderbird easystroke gnome-mousetrap'
-
-sudo apt-get install -y -q --force-yes $system_tools $screen_readers $accessibility_tools $themes $chat $graphics $cli $sound $convenient_tools $common
-
+sudo apt-get install -y -q --force-yes  remastersys remastersys-gui gparted acpi ubiquity-frontend-gtk aptitude aptoncd wajig ntp pastebinit vinux-compiz-settings vinux-default-settings vinux-desktop vinux-desktop-settings vinux-keyboard-shortcuts vinux-keyring vinux-user-configs vinux-wallpapers speakup-tools speechd-up gnome-themes gnome-themes-extras pidgin pidgin-data pidgin-facebookchat pidgin-microblog irssi mangler nautilus-wallpaper gcolor2 nautilus-image-converter mc vlock lfm lynx-cur alpine ttytter emacspeak nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer nautilus-open-terminal gedit-plugins geditpdf pcmanfm easystroke gnome-mousetrap
 
 sudo apt-get upgrade -y  -qq
 

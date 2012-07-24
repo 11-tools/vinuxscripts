@@ -60,8 +60,6 @@ sed -i 's/# Should-Stop:       udev NetworkManager/# Should-Stop:       udev Net
 # force update-rc.d to rebuild pulseaudio runlvel scripts
 update-rc.d -f pulseaudio remove && update-rc.d pulseaudio defaults
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
 # Stage 2 - Configuring Speech
 
 echo
