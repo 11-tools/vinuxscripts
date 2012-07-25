@@ -54,7 +54,6 @@ echo "Adding personal package archives"
 green
 echo
 sudo apt-add-repository ppa:vinux/precise-proposed
-sudo apt-add-repository ppa:vinux/precise
 
 # Add remastersys
 sudo wget -O - http://www.remastersys.com/ubuntu/remastersys.gpg.key | apt-key add -
