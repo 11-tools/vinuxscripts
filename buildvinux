@@ -91,7 +91,7 @@ echo "Installing default packages..."
 green
 echo
 
-sudo apt-get install -y -q --force-yes  remastersys remastersys-gui gparted acpi ubiquity-frontend-gtk aptitude aptoncd wajig ntp pastebinit unetbootin vinux-compiz-settings vinux-default-settings vinux-desktop vinux-desktop-settings vinux-keyboard-shortcuts vinux-keyring vinux-user-configs vinux-wallpapers speakup-tools speechd-up gnome-accessibility-themes gnome-themes gnome-themes-extras pidgin pidgin-data pidgin-facebookchat pidgin-microblog irssi mangler nautilus-wallpaper gcolor2 nautilus-image-converter mc vlock lfm lynx-cur alpine ttytter emacspeak nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer nautilus-open-terminal gedit-plugins geditpdf pcmanfm easystroke gnome-mousetrap
+sudo apt-get install -y -q --force-yes  remastersys remastersys-gui gparted acpi ubiquity-frontend-gtk aptitude aptoncd wajig ntp pastebinit unetbootin vinux-compiz-settings vinux-default-settings vinux-desktop vinux-desktop-settings vinux-keyboard-shortcuts vinux-keyring vinux-user-configs vinux-wallpapers speakup-tools speechd-up gnome-accessibility-themes gnome-themes-extras pidgin pidgin-data pidgin-facebookchat pidgin-microblog irssi mangler nautilus-wallpaper gcolor2 nautilus-image-converter mc vlock lfm lynx-cur alpine ttytter emacspeak nautilus-script-audio-convert soundConverter      audiobook-converter pavucontrol sound-juicer nautilus-open-terminal gedit-plugins geditpdf pcmanfm easystroke gnome-mousetrap
 
 sudo apt-get upgrade -y  -qq
 
