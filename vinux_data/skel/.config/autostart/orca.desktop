@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Type=Application
+Exec=orca
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_AU]=orca
+Name=orca
+Comment[en_AU]=screen reader
+Comment=screen reader
