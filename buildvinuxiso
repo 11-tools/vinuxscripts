@@ -49,8 +49,7 @@ echo
 
 RELEASE_SPACES=`echo $RELEASE | sed 's/-/ /g'`
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
+ 
 # Stage 2 - Remove Applications
 
 echo
@@ -71,14 +70,7 @@ echo
 
 sudo apt-get purge -qq -y gnome-games-common gbrainy evolution-common evolution-data-server evolution-webcal f-spot ttf-unfonts-core ttf-thai-tlwg ttf-takao-pgothic ttf-wqy-microhei ttf-indic-fonts-core ttf-punjabi-fonts ttf-lao ttf-khmeros-core ttf-kacst-one example-content festival samba-common samba-common-bin smbclient ure festlex-cmu festlex-poslex festvox-kallpc16k libflite1 git-core gucharmap                           libreoffice-common libreoffice-core libreoffice-style-human  
 
-sudo apt-get autoremove -y -qq
-
-# Add EasyInstall to /etc/skel
-sudo rsync -r /usr/local/share/vinux/EasyInstall_skel/ /etc/skel
-chmod -Rf a+r /etc/skel
-
-#Enable grub beep
-sudo sed -i '/^#GRUB_INIT_TUNE=/s/^#//' /etc/default/grub
+sudo apt-get autoremove -y -qqq
 
 #clean up root dir
 sudo rm -f /root/.bash_history
@@ -96,8 +88,6 @@ sudo sed -Ei 's;(lsb_release[ ]*)-i([ ]);\1-d\2;g' /etc/default/grub
 sudo sed -i "s/^DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION=\"Vinux $RELEASE_SPACES\"/" /etc/lsb-release
 
 # run the updated accessibility patch
-sudo patch -p1 /usr/lib/ubiquity/target-config/30accessibility system/30accessibility.patch
-
 # Update grub so our menu name changes
 sudo update-grub
 fi
@@ -123,11 +113,6 @@ sudo sed -i 's/^timeout.*/timeout 100/
     s/ access=v3//
     s/boot=casper/boot=casper access=v3/' /etc/remastersys/isolinux/isolinux.cfg.vesamenu
 
-# Change boot background
-
-sudo cp -f /usr/local/share/vinux/images/splash.png /etc/remastersys/isolinux/splash.png
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Stage 4 - Build Iso
 
