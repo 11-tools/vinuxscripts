@@ -9,19 +9,19 @@
 # 3. Run the Ubuntu Installer, install the system to hard drive then reboot.
 #
 # Type 'sudo buildvinux' to run the script, when it is finished reboot and
-# your system should be identical to the Vinux/20.04 distribution. If you 
+# your system should be identical to the Vinux/20.04 distribution. If you
 # want a log of the build process run the 'script' command first and 'exit'
-# when finished - the log will be in a file called 'typescript'.. 
-# 
+# when finished - the log will be in a file called 'typescript'..
+#
 
 # Stage 0 - Declare text colour/system bell functions
 
 function black {
-    tput setf 0   
+    tput setf 0
 }
 
 function green {
-    tput setf 2    
+    tput setf 2
 }
 
 function blue {
@@ -29,7 +29,7 @@ function blue {
 }
 
 function red {
-    tput setf 4    
+    tput setf 4
 }
 
 function white {
@@ -41,11 +41,9 @@ function reset {
 }
 
 function bell {
-    echo -en "\007"    
+    echo -en "\007"
 }
 
-
- 
 # Stage 1 - Configuring Repositories
 
 echo
@@ -53,7 +51,7 @@ blue
 echo "Adding personal package archives"
 green
 echo
-sudo apt-add-repository ppa:vinux/ppa 
+sudo apt-add-repository ppa:vinux/ppa
 
  
 # Stage 2 - Install Default Packages and upgrade
@@ -79,14 +77,14 @@ echo -n "Do you want to install all of the extra packages? [y/n]: "; read ANSWER
 green
 echo
 
-if [ "$ANSWER" = "y" ]; then   
+if [ "$ANSWER" = "y" ]; then
 
 echo
 blue
 echo "Installing extra packages..."
 green
 echo
-sudo apt-get install -y --force-yes -q cuneiform ocropus screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan tuxmath tuxpaint tuxpuck tuxtype pingus accerciser python-dogtail audacious paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager xaralx photoprint 
+sudo apt-get install -y --force-yes -q cuneiform ocropus screenlets gdesklets google-gadgets-gtk prism-google-groups prism-google-mail prism-google-calendar prism-google-docs gimp inkscape scribus openclipart-png transmageddon cheese audacity jokosher gtkpod libreoffice libreoffice-gnome evolution evolution-exchange ooo-thumbnailer bleachbit clamtk nautilus-clamscan tuxmath tuxpaint tuxpuck tuxtype pingus accerciser python-dogtail audacious paman paprefs padevchooser abiword gnumeric sox automake intltool gnome-common exactimage tuxguitar solfege gperiodic gtkdiskfree thoggen speedy-ocr pandoc markup-binder ttf-aenigma gwrite gshutdown devede bum fluxbox fluxconf fbdesk fbpager xaralx photoprint
 
 fi
 
@@ -99,7 +97,7 @@ echo -n "Do you want to install all of the non-free packages? [y/n]: "; read ANS
 green
 echo
 
-if [ "$ANSWER" = "y" ]; then  
+if [ "$ANSWER" = "y" ]; then
 
 echo
 blue
